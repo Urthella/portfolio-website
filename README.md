@@ -1,30 +1,18 @@
-# Utku Demirtaş portfolio
+Portfolio Website
+This repository contains the source code for my personal portfolio website. The site is designed with a modern and clean approach.
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+Features
+Responsive design for optimal viewing on all devices
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/urthellas-projects/v0-utku-demirtas-portfolio)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/CLKIusReOSH)
+Easily customizable and extensible structure
 
-## Overview
+Fast loading and performance optimized
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+Usage
+To clone and run the project locally:
 
-## Deployment
+git clone [repo-link]
+cd [repo-folder]
 
-Your project is live at:
-
-**[https://vercel.com/urthellas-projects/v0-utku-demirtas-portfolio](https://vercel.com/urthellas-projects/v0-utku-demirtas-portfolio)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.dev/chat/projects/CLKIusReOSH](https://v0.dev/chat/projects/CLKIusReOSH)**
-
-## How It Works
-
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Contact
+If you have any questions or feedback, feel free to reach out:
