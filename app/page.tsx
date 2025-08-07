@@ -829,7 +829,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <audio controls className="w-full mb-4">
-                  <source src="/Whisper of the Ent's.m4a" type="audio/mp4" />
+                  <source src="app/Whisper of the Ent's.m4a" type="audio/mp4" />
                   Your browser does not support the audio element.
                 </audio>
                 <div className="flex flex-wrap gap-2">
@@ -853,7 +853,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <audio controls className="w-full mb-4">
-                  <source src="/Haunted House.m4a" type="audio/mp4" />
+                  <source src="app/Haunted House.m4a" type="audio/mp4" />
                   Your browser does not support the audio element.
                 </audio>
                 <div className="flex flex-wrap gap-2">
