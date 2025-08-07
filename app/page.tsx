@@ -606,7 +606,7 @@ export default function Portfolio() {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-purple-400">
                   Spring Boot Backend
-                  <Link href="https://github.com/Urthella" className="text-purple-400 hover:text-purple-300 transition-colors">
+                  <Link href="https://github.com/Urthella/tut-rest" className="text-purple-400 hover:text-purple-300 transition-colors">
                     <Github className="w-6 h-6" />
                   </Link>
                 </CardTitle>
@@ -634,7 +634,7 @@ export default function Portfolio() {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-green-400">
                   Portfolio Website
-                  <Link href="https://github.com/Urthella" className="text-green-400 hover:text-green-300 transition-colors">
+                  <Link href="https://github.com/Urthella/portfolio-website" className="text-green-400 hover:text-green-300 transition-colors">
                     <Github className="w-6 h-6" />
                   </Link>
                 </CardTitle>
