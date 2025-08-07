@@ -115,7 +115,8 @@ export default function Portfolio() {
         sendMessage: 'Send Me a Message!',
         name: 'Name',
         message: 'Message',
-        send: 'Send'
+        send: 'Send',
+        articles: 'Articles'
       }
     },
     tr: {
@@ -210,7 +211,8 @@ export default function Portfolio() {
         sendMessage: 'Bana Mesaj Gönder!',
         name: 'İsim',
         message: 'Mesaj',
-        send: 'Gönder'
+        send: 'Gönder',
+        articles: 'Makaleler'
       }
     }
   }
@@ -606,7 +608,7 @@ export default function Portfolio() {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-purple-400">
                   Spring Boot Backend
-                  <Link href="https://github.com/Urthella/tut-rest" className="text-purple-400 hover:text-purple-300 transition-colors">
+                  <Link href="https://github.com/Urthella" className="text-purple-400 hover:text-purple-300 transition-colors">
                     <Github className="w-6 h-6" />
                   </Link>
                 </CardTitle>
@@ -634,7 +636,7 @@ export default function Portfolio() {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-green-400">
                   Portfolio Website
-                  <Link href="https://github.com/Urthella/portfolio-website" className="text-green-400 hover:text-green-300 transition-colors">
+                  <Link href="https://github.com/Urthella" className="text-green-400 hover:text-green-300 transition-colors">
                     <Github className="w-6 h-6" />
                   </Link>
                 </CardTitle>
@@ -829,7 +831,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <audio controls className="w-full mb-4">
-                  <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_IieQicezlbMe2A2zGy752AszXbCQ/id1lApeK1_WRHHm9BRycGv/public/Whisper_of_the_Ents.mp3" type="audio/mpeg" />
+                  <source src="/Whisper of the Ent's.m4a" type="audio/mp4" />
                   Your browser does not support the audio element.
                 </audio>
                 <div className="flex flex-wrap gap-2">
@@ -853,7 +855,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <audio controls className="w-full mb-4">
-                  <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_IieQicezlbMe2A2zGy752AszXbCQ/DnKudqfgfKec--vUs20FdO/public/Haunted_House.mp3" type="audio/mpeg" />
+                  <source src="/Haunted House.m4a" type="audio/mp4" />
                   Your browser does not support the audio element.
                 </audio>
                 <div className="flex flex-wrap gap-2">
@@ -1049,7 +1051,7 @@ export default function Portfolio() {
                 {selectedProject === 'portfolio' && 'Portfolio Website'}
                 {selectedProject === 'drone' && 'Drone Control System'}
                 {selectedProject === 'cicd' && 'CI/CD Pipeline'}
-                {selectedProject === 'guitar' && 'Custom Guitar Build'}
+                {selectedProject === 'guitar' && 'Instagram-Based Pen Trading Initiative'}
               </h3>
               <Button
                 onClick={() => setSelectedProject(null)}
