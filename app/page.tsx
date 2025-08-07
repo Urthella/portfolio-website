@@ -46,7 +46,7 @@ export default function Portfolio() {
         title: 'About Me',
         subtitle: 'Get to know the person behind the code 🌟',
         journey: 'My Journey',
-        description1: "I'm a highly motivated Computer Engineering student with hands-on experience in backend and DevOps development, particularly within HR management systems. My journey has taken me through various roles, from Software Engineering Intern at Telenity to Backend & DevOps Developer at Extramus Organization.",
+        description1: "I'm a highly motivated Computer Engineering student with hands-on experience in backend and DevOps development. My journey has taken me through various roles, from Software Engineering Intern at Telenity to Backend & DevOps Developer at Extramus Organization.",
         description2: "I'm proficient in building Spring Boot applications and developing secure backend modules using Java, MongoDB, and Kafka. During my role at Extramus, I worked on document management features, implemented CI/CD pipelines, and contributed to containerized deployments using Docker.",
         description3: "Beyond coding, I'm passionate about scalable system design, cloud-based architectures, and continuously improving my technical skill set. I'm also a dedicated musician, athlete, and RPG game enthusiast who believes in the perfect balance between technology and creativity.",
         currentFocus: '🎯 Current Focus',
