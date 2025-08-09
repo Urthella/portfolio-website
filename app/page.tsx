@@ -7,6 +7,7 @@ import { Github, Mail, Phone, Linkedin, ExternalLink, Guitar, Dumbbell, Apple, I
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { FaInstagram } from "react-icons/fa"
 
 interface Firefly {
   id: number
@@ -83,7 +84,9 @@ export default function Portfolio() {
         fitnessSports: 'Fitness & Sports',
         fitnessDescription: 'Physical fitness is crucial for mental clarity and productivity! 💪 As a calisthenics athlete and provincial basketball champion, I believe in the connection between physical and mental well-being. Regular workouts help me maintain focus during long coding sessions and provide a healthy outlet for stress.',
         readingRpg: 'Reading & RPG Gaming',
-        readingDescription: 'Books and RPG games are my gateway to infinite worlds! 📖 I\'m passionate about fantasy and science fiction literature, philosophy, and immersive RPG experiences. These interests fuel my creativity, expand my perspective, and enhance my analytical thinking and problem-solving skills in programming.'
+        readingDescription: 'Books and RPG games are my gateway to infinite worlds! 📖 I\'m passionate about fantasy and science fiction literature, philosophy, and immersive RPG experiences. These interests fuel my creativity, expand my perspective, and enhance my analytical thinking and problem-solving skills in programming.',
+        collectingTrading: 'Collecting & Trading',
+        collectingDescription: 'I enjoy discovering and collecting high-quality pens and other timeless tools. Through local trading, I engage with a growing community of enthusiasts in Türkiye and explore the heritage of writing instruments.'
       },
       gamemusic: {
         title: 'Game Musics I Designed',
@@ -175,11 +178,13 @@ export default function Portfolio() {
         title: 'Hobiler ve İlgi Alanları',
         subtitle: 'Kodun ötesinde, yaratıcılığımı besleyen şeyler 🎨',
         musicGuitar: 'Müzik ve Gitar',
-        musicDescription: 'Müzik yıllardır arkadaşım! 🎸 Gitar çalmak, yaratıcılığımı koddan farklı bir ortamda ifade etmeme olanak sağlıyor. Klasik blues\'tan modern metal\'e kadar, müzik için gereken disiplinin teknik çalışmalarımı mükemmel bir şekilde tamamladığını görüyorum. Geniş canlı performans deneyimi olan profesyonel gitarist.',
+        musicDescription: 'Müzik yıllardır arkadaşım! 🎸 Gitar çalmak, yaratıcılığımı koddan farklı bir ortamda ifade etmeme olanak sağlıyor. Klasik bluesdan modern metale kadar, müzik için gereken disiplinin teknik çalışmalarımı mükemmel bir şekilde tamamladığını görüyorum. Geniş canlı performans deneyimi olan profesyonel gitarist.',
         fitnessSports: 'Fitness ve Spor',
         fitnessDescription: 'Fiziksel fitness, zihinsel berraklık ve verimlilik için çok önemli! 💪 Kalistenik sporcu ve il basketbol şampiyonu olarak, fiziksel ve zihinsel refah arasındaki bağlantıya inanıyorum. Düzenli antrenmanlar, uzun kodlama seansları sırasında odaklanmamı sağlıyor ve stres için sağlıklı bir çıkış noktası sunuyor.',
         readingRpg: 'Okuma ve RPG Oyunları',
-        readingDescription: 'Kitaplar ve RPG oyunları sonsuz dünyalara açılan kapım! 📖 Fantastik ve bilim kurgu edebiyatı, felsefe ve sürükleyici RPG deneyimleri konusunda tutkuluyum. Bu ilgi alanları yaratıcılığımı besliyor, perspektifimi genişletiyor ve programlamadaki analitik düşünme ve problem çözme becerilerimi geliştiriyor.'
+        readingDescription: 'Kitaplar ve RPG oyunları sonsuz dünyalara açılan kapım! 📖 Fantastik ve bilim kurgu edebiyatı, felsefe ve sürükleyici RPG deneyimleri konusunda tutkuluyum. Bu ilgi alanları yaratıcılığımı besliyor, perspektifimi genişletiyor ve programlamadaki analitik düşünme ve problem çözme becerilerimi geliştiriyor.',
+        collectingTrading: 'Koleksiyonculuk ve Takas',
+        collectingDescription: 'Kaliteli kalemler ve zamansız araçları keşfetmekten ve toplamaktan keyif alıyorum. Yerel takaslar sayesinde Türkiye’de büyüyen bir meraklı topluluğuyla etkileşim kuruyor ve yazı gereçlerinin mirasını keşfediyorum.'
       },
       gamemusic: {
         title: 'Tasarladığım Oyun Müzikleri',
@@ -572,7 +577,7 @@ export default function Portfolio() {
             <p className="text-xl text-gray-300">{t.projects.subtitle}</p>
           </div>
 
-          <h3 className="text-3xl font-bold text-cyan-400 mb-8">{t.projects.featuredContent}</h3>
+          <h3 className="text-3xl font-bold text-cyan-400 mb-8 text-center">{t.projects.featuredContent}</h3>
 
           <div className="flex flex-wrap justify-center gap-8 mb-16">
             {/* Extramus HR System */}
@@ -621,6 +626,7 @@ export default function Portfolio() {
                   <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Spring Boot</Badge>
                   <Badge className="bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30">Java</Badge>
                   <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">MongoDB</Badge>
+                  <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">Kafka</Badge>
                 </div>
                 <Button
                   onClick={() => setSelectedProject('springboot')}
@@ -681,6 +687,7 @@ export default function Portfolio() {
                   <Badge className="bg-gradient-to-r from-orange-500/20 to-yellow-500/20 text-orange-300 border-orange-500/30">Python</Badge>
                   <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">ROS</Badge>
                   <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">C++</Badge>
+                  <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">GPS</Badge>
                 </div>
                 <Button
                   onClick={() => setSelectedProject('drone')}
@@ -713,6 +720,35 @@ export default function Portfolio() {
                 <Button
                   onClick={() => setSelectedProject('cicd')}
                   className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-xl"
+                >
+                  Show Details
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Pen Trading via Instagram (@pen.pick) */}
+            <Card className="hover:shadow-2xl hover:shadow-pink-500/30 transition-all duration-300 hover:-translate-y-2 bg-gray-900/80 border-pink-500/30 w-full max-w-md hover:animate-pulse hover:scale-105 animate-fade-in-up delay-200">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2 text-pink-400">
+                  <span>Pen Trading via Instagram (@pen.pick)</span>
+                  <a href="https://instagram.com/pen.pick" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500 transition-colors">
+                    <FaInstagram className="w-6 h-6 align-middle" />
+                  </a>
+                </CardTitle>
+                <CardDescription className="text-gray-300">
+                  A niche Instagram-based marketplace for premium pens. Focused on fountain, rollerball, and ballpoint models.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <Badge className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 text-pink-300 border-pink-500/30">Instagram</Badge>
+                  <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Product Photography</Badge>
+                  <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">E-commerce</Badge>
+                  <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">Branding</Badge>
+                </div>
+                <Button
+                  onClick={() => setSelectedProject('penpick')}
+                  className="w-full bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 text-white border-0 rounded-xl"
                 >
                   Show Details
                 </Button>
@@ -799,12 +835,26 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mt-2">{t.hobbies.readingDescription}</CardDescription>
               </CardHeader>
               <CardContent>
-                
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
+            {/* Collecting & Trading */}
+            <div className="md:col-span-2 lg:col-span-1 flex justify-center"></div>
+              <Card className="bg-gray-900/80 border-pink-500/30 shadow-xl shadow-pink-500/20 hover:shadow-pink-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-300">
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <FaInstagram className="w-8 h-8 text-pink-400" />
+                    <CardTitle className="text-pink-400">Collecting & Trading</CardTitle>
+                 </div>
+                 <CardDescription className="text-gray-300 mt-2">
+                    I enjoy discovering and collecting high-quality pens and other timeless tools. Through local trading, I engage with a growing community of enthusiasts in Türkiye and explore the heritage of writing instruments.
+                  </CardDescription>
+               </CardHeader>
+               <CardContent>
+               </CardContent>
+             </Card>
+           </div>
+         </div>
+       </section>
 
       {/* Game Music Section */}
       <section id="gamemusic" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
@@ -1051,7 +1101,7 @@ export default function Portfolio() {
                 {selectedProject === 'portfolio' && 'Portfolio Website'}
                 {selectedProject === 'drone' && 'Drone Control System'}
                 {selectedProject === 'cicd' && 'CI/CD Pipeline'}
-                {selectedProject === 'guitar' && 'Instagram-Based Pen Trading Initiative'}
+                {selectedProject === 'guitar' && 'Custom Guitar Build'}
               </h3>
               <Button
                 onClick={() => setSelectedProject(null)}
@@ -1238,6 +1288,41 @@ export default function Portfolio() {
                       <li>• Custom wiring and electronics</li>
                       <li>• Professional guitar setup</li>
                     </ul>
+                  </div>
+                </>
+              )}
+
+              {selectedProject === 'penpick' && (
+                <>
+                  <div>
+                    <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
+                    <p className="text-gray-300 leading-relaxed">
+                      A niche Instagram-based marketplace for premium pens including Montblanc, Parker, and Pelikan. Focused on fountain, rollerball, and ballpoint models. Managed via <a href="https://instagram.com/pen.pick" target="_blank" rel="noopener noreferrer" className="text-pink-400 underline hover:text-pink-500 transition-colors">@pen.pick</a>.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 text-pink-300 border-pink-500/30">Instagram</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-500/20 to-black/20 text-gray-300 border-gray-500/30">Product Photography</Badge>
+                      <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">E-commerce</Badge>
+                      <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">Branding</Badge>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
+                    <ul className="text-gray-300 space-y-2">
+                      <li>• Clean, minimal pen photography with detailed descriptions</li>
+                      <li>• Active Instagram presence to connect with local collectors</li>
+                      <li>• Handles packaging, negotiation, and delivery within Türkiye</li>
+                      <li>• Researches models, verifies authenticity, and tracks market trends</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-pink-400 mb-3">Skills & Outcomes</h4>
+                    <p className="text-gray-300 leading-relaxed">
+                      Enhanced practical skills in social media marketing, customer communication, and inventory handling through this hobby-turned-micro-business.
+                    </p>
                   </div>
                 </>
               )}
