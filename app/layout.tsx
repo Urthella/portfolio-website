@@ -4,9 +4,9 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Utku Demirtaş',
-  description: 'Created with love',
-  generator: 'Utku Demirtaş',
+  title: 'Utku Demirtaş | Frontend Developer',
+  description: 'Portfolio and projects by Utku Demirtaş, specializing in React, Next.js, and modern web development.',
+  generator: 'Next.js by Utku Demirtaş',
 }
 
 export default function RootLayout({
@@ -24,6 +24,8 @@ html {
   --font-mono: ${GeistMono.variable};
 }
         `}</style>
+        {/* Kalp emojili svg favicon */}
+        <link rel="icon href="/download.svg" />
       </head>
       <body>{children}</body>
     </html>
