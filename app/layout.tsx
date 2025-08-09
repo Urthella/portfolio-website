@@ -18,14 +18,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
+          html {
+            font-family: ${GeistSans.style.fontFamily};
+            --font-sans: ${GeistSans.variable};
+            --font-mono: ${GeistMono.variable};
+          }
         `}</style>
-        {/* Kalp emojili svg favicon */}
-        <link rel="icon href="/download.svg" />
+        <link rel="icon" href="/download.svg" />
       </head>
       <body>{children}</body>
     </html>
