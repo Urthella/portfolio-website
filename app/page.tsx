@@ -841,7 +841,7 @@ export default function Portfolio() {
               <Card className="bg-gray-900/80 border-pink-500/30 shadow-xl shadow-pink-500/20 hover:shadow-pink-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-300">
                 <CardHeader>
                   <div className="flex items-center space-x-3">
-                    <FaInstagram className="w-8 h-8 text-pink-400" />
+                    <Instagram className="w-8 h-8 text-pink-400" />
                     <CardTitle className="text-pink-400">Collecting & Trading</CardTitle>
                  </div>
                  <CardDescription className="text-gray-300 mt-2">
