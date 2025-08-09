@@ -589,7 +589,7 @@ export default function Portfolio() {
                   </Link>
                 </CardTitle>
                 <CardDescription className="text-gray-300">
-                  Comprehensive HR management system with document management, secure file uploads, and role-based access control
+                  HR management system with document management, secure file uploads, and role-based access control.
                 </CardDescription>
               </CardHeader>
               <CardContent>
