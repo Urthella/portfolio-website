@@ -731,7 +731,7 @@ export default function Portfolio() {
                 <CardTitle className="flex items-center space-x-2 text-pink-400">
                   <span>Pen Trading via Instagram (@pen.pick)</span>
                   <a href="https://instagram.com/pen.pick" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500 transition-colors">
-                    <FaInstagram className="w-6 h-6 align-middle" />
+                    <Instagram className="w-6 h-6 align-middle" />
                   </a>
                 </CardTitle>
                 <CardDescription className="text-gray-300">
