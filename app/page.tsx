@@ -7,7 +7,6 @@ import { Github, Mail, Phone, Linkedin, ExternalLink, Guitar, Dumbbell, Apple, I
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { FaInstagram } from "react-icons/fa"
 
 interface Firefly {
   id: number
