@@ -880,7 +880,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <audio controls className="w-full mb-4">
-                  <source src="/Whisper_of_the_Ents.mpe" type="audio/mpeg" />
+                  <source src="/Whisper_of_the_Ents.mp3" type="audio/mpeg" />
                   Your browser does not support the audio element.
                 </audio>
                 <div className="flex flex-wrap gap-2">
