@@ -39,6 +39,7 @@ export default function Portfolio() {
         skills: 'Skills',
         projects: 'Projects',
         hobbies: 'Hobbies',
+        articles: 'Articles',
         gamemusic: 'Game Music',
         services: 'Services',
         contact: 'Contact'
@@ -112,6 +113,32 @@ export default function Portfolio() {
         nutritionDescription: 'Optimize your health with science-based nutrition guidance and meal planning',
         contactForDetails: 'Contact me for details'
       },
+      articles: {
+        title: 'Medium Articles',
+        subtitle: 'Articles I wrote on cybersecurity and technology',
+        socialEngineering: {
+          title: 'The Part Where The Fun Begins: Social Engineering',
+          description: 'A detailed article examining how social engineering attacks work and how we can protect ourselves against these threats.'
+        },
+        sqlInjection: {
+          title: 'SQL Injection: The Vulnerability That Never Goes Away',
+          description: 'A comprehensive analysis of SQL injection vulnerabilities, attack methods, and protection techniques.'
+        },
+        osiModel: {
+          title: 'Understanding the OSI Model',
+          description: 'A detailed explanation in Turkish about the layers and functioning of the OSI Model that forms the foundation of network communication.'
+        },
+        vpn: {
+          title: 'VPN: The Secure Gateway of the Digital World',
+          description: 'A comprehensive guide on how VPN technology works, security advantages, and choosing the right VPN.'
+        },
+        readArticle: 'Read Article',
+        comingSoon: 'Coming Soon...',
+        musicTheory: 'The Impact of Music Theory on Coding',
+        musicTheoryDesc: 'Similarities between harmonic structures and programming paradigms',
+        followMedium: 'You can follow my Medium profile for more articles!',
+        mediumProfile: 'My Medium Profile'
+      },
       contact: {
         title: 'Get In Touch',
         subtitle: 'Let\'s connect and explore opportunities together! 🚀',
@@ -137,6 +164,7 @@ export default function Portfolio() {
         skills: 'Yetenekler',
         projects: 'Projeler',
         hobbies: 'Hobiler',
+        articles: 'Makaleler',
         gamemusic: 'Oyun Müzikleri',
         services: 'Hizmetler',
         contact: 'İletişim'
@@ -209,6 +237,32 @@ export default function Portfolio() {
         nutritionCoaching: 'Beslenme Koçluğu',
         nutritionDescription: 'Bilim temelli beslenme rehberliği ve yemek planlaması ile sağlığınızı optimize edin',
         contactForDetails: 'Detaylar için iletişime geçin'
+      },
+      articles: {
+        title: 'Medium Makalelerim',
+        subtitle: 'Siber güvenlik ve teknoloji üzerine yazdığım makaleler',
+        socialEngineering: {
+          title: 'The Part Where The Fun Begins: Social Engineering',
+          description: 'Social engineering saldırılarının nasıl çalıştığını ve bu tehditlere karşı nasıl korunabileceğimizi incelediğim detaylı makale.'
+        },
+        sqlInjection: {
+          title: 'SQL Injection: The Vulnerability That Never Goes Away',
+          description: 'SQL Injection zafiyetlerinin teknik detayları, saldırı yöntemleri ve koruma teknikleri üzerine kapsamlı bir analiz.'
+        },
+        osiModel: {
+          title: 'OSI Modelini Anlamak',
+          description: 'Ağ iletişiminin temelini oluşturan OSI Model\'in katmanları ve işleyişi hakkında detaylı Türkçe açıklama.'
+        },
+        vpn: {
+          title: 'VPN: Dijital Dünyanın Güvenli Kapısı',
+          description: 'VPN teknolojisinin nasıl çalıştığı, güvenlik avantajları ve doğru VPN seçimi konularında kapsamlı rehber.'
+        },
+        readArticle: 'Makaleyi Oku',
+        comingSoon: 'Yakında...',
+        musicTheory: 'Müzik Teorisinin Kod Yazımına Etkisi',
+        musicTheoryDesc: 'Harmonik yapılar ve programlama paradigmaları arasındaki benzerlikler',
+        followMedium: 'Daha fazla makale için Medium profilimi takip edebilirsiniz!',
+        mediumProfile: 'Medium Profilim'
       },
       contact: {
         title: 'İletişime Geçin',
@@ -285,13 +339,13 @@ export default function Portfolio() {
   useEffect(() => {
     const generateFireflies = () => {
       const newFireflies: Firefly[] = []
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 35; i++) {
         newFireflies.push({
           id: i,
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
-          size: Math.random() * 4 + 2,
-          opacity: Math.random() * 0.8 + 0.2,
+          size: Math.random() * 6 + 3,
+          opacity: Math.random() * 0.9 + 0.4,
           speed: Math.random() * 2 + 1
         })
       }
@@ -347,9 +401,9 @@ export default function Portfolio() {
               width: firefly.size,
               height: firefly.size,
               opacity: firefly.opacity,
-              background: 'radial-gradient(circle, #00ffff 0%, transparent 70%)',
+              background: 'radial-gradient(circle, #00ffff 0%, #00aaff 30%, transparent 70%)',
               borderRadius: '50%',
-              boxShadow: `0 0 ${firefly.size * 2}px #00ffff`,
+              boxShadow: `0 0 ${firefly.size * 3}px #00ffff, 0 0 ${firefly.size * 1.5}px #00aaff`,
               animation: `pulse ${2 + Math.random() * 2}s infinite alternate`
             }}
           />
@@ -364,7 +418,7 @@ export default function Portfolio() {
               UD
             </div>
             <div className="hidden md:flex space-x-8 items-center">
-              {['home', 'about', 'skills', 'projects', 'hobbies', 'gamemusic', 'services', 'contact'].map((section) => (
+              {['home', 'about', 'skills', 'projects', 'hobbies', 'articles', 'gamemusic', 'services', 'contact'].map((section) => (
                 <a
                   key={section}
                   href={`#${section}`}
@@ -437,15 +491,15 @@ export default function Portfolio() {
                   {t.hero.description}
                 </p>
                 <div className="flex items-center justify-center space-x-6 text-gray-300 flex-wrap gap-4">
-                  <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-4 py-2 rounded-full border border-cyan-500/30">
+                  <div className="flex items-center space-x-3 bg-gray-900/50 px-4 py-2 rounded-full border border-cyan-500/30">
                     <span className="text-2xl">💻</span>
                     <span className="font-medium">{t.hero.computerEngineer}</span>
                   </div>
-                  <div className="flex items-center space-x-3 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 px-4 py-2 rounded-full border border-orange-500/30">
+                  <div className="flex items-center space-x-3 bg-gray-900/50 px-4 py-2 rounded-full border border-orange-500/30">
                     <Guitar className="w-6 h-6 text-orange-400" />
                     <span className="font-medium">{t.hero.guitarist}</span>
                   </div>
-                  <div className="flex items-center space-x-3 bg-gradient-to-r from-green-500/20 to-blue-500/20 px-4 py-2 rounded-full border border-green-500/30">
+                  <div className="flex items-center space-x-3 bg-gray-900/50 px-4 py-2 rounded-full border border-green-500/30">
                     <Dumbbell className="w-6 h-6 text-green-400" />
                     <span className="font-medium">{t.hero.fitnessEnthusiast}</span>
                   </div>
@@ -481,11 +535,11 @@ export default function Portfolio() {
                 </p>
               </div>
               <div className="space-y-6">
-                <div className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 p-6 rounded-2xl border border-cyan-500/20">
+                <div className="bg-gray-900/50 p-6 rounded-2xl border border-cyan-500/20">
                   <h4 className="text-xl font-semibold text-cyan-400 mb-3">{t.about.currentFocus}</h4>
                   <p className="text-gray-300">{t.about.focusDescription}</p>
                 </div>
-                <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-6 rounded-2xl border border-purple-500/20">
+                <div className="bg-gray-900/50 p-6 rounded-2xl border border-purple-500/20">
                   <h4 className="text-xl font-semibold text-purple-400 mb-3">{t.about.achievements}</h4>
                   <ul className="text-gray-300 space-y-2">
                     <li>• Provincial basketball championship winner</li>
@@ -500,10 +554,10 @@ export default function Portfolio() {
       </section>
 
       {/* Technical Skills Section */}
-      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900/50 to-black relative z-20">
+      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
               {t.skills.title}
             </h2>
             <p className="text-xl text-gray-300">{t.skills.subtitle}</p>
@@ -521,7 +575,7 @@ export default function Portfolio() {
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {['Java', 'Python', 'JavaScript', 'TypeScript', 'C#'].map((skill) => (
-                    <Badge key={skill} className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border-cyan-500/30">
+                    <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">
                       {skill}
                     </Badge>
                   ))}
@@ -540,7 +594,7 @@ export default function Portfolio() {
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {['Spring Boot', 'Node.js', 'Express.js', 'REST APIs'].map((skill) => (
-                    <Badge key={skill} className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">
+                    <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">
                       {skill}
                     </Badge>
                   ))}
@@ -559,7 +613,7 @@ export default function Portfolio() {
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {['MongoDB', 'SQL', 'PostgreSQL', 'Redis'].map((skill) => (
-                    <Badge key={skill} className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">
+                    <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">
                       {skill}
                     </Badge>
                   ))}
@@ -578,7 +632,7 @@ export default function Portfolio() {
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {['Docker', 'CI/CD', 'GitHub Actions', 'Linux', 'AWS'].map((skill) => (
-                    <Badge key={skill} className="bg-gradient-to-r from-orange-500/20 to-yellow-500/20 text-orange-300 border-orange-500/30">
+                    <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">
                       {skill}
                     </Badge>
                   ))}
@@ -597,7 +651,7 @@ export default function Portfolio() {
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {['OWASP', 'Wireshark', 'Burp Suite', 'Metasploit'].map((skill) => (
-                    <Badge key={skill} className="bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30">
+                    <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">
                       {skill}
                     </Badge>
                   ))}
@@ -605,18 +659,18 @@ export default function Portfolio() {
               </CardContent>
             </Card>
 
-            {/* Message Queues & Others */}
-            <Card className="bg-gray-900/80 border-blue-500/30 shadow-xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-100">
+            {/* Other Technologies */}
+            <Card className="bg-gray-900/80 border-indigo-500/30 shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-100">
               <CardHeader>
                 <div className="flex items-center space-x-3">
-                  <Zap className="w-8 h-8 text-blue-400" />
-                  <CardTitle className="text-blue-400">{t.skills.messageQueues}</CardTitle>
+                  <Cpu className="w-8 h-8 text-indigo-400" />
+                  <CardTitle className="text-indigo-400">{t.skills.messageQueues}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {['Kafka', 'RabbitMQ', 'WebSockets'].map((skill) => (
-                    <Badge key={skill} className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">
+                  {['React', 'Vue.js', 'Tailwind CSS', 'Socket.io', 'JWT', 'OAuth'].map((skill) => (
+                    <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-indigo-200 border-gray-600 hover:border-indigo-500/50 transition-colors">
                       {skill}
                     </Badge>
                   ))}
@@ -655,13 +709,13 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border-cyan-500/30">JavaScript</Badge>
-                  <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">TypeScript</Badge>
-                  <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Node.js</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">JavaScript</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">TypeScript</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Node.js</Badge>
                 </div>
                 <Button
                   onClick={() => setSelectedProject('extramus')}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-xl"
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-cyan-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
                 </Button>
@@ -683,14 +737,14 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Spring Boot</Badge>
-                  <Badge className="bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30">Java</Badge>
-                  <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">MongoDB</Badge>
-                  <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">Kafka</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Spring Boot</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Java</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">MongoDB</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Kafka</Badge>
                 </div>
                 <Button
                   onClick={() => setSelectedProject('springboot')}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-xl"
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-purple-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
                 </Button>
@@ -712,13 +766,13 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border-cyan-500/30">Next.js</Badge>
-                  <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">TypeScript</Badge>
-                  <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Tailwind CSS</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">Next.js</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">TypeScript</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Tailwind CSS</Badge>
                 </div>
                 <Button
                   onClick={() => setSelectedProject('portfolio')}
-                  className="w-full bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white border-0 rounded-xl"
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-green-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
                 </Button>
@@ -744,14 +798,14 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-orange-500/20 to-yellow-500/20 text-orange-300 border-orange-500/30">Python</Badge>
-                  <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">ROS</Badge>
-                  <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">C++</Badge>
-                  <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">GPS</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Python</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">ROS</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">C++</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">GPS</Badge>
                 </div>
                 <Button
                   onClick={() => setSelectedProject('drone')}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-xl"
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-orange-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
                 </Button>
@@ -773,13 +827,13 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30">GitHub Actions</Badge>
-                  <Badge className="bg-gradient-to-r from-orange-500/20 to-yellow-500/20 text-orange-300 border-orange-500/30">Docker</Badge>
-                  <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">AWS</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">GitHub Actions</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Docker</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">AWS</Badge>
                 </div>
                 <Button
                   onClick={() => setSelectedProject('cicd')}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-xl"
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-red-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
                 </Button>
@@ -801,14 +855,14 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 text-pink-300 border-pink-500/30">Instagram</Badge>
-                  <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Product Photography</Badge>
-                  <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">E-commerce</Badge>
-                  <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">Branding</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-pink-200 border-gray-600 hover:border-pink-500/50 transition-colors">Instagram</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Product Photography</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">E-commerce</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Branding</Badge>
                 </div>
                 <Button
                   onClick={() => setSelectedProject('penpick')}
-                  className="w-full bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 text-white border-0 rounded-xl"
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-pink-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
                 </Button>
@@ -830,13 +884,13 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">Woodworking</Badge>
-                  <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Electronics</Badge>
-                  <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">Guitar Setup</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Woodworking</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Electronics</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Guitar Setup</Badge>
                 </div>
                 <Button
                   onClick={() => setSelectedProject('guitar')}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-xl"
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-blue-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
                 </Button>
@@ -847,10 +901,10 @@ export default function Portfolio() {
       </section>
 
       {/* Hobbies Section */}
-      <section id="hobbies" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/50 relative z-20">
+      <section id="hobbies" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
               {t.hobbies.title}
             </h2>
             <p className="text-xl text-gray-300">{t.hobbies.subtitle}</p>
@@ -903,10 +957,10 @@ export default function Portfolio() {
                 <CardHeader>
                   <div className="flex items-center space-x-3">
                     <Instagram className="w-8 h-8 text-pink-400" />
-                    <CardTitle className="text-pink-400">Collecting & Trading</CardTitle>
+                    <CardTitle className="text-pink-400">{t.hobbies.collectingTrading}</CardTitle>
                  </div>
                  <CardDescription className="text-gray-300 mt-2">
-                    I enjoy discovering and collecting high-quality pens and other timeless tools. Through local trading, I engage with a growing community of enthusiasts in Türkiye and explore the heritage of writing instruments.
+                    {t.hobbies.collectingDescription}
                   </CardDescription>
                </CardHeader>
                <CardContent>
@@ -915,6 +969,141 @@ export default function Portfolio() {
            </div>
          </div>
        </section>
+
+      {/* Articles Section */}
+      <section id="articles" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
+              {t.articles.title}
+            </h2>
+            <p className="text-xl text-gray-300">{t.articles.subtitle}</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Social Engineering Article */}
+            <Card className="bg-gray-900/80 border-cyan-500/30 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105 group">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                    {t.articles.socialEngineering.title}
+                  </CardTitle>
+                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-300 mb-4">
+                  {t.articles.socialEngineering.description}
+                </CardDescription>
+                <Link 
+                  href="https://medium.com/@urthella1/the-part-where-the-fun-beggins-social-engineering-c1b5cbaa5ffb"
+                  target="_blank"
+                  className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+                >
+                  {t.articles.readArticle}
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* SQL Injection Article */}
+            <Card className="bg-gray-900/80 border-purple-500/30 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-300 hover:scale-105 group">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-purple-400 group-hover:text-purple-300 transition-colors">
+                    {t.articles.sqlInjection.title}
+                  </CardTitle>
+                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-purple-400 transition-colors" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-300 mb-4">
+                  {t.articles.sqlInjection.description}
+                </CardDescription>
+                <Link 
+                  href="https://medium.com/@urthella1/sql-injection-the-vulnerability-that-never-goes-away-fc5f931f3a7c"
+                  target="_blank"
+                  className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors font-medium"
+                >
+                  {t.articles.readArticle}
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* OSI Model Article */}
+            <Card className="bg-gray-900/80 border-green-500/30 shadow-xl shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-300 hover:scale-105 group">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-green-400 group-hover:text-green-300 transition-colors">
+                    {t.articles.osiModel.title}
+                  </CardTitle>
+                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-green-400 transition-colors" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-300 mb-4">
+                  {t.articles.osiModel.description}
+                </CardDescription>
+                <Link 
+                  href="https://medium.com/@urthella1/osi-modelini-anlamak-96cb794b44d7"
+                  target="_blank"
+                  className="inline-flex items-center text-green-400 hover:text-green-300 transition-colors font-medium"
+                >
+                  {t.articles.readArticle}
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* VPN Article */}
+            <Card className="bg-gray-900/80 border-orange-500/30 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300 hover:scale-105 group">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-orange-400 group-hover:text-orange-300 transition-colors">
+                    {t.articles.vpn.title}
+                  </CardTitle>
+                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-orange-400 transition-colors" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-300 mb-4">
+                  {t.articles.vpn.description}
+                </CardDescription>
+                <Link 
+                  href="https://medium.com/@urthella1/vpn-dijital-d%C3%BCnyan%C4%B1n-g%C3%BCvenli-kap%C4%B1s%C4%B1-3fea39c03de0"
+                  target="_blank"
+                  className="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-medium"
+                >
+                  {t.articles.readArticle}
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Future Articles Teaser */}
+          <div className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-lg p-8 border border-gray-600">
+              <h3 className="text-2xl font-bold text-purple-400 mb-4">{t.articles.comingSoon}</h3>
+              <p className="text-gray-300 mb-4">
+                🎵 <strong>{t.articles.musicTheory}</strong> - {t.articles.musicTheoryDesc}
+              </p>
+              <p className="text-gray-400 text-sm">
+                {t.articles.followMedium}
+              </p>
+              <Link 
+                href="https://medium.com/@urthella1"
+                target="_blank"
+                className="inline-flex items-center mt-4 text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+              >
+                {t.articles.mediumProfile}
+                <ExternalLink className="w-4 h-4 ml-2" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Game Music Section */}
       <section id="gamemusic" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
@@ -945,9 +1134,9 @@ export default function Portfolio() {
                   Your browser does not support the audio element.
                 </audio>
                 <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">Fantasy</Badge>
-                  <Badge className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border-cyan-500/30">Puzzle</Badge>
-                  <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Mystical</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Fantasy</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">Puzzle</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Mystical</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -969,9 +1158,9 @@ export default function Portfolio() {
                   Your browser does not support the audio element.
                 </audio>
                 <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30">Horror</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-500/20 to-black/20 text-gray-300 border-gray-500/30">Dark</Badge>
-                  <Badge className="bg-gradient-to-r from-purple-500/20 to-indigo-500/20 text-purple-300 border-purple-500/30">Puzzle</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">Horror</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-gray-200 border-gray-600 hover:border-gray-500/50 transition-colors">Dark</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Puzzle</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -1002,7 +1191,7 @@ export default function Portfolio() {
               <CardContent>
                 <Button 
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
-                  className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-xl"
+                  className="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-cyan-500/50 transition-all duration-300 rounded-xl"
                 >
                   {t.services.contactForDetails}
                 </Button>
@@ -1021,7 +1210,7 @@ export default function Portfolio() {
               <CardContent>
                 <Button 
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 rounded-xl"
+                  className="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-purple-500/50 transition-all duration-300 rounded-xl"
                 >
                   {t.services.contactForDetails}
                 </Button>
@@ -1040,7 +1229,7 @@ export default function Portfolio() {
               <CardContent>
                 <Button 
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
-                  className="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white border-0 rounded-xl"
+                  className="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-green-500/50 transition-all duration-300 rounded-xl"
                 >
                   {t.services.contactForDetails}
                 </Button>
@@ -1051,10 +1240,10 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900/50 to-black relative z-20">
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
               {t.contact.title}
             </h2>
             <p className="text-xl text-gray-300">{t.contact.subtitle}</p>
@@ -1195,6 +1384,7 @@ export default function Portfolio() {
               <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                 {selectedProject === 'extramus' && 'Extramus HR System'}
                 {selectedProject === 'springboot' && 'Spring Boot Backend'}
+                {selectedProject === 'penpick' && 'Pen Trading via Instagram (@pen.pick)'}
                 {selectedProject === 'portfolio' && 'Portfolio Website'}
                 {selectedProject === 'drone' && 'Drone Control System'}
                 {selectedProject === 'cicd' && 'CI/CD Pipeline'}
@@ -1221,10 +1411,10 @@ export default function Portfolio() {
                   <div>
                     <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
                     <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 border-blue-500/30">JavaScript</Badge>
-                      <Badge className="bg-gradient-to-r from-green-500/20 to-blue-500/20 text-green-300 border-green-500/30">TypeScript</Badge>
-                      <Badge className="bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30">Docker</Badge>
-                      <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Node.js</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">JavaScript</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">TypeScript</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Docker</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Node.js</Badge>
                     </div>
                   </div>
                   <div>
@@ -1251,10 +1441,10 @@ export default function Portfolio() {
                   <div>
                     <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
                     <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Spring Boot</Badge>
-                      <Badge className="bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30">Java</Badge>
-                      <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">MongoDB</Badge>
-                      <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">Kafka</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Spring Boot</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Java</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">MongoDB</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Kafka</Badge>
                     </div>
                   </div>
                   <div>
@@ -1281,9 +1471,9 @@ export default function Portfolio() {
                   <div>
                     <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
                     <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border-cyan-500/30">Next.js</Badge>
-                      <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">TypeScript</Badge>
-                      <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Tailwind CSS</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">Next.js</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">TypeScript</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Tailwind CSS</Badge>
                     </div>
                   </div>
                   <div>
@@ -1310,10 +1500,10 @@ export default function Portfolio() {
                   <div>
                     <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
                     <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-orange-500/20 to-yellow-500/20 text-orange-300 border-orange-500/30">Python</Badge>
-                      <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">ROS</Badge>
-                      <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">C++</Badge>
-                      <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">GPS</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Python</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">ROS</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">C++</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">GPS</Badge>
                     </div>
                   </div>
                   <div>
@@ -1340,10 +1530,10 @@ export default function Portfolio() {
                   <div>
                     <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
                     <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30">GitHub Actions</Badge>
-                      <Badge className="bg-gradient-to-r from-orange-500/20 to-yellow-500/20 text-orange-300 border-orange-500/30">Docker</Badge>
-                      <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">AWS</Badge>
-                      <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">CI/CD</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">GitHub Actions</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Docker</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">AWS</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">CI/CD</Badge>
                     </div>
                   </div>
                   <div>
@@ -1370,10 +1560,10 @@ export default function Portfolio() {
                   <div>
                     <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
                     <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">Woodworking</Badge>
-                      <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30">Electronics</Badge>
-                      <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">Guitar Setup</Badge>
-                      <Badge className="bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30">Handcrafted</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Woodworking</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Electronics</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Guitar Setup</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Handcrafted</Badge>
                     </div>
                   </div>
                   <div>
@@ -1400,10 +1590,10 @@ export default function Portfolio() {
                   <div>
                     <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
                     <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-pink-500/20 to-yellow-500/20 text-pink-300 border-pink-500/30">Instagram</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-500/20 to-black/20 text-gray-300 border-gray-500/30">Product Photography</Badge>
-                      <Badge className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 border-green-500/30">E-commerce</Badge>
-                      <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30">Branding</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-pink-200 border-gray-600 hover:border-pink-500/50 transition-colors">Instagram</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-gray-200 border-gray-600 hover:border-gray-500/50 transition-colors">Product Photography</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">E-commerce</Badge>
+                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Branding</Badge>
                     </div>
                   </div>
                   <div>
