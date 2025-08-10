@@ -31,7 +31,7 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
           if (triggerOnce) {
             setHasTriggered(true)
           }
-        } else if (!triggerOnce && !hasTriggered) {
+        } else if (!triggerOnce) {
           setIsVisible(false)
         }
       },
@@ -51,7 +51,7 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
   return { elementRef, isVisible }
 }
 
-export function useStaggeredAnimation(itemCount: number, delay: number = 100) {
+export function useStaggeredAnimation(itemCount: number, delay: number = 100, triggerOnce: boolean = false) {
   const [visibleItems, setVisibleItems] = useState<number[]>([])
   const [isTriggered, setIsTriggered] = useState(false)
   const containerRef = useRef<HTMLElement>(null)
@@ -62,7 +62,10 @@ export function useStaggeredAnimation(itemCount: number, delay: number = 100) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isTriggered) {
+        if (entry.isIntersecting && (!triggerOnce || !isTriggered)) {
+          if (!triggerOnce) {
+            setVisibleItems([]) // Reset items for re-trigger
+          }
           setIsTriggered(true)
           
           // Staggered animation for items
@@ -71,6 +74,9 @@ export function useStaggeredAnimation(itemCount: number, delay: number = 100) {
               setVisibleItems(prev => [...prev, i])
             }, i * delay)
           }
+        } else if (!triggerOnce && !entry.isIntersecting) {
+          setVisibleItems([])
+          setIsTriggered(false)
         }
       },
       { threshold: 0.1 }
@@ -81,7 +87,7 @@ export function useStaggeredAnimation(itemCount: number, delay: number = 100) {
     return () => {
       observer.disconnect()
     }
-  }, [itemCount, delay, isTriggered])
+  }, [itemCount, delay, triggerOnce, isTriggered])
 
   return { containerRef, visibleItems, isTriggered }
 }

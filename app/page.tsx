@@ -9,6 +9,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import emailjs from '@emailjs/browser'
 import { ClientOnly } from '@/components/ClientOnly'
+import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnimation'
 
 interface Firefly {
   id: number
@@ -30,6 +31,17 @@ export default function Portfolio() {
     message: ''
   })
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  // Scroll animations
+  // Scroll animation hooks
+  const { elementRef: aboutRef, isVisible: aboutVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
+  const { elementRef: skillsRef, isVisible: skillsVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
+  const { elementRef: projectsRef, isVisible: projectsVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
+  const { elementRef: hobbiesRef, isVisible: hobbiesVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
+  const { elementRef: articlesRef, isVisible: articlesVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
+  const { elementRef: gamemusicRef, isVisible: gamemusicVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
+  const { elementRef: contactRef, isVisible: contactVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
+  const { containerRef: skillsContainerRef, visibleItems: visibleSkillItems } = useStaggeredAnimation(6, 120, true)
 
   const translations = {
     en: {
@@ -89,7 +101,7 @@ export default function Portfolio() {
         title: 'Hobbies & Interests',
         subtitle: 'Beyond the code, here\'s what fuels my creativity 🎨',
         musicGuitar: 'Music & Guitar',
-        musicDescription: 'Music has been my companion for years! 🎸 Playing guitar allows me to express creativity in a different medium than code. From classical blues to modern metal, I find that the discipline required for music complements my technical studies perfectly. Professional guitarist with extensive live performance experience.',
+        musicDescription: '🎵 8+ years in music! 🎸 Electric • Classical • Acoustic guitar 🥁 Bass guitar • Drums. Playing guitar allows me to express creativity in a different medium than code. From classical blues to modern metal, I find that the discipline required for music complements my technical studies perfectly.',
         fitnessSports: 'Fitness & Sports',
         fitnessDescription: 'Physical fitness is crucial for mental clarity and productivity! 💪 As a calisthenics athlete and provincial basketball champion, I believe in the connection between physical and mental well-being. Regular workouts help me maintain focus during long coding sessions and provide a healthy outlet for stress.',
         readingRpg: 'Reading & RPG Gaming',
@@ -100,7 +112,9 @@ export default function Portfolio() {
       gamemusic: {
         title: 'Game Musics I Designed',
         subtitle: 'Original compositions and soundtracks for gaming experiences 🎵',
-        description: 'Here are some of the game music tracks I\'ve composed and designed. Each piece is crafted to enhance the gaming experience and create immersive atmospheres.'
+        description: 'Here are some of the game music tracks I\'ve composed and designed. Each piece is crafted to enhance the gaming experience and create immersive atmospheres.',
+        playlistTitle: 'My Playlist',
+        playlistDescription: 'Discover my musical taste through my personal playlist'
       },
       services: {
         title: 'Services',
@@ -214,7 +228,7 @@ export default function Portfolio() {
         title: 'Hobiler ve İlgi Alanları',
         subtitle: 'Kodun ötesinde, yaratıcılığımı besleyen şeyler 🎨',
         musicGuitar: 'Müzik ve Gitar',
-        musicDescription: 'Müzik yıllardır arkadaşım! 🎸 Gitar çalmak, yaratıcılığımı koddan farklı bir ortamda ifade etmeme olanak sağlıyor. Klasik bluesdan modern metale kadar, müzik için gereken disiplinin teknik çalışmalarımı mükemmel bir şekilde tamamladığını görüyorum. Geniş canlı performans deneyimi olan profesyonel gitarist.',
+        musicDescription: '🎵 8+ yıldır müziğin içinde! 🎸 Elektro • Klasik • Akustik gitar 🥁 Bas gitar • Bateri. Gitar çalmak, yaratıcılığımı koddan farklı bir ortamda ifade etmeme olanak sağlıyor. Klasik bluesdan modern metale kadar, müzik için gereken disiplinin teknik çalışmalarımı mükemmel bir şekilde tamamladığını görüyorum.',
         fitnessSports: 'Fitness ve Spor',
         fitnessDescription: 'Fiziksel fitness, zihinsel berraklık ve verimlilik için çok önemli! 💪 Kalistenik sporcu ve il basketbol şampiyonu olarak, fiziksel ve zihinsel refah arasındaki bağlantıya inanıyorum. Düzenli antrenmanlar, uzun kodlama seansları sırasında odaklanmamı sağlıyor ve stres için sağlıklı bir çıkış noktası sunuyor.',
         readingRpg: 'Okuma ve RPG Oyunları',
@@ -225,7 +239,9 @@ export default function Portfolio() {
       gamemusic: {
         title: 'Tasarladığım Oyun Müzikleri',
         subtitle: 'Oyun deneyimleri için orijinal kompozisyonlar ve müzikler 🎵',
-        description: 'Bestelediğim ve tasarladığım oyun müziği parçalarından bazıları. Her parça, oyun deneyimini geliştirmek ve sürükleyici atmosferler yaratmak için özenle hazırlanmıştır.'
+        description: 'Bestelediğim ve tasarladığım oyun müziği parçalarından bazıları. Her parça, oyun deneyimini geliştirmek ve sürükleyici atmosferler yaratmak için özenle hazırlanmıştır.',
+        playlistTitle: 'Çalma Listem',
+        playlistDescription: 'Kişisel çalma listem aracılığıyla müzik zevkimi keşfedin'
       },
       services: {
         title: 'Hizmetler',
@@ -546,7 +562,25 @@ export default function Portfolio() {
               <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-6 leading-tight hover:animate-pulse hover:scale-105 transition-all duration-300 cursor-default">
                 {t.hero.title}
               </h1>
-              <h2 className="text-2xl md:text-4xl text-gray-300 mb-8 font-semibold">{t.hero.subtitle}</h2>
+              <h2 className="text-2xl md:text-4xl text-gray-300 mb-6 font-semibold">{t.hero.subtitle}</h2>
+              
+              {/* CV Download Button */}
+              <div className="mb-8">
+                <Button
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/Utku Demirtas CV.pdf';
+                    link.download = 'Utku_Demirtas_CV.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                  className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30"
+                >
+                  📄 Wanna download my CV?
+                </Button>
+              </div>
+              
               <div className="bg-gray-900/80 backdrop-blur-sm rounded-3xl p-8 max-w-3xl mx-auto shadow-xl border border-cyan-500/30 shadow-cyan-500/20">
                 <p className="text-lg text-gray-300 mb-8 leading-relaxed">
                   {t.hero.description}
@@ -572,7 +606,13 @@ export default function Portfolio() {
       </section>
 
       {/* About Me Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      <section 
+        id="about" 
+        ref={aboutRef}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
+          aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -615,7 +655,13 @@ export default function Portfolio() {
       </section>
 
       {/* Technical Skills Section */}
-      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      <section 
+        id="skills" 
+        ref={skillsRef}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
+          skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -624,9 +670,14 @@ export default function Portfolio() {
             <p className="text-xl text-gray-300">{t.skills.subtitle}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div 
+            ref={skillsContainerRef as React.RefObject<HTMLDivElement>}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {/* Programming Languages */}
-            <Card className="bg-gray-900/80 border-cyan-500/30 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-100">
+            <Card className={`bg-gray-900/80 border-cyan-500/30 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
+              visibleSkillItems.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Code className="w-8 h-8 text-cyan-400" />
@@ -645,7 +696,9 @@ export default function Portfolio() {
             </Card>
 
             {/* Backend & Frameworks */}
-            <Card className="bg-gray-900/80 border-purple-500/30 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-100">
+            <Card className={`bg-gray-900/80 border-purple-500/30 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
+              visibleSkillItems.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Server className="w-8 h-8 text-purple-400" />
@@ -664,7 +717,9 @@ export default function Portfolio() {
             </Card>
 
             {/* Databases */}
-            <Card className="bg-gray-900/80 border-green-500/30 shadow-xl shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-100">
+            <Card className={`bg-gray-900/80 border-green-500/30 shadow-xl shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
+              visibleSkillItems.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Database className="w-8 h-8 text-green-400" />
@@ -683,7 +738,9 @@ export default function Portfolio() {
             </Card>
 
             {/* DevOps & Cloud */}
-            <Card className="bg-gray-900/80 border-orange-500/30 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-100">
+            <Card className={`bg-gray-900/80 border-orange-500/30 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
+              visibleSkillItems.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Cloud className="w-8 h-8 text-orange-400" />
@@ -702,7 +759,9 @@ export default function Portfolio() {
             </Card>
 
             {/* Security & Tools */}
-            <Card className="bg-gray-900/80 border-red-500/30 shadow-xl shadow-red-500/20 hover:shadow-red-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-100">
+            <Card className={`bg-gray-900/80 border-red-500/30 shadow-xl shadow-red-500/20 hover:shadow-red-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
+              visibleSkillItems.includes(4) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Shield className="w-8 h-8 text-red-400" />
@@ -721,7 +780,9 @@ export default function Portfolio() {
             </Card>
 
             {/* Other Technologies */}
-            <Card className="bg-gray-900/80 border-indigo-500/30 shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-100">
+            <Card className={`bg-gray-900/80 border-indigo-500/30 shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
+              visibleSkillItems.includes(5) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Cpu className="w-8 h-8 text-indigo-400" />
@@ -743,7 +804,13 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      <section 
+        id="projects" 
+        ref={projectsRef}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
+          projectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -962,7 +1029,13 @@ export default function Portfolio() {
       </section>
 
       {/* Hobbies Section */}
-      <section id="hobbies" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      <section 
+        id="hobbies" 
+        ref={hobbiesRef}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
+          hobbiesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -982,7 +1055,11 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mt-2">{t.hobbies.musicDescription}</CardDescription>
               </CardHeader>
               <CardContent>
-                
+                <div className="space-y-4">
+                  {/* Music Info */}
+                  <div className="text-sm text-gray-400">
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
@@ -1032,7 +1109,13 @@ export default function Portfolio() {
        </section>
 
       {/* Articles Section */}
-      <section id="articles" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      <section 
+        id="articles" 
+        ref={articlesRef}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
+          articlesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -1167,7 +1250,13 @@ export default function Portfolio() {
       </section>
 
       {/* Game Music Section */}
-      <section id="gamemusic" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      <section 
+        id="gamemusic" 
+        ref={gamemusicRef}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
+          gamemusicVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -1226,11 +1315,37 @@ export default function Portfolio() {
               </CardContent>
             </Card>
           </div>
+          
+          {/* Spotify Profile Widget */}
+          <div className="mt-12">
+            <div className="text-center mb-6">
+              <h3 className="text-3xl font-bold text-cyan-400 mb-4">🎵 {t.gamemusic.playlistTitle}</h3>
+              <p className="text-lg text-gray-300">{t.gamemusic.playlistDescription}</p>
+            </div>
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-black rounded-xl overflow-hidden">
+                <iframe 
+                  data-testid="embed-iframe" 
+                  style={{borderRadius: "12px"}} 
+                  src="https://open.spotify.com/embed/playlist/5PTPX85YTcfoKYeJwkysu4?utm_source=generator&theme=0" 
+                  width="100%" 
+                  height="480" 
+                  frameBorder="0" 
+                  allowFullScreen 
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      <section 
+        id="services" 
+        className="py-20 px-4 sm:px-6 lg:px-8 relative z-20"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -1301,7 +1416,13 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      <section 
+        id="contact" 
+        ref={contactRef}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
+          contactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
