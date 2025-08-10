@@ -8,7 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import emailjs from '@emailjs/browser'
-import NoSSR from '@/components/NoSSR'
+import { ClientOnly } from '@/components/ClientOnly'
 
 interface Firefly {
   id: number
@@ -339,14 +339,28 @@ export default function Portfolio() {
   useEffect(() => {
     const generateFireflies = () => {
       const newFireflies: Firefly[] = []
+      
+      // Deterministik pseudo-random fonksiyonu
+      const seededRandom = (seed: number) => {
+        const x = Math.sin(seed * 12.9898) * 43758.5453123
+        return x - Math.floor(x)
+      }
+      
       for (let i = 0; i < 35; i++) {
+        // Her firefly için farklı seed değerleri
+        const xSeed = seededRandom(i * 1.234)
+        const ySeed = seededRandom(i * 2.456)
+        const sizeSeed = seededRandom(i * 3.789)
+        const opacitySeed = seededRandom(i * 4.567)
+        const speedSeed = seededRandom(i * 5.890)
+        
         newFireflies.push({
           id: i,
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          size: Math.random() * 6 + 3,
-          opacity: Math.random() * 0.9 + 0.4,
-          speed: Math.random() * 2 + 1
+          x: xSeed * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+          y: ySeed * (typeof window !== 'undefined' ? window.innerHeight : 800),
+          size: sizeSeed * 6 + 3,
+          opacity: opacitySeed * 0.5 + 0.4,
+          speed: speedSeed * 2 + 1
         })
       }
       setFireflies(newFireflies)
@@ -355,12 +369,14 @@ export default function Portfolio() {
     generateFireflies()
     window.addEventListener('resize', generateFireflies)
 
+    let animationTime = 0
     const animateFireflies = () => {
+      animationTime += 50 // Her frame 50ms
       setFireflies(prev => prev.map(firefly => ({
         ...firefly,
         x: (firefly.x + firefly.speed) % window.innerWidth,
-        y: firefly.y + Math.sin(Date.now() * 0.001 + firefly.id) * 0.5,
-        opacity: 0.3 + Math.sin(Date.now() * 0.002 + firefly.id) * 0.3
+        y: firefly.y + Math.sin(animationTime * 0.001 + firefly.id) * 0.5,
+        opacity: 0.3 + Math.sin(animationTime * 0.002 + firefly.id) * 0.3
       })))
     }
 
@@ -390,7 +406,7 @@ export default function Portfolio() {
         }
       `}</style>
       {/* Fireflies */}
-      <NoSSR>
+      <ClientOnly fallback={<div />}>
         {fireflies.map(firefly => (
           <div
             key={firefly.id}
@@ -404,11 +420,11 @@ export default function Portfolio() {
               background: 'radial-gradient(circle, #00ffff 0%, #00aaff 30%, transparent 70%)',
               borderRadius: '50%',
               boxShadow: `0 0 ${firefly.size * 3}px #00ffff, 0 0 ${firefly.size * 1.5}px #00aaff`,
-              animation: `pulse ${2 + Math.random() * 2}s infinite alternate`
+              animation: `pulse ${2 + (firefly.id * 0.1) % 2}s infinite alternate`
             }}
           />
         ))}
-      </NoSSR>
+      </ClientOnly>
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-black/90 backdrop-blur-xl border-b border-cyan-500/30 z-50 shadow-lg shadow-cyan-500/20">
@@ -438,6 +454,51 @@ export default function Portfolio() {
                 {language === 'en' ? 'TR' : 'EN'}
               </Button>
             </div>
+            
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center space-x-3">
+              <Button
+                onClick={() => setLanguage(language === 'en' ? 'tr' : 'en')}
+                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-3 py-2 text-sm font-medium"
+              >
+                {language === 'en' ? 'TR' : 'EN'}
+              </Button>
+              <button 
+                onClick={() => {
+                  const nav = document.getElementById('mobile-nav')
+                  nav?.classList.toggle('hidden')
+                }}
+                className="text-gray-300 hover:text-cyan-400 transition-colors p-2"
+                aria-label="Toggle mobile menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Mobile Navigation Menu */}
+        <div 
+          id="mobile-nav" 
+          className="hidden md:hidden bg-gray-900/95 backdrop-blur-sm border-t border-gray-800 px-4 py-6"
+        >
+          <div className="flex flex-col space-y-4">
+            {['home', 'about', 'skills', 'projects', 'hobbies', 'articles', 'gamemusic', 'services', 'contact'].map((section) => (
+              <a
+                key={section}
+                href={`#${section}`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
+                  document.getElementById('mobile-nav')?.classList.add('hidden')
+                }}
+                className="text-gray-300 hover:text-cyan-400 transition-colors font-medium cursor-pointer capitalize text-lg py-2 border-b border-gray-800 last:border-b-0"
+              >
+                {t.nav[section as keyof typeof t.nav]}
+              </a>
+            ))}
           </div>
         </div>
       </nav>
@@ -715,7 +776,7 @@ export default function Portfolio() {
                 </div>
                 <Button
                   onClick={() => setSelectedProject('extramus')}
-                  className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-cyan-500/50 transition-all duration-300 rounded-xl"
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-cyan-500/50 transition-all duration-300 rounded-xl touch-target focus-visible"
                 >
                   Show Details
                 </Button>
