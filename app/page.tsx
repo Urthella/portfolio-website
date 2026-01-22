@@ -465,7 +465,12 @@ export default function Portfolio() {
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
       if (!serviceId || !templateId || !publicKey) {
-        throw new Error('EmailJS configuration is missing.')
+        // Detailed logging for debugging
+        if (!serviceId) console.error('❌ Missing NEXT_PUBLIC_EMAILJS_SERVICE_ID')
+        if (!templateId) console.error('❌ Missing NEXT_PUBLIC_EMAILJS_TEMPLATE_ID')
+        if (!publicKey) console.error('❌ Missing NEXT_PUBLIC_EMAILJS_PUBLIC_KEY')
+
+        throw new Error('EmailJS configuration is missing. Check console for details.')
       }
 
       // Explicitly initialize with the public key
