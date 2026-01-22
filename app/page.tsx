@@ -240,6 +240,9 @@ export default function Portfolio() {
         name: 'Name',
         message: 'Message',
         send: 'Send',
+        success: '✅ Message sent successfully! I will get back to you as soon as possible.',
+        error: '❌ An error occurred while sending the message. Please try again later or contact me directly via email.',
+        sending: 'Sending...',
         articles: 'Articles'
       }
     },
@@ -439,6 +442,9 @@ export default function Portfolio() {
         name: 'İsim',
         message: 'Mesaj',
         send: 'Gönder',
+        success: '✅ Mesajınız başarıyla gönderildi! Size en kısa sürede geri dönüş yapacağım.',
+        error: '❌ Mesaj gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin veya doğrudan email adresimden iletişime geçin.',
+        sending: 'Gönderiliyor...',
         articles: 'Makaleler'
       }
     }
@@ -459,6 +465,11 @@ export default function Portfolio() {
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
       if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS Environment Variables Missing:', {
+          serviceId: !!serviceId,
+          templateId: !!templateId,
+          publicKey: !!publicKey
+        })
         throw new Error('EmailJS configuration is missing. Please check your environment variables.')
       }
 
@@ -469,6 +480,8 @@ export default function Portfolio() {
         to_name: 'Utku Demirtaş'
       }
 
+      console.log('Sending email with params:', { ...templateParams, message: '***' }) // Log attempt (hide message content)
+
       await emailjs.send(serviceId, templateId, templateParams, publicKey)
 
       setSubmitStatus('success')
@@ -478,7 +491,7 @@ export default function Portfolio() {
       setTimeout(() => setSubmitStatus('idle'), 5000)
 
     } catch (error) {
-      console.error('Email sending failed:', error)
+      console.error('Email sending failed full error:', error)
       setSubmitStatus('error')
 
       // Error message will be shown for 5 seconds
@@ -1833,13 +1846,13 @@ export default function Portfolio() {
               {/* Status Messages */}
               {submitStatus === 'success' && (
                 <div className="mb-6 p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300">
-                  ✅ Mesajınız başarıyla gönderildi! Size en kısa sürede geri dönüş yapacağım.
+                  {t.contact.success}
                 </div>
               )}
 
               {submitStatus === 'error' && (
                 <div className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300">
-                  ❌ Mesaj gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin veya doğrudan email adresimden iletişime geçin.
+                  {t.contact.error}
                 </div>
               )}
 
@@ -1894,7 +1907,7 @@ export default function Portfolio() {
                   {isSubmitting ? (
                     <div className="flex items-center justify-center space-x-2">
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Gönderiliyor...</span>
+                      <span>{t.contact.sending}</span>
                     </div>
                   ) : (
                     t.contact.send
