@@ -460,9 +460,9 @@ export default function Portfolio() {
 
     try {
       // EmailJS configuration
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      const serviceId = 'service_to6ga2c'
+      const templateId = 'template_9ypk16o'
+      const publicKey = '1Gl3LvoQUrMXT7Igo'
 
       console.log('🔍 Debug - Env Vars Check:', {
         NODE_ENV: process.env.NODE_ENV,
