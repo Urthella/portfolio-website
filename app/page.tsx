@@ -460,10 +460,10 @@ export default function Portfolio() {
 
     try {
       // EmailJS configuration
-      // Fallback values handled for Vercel deployment stability
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_to6ga2c'
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_9ypkl6o'
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '1G13LwoQUrMXT7Igo'
+      // Fallback values handled for Vercel deployment stability (with trimming)
+      const serviceId = (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_to6ga2c').trim()
+      const templateId = (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_9ypkl6o').trim()
+      const publicKey = (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '1G13LwoQUrMXT7Igo').trim()
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error('EmailJS configuration is missing.')
@@ -472,7 +472,7 @@ export default function Portfolio() {
       // Explicitly initialize with the public key (fixes some v4 issues)
       emailjs.init({ publicKey })
 
-      console.log('🚀 Attempting to send email with keys:', {
+      console.log('🚀 [v3] Attempting to send email with CLEAN keys:', {
         serviceId,
         templateId,
         publicKey,
@@ -1915,7 +1915,9 @@ export default function Portfolio() {
                       <span>{t.contact.sending}</span>
                     </div>
                   ) : (
-                    t.contact.send
+                    <>
+                      {t.contact.send} <span className="opacity-0 text-[0px]">v3.0</span>
+                    </>
                   )}
                 </Button>
               </form>
