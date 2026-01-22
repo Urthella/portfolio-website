@@ -478,8 +478,7 @@ export default function Portfolio() {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        message: formData.message,
-        to_name: 'Utku Demirtaş'
+        message: formData.message
       }
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey)
@@ -491,8 +490,11 @@ export default function Portfolio() {
       // Success message will be shown for 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000)
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('❌ Email sending failed:', error)
+      if (error.text) {
+        console.error('❌ Server response:', error.text)
+      }
       setSubmitStatus('error')
 
       // Error message will be shown for 5 seconds
