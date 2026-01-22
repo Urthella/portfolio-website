@@ -2199,7 +2199,7 @@ export default function Portfolio() {
             </button>
           </p>
           <p className="text-gray-400 mt-2 text-xs opacity-50">
-            v1.1 | Server Status: {process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ? 'Configured' : 'Missing Config'}
+            v1.2 (Forced) | Server Status: {process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ? 'Configured' : 'Missing Config'}
           </p>
         </div>
       </footer>
