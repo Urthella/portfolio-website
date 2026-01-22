@@ -469,6 +469,16 @@ export default function Portfolio() {
         throw new Error('EmailJS configuration is missing.')
       }
 
+      // Explicitly initialize with the public key (fixes some v4 issues)
+      emailjs.init({ publicKey })
+
+      console.log('🚀 Attempting to send email with keys:', {
+        serviceId,
+        templateId,
+        publicKey,
+        formData
+      })
+
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
@@ -478,6 +488,7 @@ export default function Portfolio() {
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey)
 
+      console.log('✅ Email sent successfully!')
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '' })
 
@@ -485,7 +496,7 @@ export default function Portfolio() {
       setTimeout(() => setSubmitStatus('idle'), 5000)
 
     } catch (error) {
-      console.error('Email sending failed:', error)
+      console.error('❌ Email sending failed:', error)
       setSubmitStatus('error')
 
       // Error message will be shown for 5 seconds
