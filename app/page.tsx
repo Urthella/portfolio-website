@@ -464,6 +464,15 @@ export default function Portfolio() {
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
+      console.log('🔍 Debug - Env Vars Check:', {
+        NODE_ENV: process.env.NODE_ENV,
+        hasServiceId: !!serviceId,
+        hasTemplateId: !!templateId,
+        hasPublicKey: !!publicKey,
+        // Log keys starting with NEXT_PUBLIC (if any are visible)
+        visibleKeys: Object.keys(process.env).filter(key => key.startsWith('NEXT_PUBLIC'))
+      })
+
       if (!serviceId || !templateId || !publicKey) {
         // Detailed logging for debugging
         if (!serviceId) console.error('❌ Missing NEXT_PUBLIC_EMAILJS_SERVICE_ID')
