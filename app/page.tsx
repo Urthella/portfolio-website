@@ -463,7 +463,7 @@ export default function Portfolio() {
       // Fallback values handled for Vercel deployment stability (with trimming)
       // Service ID updated by user request
       const serviceId = (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_to6ga2c').trim()
-      const templateId = (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_jcq8wp8').trim()
+      const templateId = (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_9ypkl6o').trim()
       const publicKey = (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'lG13LwoQUrMXT7Igo').trim()
 
       if (!serviceId || !templateId || !publicKey) {
