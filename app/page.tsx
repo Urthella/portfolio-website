@@ -459,10 +459,9 @@ export default function Portfolio() {
     setSubmitStatus('idle')
 
     try {
-      // EmailJS configuration
-      const serviceId = 'service_to6ga2c'
-      const templateId = 'template_9ypkl6o'
-      const publicKey = 'lG13LwoQUrMXT7Igo'
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error('EmailJS configuration is missing.')
