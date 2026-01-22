@@ -461,7 +461,7 @@ export default function Portfolio() {
     try {
       // EmailJS configuration
       const serviceId = 'service_to6ga2c'
-      const templateId = 'template_9ypk16o'
+      const templateId = 'template_9ypkl6o'
       const publicKey = 'lG13LwoQUrMXT7Igo'
 
       if (!serviceId || !templateId || !publicKey) {
