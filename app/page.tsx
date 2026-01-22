@@ -460,24 +460,17 @@ export default function Portfolio() {
 
     try {
       // EmailJS configuration
-      // Fallback values handled for Vercel deployment stability (with trimming)
-      // Service ID updated by user request
-      const serviceId = (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_to6ga2c').trim()
-      const templateId = (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_9ypkl6o').trim()
-      const publicKey = (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'lG13LwoQUrMXT7Igo').trim()
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
       if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS Environment Variables Missing') // Log for developer debugging if needed
         throw new Error('EmailJS configuration is missing.')
       }
 
-      // Explicitly initialize with the public key (fixes some v4 issues)
+      // Explicitly initialize with the public key
       emailjs.init({ publicKey })
-
-      console.log('🚀 [v4] Sending email with keys:', {
-        serviceId,
-        templateId,
-        publicKey
-      }) // Simplified log
 
       const templateParams = {
         from_name: formData.name,
@@ -487,7 +480,7 @@ export default function Portfolio() {
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey)
 
-      console.log('✅ Email sent successfully!')
+      // console.log('✅ Email sent successfully!')
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '' })
 
