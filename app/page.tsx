@@ -473,7 +473,11 @@ export default function Portfolio() {
       // Explicitly initialize with the public key (fixes some v4 issues)
       emailjs.init({ publicKey })
 
-      console.log('🚀 Sending email...') // Simplified log
+      console.log('🚀 [v4] Sending email with keys:', {
+        serviceId,
+        templateId,
+        publicKey
+      }) // Simplified log
 
       const templateParams = {
         from_name: formData.name,
