@@ -460,12 +460,12 @@ export default function Portfolio() {
 
     try {
       // EmailJS configuration
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      // Using verified hardcoded values as fallback to ensure stability
+      const serviceId = (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_to6ga2c').trim()
+      const templateId = (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_9ypkl6o').trim()
+      const publicKey = (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'lG13LwoQUrMXT7Igo').trim()
 
       if (!serviceId || !templateId || !publicKey) {
-        console.error('EmailJS Environment Variables Missing') // Log for developer debugging if needed
         throw new Error('EmailJS configuration is missing.')
       }
 
