@@ -459,18 +459,14 @@ export default function Portfolio() {
     setSubmitStatus('idle')
 
     try {
-      // EmailJS configuration - Environment variables'dan alıyoruz
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      // EmailJS configuration
+      // Fallback values handled for Vercel deployment stability
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_to6ga2c'
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_9ypkl6o'
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '1G13LwoQUrMXT7Igo'
 
       if (!serviceId || !templateId || !publicKey) {
-        console.error('EmailJS Environment Variables Missing:', {
-          serviceId: !!serviceId,
-          templateId: !!templateId,
-          publicKey: !!publicKey
-        })
-        throw new Error('EmailJS configuration is missing. Please check your environment variables.')
+        throw new Error('EmailJS configuration is missing.')
       }
 
       const templateParams = {
@@ -479,8 +475,6 @@ export default function Portfolio() {
         message: formData.message,
         to_name: 'Utku Demirtaş'
       }
-
-      console.log('Sending email with params:', { ...templateParams, message: '***' }) // Log attempt (hide message content)
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey)
 
@@ -491,7 +485,7 @@ export default function Portfolio() {
       setTimeout(() => setSubmitStatus('idle'), 5000)
 
     } catch (error) {
-      console.error('Email sending failed full error:', error)
+      console.error('Email sending failed:', error)
       setSubmitStatus('error')
 
       // Error message will be shown for 5 seconds
@@ -2199,7 +2193,7 @@ export default function Portfolio() {
             </button>
           </p>
           <p className="text-gray-400 mt-2 text-xs opacity-50">
-            v1.2 (Forced) | Server Status: {process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ? 'Configured' : 'Missing Config'}
+            © 2025 Utku Demirtaş. All rights reserved.
           </p>
         </div>
       </footer>
