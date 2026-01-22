@@ -48,11 +48,12 @@ export default function Portfolio() {
       nav: {
         home: 'Home',
         about: 'About',
+        experience: 'Experience',
         skills: 'Skills',
+        certifications: 'Certifications',
         projects: 'Projects',
         hobbies: 'Hobbies',
         articles: 'Articles',
-        gamemusic: 'Game Music',
         services: 'Services',
         contact: 'Contact'
       },
@@ -68,9 +69,9 @@ export default function Portfolio() {
         title: 'About Me',
         subtitle: 'Get to know the person behind the code 🌟',
         journey: 'My Journey',
-        description1: "I'm a highly motivated Computer Engineering student with hands-on experience in backend and DevOps development. My journey has taken me through various roles, from Software Engineering Intern at Telenity to Backend & DevOps Developer at Extramus Organization.",
-        description2: "I'm proficient in building Spring Boot applications and developing secure backend modules using Java, MongoDB, and Kafka. During my role at Extramus, I worked on document management features, implemented CI/CD pipelines, and contributed to containerized deployments using Docker.",
-        description3: "Beyond coding, I'm passionate about scalable system design, cloud-based architectures, and continuously improving my technical skill set. I'm also a dedicated musician, athlete, and RPG game enthusiast who believes in the perfect balance between technology and creativity.",
+        description1: "Highly motivated and detail-oriented computer engineering student with hands-on experience in backend and DevOps development, particularly within HR management systems. Proficient in building Spring Boot applications and developing secure backend modules using Java, MongoDB, and Kafka.",
+        description2: "During my role at Extramus, I worked on document management features, implemented CI/CD pipelines, and contributed to containerized deployments using Docker. I am adept at solving complex software issues and collaborating with cross-functional, international teams.",
+        description3: "Passionate about scalable system design, cloud-based architectures, and continuously improving my technical skill set. Seeking to apply my knowledge in AI development and infrastructure in a dynamic, innovation-driven environment. Also a dedicated musician, athlete, and RPG game enthusiast.",
         currentFocus: '🎯 Current Focus',
         focusDescription: 'Seeking to apply my knowledge in AI development and infrastructure in a dynamic, innovation-driven environment.',
         achievements: '🏆 Achievements',
@@ -88,7 +89,9 @@ export default function Portfolio() {
         databases: 'Databases',
         devopsCloud: 'DevOps & Cloud',
         securityTools: 'Security & Tools',
-        messageQueues: 'Message Queues & Others'
+        messageQueues: 'Message Queues & Others',
+        certifications: 'Certifications & Training',
+        certificationsSubtitle: 'Professional certifications and completed courses 📜'
       },
       projects: {
         title: 'Projects',
@@ -153,6 +156,75 @@ export default function Portfolio() {
         followMedium: 'You can follow my Medium profile for more articles!',
         mediumProfile: 'My Medium Profile'
       },
+      experience: {
+        title: 'Experience',
+        subtitle: 'My professional journey so far 🚀',
+        extramus: {
+          role: 'Backend & DevOps Developer',
+          company: 'Extramus Organization',
+          date: '2025 Jul - 2025 Sep',
+          items: [
+            'Developed HR management system with document management',
+            'Implemented secure file uploads and role-based access control',
+            'Built CI/CD pipelines with GitHub Actions',
+            'Containerized deployments using Docker'
+          ]
+        },
+        telenity: {
+          role: 'Software Engineering Intern',
+          company: 'Telenity',
+          date: '2024 Jun - 2024 Aug',
+          items: [
+            'Developed Spring Boot applications in R&D department',
+            'Built secure backend modules with Java, MongoDB, Kafka',
+            'Focused on bug fixing and performance optimization',
+            'Collaborated effectively with cross-functional teams'
+          ]
+        },
+        anticverseTech: {
+          role: 'Engineering Lead',
+          company: 'Anticverse Tech',
+          date: '2023 Apr - 2023 Nov',
+          items: [
+            'Promoted from RedPill Cybersecurity Division',
+            'Supported strategic planning and inter-division communication',
+            'Aligned technical operations with organizational goals',
+            'Led cross-functional coordination efforts'
+          ]
+        },
+        redpill: {
+          role: 'Board Member & Student Engineer',
+          company: 'Anticverse RedPill',
+          date: '2022 Dec - 2023 Oct',
+          items: [
+            'Cybersecurity studies and reverse engineering',
+            'Malware analysis and web vulnerability research',
+            'Organized 1st Anticverse Congress for 250+ students',
+            'Quality training development for members'
+          ]
+        },
+        teknofest: {
+          role: 'Team Leader & Design Engineer',
+          company: 'Teknofest - Ouroboros Team',
+          date: '2021 Dec - 2022 May',
+          items: [
+            'Led drone design and development team',
+            'Applied drone technology and innovation',
+            'Managed team coordination and problem-solving',
+            'Successfully deployed advanced drone systems'
+          ]
+        },
+        education: {
+          role: 'Computer Science',
+          company: 'Konya Food and Agriculture University',
+          date: '2022 - 2026',
+          items: [
+            "Bachelor's Degree in Computer Science",
+            'Focus on technology and innovation',
+            'Hands-on projects and interdisciplinary learning'
+          ]
+        }
+      },
       contact: {
         title: 'Get In Touch',
         subtitle: 'Let\'s connect and explore opportunities together! 🚀',
@@ -176,6 +248,7 @@ export default function Portfolio() {
         home: 'Ana Sayfa',
         about: 'Hakkımda',
         skills: 'Yetenekler',
+        certifications: 'Sertifikalar',
         projects: 'Projeler',
         hobbies: 'Hobiler',
         articles: 'Makaleler',
@@ -195,9 +268,9 @@ export default function Portfolio() {
         title: 'Hakkımda',
         subtitle: 'Kodun arkasındaki kişiyi tanıyın 🌟',
         journey: 'Yolculuğum',
-        description1: "Özellikle İK yönetim sistemleri alanında backend ve DevOps geliştirme konusunda uygulamalı deneyime sahip, oldukça motive ve detay odaklı bir Bilgisayar Mühendisliği öğrencisiyim. Yolculuğum beni Telenity'de Yazılım Geliştirme Stajyeri'nden Extramus Organization'da Backend & DevOps Geliştirici'ye kadar çeşitli rollerden geçirdi.",
-        description2: "Spring Boot uygulamaları oluşturma ve Java, MongoDB ve Kafka kullanarak güvenli backend modülleri geliştirme konusunda yetkinim. Extramus'taki rolüm sırasında doküman yönetimi özelliklerinde çalıştım, CI/CD pipeline'ları uyguladım ve Docker kullanarak konteynerleştirilmiş dağıtımlara katkıda bulundum.",
-        description3: "Kodlamanın ötesinde, ölçeklenebilir sistem tasarımı, bulut tabanlı mimariler ve teknik beceri setimi sürekli geliştirme konusunda tutkuluyum. Aynı zamanda teknoloji ve yaratıcılık arasındaki mükemmel dengeye inanan, kendini adamış bir müzisyen, sporcu ve RPG oyun tutkunu.",
+        description1: "Özellikle İK yönetim sistemleri dahilinde backend ve DevOps geliştirme konusunda uygulamalı deneyime sahip, yüksek motivasyonlu ve detay odaklı bilgisayar mühendisliği öğrencisi. Spring Boot uygulamaları oluşturma ve Java, MongoDB ve Kafka kullanarak güvenli backend modülleri geliştirme konusunda yetkin.",
+        description2: "Extramus'taki görevim sırasında doküman yönetimi özellikleri üzerinde çalıştım, CI/CD süreçlerini uyguladım ve Docker kullanarak konteyner tabanlı dağıtımlara katkıda bulundum. Karmaşık yazılım sorunlarını çözme ve uluslararası, çok işlevli ekiplerle işbirliği yapma konusunda yetenekliyim.",
+        description3: "Ölçeklenebilir sistem tasarımı, bulut tabanlı mimariler ve teknik becerilerimi sürekli geliştirme konusunda tutkulu. Dinamik, inovasyon odaklı bir ortamda yapay zeka geliştirme ve altyapı konusundaki bilgilerimi uygulamayı hedefliyorum. Ayrıca kendini adamış bir müzisyen, sporcu ve RPG oyun tutkunu.",
         currentFocus: '🎯 Mevcut Odak',
         focusDescription: 'Dinamik, inovasyon odaklı bir ortamda AI geliştirme ve altyapı konusundaki bilgilerimi uygulamaya çalışıyorum.',
         achievements: '🏆 Başarılar',
@@ -215,7 +288,9 @@ export default function Portfolio() {
         databases: 'Veritabanları',
         devopsCloud: 'DevOps ve Bulut',
         securityTools: 'Güvenlik ve Araçlar',
-        messageQueues: 'Mesaj Kuyrukları ve Diğerleri'
+        messageQueues: 'Mesaj Kuyrukları ve Diğerleri',
+        certifications: 'Sertifikalar ve Eğitimler',
+        certificationsSubtitle: 'Profesyonel sertifikalar ve tamamlanan kurslar 📜'
       },
       projects: {
         title: 'Projeler',
@@ -280,6 +355,75 @@ export default function Portfolio() {
         followMedium: 'Daha fazla makale için Medium profilimi takip edebilirsiniz!',
         mediumProfile: 'Medium Profilim'
       },
+      experience: {
+        title: 'Deneyim',
+        subtitle: 'Profesyonel yolculuğum 🚀',
+        extramus: {
+          role: 'Backend & DevOps Geliştirici',
+          company: 'Extramus Organization',
+          date: '2024 Ağu - 2025 Şub',
+          items: [
+            'Doküman yönetimi özellikli İK yönetim sistemi geliştirdi',
+            'Güvenli dosya yükleme ve rol tabanlı erişim kontrolü uyguladı',
+            'GitHub Actions ile CI/CD süreçleri oluşturdu',
+            'Docker kullanarak konteynerize dağıtımlar yaptı'
+          ]
+        },
+        telenity: {
+          role: 'Yazılım Mühendisliği Stajyeri',
+          company: 'Telenity',
+          date: '2024 Haz - 2024 Ağu',
+          items: [
+            'Ar-Ge departmanında Spring Boot uygulamaları geliştirdi',
+            'Java, MongoDB, Kafka ile güvenli backend modülleri kurdu',
+            'Hata düzeltme ve performans optimizasyonuna odaklandı',
+            'Fonksiyonlar arası ekiplerle etkili işbirliği yaptı'
+          ]
+        },
+        anticverseTech: {
+          role: 'Mühendislik Lideri',
+          company: 'Anticverse Tech',
+          date: '2023 Nis - 2023 Kas',
+          items: [
+            'RedPill Siber Güvenlik Bölümü\'nden terfi etti',
+            'Stratejik planlama ve bölümler arası iletişimi destekledi',
+            'Teknik operasyonları kurumsal hedeflerle uyumlu hale getirdi',
+            'Fonksiyonlar arası koordinasyon çalışmalarını yönetti'
+          ]
+        },
+        redpill: {
+          role: 'Yönetim Kurulu Üyesi & Öğrenci Mühendisi',
+          company: 'Anticverse RedPill',
+          date: '2022 Ara - 2023 Ekim',
+          items: [
+            'Siber güvenlik çalışmaları ve tersine mühendislik',
+            'Zararlı yazılım analizi ve web zafiyet araştırmaları',
+            '250+ öğrenci için 1. Anticverse Kongresi\'ni organize etti',
+            'Üyeler için kaliteli eğitim geliştirme'
+          ]
+        },
+        teknofest: {
+          role: 'Takım Lideri & Tasarım Mühendisi',
+          company: 'Teknofest - Ouroboros Takımı',
+          date: '2021 Ara - 2022 May',
+          items: [
+            'Drone tasarım ve geliştirme ekibine liderlik etti',
+            'Drone teknolojisi ve inovasyon uyguladı',
+            'Takım koordinasyonu ve problem çözümü yönetimi',
+            'İleri drone sistemlerini başarıyla konuşlandırdı'
+          ]
+        },
+        education: {
+          role: 'Bilgisayar Bilimleri',
+          company: 'Konya Gıda ve Tarım Üniversitesi',
+          date: '2022 - 2026',
+          items: [
+            'Bilgisayar Bilimleri Lisans Derecesi',
+            'Teknoloji ve inovasyon odağı',
+            'Uygulamalı projeler ve disiplinlerarası öğrenme'
+          ]
+        }
+      },
       contact: {
         title: 'İletişime Geçin',
         subtitle: 'Bağlanalım ve fırsatları birlikte keşfedelim! 🚀',
@@ -326,17 +470,17 @@ export default function Portfolio() {
       }
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey)
-      
+
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '' })
-      
+
       // Success message will be shown for 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000)
-      
+
     } catch (error) {
       console.error('Email sending failed:', error)
       setSubmitStatus('error')
-      
+
       // Error message will be shown for 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000)
     } finally {
@@ -355,13 +499,13 @@ export default function Portfolio() {
   useEffect(() => {
     const generateFireflies = () => {
       const newFireflies: Firefly[] = []
-      
+
       // Deterministik pseudo-random fonksiyonu
       const seededRandom = (seed: number) => {
         const x = Math.sin(seed * 12.9898) * 43758.5453123
         return x - Math.floor(x)
       }
-      
+
       for (let i = 0; i < 35; i++) {
         // Her firefly için farklı seed değerleri
         const xSeed = seededRandom(i * 1.234)
@@ -369,7 +513,7 @@ export default function Portfolio() {
         const sizeSeed = seededRandom(i * 3.789)
         const opacitySeed = seededRandom(i * 4.567)
         const speedSeed = seededRandom(i * 5.890)
-        
+
         newFireflies.push({
           id: i,
           x: xSeed * (typeof window !== 'undefined' ? window.innerWidth : 1200),
@@ -450,7 +594,7 @@ export default function Portfolio() {
               UD
             </div>
             <div className="hidden md:flex space-x-8 items-center">
-              {['home', 'about', 'skills', 'projects', 'hobbies', 'articles', 'gamemusic', 'services', 'contact'].map((section) => (
+              {['home', 'about', 'experience', 'skills', 'certifications', 'projects', 'hobbies', 'articles', 'services', 'contact'].map((section) => (
                 <a
                   key={section}
                   href={`#${section}`}
@@ -470,7 +614,7 @@ export default function Portfolio() {
                 {language === 'en' ? 'TR' : 'EN'}
               </Button>
             </div>
-            
+
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center space-x-3">
               <Button
@@ -479,7 +623,7 @@ export default function Portfolio() {
               >
                 {language === 'en' ? 'TR' : 'EN'}
               </Button>
-              <button 
+              <button
                 onClick={() => {
                   const nav = document.getElementById('mobile-nav')
                   nav?.classList.toggle('hidden')
@@ -494,10 +638,10 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-        
+
         {/* Mobile Navigation Menu */}
-        <div 
-          id="mobile-nav" 
+        <div
+          id="mobile-nav"
           className="hidden md:hidden bg-gray-900/95 backdrop-blur-sm border-t border-gray-800 px-4 py-6"
         >
           <div className="flex flex-col space-y-4">
@@ -528,23 +672,23 @@ export default function Portfolio() {
           >
             Hello there!
           </button>
-          
+
           <div className="flex items-center justify-center space-x-8 mb-8">
             {/* Purple Lightsaber */}
             <div className="relative">
               <div className="w-2 h-32 bg-gradient-to-t from-purple-500 to-purple-300 rounded-full shadow-lg shadow-purple-500/50 animate-pulse"></div>
               <div className="w-6 h-6 rounded-full mx-auto mt-2 bg-transparent"></div>
             </div>
-            
+
             {/* Red Lightsaber */}
             <div className="relative">
               <div className="w-2 h-32 bg-gradient-to-t from-red-500 to-red-300 rounded-full shadow-lg shadow-red-500/50 animate-pulse"></div>
               <div className="w-6 h-6 rounded-full mx-auto mt-2 bg-transparent"></div>
             </div>
           </div>
-          
+
           <p className="text-xl text-gray-300 mb-8">Welcome to my digital universe</p>
-          
+
           <Button
             onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: "smooth" })}
             className="bg-gradient-to-r from-purple-500 to-red-500 hover:from-purple-600 hover:to-red-600 text-white border-0 rounded-full px-8 py-4 text-lg font-medium shadow-lg shadow-purple-500/30"
@@ -559,11 +703,27 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center py-20">
             <div className="mb-8">
+              {/* Profile Photo */}
+              <div className="mb-8 flex justify-center">
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
+                  <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl">
+                    <Image
+                      src="/PP.jpg"
+                      alt="Utku Demirtaş"
+                      fill
+                      className="object-cover hover:scale-110 transition-transform duration-500"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
+
               <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-6 leading-tight hover:animate-pulse hover:scale-105 transition-all duration-300 cursor-default">
                 {t.hero.title}
               </h1>
               <h2 className="text-2xl md:text-4xl text-gray-300 mb-6 font-semibold">{t.hero.subtitle}</h2>
-              
+
               {/* CV Download Button */}
               <div className="mb-8">
                 <Button
@@ -580,7 +740,7 @@ export default function Portfolio() {
                   📄 Wanna download my CV?
                 </Button>
               </div>
-              
+
               <div className="bg-gray-900/80 backdrop-blur-sm rounded-3xl p-8 max-w-3xl mx-auto shadow-xl border border-cyan-500/30 shadow-cyan-500/20">
                 <p className="text-lg text-gray-300 mb-8 leading-relaxed">
                   {t.hero.description}
@@ -606,12 +766,11 @@ export default function Portfolio() {
       </section>
 
       {/* About Me Section */}
-      <section 
-        id="about" 
+      <section
+        id="about"
         ref={aboutRef}
-        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
-          aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -654,13 +813,182 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Experience Timeline Section */}
+      <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
+              {t.experience.title}
+            </h2>
+            <p className="text-xl text-gray-300">
+              {t.experience.subtitle}
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-500 via-purple-500 to-pink-500 rounded-full hidden md:block"></div>
+
+            {/* Experience Items */}
+            <div className="space-y-12">
+              {/* Extramus Organization */}
+              <div className="relative flex items-center justify-between">
+                <div className="hidden md:block w-5/12"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-cyan-500 rounded-full border-4 border-gray-900 shadow-lg shadow-cyan-500/50 hidden md:block z-10"></div>
+                <div className="w-full md:w-5/12 bg-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/30 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-cyan-400 text-sm font-medium bg-cyan-500/10 px-3 py-1 rounded-full">
+                      {t.experience.extramus.date}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-cyan-400 mb-2">{t.experience.extramus.role}</h3>
+                  <p className="text-purple-300 font-medium mb-3">{t.experience.extramus.company}</p>
+                  <ul className="text-gray-300 text-sm space-y-2">
+                    {t.experience.extramus.items.map((item, i) => (
+                      <li key={i}>• {item}</li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    <Badge className="bg-gray-800 text-cyan-200 border-cyan-500/30 text-xs">JavaScript</Badge>
+                    <Badge className="bg-gray-800 text-green-200 border-green-500/30 text-xs">TypeScript</Badge>
+                    <Badge className="bg-gray-800 text-orange-200 border-orange-500/30 text-xs">Docker</Badge>
+                    <Badge className="bg-gray-800 text-purple-200 border-purple-500/30 text-xs">Node.js</Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Telenity */}
+              <div className="relative flex items-center justify-between flex-row-reverse">
+                <div className="hidden md:block w-5/12"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-purple-500 rounded-full border-4 border-gray-900 shadow-lg shadow-purple-500/50 hidden md:block z-10"></div>
+                <div className="w-full md:w-5/12 bg-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/30 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-purple-400 text-sm font-medium bg-purple-500/10 px-3 py-1 rounded-full">
+                      {t.experience.telenity.date}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-purple-400 mb-2">{t.experience.telenity.role}</h3>
+                  <p className="text-cyan-300 font-medium mb-3">{t.experience.telenity.company}</p>
+                  <ul className="text-gray-300 text-sm space-y-2">
+                    {t.experience.telenity.items.map((item, i) => (
+                      <li key={i}>• {item}</li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    <Badge className="bg-gray-800 text-purple-200 border-purple-500/30 text-xs">Spring Boot</Badge>
+                    <Badge className="bg-gray-800 text-orange-200 border-orange-500/30 text-xs">Java</Badge>
+                    <Badge className="bg-gray-800 text-green-200 border-green-500/30 text-xs">MongoDB</Badge>
+                    <Badge className="bg-gray-800 text-blue-200 border-blue-500/30 text-xs">Kafka</Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Anticverse Tech */}
+              <div className="relative flex items-center justify-between">
+                <div className="hidden md:block w-5/12"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-red-500 rounded-full border-4 border-gray-900 shadow-lg shadow-red-500/50 hidden md:block z-10"></div>
+                <div className="w-full md:w-5/12 bg-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-red-500/30 shadow-xl shadow-red-500/20 hover:shadow-red-500/40 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-red-400 text-sm font-medium bg-red-500/10 px-3 py-1 rounded-full">
+                      {t.experience.anticverseTech.date}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-red-400 mb-2">{t.experience.anticverseTech.role}</h3>
+                  <p className="text-cyan-300 font-medium mb-3">{t.experience.anticverseTech.company}</p>
+                  <ul className="text-gray-300 text-sm space-y-2">
+                    {t.experience.anticverseTech.items.map((item, i) => (
+                      <li key={i}>• {item}</li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    <Badge className="bg-gray-800 text-red-200 border-red-500/30 text-xs">Leadership</Badge>
+                    <Badge className="bg-gray-800 text-purple-200 border-purple-500/30 text-xs">Strategy</Badge>
+                    <Badge className="bg-gray-800 text-cyan-200 border-cyan-500/30 text-xs">Management</Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Anticverse RedPill */}
+              <div className="relative flex items-center justify-between flex-row-reverse">
+                <div className="hidden md:block w-5/12"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-pink-500 rounded-full border-4 border-gray-900 shadow-lg shadow-pink-500/50 hidden md:block z-10"></div>
+                <div className="w-full md:w-5/12 bg-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-pink-500/30 shadow-xl shadow-pink-500/20 hover:shadow-pink-500/40 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-pink-400 text-sm font-medium bg-pink-500/10 px-3 py-1 rounded-full">
+                      {t.experience.redpill.date}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-pink-400 mb-2">{t.experience.redpill.role}</h3>
+                  <p className="text-cyan-300 font-medium mb-3">{t.experience.redpill.company}</p>
+                  <ul className="text-gray-300 text-sm space-y-2">
+                    {t.experience.redpill.items.map((item, i) => (
+                      <li key={i}>• {item}</li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    <Badge className="bg-gray-800 text-pink-200 border-pink-500/30 text-xs">Cybersecurity</Badge>
+                    <Badge className="bg-gray-800 text-red-200 border-red-500/30 text-xs">Malware</Badge>
+                    <Badge className="bg-gray-800 text-purple-200 border-purple-500/30 text-xs">Event Planning</Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Teknofest */}
+              <div className="relative flex items-center justify-between">
+                <div className="hidden md:block w-5/12"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-orange-500 rounded-full border-4 border-gray-900 shadow-lg shadow-orange-500/50 hidden md:block z-10"></div>
+                <div className="w-full md:w-5/12 bg-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-orange-500/30 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-orange-400 text-sm font-medium bg-orange-500/10 px-3 py-1 rounded-full">
+                      {t.experience.teknofest.date}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-orange-400 mb-2">{t.experience.teknofest.role}</h3>
+                  <p className="text-cyan-300 font-medium mb-3">{t.experience.teknofest.company}</p>
+                  <ul className="text-gray-300 text-sm space-y-2">
+                    {t.experience.teknofest.items.map((item, i) => (
+                      <li key={i}>• {item}</li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    <Badge className="bg-gray-800 text-orange-200 border-orange-500/30 text-xs">Drone Tech</Badge>
+                    <Badge className="bg-gray-800 text-blue-200 border-blue-500/30 text-xs">Engineering</Badge>
+                    <Badge className="bg-gray-800 text-green-200 border-green-500/30 text-xs">Leadership</Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Education */}
+              <div className="relative flex items-center justify-between flex-row-reverse">
+                <div className="hidden md:block w-5/12"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-500 rounded-full border-4 border-gray-900 shadow-lg shadow-green-500/50 hidden md:block z-10"></div>
+                <div className="w-full md:w-5/12 bg-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-green-500/30 shadow-xl shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-green-400 text-sm font-medium bg-green-500/10 px-3 py-1 rounded-full">
+                      {t.experience.education.date}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-green-400 mb-2">{t.experience.education.role}</h3>
+                  <p className="text-cyan-300 font-medium mb-3">{t.experience.education.company}</p>
+                  <ul className="text-gray-300 text-sm space-y-2">
+                    {t.experience.education.items.map((item, i) => (
+                      <li key={i}>• {item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       {/* Technical Skills Section */}
-      <section 
-        id="skills" 
+      <section
+        id="skills"
         ref={skillsRef}
-        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
-          skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -670,14 +998,13 @@ export default function Portfolio() {
             <p className="text-xl text-gray-300">{t.skills.subtitle}</p>
           </div>
 
-          <div 
+          <div
             ref={skillsContainerRef as React.RefObject<HTMLDivElement>}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {/* Programming Languages */}
-            <Card className={`bg-gray-900/80 border-cyan-500/30 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
-              visibleSkillItems.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <Card className={`bg-gray-900/80 border-cyan-500/30 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${visibleSkillItems.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Code className="w-8 h-8 text-cyan-400" />
@@ -696,9 +1023,8 @@ export default function Portfolio() {
             </Card>
 
             {/* Backend & Frameworks */}
-            <Card className={`bg-gray-900/80 border-purple-500/30 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
-              visibleSkillItems.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <Card className={`bg-gray-900/80 border-purple-500/30 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${visibleSkillItems.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Server className="w-8 h-8 text-purple-400" />
@@ -707,7 +1033,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {['Spring Boot', 'Node.js', 'Express.js', 'REST APIs'].map((skill) => (
+                  {['Spring Boot', 'Spring', 'Node.js', 'Express.js', 'Kafka', 'REST APIs'].map((skill) => (
                     <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">
                       {skill}
                     </Badge>
@@ -717,9 +1043,8 @@ export default function Portfolio() {
             </Card>
 
             {/* Databases */}
-            <Card className={`bg-gray-900/80 border-green-500/30 shadow-xl shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
-              visibleSkillItems.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <Card className={`bg-gray-900/80 border-green-500/30 shadow-xl shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${visibleSkillItems.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Database className="w-8 h-8 text-green-400" />
@@ -738,9 +1063,8 @@ export default function Portfolio() {
             </Card>
 
             {/* DevOps & Cloud */}
-            <Card className={`bg-gray-900/80 border-orange-500/30 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
-              visibleSkillItems.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <Card className={`bg-gray-900/80 border-orange-500/30 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${visibleSkillItems.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Cloud className="w-8 h-8 text-orange-400" />
@@ -749,7 +1073,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {['Docker', 'CI/CD', 'GitHub Actions', 'Linux', 'AWS'].map((skill) => (
+                  {['Docker', 'CI/CD', 'GitHub Actions', 'Linux', 'AWS', 'IT Operations'].map((skill) => (
                     <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">
                       {skill}
                     </Badge>
@@ -759,9 +1083,8 @@ export default function Portfolio() {
             </Card>
 
             {/* Security & Tools */}
-            <Card className={`bg-gray-900/80 border-red-500/30 shadow-xl shadow-red-500/20 hover:shadow-red-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
-              visibleSkillItems.includes(4) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <Card className={`bg-gray-900/80 border-red-500/30 shadow-xl shadow-red-500/20 hover:shadow-red-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${visibleSkillItems.includes(4) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Shield className="w-8 h-8 text-red-400" />
@@ -770,7 +1093,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {['OWASP', 'Wireshark', 'Burp Suite', 'Metasploit'].map((skill) => (
+                  {['OWASP', 'Wireshark', 'Burp Suite', 'Metasploit', 'Social Engineering', 'Ethical Hacking', 'Penetration Testing'].map((skill) => (
                     <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">
                       {skill}
                     </Badge>
@@ -780,9 +1103,8 @@ export default function Portfolio() {
             </Card>
 
             {/* Other Technologies */}
-            <Card className={`bg-gray-900/80 border-indigo-500/30 shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${
-              visibleSkillItems.includes(5) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <Card className={`bg-gray-900/80 border-indigo-500/30 shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-700 hover:animate-pulse hover:scale-105 ${visibleSkillItems.includes(5) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Cpu className="w-8 h-8 text-indigo-400" />
@@ -791,7 +1113,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {['React', 'Vue.js', 'Tailwind CSS', 'Socket.io', 'JWT', 'OAuth'].map((skill) => (
+                  {['React', 'Vue.js', 'Tailwind CSS', 'Management', 'Leadership', 'Teamwork', 'Communication'].map((skill) => (
                     <Badge key={skill} className="bg-gradient-to-r from-gray-800 to-gray-700 text-indigo-200 border-gray-600 hover:border-indigo-500/50 transition-colors">
                       {skill}
                     </Badge>
@@ -803,13 +1125,46 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Certifications Section */}
+      <section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
+              {t.skills.certifications}
+            </h2>
+            <p className="text-xl text-gray-300">{t.skills.certificationsSubtitle}</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { name: 'Introduction to Cyber Security', issuer: 'Turkcell Writers of the Future', color: 'cyan' },
+              { name: 'Social Engineering and Phishing', issuer: 'BTK Academy', color: 'purple' },
+              { name: 'Advanced Python Programming', issuer: 'BTK Academy', color: 'green' },
+              { name: 'C#', issuer: 'BTK Academy', color: 'blue' },
+              { name: 'Ethical Hacking Course', issuer: 'Udemy', color: 'red' },
+              { name: 'Ethical Hacking - Level 2: Network Attacks', issuer: 'Udemy', color: 'red' },
+              { name: 'Presonus Studio One - Mixing and Mastering', issuer: 'Udemy', color: 'pink' },
+              { name: 'DoS / DDOS Attacks and Protecting', issuer: 'BTK Academy', color: 'orange' },
+              { name: 'Introduction to Penetration Testing', issuer: 'BTK Academy', color: 'red' }
+            ].map((cert, index) => (
+              <div key={index} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 p-6 rounded-xl hover:border-cyan-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10 group">
+                <div className={`w-12 h-12 rounded-full bg-${cert.color}-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                  <span className="text-2xl">📜</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-200 mb-2 group-hover:text-cyan-400 transition-colors">{cert.name}</h3>
+                <p className="text-sm text-gray-400">{cert.issuer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Projects Section */}
-      <section 
-        id="projects" 
+      <section
+        id="projects"
         ref={projectsRef}
-        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
-          projectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${projectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -850,28 +1205,27 @@ export default function Portfolio() {
               </CardContent>
             </Card>
 
-            {/* Spring Boot Backend */}
+            {/* Reveil Game - Featured */}
             <Card className="hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:-translate-y-2 bg-gray-900/80 border-purple-500/30 w-full max-w-md hover:animate-pulse hover:scale-105 animate-fade-in-up delay-200">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-purple-400">
-                  Spring Boot Backend
-                  <Link href="https://github.com/Urthella" className="text-purple-400 hover:text-purple-300 transition-colors">
+                  Reveil
+                  <Link href="https://github.com/Urthella/Reveil" className="text-purple-400 hover:text-purple-300 transition-colors">
                     <Github className="w-6 h-6" />
                   </Link>
                 </CardTitle>
                 <CardDescription className="text-gray-300">
-                  Secure backend modules developed using Spring Boot, Java, MongoDB, and Kafka for scalable applications
+                  An immersive game project built with TypeScript and modern web technologies. Features interactive gameplay mechanics.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Spring Boot</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Java</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">MongoDB</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Kafka</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">TypeScript</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-yellow-200 border-gray-600 hover:border-yellow-500/50 transition-colors">JavaScript</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Python</Badge>
                 </div>
                 <Button
-                  onClick={() => setSelectedProject('springboot')}
+                  onClick={() => setSelectedProject('reveil')}
                   className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-purple-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
@@ -911,28 +1265,28 @@ export default function Portfolio() {
           <h3 className="text-3xl font-bold text-purple-400 mb-8 text-center">Other Projects</h3>
 
           <div className="flex flex-wrap justify-center gap-8">
-            {/* Drone Control System */}
+            {/* MIPS16 Pipeline Simulator */}
             <Card className="hover:shadow-2xl hover:shadow-orange-500/30 transition-all duration-300 hover:-translate-y-2 bg-gray-900/80 border-orange-500/30 w-full max-w-md hover:animate-pulse hover:scale-105 animate-fade-in-up delay-200">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-orange-400">
-                  Drone Control System
-                  <Link href="https://github.com/Urthella" className="text-orange-400 hover:text-orange-300 transition-colors">
-                    
+                  MIPS16 Pipeline Simulator
+                  <Link href="https://github.com/Urthella/-MIPS16-pipeline-sim" className="text-orange-400 hover:text-orange-300 transition-colors">
+                    <Github className="w-6 h-6" />
                   </Link>
                 </CardTitle>
                 <CardDescription className="text-gray-300">
-                  Real-time drone control system with telemetry data, GPS tracking, and autonomous flight capabilities
+                  5-stage pipeline CPU simulator with hazard detection, data forwarding, and real-time visualization. Includes Verilog RTL modules.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Python</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">ROS</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">C++</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">GPS</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Java</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">TypeScript</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">React</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Verilog</Badge>
                 </div>
                 <Button
-                  onClick={() => setSelectedProject('drone')}
+                  onClick={() => setSelectedProject('mips16')}
                   className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-orange-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
@@ -940,33 +1294,34 @@ export default function Portfolio() {
               </CardContent>
             </Card>
 
-            {/* CI/CD Pipeline */}
+            {/* Algorithm Test Simulator */}
             <Card className="hover:shadow-2xl hover:shadow-red-500/30 transition-all duration-300 hover:-translate-y-2 bg-gray-900/80 border-red-500/30 w-full max-w-md hover:animate-pulse hover:scale-105 animate-fade-in-up delay-200">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-red-400">
-                  CI/CD Pipeline
-                  <Link href="https://github.com/Urthella" className="text-red-400 hover:text-red-300 transition-colors">
-                    
+                  Algorithm Performance Analyzer
+                  <Link href="https://github.com/Urthella/algortihm-test-sim" className="text-red-400 hover:text-red-300 transition-colors">
+                    <Github className="w-6 h-6" />
                   </Link>
                 </CardTitle>
                 <CardDescription className="text-gray-300">
-                  Automated CI/CD pipeline using GitHub Actions, Docker, and AWS for seamless software deployment
+                  Sorting algorithm benchmarking tool with time/memory analysis, interactive charts, and multiple data patterns support.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">GitHub Actions</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Docker</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">AWS</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">Spring Boot</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">React</Badge>
+                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Vite</Badge>
                 </div>
                 <Button
-                  onClick={() => setSelectedProject('cicd')}
+                  onClick={() => setSelectedProject('algorithm')}
                   className="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-red-500/50 transition-all duration-300 rounded-xl"
                 >
                   Show Details
                 </Button>
               </CardContent>
             </Card>
+
 
             {/* Pen Trading via Instagram (@pen.pick) */}
             <Card className="hover:shadow-2xl hover:shadow-pink-500/30 transition-all duration-300 hover:-translate-y-2 bg-gray-900/80 border-pink-500/30 w-full max-w-md hover:animate-pulse hover:scale-105 animate-fade-in-up delay-200">
@@ -1002,9 +1357,6 @@ export default function Portfolio() {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-blue-400">
                   Custom Guitar Build
-                  <Link href="https://github.com/Urthella" className="text-blue-400 hover:text-blue-300 transition-colors">
-                    
-                  </Link>
                 </CardTitle>
                 <CardDescription className="text-gray-300">
                   Handcrafted custom guitar with unique design, premium components, and exceptional playability
@@ -1029,12 +1381,11 @@ export default function Portfolio() {
       </section>
 
       {/* Hobbies Section */}
-      <section 
-        id="hobbies" 
+      <section
+        id="hobbies"
         ref={hobbiesRef}
-        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
-          hobbiesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${hobbiesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -1073,7 +1424,7 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mt-2">{t.hobbies.fitnessDescription}</CardDescription>
               </CardHeader>
               <CardContent>
-                
+
               </CardContent>
             </Card>
 
@@ -1091,30 +1442,29 @@ export default function Portfolio() {
             </Card>
             {/* Collecting & Trading */}
             <div className="md:col-span-2 lg:col-span-1 flex justify-center"></div>
-              <Card className="bg-gray-900/80 border-pink-500/30 shadow-xl shadow-pink-500/20 hover:shadow-pink-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-300">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <Instagram className="w-8 h-8 text-pink-400" />
-                    <CardTitle className="text-pink-400">{t.hobbies.collectingTrading}</CardTitle>
-                 </div>
-                 <CardDescription className="text-gray-300 mt-2">
-                    {t.hobbies.collectingDescription}
-                  </CardDescription>
-               </CardHeader>
-               <CardContent>
-               </CardContent>
-             </Card>
-           </div>
-         </div>
-       </section>
+            <Card className="bg-gray-900/80 border-pink-500/30 shadow-xl shadow-pink-500/20 hover:shadow-pink-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up delay-300">
+              <CardHeader>
+                <div className="flex items-center space-x-3">
+                  <Instagram className="w-8 h-8 text-pink-400" />
+                  <CardTitle className="text-pink-400">{t.hobbies.collectingTrading}</CardTitle>
+                </div>
+                <CardDescription className="text-gray-300 mt-2">
+                  {t.hobbies.collectingDescription}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
 
       {/* Articles Section */}
-      <section 
-        id="articles" 
+      <section
+        id="articles"
         ref={articlesRef}
-        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
-          articlesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${articlesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -1139,7 +1489,7 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mb-4">
                   {t.articles.socialEngineering.description}
                 </CardDescription>
-                <Link 
+                <Link
                   href="https://medium.com/@urthella1/the-part-where-the-fun-beggins-social-engineering-c1b5cbaa5ffb"
                   target="_blank"
                   className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
@@ -1164,7 +1514,7 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mb-4">
                   {t.articles.sqlInjection.description}
                 </CardDescription>
-                <Link 
+                <Link
                   href="https://medium.com/@urthella1/sql-injection-the-vulnerability-that-never-goes-away-fc5f931f3a7c"
                   target="_blank"
                   className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors font-medium"
@@ -1189,7 +1539,7 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mb-4">
                   {t.articles.osiModel.description}
                 </CardDescription>
-                <Link 
+                <Link
                   href="https://medium.com/@urthella1/osi-modelini-anlamak-96cb794b44d7"
                   target="_blank"
                   className="inline-flex items-center text-green-400 hover:text-green-300 transition-colors font-medium"
@@ -1214,7 +1564,7 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mb-4">
                   {t.articles.vpn.description}
                 </CardDescription>
-                <Link 
+                <Link
                   href="https://medium.com/@urthella1/vpn-dijital-d%C3%BCnyan%C4%B1n-g%C3%BCvenli-kap%C4%B1s%C4%B1-3fea39c03de0"
                   target="_blank"
                   className="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-medium"
@@ -1236,7 +1586,7 @@ export default function Portfolio() {
               <p className="text-gray-400 text-sm">
                 {t.articles.followMedium}
               </p>
-              <Link 
+              <Link
                 href="https://medium.com/@urthella1"
                 target="_blank"
                 className="inline-flex items-center mt-4 text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
@@ -1250,12 +1600,11 @@ export default function Portfolio() {
       </section>
 
       {/* Game Music Section */}
-      <section 
-        id="gamemusic" 
+      <section
+        id="gamemusic"
         ref={gamemusicRef}
-        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
-          gamemusicVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${gamemusicVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -1315,7 +1664,7 @@ export default function Portfolio() {
               </CardContent>
             </Card>
           </div>
-          
+
           {/* Spotify Profile Widget */}
           <div className="mt-12">
             <div className="text-center mb-6">
@@ -1324,15 +1673,15 @@ export default function Portfolio() {
             </div>
             <div className="max-w-2xl mx-auto">
               <div className="bg-black rounded-xl overflow-hidden">
-                <iframe 
-                  data-testid="embed-iframe" 
-                  style={{borderRadius: "12px"}} 
-                  src="https://open.spotify.com/embed/playlist/5PTPX85YTcfoKYeJwkysu4?utm_source=generator&theme=0" 
-                  width="100%" 
-                  height="480" 
-                  frameBorder="0" 
-                  allowFullScreen 
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                <iframe
+                  data-testid="embed-iframe"
+                  style={{ borderRadius: "12px" }}
+                  src="https://open.spotify.com/embed/playlist/5PTPX85YTcfoKYeJwkysu4?utm_source=generator&theme=0"
+                  width="100%"
+                  height="480"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
                 ></iframe>
               </div>
@@ -1342,8 +1691,8 @@ export default function Portfolio() {
       </section>
 
       {/* Services Section */}
-      <section 
-        id="services" 
+      <section
+        id="services"
         className="py-20 px-4 sm:px-6 lg:px-8 relative z-20"
       >
         <div className="max-w-6xl mx-auto">
@@ -1365,7 +1714,7 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mt-2">{t.services.guitarDescription}</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button 
+                <Button
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
                   className="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-cyan-500/50 transition-all duration-300 rounded-xl"
                 >
@@ -1384,7 +1733,7 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mt-2">{t.services.fitnessCoachingDescription}</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button 
+                <Button
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
                   className="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-purple-500/50 transition-all duration-300 rounded-xl"
                 >
@@ -1403,7 +1752,7 @@ export default function Portfolio() {
                 <CardDescription className="text-gray-300 mt-2">{t.services.nutritionDescription}</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button 
+                <Button
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
                   className="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-600 hover:border-green-500/50 transition-all duration-300 rounded-xl"
                 >
@@ -1416,12 +1765,11 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section 
-        id="contact" 
+      <section
+        id="contact"
         ref={contactRef}
-        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${
-          contactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${contactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -1467,7 +1815,7 @@ export default function Portfolio() {
                   <Link href="https://medium.com/@urthella1" className="flex items-center space-x-2 text-gray-300 hover:text-green-400 transition-colors">
                     <span className="w-6 h-6 flex items-center justify-center">
                       <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
-                        <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+                        <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
                       </svg>
                     </span>
                     <span>Medium</span>
@@ -1481,14 +1829,14 @@ export default function Portfolio() {
               <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
                 {t.contact.sendMessage} 🚀
               </h3>
-              
+
               {/* Status Messages */}
               {submitStatus === 'success' && (
                 <div className="mb-6 p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300">
                   ✅ Mesajınız başarıyla gönderildi! Size en kısa sürede geri dönüş yapacağım.
                 </div>
               )}
-              
+
               {submitStatus === 'error' && (
                 <div className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300">
                   ❌ Mesaj gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin veya doğrudan email adresimden iletişime geçin.
@@ -1538,8 +1886,8 @@ export default function Portfolio() {
                     disabled={isSubmitting}
                   />
                 </div>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 rounded-full px-5 py-3 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -1559,246 +1907,271 @@ export default function Portfolio() {
       </section>
 
       {/* Project Details Modal */}
-      {selectedProject && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-900/95 border border-cyan-500/30 rounded-3xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl shadow-cyan-500/20">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                {selectedProject === 'extramus' && 'Extramus HR System'}
-                {selectedProject === 'springboot' && 'Spring Boot Backend'}
-                {selectedProject === 'penpick' && 'Pen Trading via Instagram (@pen.pick)'}
-                {selectedProject === 'portfolio' && 'Portfolio Website'}
-                {selectedProject === 'drone' && 'Drone Control System'}
-                {selectedProject === 'cicd' && 'CI/CD Pipeline'}
-                {selectedProject === 'guitar' && 'Custom Guitar Build'}
-              </h3>
-              <Button
-                onClick={() => setSelectedProject(null)}
-                className="bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/30 rounded-full w-10 h-10 p-0"
-              >
-                ✕
-              </Button>
-            </div>
-            
-            {/* Project Details Content */}
-            <div className="space-y-6">
-              {selectedProject === 'extramus' && (
-                <>
-                  <div>
-                    <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
-                    <p className="text-gray-300 leading-relaxed">
-                      A comprehensive HR management system featuring document management, secure file uploads, user authentication, and role-based access control. Built with modern web technologies and containerized for scalable deployment.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">JavaScript</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">TypeScript</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Docker</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Node.js</Badge>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
-                    <ul className="text-gray-300 space-y-2">
-                      <li>• Secure document management with file upload/download</li>
-                      <li>• Role-based access control and user authentication</li>
-                      <li>• RESTful API design with comprehensive error handling</li>
-                      <li>• Containerized deployment with Docker</li>
-                      <li>• Responsive web interface with modern UI/UX</li>
-                    </ul>
-                  </div>
-                </>
-              )}
-              
-              {selectedProject === 'springboot' && (
-                <>
-                  <div>
-                    <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
-                    <p className="text-gray-300 leading-relaxed">
-                      A secure backend module developed using Spring Boot, Java, MongoDB, and Kafka for scalable applications. Focuses on providing robust and efficient data management and processing capabilities.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Spring Boot</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Java</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">MongoDB</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Kafka</Badge>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
-                    <ul className="text-gray-300 space-y-2">
-                      <li>• Secure user authentication and authorization</li>
-                      <li>• RESTful API endpoints for data access</li>
-                      <li>• Asynchronous message processing with Kafka</li>
-                      <li>• Scalable architecture for high availability</li>
-                      <li>• Comprehensive logging and monitoring</li>
-                    </ul>
-                  </div>
-                </>
-              )}
+      {
+        selectedProject && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-gray-900/95 border border-cyan-500/30 rounded-3xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl shadow-cyan-500/20">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  {selectedProject === 'extramus' && 'Extramus HR System'}
+                  {selectedProject === 'penpick' && 'Pen Trading via Instagram (@pen.pick)'}
+                  {selectedProject === 'portfolio' && 'Portfolio Website'}
+                  {selectedProject === 'mips16' && 'MIPS16 Pipeline Simulator'}
+                  {selectedProject === 'algorithm' && 'Algorithm Performance Analyzer'}
+                  {selectedProject === 'reveil' && 'Reveil'}
+                  {selectedProject === 'guitar' && 'Custom Guitar Build'}
+                </h3>
+                <Button
+                  onClick={() => setSelectedProject(null)}
+                  className="bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/30 rounded-full w-10 h-10 p-0"
+                >
+                  ✕
+                </Button>
+              </div>
 
-              {selectedProject === 'portfolio' && (
-                <>
-                  <div>
-                    <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
-                    <p className="text-gray-300 leading-relaxed">
-                      A modern, responsive portfolio website showcasing my skills, projects, and experiences. Features dark mode with neon aesthetics, smooth animations, multilingual support, and interactive elements including animated fireflies and lightsaber effects.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">Next.js</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">TypeScript</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Tailwind CSS</Badge>
+              {/* Project Details Content */}
+              <div className="space-y-6">
+                {selectedProject === 'extramus' && (
+                  <>
+                    <div>
+                      <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        A comprehensive HR management system featuring document management, secure file uploads, user authentication, and role-based access control. Built with modern web technologies and containerized for scalable deployment.
+                      </p>
                     </div>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
-                    <ul className="text-gray-300 space-y-2">
-                      <li>• Responsive design optimized for all devices</li>
-                      <li>• Dark mode with neon aesthetic and animated fireflies</li>
-                      <li>• Multilingual support (English/Turkish)</li>
-                      <li>• Smooth scrolling navigation and animations</li>
-                      <li>• Interactive contact form with email integration</li>
-                    </ul>
-                  </div>
-                </>
-              )}
+                    <div>
+                      <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">JavaScript</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">TypeScript</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Docker</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Node.js</Badge>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
+                      <ul className="text-gray-300 space-y-2">
+                        <li>• Secure document management with file upload/download</li>
+                        <li>• Role-based access control and user authentication</li>
+                        <li>• RESTful API design with comprehensive error handling</li>
+                        <li>• Containerized deployment with Docker</li>
+                        <li>• Responsive web interface with modern UI/UX</li>
+                      </ul>
+                    </div>
+                  </>
+                )}
 
-              {selectedProject === 'drone' && (
-                <>
-                  <div>
-                    <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
-                    <p className="text-gray-300 leading-relaxed">
-                      A real-time drone control system with telemetry data, GPS tracking, and autonomous flight capabilities. Designed for remote monitoring and control of unmanned aerial vehicles.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Python</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">ROS</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">C++</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">GPS</Badge>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
-                    <ul className="text-gray-300 space-y-2">
-                      <li>• Real-time telemetry data visualization</li>
-                      <li>• GPS tracking and waypoint navigation</li>
-                      <li>• Autonomous flight mode with obstacle avoidance</li>
-                      <li>• Remote control via web interface</li>
-                      <li>• Secure communication protocol</li>
-                    </ul>
-                  </div>
-                </>
-              )}
 
-              {selectedProject === 'cicd' && (
-                <>
-                  <div>
-                    <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
-                    <p className="text-gray-300 leading-relaxed">
-                      An automated CI/CD pipeline using GitHub Actions, Docker, and AWS for seamless software deployment. Streamlines the development process and ensures consistent and reliable deployments.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">GitHub Actions</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Docker</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">AWS</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">CI/CD</Badge>
+                {selectedProject === 'portfolio' && (
+                  <>
+                    <div>
+                      <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        A modern, responsive portfolio website showcasing my skills, projects, and experiences. Features dark mode with neon aesthetics, smooth animations, multilingual support, and interactive elements including animated fireflies and lightsaber effects.
+                      </p>
                     </div>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
-                    <ul className="text-gray-300 space-y-2">
-                      <li>• Automated build and test process</li>
-                      <li>• Containerized deployment with Docker</li>
-                      <li>• Continuous integration and continuous delivery</li>
-                      <li>• Infrastructure as code with AWS CloudFormation</li>
-                      <li>• Real-time monitoring and alerting</li>
-                    </ul>
-                  </div>
-                </>
-              )}
+                    <div>
+                      <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">Next.js</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">TypeScript</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Tailwind CSS</Badge>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
+                      <ul className="text-gray-300 space-y-2">
+                        <li>• Responsive design optimized for all devices</li>
+                        <li>• Dark mode with neon aesthetic and animated fireflies</li>
+                        <li>• Multilingual support (English/Turkish)</li>
+                        <li>• Smooth scrolling navigation and animations</li>
+                        <li>• Interactive contact form with email integration</li>
+                      </ul>
+                    </div>
+                  </>
+                )}
 
-              {selectedProject === 'guitar' && (
-                <>
-                  <div>
-                    <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
-                    <p className="text-gray-300 leading-relaxed">
-                      A handcrafted custom partscaster guitar with unique design, premium components, and exceptional playability. Combines woodworking skills with electronics and guitar setup expertise.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Woodworking</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Electronics</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Guitar Setup</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Handcrafted</Badge>
+                {selectedProject === 'mips16' && (
+                  <>
+                    <div>
+                      <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        A comprehensive MIPS16 pipeline CPU simulator featuring a 5-stage pipeline (IF → ID → EX → MEM → WB) with hazard detection, data forwarding, and real-time visualization. Includes Verilog RTL modules and testbenches for hardware-level simulation.
+                      </p>
                     </div>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
-                    <ul className="text-gray-300 space-y-2">
-                      <li>• Unique guitar body design</li>
-                      <li>• Premium hardware and pickups</li>
-                      <li>• Exceptional playability and tone</li>
-                      <li>• Custom wiring and electronics</li>
-                      <li>• Professional guitar setup</li>
-                    </ul>
-                  </div>
-                </>
-              )}
+                    <div>
+                      <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Java</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">TypeScript</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">React</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Verilog</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Tailwind CSS</Badge>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
+                      <ul className="text-gray-300 space-y-2">
+                        <li>• 5-stage pipeline: IF → ID → EX → MEM → WB</li>
+                        <li>• Data Forwarding (EX-EX, MEM-EX)</li>
+                        <li>• Load-Use Stall Detection</li>
+                        <li>• Branch Flush for Control Hazards</li>
+                        <li>• Performance Metrics: CPI, IPC, Stall/Forward/Flush counts</li>
+                        <li>• Modern Web UI with real-time visualization</li>
+                        <li>• Verilog RTL modules and testbenches</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <Link href="https://github.com/Urthella/-MIPS16-pipeline-sim" target="_blank" className="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors">
+                        <Github className="w-5 h-5 mr-2" />
+                        View on GitHub
+                      </Link>
+                    </div>
+                  </>
+                )}
 
-              {selectedProject === 'penpick' && (
-                <>
-                  <div>
-                    <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
-                    <p className="text-gray-300 leading-relaxed">
-                      A niche Instagram-based marketplace for premium pens including Montblanc, Parker, and Pelikan. Focused on fountain, rollerball, and ballpoint models. Managed via <a href="https://instagram.com/pen.pick" target="_blank" rel="noopener noreferrer" className="text-pink-400 underline hover:text-pink-500 transition-colors">@pen.pick</a>.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-pink-200 border-gray-600 hover:border-pink-500/50 transition-colors">Instagram</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-gray-200 border-gray-600 hover:border-gray-500/50 transition-colors">Product Photography</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">E-commerce</Badge>
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Branding</Badge>
+                {selectedProject === 'algorithm' && (
+                  <>
+                    <div>
+                      <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        A comprehensive sorting algorithm performance analysis tool that compares time complexity, memory usage, and execution patterns across multiple algorithms. Features interactive charts and detailed benchmarking capabilities.
+                      </p>
                     </div>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
-                    <ul className="text-gray-300 space-y-2">
-                      <li>• Clean, minimal pen photography with detailed descriptions</li>
-                      <li>• Active Instagram presence to connect with local collectors</li>
-                      <li>• Handles packaging, negotiation, and delivery within Türkiye</li>
-                      <li>• Researches models, verifies authenticity, and tracks market trends</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-pink-400 mb-3">Skills & Outcomes</h4>
-                    <p className="text-gray-300 leading-relaxed">
-                      Enhanced practical skills in social media marketing, customer communication, and inventory handling through this hobby-turned-micro-business.
-                    </p>
-                  </div>
-                </>
-              )}
+                    <div>
+                      <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">Spring Boot</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">React</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Vite</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Java</Badge>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
+                      <ul className="text-gray-300 space-y-2">
+                        <li>• Time Complexity: Theoretical vs practical measurements</li>
+                        <li>• Memory Usage: Heap memory tracking per algorithm</li>
+                        <li>• Data Patterns: Random, Partially Sorted, Reverse Sorted</li>
+                        <li>• Multiple Sizes: 1K, 10K, 100K, 500K elements</li>
+                        <li>• Interactive charts (Line, Bar, Radar)</li>
+                        <li>• CSV/JSON export functionality</li>
+                        <li>• RESTful API for benchmarking</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <Link href="https://github.com/Urthella/algortihm-test-sim" target="_blank" className="inline-flex items-center text-red-400 hover:text-red-300 transition-colors">
+                        <Github className="w-5 h-5 mr-2" />
+                        View on GitHub
+                      </Link>
+                    </div>
+                  </>
+                )}
+
+                {selectedProject === 'reveil' && (
+                  <>
+                    <div>
+                      <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        An immersive game project built with TypeScript and modern web technologies. Features interactive gameplay mechanics, dynamic environments, and engaging user experiences.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-indigo-200 border-gray-600 hover:border-indigo-500/50 transition-colors">TypeScript (93.8%)</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-yellow-200 border-gray-600 hover:border-yellow-500/50 transition-colors">JavaScript (3.9%)</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Python (2.3%)</Badge>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
+                      <ul className="text-gray-300 space-y-2">
+                        <li>• Interactive gameplay mechanics</li>
+                        <li>• Modern web-based game engine</li>
+                        <li>• Dynamic game environments</li>
+                        <li>• TypeScript for type-safe development</li>
+                        <li>• Python scripting for game logic</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <Link href="https://github.com/Urthella/Reveil" target="_blank" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 transition-colors">
+                        <Github className="w-5 h-5 mr-2" />
+                        View on GitHub
+                      </Link>
+                    </div>
+                  </>
+                )}
+
+                {selectedProject === 'guitar' && (
+                  <>
+                    <div>
+                      <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        A handcrafted custom partscaster guitar with unique design, premium components, and exceptional playability. Combines woodworking skills with electronics and guitar setup expertise.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Woodworking</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Electronics</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Guitar Setup</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-orange-200 border-gray-600 hover:border-orange-500/50 transition-colors">Handcrafted</Badge>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
+                      <ul className="text-gray-300 space-y-2">
+                        <li>• Unique guitar body design</li>
+                        <li>• Premium hardware and pickups</li>
+                        <li>• Exceptional playability and tone</li>
+                        <li>• Custom wiring and electronics</li>
+                        <li>• Professional guitar setup</li>
+                      </ul>
+                    </div>
+                  </>
+                )}
+
+                {selectedProject === 'penpick' && (
+                  <>
+                    <div>
+                      <h4 className="text-xl font-semibold text-cyan-400 mb-3">Project Overview</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        A niche Instagram-based marketplace for premium pens including Montblanc, Parker, and Pelikan. Focused on fountain, rollerball, and ballpoint models. Managed via <a href="https://instagram.com/pen.pick" target="_blank" rel="noopener noreferrer" className="text-pink-400 underline hover:text-pink-500 transition-colors">@pen.pick</a>.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-purple-400 mb-3">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-pink-200 border-gray-600 hover:border-pink-500/50 transition-colors">Instagram</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-gray-200 border-gray-600 hover:border-gray-500/50 transition-colors">Product Photography</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">E-commerce</Badge>
+                        <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-blue-200 border-gray-600 hover:border-blue-500/50 transition-colors">Branding</Badge>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-green-400 mb-3">Key Features</h4>
+                      <ul className="text-gray-300 space-y-2">
+                        <li>• Clean, minimal pen photography with detailed descriptions</li>
+                        <li>• Active Instagram presence to connect with local collectors</li>
+                        <li>• Handles packaging, negotiation, and delivery within Türkiye</li>
+                        <li>• Researches models, verifies authenticity, and tracks market trends</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-pink-400 mb-3">Skills & Outcomes</h4>
+                      <p className="text-gray-300 leading-relaxed">
+                        Enhanced practical skills in social media marketing, customer communication, and inventory handling through this hobby-turned-micro-business.
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* Footer */}
       <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-900 to-black text-white relative z-20">
@@ -1814,6 +2187,6 @@ export default function Portfolio() {
           </p>
         </div>
       </footer>
-    </div>
+    </div >
   )
 }
