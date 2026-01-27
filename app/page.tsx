@@ -39,7 +39,7 @@ export default function Portfolio() {
   const { elementRef: projectsRef, isVisible: projectsVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
   const { elementRef: hobbiesRef, isVisible: hobbiesVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
   const { elementRef: articlesRef, isVisible: articlesVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
-  const { elementRef: gamemusicRef, isVisible: gamemusicVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
+
   const { elementRef: contactRef, isVisible: contactVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
   const { containerRef: skillsContainerRef, visibleItems: visibleSkillItems } = useStaggeredAnimation(6, 120, true)
 
@@ -112,13 +112,7 @@ export default function Portfolio() {
         collectingTrading: 'Collecting & Trading',
         collectingDescription: 'I enjoy discovering and collecting high-quality pens and other timeless tools. Through local trading, I engage with a growing community of enthusiasts in Türkiye and explore the heritage of writing instruments.'
       },
-      gamemusic: {
-        title: 'Game Musics I Designed',
-        subtitle: 'Original compositions and soundtracks for gaming experiences 🎵',
-        description: 'Here are some of the game music tracks I\'ve composed and designed. Each piece is crafted to enhance the gaming experience and create immersive atmospheres.',
-        playlistTitle: 'My Playlist',
-        playlistDescription: 'Discover my musical taste through my personal playlist'
-      },
+
       services: {
         title: 'Services',
         subtitle: 'Sharing knowledge and passion through personalized coaching 🌟',
@@ -255,7 +249,7 @@ export default function Portfolio() {
         projects: 'Projeler',
         hobbies: 'Hobiler',
         articles: 'Makaleler',
-        gamemusic: 'Oyun Müzikleri',
+
         services: 'Hizmetler',
         contact: 'İletişim'
       },
@@ -314,13 +308,7 @@ export default function Portfolio() {
         collectingTrading: 'Koleksiyonculuk ve Takas',
         collectingDescription: 'Kaliteli kalemler ve zamansız araçları keşfetmekten ve toplamaktan keyif alıyorum. Yerel takaslar sayesinde Türkiye’de büyüyen bir meraklı topluluğuyla etkileşim kuruyor ve yazı gereçlerinin mirasını keşfediyorum.'
       },
-      gamemusic: {
-        title: 'Tasarladığım Oyun Müzikleri',
-        subtitle: 'Oyun deneyimleri için orijinal kompozisyonlar ve müzikler 🎵',
-        description: 'Bestelediğim ve tasarladığım oyun müziği parçalarından bazıları. Her parça, oyun deneyimini geliştirmek ve sürükleyici atmosferler yaratmak için özenle hazırlanmıştır.',
-        playlistTitle: 'Çalma Listem',
-        playlistDescription: 'Kişisel çalma listem aracılığıyla müzik zevkimi keşfedin'
-      },
+
       services: {
         title: 'Hizmetler',
         subtitle: 'Kişiselleştirilmiş koçluk ile bilgi ve tutku paylaşımı 🌟',
@@ -656,7 +644,7 @@ export default function Portfolio() {
           className="hidden md:hidden bg-gray-900/95 backdrop-blur-sm border-t border-gray-800 px-4 py-6"
         >
           <div className="flex flex-col space-y-4">
-            {['home', 'about', 'skills', 'projects', 'hobbies', 'articles', 'gamemusic', 'services', 'contact'].map((section) => (
+            {['home', 'about', 'skills', 'projects', 'hobbies', 'articles', 'services', 'contact'].map((section) => (
               <a
                 key={section}
                 href={`#${section}`}
@@ -1610,96 +1598,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Game Music Section */}
-      <section
-        id="gamemusic"
-        ref={gamemusicRef}
-        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${gamemusicVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-      >
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
-              {t.gamemusic.title}
-            </h2>
-            <p className="text-xl text-gray-300">{t.gamemusic.subtitle}</p>
-            <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">{t.gamemusic.description}</p>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-8 justify-center">
-            {/* Music Track 1 */}
-            <Card className="bg-gray-900/80 border-cyan-500/30 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up">
-              <CardHeader>
-                <CardTitle className="text-cyan-400 flex items-center space-x-2">
-                  <span className="text-2xl">🌲</span>
-                  <span>Whisper of the Ent's</span>
-                </CardTitle>
-                <CardDescription className="text-gray-300">
-                  Mystical forest music I made. An enchanting melody that guides players through ancient woodlands filled with hidden treasures and deceptive mimics.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <audio controls className="w-full mb-4">
-                  <source src="/Whisper_of_the_Ents.mp3" type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-                <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-green-200 border-gray-600 hover:border-green-500/50 transition-colors">Fantasy</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-cyan-200 border-gray-600 hover:border-cyan-500/50 transition-colors">Puzzle</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Mystical</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Music Track 2 */}
-            <Card className="bg-gray-900/80 border-red-500/30 shadow-xl shadow-red-500/20 hover:shadow-red-500/40 transition-all duration-300 hover:animate-pulse hover:scale-105 animate-fade-in-up">
-              <CardHeader>
-                <CardTitle className="text-red-400 flex items-center space-x-2">
-                  <span className="text-2xl">🏚️</span>
-                  <span>Haunted House</span>
-                </CardTitle>
-                <CardDescription className="text-gray-300">
-                  Eerie atmospheric music I made. Dark and suspenseful tones create tension as players search for treasure chests that may not be what they seem.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <audio controls className="w-full mb-4">
-                  <source src="/Haunted_House.mp3" type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-                <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-red-200 border-gray-600 hover:border-red-500/50 transition-colors">Horror</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-gray-200 border-gray-600 hover:border-gray-500/50 transition-colors">Dark</Badge>
-                  <Badge className="bg-gradient-to-r from-gray-800 to-gray-700 text-purple-200 border-gray-600 hover:border-purple-500/50 transition-colors">Puzzle</Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Spotify Profile Widget */}
-          <div className="mt-12">
-            <div className="text-center mb-6">
-              <h3 className="text-3xl font-bold text-cyan-400 mb-4">🎵 {t.gamemusic.playlistTitle}</h3>
-              <p className="text-lg text-gray-300">{t.gamemusic.playlistDescription}</p>
-            </div>
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-black rounded-xl overflow-hidden">
-                <iframe
-                  data-testid="embed-iframe"
-                  style={{ borderRadius: "12px" }}
-                  src="https://open.spotify.com/embed/playlist/5PTPX85YTcfoKYeJwkysu4?utm_source=generator&theme=0"
-                  width="100%"
-                  height="480"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                ></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Services Section */}
       <section
