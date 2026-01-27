@@ -597,13 +597,7 @@ export default function Portfolio() {
               UD
             </div>
             <div className="hidden md:flex space-x-8 items-center">
-              <Link
-                href="/blog"
-                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-4 py-2 text-sm font-medium transition-all transform hover:scale-105"
-              >
-                BLOG
-              </Link>
-              {['home', 'about', 'experience', 'skills', 'certifications', 'projects', 'hobbies', 'services', 'contact'].map((section) => (
+              {['home', 'about', 'experience', 'skills', 'certifications', 'projects', 'hobbies', 'contact'].map((section) => (
                 <a
                   key={section}
                   href={`#${section}`}
@@ -616,6 +610,12 @@ export default function Portfolio() {
                   {t.nav[section as keyof typeof t.nav]}
                 </a>
               ))}
+              <Link
+                href="/blog"
+                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-4 py-2 text-sm font-medium transition-all transform hover:scale-105"
+              >
+                BLOG
+              </Link>
               <Button
                 onClick={() => setLanguage(language === 'en' ? 'tr' : 'en')}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-4 py-2 text-sm font-medium"
@@ -660,7 +660,7 @@ export default function Portfolio() {
           className="hidden md:hidden bg-gray-900/95 backdrop-blur-sm border-t border-gray-800 px-4 py-6"
         >
           <div className="flex flex-col space-y-4">
-            {['home', 'about', 'skills', 'projects', 'hobbies', 'services', 'contact'].map((section) => (
+            {['home', 'about', 'skills', 'projects', 'hobbies', 'contact'].map((section) => (
               <a
                 key={section}
                 href={`#${section}`}
