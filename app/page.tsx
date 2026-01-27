@@ -10,6 +10,9 @@ import { useEffect, useState } from "react"
 import emailjs from '@emailjs/browser'
 import { ClientOnly } from '@/components/ClientOnly'
 import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnimation'
+import TechMarquee from "@/components/TechMarquee"
+import GithubStats from "@/components/GithubStats"
+import TerminalModal from "@/components/TerminalModal"
 
 interface Firefly {
   id: number
@@ -54,7 +57,7 @@ export default function Portfolio() {
         projects: 'Projects',
         hobbies: 'Hobbies',
         articles: 'Articles',
-        services: 'Services',
+        blog: 'Blog',
         contact: 'Contact'
       },
       hero: {
@@ -251,6 +254,7 @@ export default function Portfolio() {
         articles: 'Makaleler',
 
         services: 'Hizmetler',
+        blog: 'Blog',
         contact: 'İletişim'
       },
       hero: {
@@ -593,7 +597,13 @@ export default function Portfolio() {
               UD
             </div>
             <div className="hidden md:flex space-x-8 items-center">
-              {['home', 'about', 'experience', 'skills', 'certifications', 'projects', 'hobbies', 'articles', 'services', 'contact'].map((section) => (
+              <Link
+                href="/blog"
+                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-4 py-2 text-sm font-medium transition-all transform hover:scale-105"
+              >
+                BLOG
+              </Link>
+              {['home', 'about', 'experience', 'skills', 'certifications', 'projects', 'hobbies', 'services', 'contact'].map((section) => (
                 <a
                   key={section}
                   href={`#${section}`}
@@ -644,26 +654,39 @@ export default function Portfolio() {
           className="hidden md:hidden bg-gray-900/95 backdrop-blur-sm border-t border-gray-800 px-4 py-6"
         >
           <div className="flex flex-col space-y-4">
-            {['home', 'about', 'skills', 'projects', 'hobbies', 'articles', 'services', 'contact'].map((section) => (
-              <a
-                key={section}
-                href={`#${section}`}
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
-                  document.getElementById('mobile-nav')?.classList.add('hidden')
-                }}
-                className="text-gray-300 hover:text-cyan-400 transition-colors font-medium cursor-pointer capitalize text-lg py-2 border-b border-gray-800 last:border-b-0"
-              >
-                {t.nav[section as keyof typeof t.nav]}
-              </a>
+            {['home', 'about', 'skills', 'projects', 'hobbies', 'articles', 'services', 'blog', 'contact'].map((section) => (
+              section === 'blog' ? (
+                <Link
+                  key={section}
+                  href="/blog"
+                  className="text-gray-300 hover:text-cyan-400 transition-colors uppercase text-sm tracking-wider block"
+                  onClick={() => {
+                    document.getElementById('mobile-nav')?.classList.add('hidden')
+                  }}
+                >
+                  {t.nav[section as keyof typeof t.nav]}
+                </Link>
+              ) : (
+                <a
+                  key={section}
+                  href={`#${section}`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
+                    document.getElementById('mobile-nav')?.classList.add('hidden')
+                  }}
+                  className="text-gray-300 hover:text-cyan-400 transition-colors font-medium cursor-pointer capitalize text-lg py-2 border-b border-gray-800 last:border-b-0"
+                >
+                  {t.nav[section as keyof typeof t.nav]}
+                </a>
+              )
             ))}
           </div>
         </div>
-      </nav>
+      </nav >
 
       {/* Main Entry Section */}
-      <section className="min-h-screen flex items-center justify-center relative z-20">
+      < section className="min-h-screen flex items-center justify-center relative z-20" >
         <div className="text-center">
           <button
             onClick={() => window.open('https://www.youtube.com/watch?v=rEq1Z0bjdwc', '_blank')}
@@ -695,10 +718,10 @@ export default function Portfolio() {
             Enter Portfolio
           </Button>
         </div>
-      </section>
+      </section >
 
       {/* Hero Section */}
-      <section id="home" className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative z-20">
+      < section id="home" className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative z-20" >
         <div className="max-w-6xl mx-auto">
           <div className="text-center py-20">
             <div className="mb-8">
@@ -762,14 +785,18 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
+
+      {/* Tech Stack Marquee */}
+      < TechMarquee />
 
       {/* About Me Section */}
-      <section
+      < section
         id="about"
         ref={aboutRef}
         className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          }`
+        }
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -810,10 +837,10 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Experience Timeline Section */}
-      <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      < section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20" >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -979,11 +1006,11 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
 
       {/* Technical Skills Section */}
-      <section
+      < section
         id="skills"
         ref={skillsRef}
         className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -1122,10 +1149,10 @@ export default function Portfolio() {
             </Card>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Certifications Section */}
-      <section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+      < section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20" >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
@@ -1156,10 +1183,10 @@ export default function Portfolio() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Projects Section */}
-      <section
+      < section
         id="projects"
         ref={projectsRef}
         className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${projectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -1377,10 +1404,13 @@ export default function Portfolio() {
             </Card>
           </div>
         </div>
-      </section>
+      </section >
+
+      {/* GitHub Activity Section */}
+      < GithubStats />
 
       {/* Hobbies Section */}
-      <section
+      < section
         id="hobbies"
         ref={hobbiesRef}
         className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${hobbiesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -1456,152 +1486,14 @@ export default function Portfolio() {
             </Card>
           </div>
         </div>
-      </section>
+      </section >
 
-      {/* Articles Section */}
-      <section
-        id="articles"
-        ref={articlesRef}
-        className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${articlesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-      >
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
-              {t.articles.title}
-            </h2>
-            <p className="text-xl text-gray-300">{t.articles.subtitle}</p>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Social Engineering Article */}
-            <Card className="bg-gray-900/80 border-cyan-500/30 shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105 group">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-cyan-400 group-hover:text-cyan-300 transition-colors">
-                    {t.articles.socialEngineering.title}
-                  </CardTitle>
-                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-300 mb-4">
-                  {t.articles.socialEngineering.description}
-                </CardDescription>
-                <Link
-                  href="https://medium.com/@urthella1/the-part-where-the-fun-beggins-social-engineering-c1b5cbaa5ffb"
-                  target="_blank"
-                  className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
-                >
-                  {t.articles.readArticle}
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* SQL Injection Article */}
-            <Card className="bg-gray-900/80 border-purple-500/30 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-300 hover:scale-105 group">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-purple-400 group-hover:text-purple-300 transition-colors">
-                    {t.articles.sqlInjection.title}
-                  </CardTitle>
-                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-purple-400 transition-colors" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-300 mb-4">
-                  {t.articles.sqlInjection.description}
-                </CardDescription>
-                <Link
-                  href="https://medium.com/@urthella1/sql-injection-the-vulnerability-that-never-goes-away-fc5f931f3a7c"
-                  target="_blank"
-                  className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors font-medium"
-                >
-                  {t.articles.readArticle}
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* OSI Model Article */}
-            <Card className="bg-gray-900/80 border-green-500/30 shadow-xl shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-300 hover:scale-105 group">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-green-400 group-hover:text-green-300 transition-colors">
-                    {t.articles.osiModel.title}
-                  </CardTitle>
-                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-green-400 transition-colors" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-300 mb-4">
-                  {t.articles.osiModel.description}
-                </CardDescription>
-                <Link
-                  href="https://medium.com/@urthella1/osi-modelini-anlamak-96cb794b44d7"
-                  target="_blank"
-                  className="inline-flex items-center text-green-400 hover:text-green-300 transition-colors font-medium"
-                >
-                  {t.articles.readArticle}
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* VPN Article */}
-            <Card className="bg-gray-900/80 border-orange-500/30 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300 hover:scale-105 group">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-orange-400 group-hover:text-orange-300 transition-colors">
-                    {t.articles.vpn.title}
-                  </CardTitle>
-                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-orange-400 transition-colors" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-300 mb-4">
-                  {t.articles.vpn.description}
-                </CardDescription>
-                <Link
-                  href="https://medium.com/@urthella1/vpn-dijital-d%C3%BCnyan%C4%B1n-g%C3%BCvenli-kap%C4%B1s%C4%B1-3fea39c03de0"
-                  target="_blank"
-                  className="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-medium"
-                >
-                  {t.articles.readArticle}
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Future Articles Teaser */}
-          <div className="mt-16 text-center">
-            <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-lg p-8 border border-gray-600">
-              <h3 className="text-2xl font-bold text-purple-400 mb-4">{t.articles.comingSoon}</h3>
-              <p className="text-gray-300 mb-4">
-                🎵 <strong>{t.articles.musicTheory}</strong> - {t.articles.musicTheoryDesc}
-              </p>
-              <p className="text-gray-400 text-sm">
-                {t.articles.followMedium}
-              </p>
-              <Link
-                href="https://medium.com/@urthella1"
-                target="_blank"
-                className="inline-flex items-center mt-4 text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
-              >
-                {t.articles.mediumProfile}
-                <ExternalLink className="w-4 h-4 ml-2" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
 
 
       {/* Services Section */}
-      <section
+      < section
         id="services"
         className="py-20 px-4 sm:px-6 lg:px-8 relative z-20"
       >
@@ -1672,10 +1564,10 @@ export default function Portfolio() {
             </Card>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Contact Section */}
-      <section
+      < section
         id="contact"
         ref={contactRef}
         className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${contactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -1814,7 +1706,7 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Project Details Modal */}
       {
@@ -2100,6 +1992,7 @@ export default function Portfolio() {
           </p>
         </div>
       </footer>
+      <TerminalModal />
     </div >
   )
 }
