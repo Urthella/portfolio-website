@@ -4,8 +4,9 @@ import { getPostBySlug } from '@/lib/mdx'
 import { ArrowLeft, Calendar, Tag } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-    const { frontmatter, content } = await getPostBySlug(params.slug)
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params
+    const { frontmatter, content } = await getPostBySlug(slug)
 
     return (
         <div className="min-h-screen bg-black text-white relative overflow-hidden">
