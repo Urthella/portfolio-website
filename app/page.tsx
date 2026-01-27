@@ -626,6 +626,12 @@ export default function Portfolio() {
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center space-x-3">
+              <Link
+                href="/blog"
+                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-3 py-2 text-sm font-medium"
+              >
+                BLOG
+              </Link>
               <Button
                 onClick={() => setLanguage(language === 'en' ? 'tr' : 'en')}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-3 py-2 text-sm font-medium"
@@ -654,32 +660,19 @@ export default function Portfolio() {
           className="hidden md:hidden bg-gray-900/95 backdrop-blur-sm border-t border-gray-800 px-4 py-6"
         >
           <div className="flex flex-col space-y-4">
-            {['home', 'about', 'skills', 'projects', 'hobbies', 'articles', 'services', 'blog', 'contact'].map((section) => (
-              section === 'blog' ? (
-                <Link
-                  key={section}
-                  href="/blog"
-                  className="text-gray-300 hover:text-cyan-400 transition-colors uppercase text-sm tracking-wider block"
-                  onClick={() => {
-                    document.getElementById('mobile-nav')?.classList.add('hidden')
-                  }}
-                >
-                  {t.nav[section as keyof typeof t.nav]}
-                </Link>
-              ) : (
-                <a
-                  key={section}
-                  href={`#${section}`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
-                    document.getElementById('mobile-nav')?.classList.add('hidden')
-                  }}
-                  className="text-gray-300 hover:text-cyan-400 transition-colors font-medium cursor-pointer capitalize text-lg py-2 border-b border-gray-800 last:border-b-0"
-                >
-                  {t.nav[section as keyof typeof t.nav]}
-                </a>
-              )
+            {['home', 'about', 'skills', 'projects', 'hobbies', 'services', 'contact'].map((section) => (
+              <a
+                key={section}
+                href={`#${section}`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
+                  document.getElementById('mobile-nav')?.classList.add('hidden')
+                }}
+                className="text-gray-300 hover:text-cyan-400 transition-colors font-medium cursor-pointer capitalize text-lg py-2 border-b border-gray-800 last:border-b-0"
+              >
+                {t.nav[section as keyof typeof t.nav]}
+              </a>
             ))}
           </div>
         </div>
