@@ -247,6 +247,7 @@ export default function Portfolio() {
       nav: {
         home: 'Ana Sayfa',
         about: 'Hakkımda',
+        experience: 'Deneyim',
         skills: 'Yetenekler',
         certifications: 'Sertifikalar',
         projects: 'Projeler',
