@@ -42,7 +42,12 @@ export default function Contact({ language }: ContactProps) {
             const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
             if (!serviceId || !templateId || !publicKey) {
-                throw new Error('EmailJS configuration is missing.')
+                console.error('EmailJS Config Check:', {
+                    hasServiceId: !!serviceId,
+                    hasTemplateId: !!templateId,
+                    hasPublicKey: !!publicKey
+                })
+                throw new Error(`EmailJS configuration is missing. ServiceId: ${!!serviceId}, TemplateId: ${!!templateId}, PublicKey: ${!!publicKey}`)
             }
 
             // Explicitly initialize with the public key
