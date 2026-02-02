@@ -21,6 +21,7 @@ import TechMarquee from '@/components/TechMarquee'
 import { SplineScene } from "@/components/ui/splite"
 import { Spotlight } from "@/components/ui/spotlight"
 import { StarField } from "@/components/ui/star-field"
+import { Typewriter } from "@/components/ui/typewriter"
 
 export default function Portfolio() {
   const [language, setLanguage] = useState<'en' | 'tr'>('en')
@@ -216,8 +217,18 @@ export default function Portfolio() {
 
       {/* Footer / Copyright / Socials if any (using Contact section for now) */}
       <footer className="py-8 text-center text-gray-500 border-t border-gray-900 bg-black z-20 relative">
-        <div className="max-w-6xl mx-auto px-4">
-          © {new Date().getFullYear()} Utku Demirtaş. All rights reserved. Built with care (and little sleep).
+        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center gap-1 text-sm">
+          <span>© {new Date().getFullYear()} Utku Demirtaş. All rights reserved. Built with care, little sleep and </span>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" className="text-yellow-500 hover:text-yellow-300 hover:drop-shadow-[0_0_10px_rgba(253,224,71,0.8)] transition-all duration-300 font-medium flex items-center">
+            <Typewriter
+              text={["lots of coffee ☕", "even less sleep 😴", "love ❤️", "passion 🔥"]}
+              speed={70}
+              className="inline-block"
+              waitTime={1500}
+              deleteSpeed={40}
+              cursorChar={"_"}
+            />
+          </a>
         </div>
       </footer>
 
