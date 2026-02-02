@@ -22,7 +22,7 @@ export default function Skills({ language }: SkillsProps) {
         {
             key: 'programmingLanguages',
             icon: Code,
-            skills: ['Java', 'Python', 'JavaScript', 'TypeScript', 'C#']
+            skills: ['Java', 'Python', 'JavaScript', 'TypeScript']
         },
         {
             key: 'backendFrameworks',
@@ -37,12 +37,12 @@ export default function Skills({ language }: SkillsProps) {
         {
             key: 'devopsCloud',
             icon: Cloud,
-            skills: ['Docker', 'CI/CD', 'GitHub Actions', 'Linux', 'AWS', 'IT Operations']
+            skills: ['Docker', 'CI/CD', 'GitHub Actions', 'Linux', 'IT Operations']
         },
         {
             key: 'securityTools',
             icon: Shield,
-            skills: ['OWASP', 'Wireshark', 'Burp Suite', 'Metasploit', 'Social Engineering', 'Ethical Hacking', 'Penetration Testing']
+            skills: ['OWASP', 'Wireshark', 'Burp Suite', 'Metasploit']
         },
         {
             key: 'messageQueues', // Using messageQueues key for "Other Technologies" as per original file structure linking
@@ -60,7 +60,7 @@ export default function Skills({ language }: SkillsProps) {
         <section
             id="skills"
             ref={skillsRef}
-            className={`pt-20 pb-10 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`pt-20 pb-0 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">

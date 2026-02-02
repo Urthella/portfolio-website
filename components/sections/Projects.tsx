@@ -24,7 +24,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
         <section
             id="projects"
             ref={projectsRef}
-            className={`pt-10 pb-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${projectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`pt-0 -mt-24 pb-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${projectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
@@ -44,7 +44,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Extramus HR System
-                                    <Link href="https://github.com/Urthella" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -75,7 +75,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Reveil
-                                    <Link href="https://github.com/Urthella/Reveil" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella/Reveil" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -106,7 +106,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Portfolio Website
-                                    <Link href="https://github.com/Urthella" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -139,7 +139,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     MIPS16 Pipeline Simulator
-                                    <Link href="https://github.com/Urthella/-MIPS16-pipeline-sim" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella/-MIPS16-pipeline-sim" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -171,7 +171,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Algorithm Performance Analyzer
-                                    <Link href="https://github.com/Urthella/algortihm-test-sim" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella/algortihm-test-sim" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>

@@ -41,10 +41,31 @@ export default function Services({ language }: ServicesProps) {
                                 </div>
                                 <CardDescription className="text-gray-400 mt-2">{t.services.guitarDescription}</CardDescription>
                             </CardHeader>
-                            <CardContent>
+                            <CardContent className="flex flex-col h-full">
+                                <div className="space-y-4 mb-6 flex-grow">
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-2 text-sm">{t.services.included}</h4>
+                                        <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                            {t.services.guitarIncluded.map((item, i) => (
+                                                <li key={i}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-2 text-sm">{t.services.notIncluded}</h4>
+                                        <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                            {t.services.guitarNotIncluded.map((item, i) => (
+                                                <li key={i}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <p className="text-xs text-gray-500 italic mt-4 border-t border-gray-800 pt-3">
+                                        {t.services.guitarDisclaimer}
+                                    </p>
+                                </div>
                                 <Button
                                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
-                                    className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
+                                    className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl w-full mt-auto"
                                 >
                                     {t.services.contactForDetails}
                                 </Button>
@@ -64,10 +85,31 @@ export default function Services({ language }: ServicesProps) {
                                 </div>
                                 <CardDescription className="text-gray-400 mt-2">{t.services.fitnessCoachingDescription}</CardDescription>
                             </CardHeader>
-                            <CardContent>
+                            <CardContent className="flex flex-col h-full">
+                                <div className="space-y-4 mb-6 flex-grow">
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-2 text-sm">{t.services.included}</h4>
+                                        <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                            {t.services.fitnessIncluded.map((item, i) => (
+                                                <li key={i}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-2 text-sm">{t.services.notIncluded}</h4>
+                                        <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                            {t.services.fitnessNotIncluded.map((item, i) => (
+                                                <li key={i}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <p className="text-xs text-gray-500 italic mt-4 border-t border-gray-800 pt-3">
+                                        {t.services.fitnessDisclaimer}
+                                    </p>
+                                </div>
                                 <Button
                                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
-                                    className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
+                                    className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl w-full mt-auto"
                                 >
                                     {t.services.contactForDetails}
                                 </Button>
@@ -87,10 +129,31 @@ export default function Services({ language }: ServicesProps) {
                                 </div>
                                 <CardDescription className="text-gray-400 mt-2">{t.services.nutritionDescription}</CardDescription>
                             </CardHeader>
-                            <CardContent>
+                            <CardContent className="flex flex-col h-full">
+                                <div className="space-y-4 mb-6 flex-grow">
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-2 text-sm">{t.services.included}</h4>
+                                        <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                            {t.services.nutritionIncluded.map((item, i) => (
+                                                <li key={i}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white font-semibold mb-2 text-sm">{t.services.notIncluded}</h4>
+                                        <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                            {t.services.nutritionNotIncluded.map((item, i) => (
+                                                <li key={i}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <p className="text-xs text-gray-500 italic mt-4 border-t border-gray-800 pt-3">
+                                        {t.services.nutritionDisclaimer}
+                                    </p>
+                                </div>
                                 <Button
                                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
-                                    className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
+                                    className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl w-full mt-auto"
                                 >
                                     {t.services.contactForDetails}
                                 </Button>

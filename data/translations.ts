@@ -71,12 +71,49 @@ export const translations = {
     services: {
       title: 'Services',
       subtitle: 'Sharing knowledge and passion through personalized coaching',
+      included: 'Included',
+      notIncluded: 'Not Included',
+
       guitarLessons: 'Guitar Lessons',
-      guitarDescription: 'Learn guitar from beginner to advanced levels with personalized instruction',
+      guitarDescription: 'Personalized guitar instruction from beginner to advanced levels, focused on technique, musicality, and long-term progress.',
+      guitarIncluded: [
+        'Technique and theory fundamentals',
+        'Style-oriented practice guidance',
+        'Structured learning progression'
+      ],
+      guitarNotIncluded: [
+        'Formal academic certification',
+        'Institutional examinations'
+      ],
+      guitarDisclaimer: 'This service is educational and experience-based.',
+
       fitnessCoaching: 'Fitness Coaching',
-      fitnessCoachingDescription: 'Achieve your fitness goals with customized workout plans and guidance',
-      nutritionCoaching: 'Nutrition Coaching',
-      nutritionDescription: 'Optimize your health with science-based nutrition guidance and meal planning',
+      fitnessCoachingDescription: 'Goal-oriented fitness coaching focused on movement quality, consistency, and sustainable training habits.',
+      fitnessIncluded: [
+        'Training structure and progression principles',
+        'Exercise selection and technique guidance',
+        'Lifestyle-aware training recommendations'
+      ],
+      fitnessNotIncluded: [
+        'Physical therapy or rehabilitation',
+        'Injury diagnosis or medical exercise treatment'
+      ],
+      fitnessDisclaimer: 'This service does not replace medical advice or professional rehabilitation.',
+
+      nutritionCoaching: 'Lifestyle & Nutrition Guidance',
+      nutritionDescription: 'Non-clinical nutrition guidance focused on building sustainable eating habits and lifestyle awareness.',
+      nutritionIncluded: [
+        'Eating habit analysis',
+        'Portion awareness and meal timing principles',
+        'Nutrition education and food literacy'
+      ],
+      nutritionNotIncluded: [
+        'Medical nutrition therapy',
+        'Disease-specific or therapeutic diets',
+        'Personalized diet plans'
+      ],
+      nutritionDisclaimer: 'This service is not a substitute for a licensed dietitian or healthcare professional.',
+
       contactForDetails: 'Contact me for details'
     },
     articles: {
@@ -269,12 +306,49 @@ export const translations = {
     services: {
       title: 'Hizmetler',
       subtitle: 'Kişiselleştirilmiş koçluk ile bilgi ve tutku paylaşımı',
+      included: 'Dahil Olanlar',
+      notIncluded: 'Dahil Olmayanlar',
+
       guitarLessons: 'Gitar Dersleri',
-      guitarDescription: 'Başlangıçtan ileri seviyeye kadar kişiselleştirilmiş eğitimle gitar öğrenin',
+      guitarDescription: 'Başlangıçtan ileri seviyeye kadar kişiselleştirilmiş eğitimle gitar öğrenin.',
+      guitarIncluded: [
+        'Teknik ve teori temelleri',
+        'Tarz odaklı pratik rehberliği',
+        'Yapılandırılmış öğrenme ilerlemesi'
+      ],
+      guitarNotIncluded: [
+        'Resmi akademik sertifikasyon',
+        'Kurumsal sınavlar'
+      ],
+      guitarDisclaimer: 'Bu hizmet eğitim ve deneyim tabanlıdır.',
+
       fitnessCoaching: 'Fitness Koçluğu',
-      fitnessCoachingDescription: 'Özelleştirilmiş antrenman planları ve rehberlikle fitness hedeflerinize ulaşın',
-      nutritionCoaching: 'Beslenme Koçluğu',
-      nutritionDescription: 'Bilim temelli beslenme rehberliği ve yemek planlaması ile sağlığınızı optimize edin',
+      fitnessCoachingDescription: 'Hareket kalitesi, tutarlılık ve sürdürülebilir antrenman alışkanlıklarına odaklanan hedef odaklı fitness koçluğu.',
+      fitnessIncluded: [
+        'Antrenman yapısı ve ilerleme prensipleri',
+        'Egzersiz seçimi ve teknik rehberliği',
+        'Yaşam tarzına duyarlı antrenman önerileri'
+      ],
+      fitnessNotIncluded: [
+        'Fiziksel tedavi veya rehabilitasyon',
+        'Yaralanma teşhisi veya tıbbi egzersiz tedavisi'
+      ],
+      fitnessDisclaimer: 'Bu hizmet tıbbi tavsiye veya profesyonel rehabilitasyon yerine geçmez.',
+
+      nutritionCoaching: 'Yaşam Tarzı ve Beslenme Rehberliği',
+      nutritionDescription: 'Sürdürülebilir yeme alışkanlıkları ve yaşam tarzı farkındalığı oluşturmaya odaklanan klinik olmayan beslenme rehberliği.',
+      nutritionIncluded: [
+        'Yeme alışkanlığı analizi',
+        'Porsiyon farkındalığı ve öğün zamanlaması prensipleri',
+        'Beslenme eğitimi ve gıda okuryazarlığı'
+      ],
+      nutritionNotIncluded: [
+        'Tıbbi beslenme tedavisi',
+        'Hastalığa özgü veya terapötik diyetler',
+        'Kişiselleştirilmiş diyet planları'
+      ],
+      nutritionDisclaimer: 'Bu hizmet lisanslı bir diyetisyen veya sağlık uzmanının yerini tutmaz.',
+
       contactForDetails: 'Detaylar için iletişime geçin'
     },
     articles: {

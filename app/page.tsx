@@ -205,17 +205,9 @@ export default function Portfolio() {
 
         <Projects language={language} setSelectedProject={setSelectedProject} />
 
-        <Hobbies language={language} />
-
-        <div id="articles">
-          {/* Note: In the original, articles was a list of Medium articles. 
-             If we want to keep it, we could make it a component. 
-             For now, I'll rely on the Blog link in nav or add a section if needed.
-             However, the translations file has an 'articles' section.
-          */}
-        </div>
-
         <GithubStats />
+
+        <Hobbies language={language} />
 
         <Services language={language} />
 
@@ -246,7 +238,7 @@ export default function Portfolio() {
             <h2 className="text-2xl font-bold text-white mb-4">Project Details: {selectedProject}</h2>
             <p className="text-gray-300">Detailed view coming soon! For now please check the GitHub repository link in the card.</p>
             <div className="mt-6 flex justify-end">
-              <Link href="https://github.com/Urthella?tab=repositories" target="_blank">
+              <Link href="https://github.com/Urthella?tab=repositories" target="_blank" rel="noopener noreferrer">
                 <Button>View on GitHub</Button>
               </Link>
             </div>

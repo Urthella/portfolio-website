@@ -100,11 +100,13 @@ export default function GithubStats() {
                 )}
 
                 <div className="mt-12 text-center">
-                    <img
-                        src="https://ghchart.rshah.org/Urthella"
-                        alt="Urthella's Github Chart"
-                        className="mx-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale invert"
-                    />
+                    <a href="https://github.com/Urthella" target="_blank" rel="noopener noreferrer">
+                        <img
+                            src="https://ghchart.rshah.org/Urthella"
+                            alt="Urthella's Github Chart"
+                            className="mx-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale invert"
+                        />
+                    </a>
                 </div>
             </div>
         </section>
