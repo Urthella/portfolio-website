@@ -24,19 +24,19 @@ const Leaf = ({ className }: { className?: string }) => (
 )
 
 const technologies = [
-    { name: 'Java', icon: <Code2 className="w-8 h-8 text-orange-500" /> },
-    { name: 'Spring Boot', icon: <Leaf className="w-8 h-8 text-green-500" /> }, // Custom Leaf icon below if needed or use similar
-    { name: 'TypeScript', icon: <Code2 className="w-8 h-8 text-blue-400" /> },
-    { name: 'React', icon: <Box className="w-8 h-8 text-cyan-400" /> },
+    { name: 'Java', icon: <Code2 className="w-8 h-8 text-white" /> },
+    { name: 'Spring Boot', icon: <Leaf className="w-8 h-8 text-white" /> }, // Custom Leaf icon below if needed or use similar
+    { name: 'TypeScript', icon: <Code2 className="w-8 h-8 text-white" /> },
+    { name: 'React', icon: <Box className="w-8 h-8 text-white" /> },
     { name: 'Next.js', icon: <Globe className="w-8 h-8 text-white" /> },
-    { name: 'Node.js', icon: <Server className="w-8 h-8 text-green-600" /> },
-    { name: 'Docker', icon: <Box className="w-8 h-8 text-blue-500" /> },
-    { name: 'MongoDB', icon: <Database className="w-8 h-8 text-green-500" /> },
-    { name: 'Kafka', icon: <Activity className="w-8 h-8 text-purple-500" /> },
-    { name: 'Python', icon: <Hash className="w-8 h-8 text-yellow-400" /> },
-    { name: 'AWS', icon: <Cloud className="w-8 h-8 text-orange-400" /> },
+    { name: 'Node.js', icon: <Server className="w-8 h-8 text-white" /> },
+    { name: 'Docker', icon: <Box className="w-8 h-8 text-white" /> },
+    { name: 'MongoDB', icon: <Database className="w-8 h-8 text-white" /> },
+    { name: 'Kafka', icon: <Activity className="w-8 h-8 text-white" /> },
+    { name: 'Python', icon: <Hash className="w-8 h-8 text-white" /> },
+    { name: 'AWS', icon: <Cloud className="w-8 h-8 text-white" /> },
     { name: 'Linux', icon: <Terminal className="w-8 h-8 text-white" /> },
-    { name: 'Cybersecurity', icon: <Shield className="w-8 h-8 text-red-500" /> },
+    { name: 'Cybersecurity', icon: <Shield className="w-8 h-8 text-white" /> },
 ]
 
 

@@ -16,37 +16,11 @@ interface Repo {
     html_url: string
 }
 
+import { repoDetails } from '@/data/projects'
+
 export default function GithubStats() {
     const [repos, setRepos] = useState<Repo[]>([])
     const [loading, setLoading] = useState(true)
-
-    // Manual data override for specific repos
-    const repoDetails: Record<string, { description?: string, language?: string }> = {
-        "portfolio-website": {
-            description: "My personal portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features interactive terminal, blog system, and modern UI.",
-            language: "TypeScript"
-        },
-        "Reveil": {
-            description: "A comprehensive backend and optional mobile application system. Includes advanced authentication and AI integration.",
-            language: "TypeScript"
-        },
-        "Urthella": {
-            description: "My personal configuration and profile repository.",
-            language: "Markdown"
-        },
-        "algortihm-test-sim": {
-            description: "Algorithm testing simulation environment for performance analysis and visualization.",
-            language: "TypeScript"
-        },
-        "-MIPS16-pipeline-sim": {
-            description: "A simulation of the MIPS16 pipeline architecture for educational purposes.",
-            language: "TypeScript"
-        },
-        "atomic-challanges": {
-            description: "Collection of atomic coding challenges and solutions for practicing problem-solving skills.",
-            language: "TypeScript"
-        }
-    }
 
     useEffect(() => {
         fetch('https://api.github.com/users/Urthella/repos?sort=updated&per_page=6')
@@ -73,7 +47,7 @@ export default function GithubStats() {
         <section className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent mb-6 flex items-center justify-center gap-4">
+                    <h2 className="text-5xl font-bold text-white mb-6 flex items-center justify-center gap-4">
                         <Github className="w-12 h-12 text-white" />
                         GitHub Activity
                     </h2>
@@ -105,11 +79,11 @@ export default function GithubStats() {
                                     <div className="flex items-center justify-between text-sm text-gray-500">
                                         <div className="flex items-center gap-4">
                                             <div className="flex items-center gap-1">
-                                                <Star className="w-4 h-4 text-yellow-500" />
+                                                <Star className="w-4 h-4 text-gray-300" />
                                                 <span>{repo.stargazers_count}</span>
                                             </div>
                                             <div className="flex items-center gap-1">
-                                                <GitFork className="w-4 h-4 text-blue-500" />
+                                                <GitFork className="w-4 h-4 text-gray-300" />
                                                 <span>{repo.forks_count}</span>
                                             </div>
                                         </div>
@@ -129,7 +103,7 @@ export default function GithubStats() {
                     <img
                         src="https://ghchart.rshah.org/Urthella"
                         alt="Urthella's Github Chart"
-                        className="mx-auto opacity-80 hover:opacity-100 transition-opacity filter hue-rotate-180 invert"
+                        className="mx-auto opacity-80 hover:opacity-100 transition-opacity filter grayscale invert"
                     />
                 </div>
             </div>

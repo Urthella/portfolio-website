@@ -153,6 +153,17 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Allow interactions with children of pointer-events-none containers */
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  label {
+    pointer-events: auto;
+  }
 }
 
 @keyframes shimmer {

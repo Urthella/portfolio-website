@@ -4,9 +4,10 @@ Welcome to my personal portfolio website! This project showcases my journey as a
 
 ## 🌟 Features
 
+- **3D Interactive Background**: Immersive 3D robot scene using Spline that tracks mouse movement across the entire page.
 - **Bilingual Support (TR/EN)**: Fully localized content in Turkish and English.
-- **Interactive UI**: Modern, responsive design with smooth animations and "firefly" effects.
-- **Experience Timeline**: A visual timeline of my professional career.
+- **Interactive UI**: Modern, responsive design with smooth animations, "firefly" effects, and spotlight interactions.
+- **Experience Timeline**: A visual timeline of my professional career with staggered animations.
 - **Contact Form**: Integrated with EmailJS for direct communication.
 - **Project Showcase**: Highlighted projects with descriptions and tech stacks.
 - **Dynamic Content**: Easy to update sections for Skills, Certifications, and more.
@@ -15,10 +16,11 @@ Welcome to my personal portfolio website! This project showcases my journey as a
 
 - **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
 - **Library**: [React 19](https://react.dev/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **Animation**: CSS Keyframes & Custom Hooks
-- **Email Service**: [EmailJS](https://www.emailjs.com/)
+- **3D Graphics**: [Spline](https://spline.design/) (@splinetool/react-spline)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
+- **Email Service**: [EmailJS](https://www.emailjs.com/)
 
 ## 🚦 Getting Started
 
