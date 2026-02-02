@@ -77,10 +77,10 @@ export default function Skills({ language }: SkillsProps) {
                     {skillCategories.map((category, index) => (
                         <div
                             key={category.key}
-                            className={`relative rounded-2xl h-full transition-all duration-700 ${visibleSkillItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                            className={`relative h-full transition-all duration-700 rounded-2xl ${visibleSkillItems.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                         >
                             <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                            <Card className="relative h-full pointer-events-auto bg-black/80 border-gray-800 hover:border-gray-600 hover:animate-pulse hover:scale-105">
+                            <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-2xl shadow-none">
                                 <CardHeader>
                                     <div className="flex items-center space-x-3">
                                         <category.icon className="w-8 h-8 text-white" />

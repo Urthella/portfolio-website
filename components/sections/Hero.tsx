@@ -2,6 +2,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Guitar, Dumbbell } from 'lucide-react'
 import { translations } from "@/data/translations"
+import { GlowingEffect } from '@/components/ui/glowing-effect'
+import useMediaQuery from '@/hooks/use-media-query'
 
 interface HeroProps {
     language: 'en' | 'tr'
@@ -9,6 +11,7 @@ interface HeroProps {
 
 export default function Hero({ language }: HeroProps) {
     const t = translations[language]
+    const isMobile = useMediaQuery("(max-width: 768px)")
 
     return (
         <section id="home" className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative z-20">
@@ -53,21 +56,33 @@ export default function Hero({ language }: HeroProps) {
                             </Button>
                         </div>
 
-                        <div className="pointer-events-auto bg-black/80 backdrop-blur-sm rounded-3xl p-8 max-w-3xl mx-auto border border-gray-800">
-                            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                                {t.hero.description}
-                            </p>
-                            <div className="flex items-center justify-center space-x-6 text-gray-300 flex-wrap gap-4">
-                                <div className="flex items-center space-x-3 bg-gray-900/50 px-4 py-2 rounded-full border border-gray-800">
-                                    <span className="font-medium">{t.hero.computerEngineer}</span>
-                                </div>
-                                <div className="flex items-center space-x-3 bg-gray-900/50 px-4 py-2 rounded-full border border-gray-800">
-                                    <Guitar className="w-6 h-6 text-white" />
-                                    <span className="font-medium">{t.hero.guitarist}</span>
-                                </div>
-                                <div className="flex items-center space-x-3 bg-gray-900/50 px-4 py-2 rounded-full border border-gray-800">
-                                    <Dumbbell className="w-6 h-6 text-white" />
-                                    <span className="font-medium">{t.hero.fitnessEnthusiast}</span>
+                        <div className="relative rounded-3xl max-w-3xl mx-auto">
+                            <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                            <div className="relative pointer-events-auto bg-black/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-800">
+                                <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+                                    {t.hero.description}
+                                </p>
+                                <div className="flex items-center justify-center space-x-6 text-gray-300 flex-wrap gap-4">
+                                    <div className="relative rounded-full">
+                                        <GlowingEffect spread={20} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={2} />
+                                        <div className="relative flex items-center space-x-3 bg-gray-900/90 px-4 py-2 rounded-full border border-gray-800">
+                                            <span className="font-medium">{t.hero.computerEngineer}</span>
+                                        </div>
+                                    </div>
+                                    <div className="relative rounded-full">
+                                        <GlowingEffect spread={20} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={2} />
+                                        <div className="relative flex items-center space-x-3 bg-gray-900/90 px-4 py-2 rounded-full border border-gray-800">
+                                            <Guitar className="w-6 h-6 text-white" />
+                                            <span className="font-medium">{t.hero.guitarist}</span>
+                                        </div>
+                                    </div>
+                                    <div className="relative rounded-full">
+                                        <GlowingEffect spread={20} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={2} />
+                                        <div className="relative flex items-center space-x-3 bg-gray-900/90 px-4 py-2 rounded-full border border-gray-800">
+                                            <Dumbbell className="w-6 h-6 text-white" />
+                                            <span className="font-medium">{t.hero.fitnessEnthusiast}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

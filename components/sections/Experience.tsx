@@ -37,9 +37,9 @@ export default function Experience({ language }: ExperienceProps) {
                         <div className="relative flex items-center justify-between">
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
-                            <div className="w-full md:w-5/12 relative rounded-2xl">
+                            <div className="w-full md:w-5/12 relative rounded-3xl">
                                 <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                                <div className="relative w-full pointer-events-auto bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-300 hover:-translate-y-1">
+                                <div className="relative z-10 h-full bg-black rounded-3xl p-6 border border-gray-800/50">
                                     <div className="flex items-center justify-between mb-4">
                                         <span className="text-white text-sm font-medium bg-gray-800 px-3 py-1 rounded-full">
                                             {t.experience.extramus.date}
@@ -66,9 +66,9 @@ export default function Experience({ language }: ExperienceProps) {
                         <div className="relative flex items-center justify-between flex-row-reverse">
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
-                            <div className="w-full md:w-5/12 relative rounded-2xl">
+                            <div className="w-full md:w-5/12 relative rounded-3xl">
                                 <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                                <div className="relative w-full pointer-events-auto bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-300 hover:-translate-y-1">
+                                <div className="relative z-10 h-full bg-black rounded-3xl p-6 border border-gray-800/50">
                                     <div className="flex items-center justify-between mb-4">
                                         <span className="text-white text-sm font-medium bg-gray-800 px-3 py-1 rounded-full">
                                             {t.experience.telenity.date}
@@ -95,9 +95,9 @@ export default function Experience({ language }: ExperienceProps) {
                         <div className="relative flex items-center justify-between">
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
-                            <div className="w-full md:w-5/12 relative rounded-2xl">
+                            <div className="w-full md:w-5/12 relative rounded-3xl">
                                 <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                                <div className="relative w-full pointer-events-auto bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-300 hover:-translate-y-1">
+                                <div className="relative z-10 h-full bg-black rounded-3xl p-6 border border-gray-800/50">
                                     <div className="flex items-center justify-between mb-4">
                                         <span className="text-white text-sm font-medium bg-gray-800 px-3 py-1 rounded-full">
                                             {t.experience.anticverseTech.date}
@@ -123,9 +123,9 @@ export default function Experience({ language }: ExperienceProps) {
                         <div className="relative flex items-center justify-between flex-row-reverse">
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
-                            <div className="w-full md:w-5/12 relative rounded-2xl">
+                            <div className="w-full md:w-5/12 relative rounded-3xl">
                                 <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                                <div className="relative w-full pointer-events-auto bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-300 hover:-translate-y-1">
+                                <div className="relative z-10 h-full bg-black rounded-3xl p-6 border border-gray-800/50">
                                     <div className="flex items-center justify-between mb-4">
                                         <span className="text-white text-sm font-medium bg-gray-800 px-3 py-1 rounded-full">
                                             {t.experience.redpill.date}
@@ -151,9 +151,9 @@ export default function Experience({ language }: ExperienceProps) {
                         <div className="relative flex items-center justify-between">
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
-                            <div className="w-full md:w-5/12 relative rounded-2xl">
+                            <div className="w-full md:w-5/12 relative rounded-3xl">
                                 <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                                <div className="relative w-full pointer-events-auto bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-300 hover:-translate-y-1">
+                                <div className="relative z-10 h-full bg-black rounded-3xl p-6 border border-gray-800/50">
                                     <div className="flex items-center justify-between mb-4">
                                         <span className="text-white text-sm font-medium bg-gray-800 px-3 py-1 rounded-full">
                                             {t.experience.teknofest.date}
@@ -179,9 +179,9 @@ export default function Experience({ language }: ExperienceProps) {
                         <div className="relative flex items-center justify-between flex-row-reverse">
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
-                            <div className="w-full md:w-5/12 relative rounded-2xl">
+                            <div className="w-full md:w-5/12 relative rounded-3xl">
                                 <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                                <div className="relative w-full pointer-events-auto bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-300 hover:-translate-y-1">
+                                <div className="relative z-10 h-full bg-black rounded-3xl p-6 border border-gray-800/50">
                                     <div className="flex items-center justify-between mb-4">
                                         <span className="text-white text-sm font-medium bg-gray-800 px-3 py-1 rounded-full">
                                             {t.experience.education.date}

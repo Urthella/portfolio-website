@@ -4,6 +4,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Button } from "@/components/ui/button"
 import { Guitar, Dumbbell, Apple } from 'lucide-react'
 import { translations } from '@/data/translations'
+import { GlowingEffect } from '@/components/ui/glowing-effect'
+import useMediaQuery from '@/hooks/use-media-query'
 
 interface ServicesProps {
     language: 'en' | 'tr'
@@ -11,6 +13,7 @@ interface ServicesProps {
 
 export default function Services({ language }: ServicesProps) {
     const t = translations[language]
+    const isMobile = useMediaQuery("(max-width: 768px)")
 
     return (
         <section
@@ -27,61 +30,73 @@ export default function Services({ language }: ServicesProps) {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Guitar Lessons */}
-                    <Card className="pointer-events-auto bg-black/80 border-gray-800 hover:border-gray-600 shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-up delay-400">
-                        <CardHeader>
-                            <div className="flex items-center space-x-3">
-                                <Guitar className="w-8 h-8 text-white" />
-                                <CardTitle className="text-white">{t.services.guitarLessons}</CardTitle>
-                            </div>
-                            <CardDescription className="text-gray-400 mt-2">{t.services.guitarDescription}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <Button
-                                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
-                                className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
-                            >
-                                {t.services.contactForDetails}
-                            </Button>
-                        </CardContent>
-                    </Card>
+                    {/* Guitar Lessons */}
+                    <div className="relative h-full rounded-3xl">
+                        <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
+                            <CardHeader>
+                                <div className="flex items-center space-x-3">
+                                    <Guitar className="w-8 h-8 text-white" />
+                                    <CardTitle className="text-white">{t.services.guitarLessons}</CardTitle>
+                                </div>
+                                <CardDescription className="text-gray-400 mt-2">{t.services.guitarDescription}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <Button
+                                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
+                                    className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
+                                >
+                                    {t.services.contactForDetails}
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </div>
 
                     {/* Fitness Coaching */}
-                    <Card className="pointer-events-auto bg-black/80 border-gray-800 hover:border-gray-600 shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-up delay-400">
-                        <CardHeader>
-                            <div className="flex items-center space-x-3">
-                                <Dumbbell className="w-8 h-8 text-white" />
-                                <CardTitle className="text-white">{t.services.fitnessCoaching}</CardTitle>
-                            </div>
-                            <CardDescription className="text-gray-400 mt-2">{t.services.fitnessCoachingDescription}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <Button
-                                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
-                                className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
-                            >
-                                {t.services.contactForDetails}
-                            </Button>
-                        </CardContent>
-                    </Card>
+                    {/* Fitness Coaching */}
+                    <div className="relative h-full rounded-3xl">
+                        <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
+                            <CardHeader>
+                                <div className="flex items-center space-x-3">
+                                    <Dumbbell className="w-8 h-8 text-white" />
+                                    <CardTitle className="text-white">{t.services.fitnessCoaching}</CardTitle>
+                                </div>
+                                <CardDescription className="text-gray-400 mt-2">{t.services.fitnessCoachingDescription}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <Button
+                                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
+                                    className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
+                                >
+                                    {t.services.contactForDetails}
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </div>
 
                     {/* Nutrition Coaching */}
-                    <Card className="pointer-events-auto bg-black/80 border-gray-800 hover:border-gray-600 shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-up delay-400">
-                        <CardHeader>
-                            <div className="flex items-center space-x-3">
-                                <Apple className="w-8 h-8 text-white" />
-                                <CardTitle className="text-white">{t.services.nutritionCoaching}</CardTitle>
-                            </div>
-                            <CardDescription className="text-gray-400 mt-2">{t.services.nutritionDescription}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <Button
-                                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
-                                className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
-                            >
-                                {t.services.contactForDetails}
-                            </Button>
-                        </CardContent>
-                    </Card>
+                    {/* Nutrition Coaching */}
+                    <div className="relative h-full rounded-3xl">
+                        <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
+                            <CardHeader>
+                                <div className="flex items-center space-x-3">
+                                    <Apple className="w-8 h-8 text-white" />
+                                    <CardTitle className="text-white">{t.services.nutritionCoaching}</CardTitle>
+                                </div>
+                                <CardDescription className="text-gray-400 mt-2">{t.services.nutritionDescription}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <Button
+                                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" })}
+                                    className="bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
+                                >
+                                    {t.services.contactForDetails}
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
             </div>
         </section>

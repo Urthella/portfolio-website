@@ -38,9 +38,9 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
 
                 <div className="flex flex-wrap justify-center gap-8 mb-16">
                     {/* Extramus HR System */}
-                    <div className="relative rounded-2xl w-full max-w-md">
+                    <div className="relative w-full max-w-md rounded-3xl">
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                        <Card className="relative h-full pointer-events-auto hover:shadow-2xl hover:shadow-gray-500/30 transition-all duration-300 hover:-translate-y-2 bg-black/80 border-gray-800 hover:border-gray-600 hover:scale-105 animate-fade-in-up delay-200">
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Extramus HR System
@@ -69,9 +69,9 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                     </div>
 
                     {/* Reveil Game - Featured */}
-                    <div className="relative rounded-2xl w-full max-w-md">
+                    <div className="relative w-full max-w-md rounded-3xl">
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                        <Card className="relative h-full pointer-events-auto hover:shadow-2xl hover:shadow-gray-500/30 transition-all duration-300 hover:-translate-y-2 bg-black/80 border-gray-800 hover:border-gray-600 hover:scale-105 animate-fade-in-up delay-200">
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Reveil
@@ -100,9 +100,9 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                     </div>
 
                     {/* Portfolio Website */}
-                    <div className="relative rounded-2xl w-full max-w-md">
+                    <div className="relative w-full max-w-md rounded-3xl">
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                        <Card className="relative h-full pointer-events-auto hover:shadow-2xl hover:shadow-gray-500/30 transition-all duration-300 hover:-translate-y-2 bg-black/80 border-gray-800 hover:border-gray-600 hover:scale-105 animate-fade-in-up delay-200">
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Portfolio Website
@@ -133,9 +133,9 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
 
                 <div className="flex flex-wrap justify-center gap-8 mb-16">
                     {/* MIPS16 Pipeline Simulator */}
-                    <div className="relative rounded-2xl w-full max-w-md">
+                    <div className="relative w-full max-w-md rounded-3xl">
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                        <Card className="relative h-full pointer-events-auto hover:shadow-2xl hover:shadow-gray-500/30 transition-all duration-300 hover:-translate-y-2 bg-black/80 border-gray-800 hover:border-gray-600 hover:scale-105 animate-fade-in-up delay-200">
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     MIPS16 Pipeline Simulator
@@ -165,9 +165,9 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                     </div>
 
                     {/* Algorithm Test Simulator */}
-                    <div className="relative rounded-2xl w-full max-w-md">
+                    <div className="relative w-full max-w-md rounded-3xl">
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                        <Card className="relative h-full pointer-events-auto hover:shadow-2xl hover:shadow-gray-500/30 transition-all duration-300 hover:-translate-y-2 bg-black/80 border-gray-800 hover:border-gray-600 hover:scale-105 animate-fade-in-up delay-200">
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Algorithm Performance Analyzer
@@ -197,9 +197,9 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
 
 
                     {/* Pen Trading via Instagram (@pen.pick) */}
-                    <div className="relative rounded-2xl w-full max-w-md">
+                    <div className="relative w-full max-w-md rounded-3xl">
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                        <Card className="relative h-full pointer-events-auto hover:shadow-2xl hover:shadow-gray-500/30 transition-all duration-300 hover:-translate-y-2 bg-black/80 border-gray-800 hover:border-gray-600 hover:scale-105 animate-fade-in-up delay-200">
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>
                                 <CardTitle className="flex items-center space-x-2 text-white">
                                     <span>Pen Trading via Instagram (@pen.pick)</span>
@@ -229,9 +229,9 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                     </div>
 
                     {/* Custom Guitar Build */}
-                    <div className="relative rounded-2xl w-full max-w-md">
+                    <div className="relative w-full max-w-md rounded-3xl">
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                        <Card className="relative h-full pointer-events-auto hover:shadow-2xl hover:shadow-gray-500/30 transition-all duration-300 hover:-translate-y-2 bg-black/80 border-gray-800 hover:border-gray-600 hover:scale-105 animate-fade-in-up delay-200">
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Custom Guitar Build

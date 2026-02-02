@@ -1,9 +1,11 @@
 "use client"
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
-import { Guitar, Dumbbell, Gamepad2, Instagram } from 'lucide-react'
+import { Guitar, Dumbbell, Gamepad2 } from 'lucide-react'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { translations } from '@/data/translations'
+import { GlowingEffect } from '@/components/ui/glowing-effect'
+import useMediaQuery from '@/hooks/use-media-query'
 
 interface HobbiesProps {
     language: 'en' | 'tr'
@@ -12,6 +14,7 @@ interface HobbiesProps {
 export default function Hobbies({ language }: HobbiesProps) {
     const t = translations[language]
     const { elementRef: hobbiesRef, isVisible: hobbiesVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.2 })
+    const isMobile = useMediaQuery("(max-width: 768px)")
 
     return (
         <section
@@ -29,67 +32,63 @@ export default function Hobbies({ language }: HobbiesProps) {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Music & Guitar */}
-                    <Card className="pointer-events-auto bg-black/80 border-gray-800 hover:border-gray-600 shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-up delay-300">
-                        <CardHeader>
-                            <div className="flex items-center space-x-3">
-                                <Guitar className="w-8 h-8 text-white" />
-                                <CardTitle className="text-white">{t.hobbies.musicGuitar}</CardTitle>
-                            </div>
-                            <CardDescription className="text-gray-400 mt-2">{t.hobbies.musicDescription}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="space-y-4">
-                                {/* Music Info */}
-                                <div className="text-sm text-gray-400">
+                    {/* Music & Guitar */}
+                    <div className="relative h-full rounded-3xl">
+                        <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
+                            <CardHeader>
+                                <div className="flex items-center space-x-3">
+                                    <Guitar className="w-8 h-8 text-white" />
+                                    <CardTitle className="text-white">{t.hobbies.musicGuitar}</CardTitle>
                                 </div>
-                            </div>
-                        </CardContent>
-                    </Card>
+                                <CardDescription className="text-gray-400 mt-2">{t.hobbies.musicDescription}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="space-y-4">
+                                    {/* Music Info */}
+                                    <div className="text-sm text-gray-400">
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
 
                     {/* Fitness & Sports */}
-                    <Card className="pointer-events-auto bg-black/80 border-gray-800 hover:border-gray-600 shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-up delay-300">
-                        <CardHeader>
-                            <div className="flex items-center space-x-3">
-                                <Dumbbell className="w-8 h-8 text-white" />
-                                <CardTitle className="text-white">{t.hobbies.fitnessSports}</CardTitle>
-                            </div>
-                            <CardDescription className="text-gray-400 mt-2">{t.hobbies.fitnessDescription}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
+                    {/* Fitness & Sports */}
+                    <div className="relative h-full rounded-3xl">
+                        <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
+                            <CardHeader>
+                                <div className="flex items-center space-x-3">
+                                    <Dumbbell className="w-8 h-8 text-white" />
+                                    <CardTitle className="text-white">{t.hobbies.fitnessSports}</CardTitle>
+                                </div>
+                                <CardDescription className="text-gray-400 mt-2">{t.hobbies.fitnessDescription}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
 
-                        </CardContent>
-                    </Card>
+                            </CardContent>
+                        </Card>
+                    </div>
 
                     {/* Reading & RPG Gaming */}
-                    <Card className="pointer-events-auto bg-black/80 border-gray-800 hover:border-gray-600 shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-up delay-300">
-                        <CardHeader>
-                            <div className="flex items-center space-x-3">
-                                <Gamepad2 className="w-8 h-8 text-white" />
-                                <CardTitle className="text-white">{t.hobbies.readingRpg}</CardTitle>
-                            </div>
-                            <CardDescription className="text-gray-400 mt-2">{t.hobbies.readingDescription}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                        </CardContent>
-                    </Card>
+                    {/* Reading & RPG Gaming */}
+                    <div className="relative h-full rounded-3xl">
+                        <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
+                            <CardHeader>
+                                <div className="flex items-center space-x-3">
+                                    <Gamepad2 className="w-8 h-8 text-white" />
+                                    <CardTitle className="text-white">{t.hobbies.readingRpg}</CardTitle>
+                                </div>
+                                <CardDescription className="text-gray-400 mt-2">{t.hobbies.readingDescription}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-                    {/* Collecting & Trading */}
-                    {/* Centering spacer for grid if needed */}
-                    <div className="md:col-span-2 lg:col-span-1 flex justify-center lg:hidden"></div>
 
-                    <Card className="pointer-events-auto bg-black/80 border-gray-800 hover:border-gray-600 shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-up delay-300">
-                        <CardHeader>
-                            <div className="flex items-center space-x-3">
-                                <Instagram className="w-8 h-8 text-white" />
-                                <CardTitle className="text-white">{t.hobbies.collectingTrading}</CardTitle>
-                            </div>
-                            <CardDescription className="text-gray-400 mt-2">
-                                {t.hobbies.collectingDescription}
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                        </CardContent>
-                    </Card>
                 </div>
             </div>
         </section>
