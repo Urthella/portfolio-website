@@ -37,9 +37,10 @@ export default function Contact({ language }: ContactProps) {
         setSubmitStatus('idle')
 
         try {
-            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-            const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+            // Hardcoded keys to bypass Vercel env var issue
+            const serviceId = 'service_to6ga2c'
+            const templateId = 'template_9ypkl6o'
+            const publicKey = 'lG13LwoQUrMXT7Igo'
 
             if (!serviceId || !templateId || !publicKey) {
                 console.error('EmailJS Config Check:', {
