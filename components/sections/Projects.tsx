@@ -21,7 +21,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
         <section
             id="projects"
             ref={projectsRef}
-            className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${projectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`pt-10 pb-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${projectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">

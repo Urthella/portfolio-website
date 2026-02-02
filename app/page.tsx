@@ -225,7 +225,7 @@ export default function Portfolio() {
       {/* Footer / Copyright / Socials if any (using Contact section for now) */}
       <footer className="py-8 text-center text-gray-500 border-t border-gray-900 bg-black z-20 relative">
         <div className="max-w-6xl mx-auto px-4">
-          © {new Date().getFullYear()} Utku Demirtaş. All rights reserved. Made with sleep deficit.
+          © {new Date().getFullYear()} Utku Demirtaş. All rights reserved. Built with care (and little sleep).
         </div>
       </footer>
 

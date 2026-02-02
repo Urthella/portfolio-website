@@ -19,7 +19,7 @@ export default function Skills({ language }: SkillsProps) {
         <section
             id="skills"
             ref={skillsRef}
-            className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`pt-20 pb-10 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">

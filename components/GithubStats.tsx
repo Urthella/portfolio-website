@@ -68,7 +68,7 @@ export default function GithubStats() {
                                     <CardTitle className="text-gray-200 flex items-center justify-between">
                                         <span className="truncate pr-4">{repo.name}</span>
                                         <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                                            <BookOpen className="w-5 h-5" />
+                                            <Github className="w-6 h-6 text-white" />
                                         </a>
                                     </CardTitle>
                                 </CardHeader>
