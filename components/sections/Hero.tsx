@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Guitar, Dumbbell } from 'lucide-react'
+import { Guitar, Dumbbell, Code } from 'lucide-react'
 import { translations } from "@/data/translations"
 import { GlowingEffect } from '@/components/ui/glowing-effect'
 import useMediaQuery from '@/hooks/use-media-query'
@@ -66,6 +66,7 @@ export default function Hero({ language }: HeroProps) {
                                     <div className="relative rounded-full">
                                         <GlowingEffect spread={20} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={2} />
                                         <div className="relative flex items-center space-x-3 bg-gray-900/90 px-4 py-2 rounded-full border border-gray-800">
+                                            <Code className="w-6 h-6 text-white" />
                                             <span className="font-medium">{t.hero.computerEngineer}</span>
                                         </div>
                                     </div>
