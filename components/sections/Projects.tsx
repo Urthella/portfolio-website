@@ -49,7 +49,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                                     </Link>
                                 </CardTitle>
                                 <CardDescription className="text-gray-400">
-                                    HR management system with document management, secure file uploads, and role-based access control.
+                                    A modern HR management system designed to streamline intern and employee workflows with centralized profiles, document management, task tracking, and role-based access control.
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
