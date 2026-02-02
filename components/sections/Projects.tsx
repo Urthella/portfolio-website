@@ -80,7 +80,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                                     </Link>
                                 </CardTitle>
                                 <CardDescription className="text-gray-400">
-                                    An immersive game project built with TypeScript and modern web technologies. Features interactive gameplay mechanics.
+                                    An immersive mobile app project built with TypeScript and modern web technologies. Features privacy-focused self-management app that helps users quit addictive behaviors, manage stress and anxiety, and build healthier routines through awareness and habit tracking.
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
