@@ -20,6 +20,7 @@ import TerminalModal from '@/components/TerminalModal'
 import TechMarquee from '@/components/TechMarquee'
 import { SplineScene } from "@/components/ui/splite"
 import { Spotlight } from "@/components/ui/spotlight"
+import { StarField } from "@/components/ui/star-field"
 
 export default function Portfolio() {
   const [language, setLanguage] = useState<'en' | 'tr'>('en')
@@ -81,7 +82,9 @@ export default function Portfolio() {
         size={400}
       />
 
-      <div className="fixed inset-0 z-0 opacity-40">
+      <StarField />
+
+      <div className="fixed inset-0 z-0 opacity-40 hidden md:block">
         <SplineScene
           scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
           className="w-full h-full"

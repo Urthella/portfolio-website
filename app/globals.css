@@ -337,3 +337,55 @@ html {
     animation: none !important;
   }
 }
+
+/* StarField Animations */
+@function multiple-box-shadow($n) {
+  $value: '#{random(2000)}px #{random(2000)}px #FFF';
+
+  @for $i from 2 through $n {
+    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF';
+  }
+
+  @return unquote($value);
+}
+
+/* Since we can't use SCSS loops easily in vanilla CSS/Tailwind without setup,
+   we will use a JS helper or hardcoded values. 
+   For this implementation, let's use a cleaner Tailwind-friendly approach in the component
+   or add standard CSS here if we were using SASS.
+   
+   However, since this is a Next.js app with Tailwind, it's better to implement the 
+   star generation in the component with inline styles for the shadows, 
+   and just keep the animation keyframes here.
+*/
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+.stars-sm {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  animation: animStar 50s linear infinite;
+}
+
+.stars-md {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  animation: animStar 100s linear infinite;
+}
+
+.stars-lg {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  animation: animStar 150s linear infinite;
+}
