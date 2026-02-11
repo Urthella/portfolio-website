@@ -1,68 +1,98 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { Button } from "@/components/ui/button"
 import { Menu, X, Globe, ChevronUp } from 'lucide-react'
 import { translations } from "@/data/translations"
 
-// Components
+// Static imports — lightweight, above-fold
 import Hero from "@/components/sections/Hero"
 import About from "@/components/sections/About"
 import Experience from "@/components/sections/Experience"
 import Skills from "@/components/sections/Skills"
 import Projects from "@/components/sections/Projects"
 import Hobbies from "@/components/sections/Hobbies"
-import Services from "@/components/sections/Services"
-import Contact from "@/components/sections/Contact"
-import GithubStats from '@/components/GithubStats'
-import TerminalModal from '@/components/TerminalModal'
 import TechMarquee from '@/components/TechMarquee'
-import { SplineScene } from "@/components/ui/splite"
-import { Spotlight } from "@/components/ui/spotlight"
 import { StarField } from "@/components/ui/star-field"
-import { Typewriter } from "@/components/ui/typewriter"
+
+// Dynamic imports — heavy, below-fold, or desktop-only (code-split)
+const SplineScene = dynamic(
+  () => import('@/components/ui/splite').then(mod => ({ default: mod.SplineScene })),
+  { ssr: false }
+)
+
+const Spotlight = dynamic(
+  () => import('@/components/ui/spotlight').then(mod => ({ default: mod.Spotlight })),
+  { ssr: false }
+)
+
+const Services = dynamic(() => import('@/components/sections/Services'))
+const Contact = dynamic(() => import('@/components/sections/Contact'))
+const GithubStats = dynamic(() => import('@/components/GithubStats'), { ssr: false })
+const TerminalModal = dynamic(() => import('@/components/TerminalModal'), { ssr: false })
+const Typewriter = dynamic(
+  () => import('@/components/ui/typewriter').then(mod => ({ default: mod.Typewriter })),
+  { ssr: false }
+)
 
 export default function Portfolio() {
   const [language, setLanguage] = useState<'en' | 'tr'>('en')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const [selectedProject, setSelectedProject] = useState<string | null>(null) // Retaining selectedProject for potential modal usage/future exp.
+  const [selectedProject, setSelectedProject] = useState<string | null>(null)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   const t = translations[language]
 
-  // Handle scroll effects
+  // Detect desktop for conditional Spline loading
   useEffect(() => {
-    const handleScroll = () => {
-      // Active section detection
-      const sections = ['home', 'about', 'experience', 'skills', 'projects', 'hobbies', 'services', 'articles', 'contact']
-      const current = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
-        }
-        return false
-      })
-      if (current) setActiveSection(current)
+    const mql = window.matchMedia('(min-width: 768px)')
+    setIsDesktop(mql.matches)
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
+    mql.addEventListener('change', handler)
+    return () => mql.removeEventListener('change', handler)
+  }, [])
 
-      // Show/hide scroll to top button
-      setShowScrollTop(window.scrollY > 500)
+  // Throttled scroll handler with requestAnimationFrame
+  useEffect(() => {
+    let ticking = false
+    const handleScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const sections = ['home', 'about', 'experience', 'skills', 'projects', 'hobbies', 'services', 'contact']
+        const current = sections.find(section => {
+          const element = document.getElementById(section)
+          if (element) {
+            const rect = element.getBoundingClientRect()
+            return rect.top <= 100 && rect.bottom >= 100
+          }
+          return false
+        })
+        if (current) setActiveSection(current)
+        setShowScrollTop(window.scrollY > 500)
+        ticking = false
+      })
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === 'en' ? 'tr' : 'en')
-    document.documentElement.lang = language === 'en' ? 'tr' : 'en'
-  }
+  const toggleLanguage = useCallback(() => {
+    setLanguage(prev => {
+      const next = prev === 'en' ? 'tr' : 'en'
+      document.documentElement.lang = next
+      return next
+    })
+  }, [])
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  }, [])
 
   const navItems = [
     { id: 'home', label: t.nav.home },
@@ -85,12 +115,15 @@ export default function Portfolio() {
 
       <StarField />
 
-      <div className="fixed inset-0 z-0 opacity-40 hidden md:block">
-        <SplineScene
-          scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-          className="w-full h-full"
-        />
-      </div>
+      {/* Spline 3D — desktop only, fully skipped on mobile */}
+      {isDesktop && (
+        <div className="fixed inset-0 z-0 opacity-40">
+          <SplineScene
+            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+            className="w-full h-full"
+          />
+        </div>
+      )}
 
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isMenuOpen ? 'bg-black' : 'bg-black/80 backdrop-blur-md border-b border-gray-800'}`}>
@@ -101,6 +134,9 @@ export default function Portfolio() {
               <span
                 onClick={scrollToTop}
                 className="text-2xl font-bold text-white cursor-pointer hover:opacity-80 transition-opacity"
+                role="button"
+                tabIndex={0}
+                aria-label="Scroll to top"
               >
                 UD
               </span>
@@ -215,11 +251,11 @@ export default function Portfolio() {
         <Contact language={language} />
       </main>
 
-      {/* Footer / Copyright / Socials if any (using Contact section for now) */}
+      {/* Footer */}
       <footer className="py-8 text-center text-gray-500 border-t border-gray-900 bg-black z-20 relative">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center gap-1 text-sm">
           <span>© {new Date().getFullYear()} Utku Demirtaş. All rights reserved. Built with care, little sleep and </span>
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" className="text-yellow-500 hover:text-yellow-300 hover:drop-shadow-[0_0_10px_rgba(253,224,71,0.8)] transition-all duration-300 font-medium flex items-center">
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" className="text-yellow-500 hover:text-yellow-300 hover:drop-shadow-[0_0_10px_rgba(253,224,71,0.8)] transition-all duration-300 font-medium flex items-center" aria-label="Easter egg link">
             <Typewriter
               text={["lots of coffee ☕", "even less sleep 😴", "love ❤️", "passion 🔥"]}
               speed={70}
@@ -236,14 +272,21 @@ export default function Portfolio() {
       <TerminalModal />
 
       {/* Scroll to top */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-24 right-8 z-50 p-3 bg-white/10 backdrop-blur-sm border border-gray-700 rounded-full text-white hover:bg-white/20 transition-all duration-300"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="w-5 h-5" />
+        </button>
+      )}
 
-
-      {/* Global Modals for Projects can go here if we implement a custom one */}
-      {/* For now, the Projects component has buttons but no modal trigger implemented other than state set */}
+      {/* Project Detail Modal */}
       {selectedProject && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={() => setSelectedProject(null)}>
           <div className="bg-gray-900 border border-gray-800 p-8 rounded-2xl max-w-2xl w-full relative" onClick={e => e.stopPropagation()}>
-            <button onClick={() => setSelectedProject(null)} className="absolute top-4 right-4 text-gray-400 hover:text-white">
+            <button onClick={() => setSelectedProject(null)} className="absolute top-4 right-4 text-gray-400 hover:text-white" aria-label="Close project details">
               <X className="w-6 h-6" />
             </button>
             <h2 className="text-2xl font-bold text-white mb-4">Project Details: {selectedProject}</h2>

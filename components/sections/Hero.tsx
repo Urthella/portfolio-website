@@ -27,6 +27,7 @@ export default function Hero({ language }: HeroProps) {
                                         src="/PP.jpg"
                                         alt="Utku Demirtaş"
                                         fill
+                                        sizes="(max-width: 768px) 160px, 192px"
                                         className="object-cover hover:scale-110 transition-transform duration-500"
                                         priority
                                     />

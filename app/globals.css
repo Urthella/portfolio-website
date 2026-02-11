@@ -389,3 +389,12 @@ html {
   background: transparent;
   animation: animStar 150s linear infinite;
 }
+
+/* Typewriter cursor blink — replaces framer-motion cursor animation */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-cursor-blink {
+  animation: cursorBlink 0.8s step-end infinite;
+}

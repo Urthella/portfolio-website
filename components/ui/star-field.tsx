@@ -18,9 +18,9 @@ export const StarField = () => {
         }
 
         setStars({
-            sm: generateStars(700),
-            md: generateStars(200),
-            lg: generateStars(100)
+            sm: generateStars(200),
+            md: generateStars(80),
+            lg: generateStars(40)
         })
         setMounted(true)
     }, [])

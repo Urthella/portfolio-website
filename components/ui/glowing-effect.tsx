@@ -2,7 +2,6 @@
 
 import { memo, useCallback, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { animate } from "framer-motion";
 
 interface GlowingEffectProps {
     blur?: number;
@@ -15,6 +14,34 @@ interface GlowingEffectProps {
     disabled?: boolean;
     movementDuration?: number;
     borderWidth?: number;
+}
+
+/**
+ * Attempt to smoothly animate a numeric value from `from` to `to`
+ * using a simple ease-out interpolation (replaces framer-motion's animate()).
+ */
+function animateValue(
+    from: number,
+    to: number,
+    duration: number,
+    onUpdate: (value: number) => void
+) {
+    const startTime = performance.now();
+    const durationMs = duration * 1000;
+
+    function tick(now: number) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / durationMs, 1);
+        // Ease-out cubic: 1 - (1 - t)^3
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = from + (to - from) * eased;
+        onUpdate(current);
+        if (progress < 1) {
+            requestAnimationFrame(tick);
+        }
+    }
+
+    requestAnimationFrame(tick);
 }
 
 const GlowingEffect = memo(
@@ -86,12 +113,8 @@ const GlowingEffect = memo(
                     const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
                     const newAngle = currentAngle + angleDiff;
 
-                    animate(currentAngle, newAngle, {
-                        duration: movementDuration,
-                        ease: [0.16, 1, 0.3, 1],
-                        onUpdate: (value) => {
-                            element.style.setProperty("--start", String(value));
-                        },
+                    animateValue(currentAngle, newAngle, movementDuration, (value) => {
+                        element.style.setProperty("--start", String(value));
                     });
                 });
             },
@@ -177,7 +200,7 @@ const GlowingEffect = memo(
                             "after:opacity-[var(--active)] after:transition-opacity after:duration-300",
                             "after:[mask-clip:padding-box,border-box]",
                             "after:[mask-composite:intersect]",
-                            "after:[mask-image:linear-gradient(#0000,#0000),conic-gradient(from_calc((var(--start)-var(--spread))*1deg),#00000000_0deg,#fff,#00000000_calc(var(--spread)*2deg))]"
+                            'after:[mask-image:linear-gradient(#0000,#0000),conic-gradient(from_calc((var(--start)-var(--spread))*1deg),#00000000_0deg,#fff,#00000000_calc(var(--spread)*2deg))]'
                         )}
                     />
                 </div>

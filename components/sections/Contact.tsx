@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Mail, Phone, Github, BookOpen, Linkedin, Instagram } from 'lucide-react'
 import Link from "next/link"
 import { useState } from "react"
-import emailjs from '@emailjs/browser'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { translations } from '@/data/translations'
 
@@ -50,6 +49,9 @@ export default function Contact({ language }: ContactProps) {
                 })
                 throw new Error(`EmailJS configuration is missing. ServiceId: ${!!serviceId}, TemplateId: ${!!templateId}, PublicKey: ${!!publicKey}`)
             }
+
+            // Dynamically import EmailJS only when needed
+            const emailjs = (await import('@emailjs/browser')).default
 
             // Explicitly initialize with the public key
             emailjs.init({ publicKey })

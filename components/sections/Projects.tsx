@@ -44,7 +44,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Extramus HR System
-                                    <Link href="https://github.com/Urthella" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View Extramus HR System on GitHub">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -75,7 +75,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Reveil
-                                    <Link href="https://github.com/Urthella/Reveil" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella/Reveil" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View Reveil on GitHub">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -106,7 +106,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Portfolio Website
-                                    <Link href="https://github.com/Urthella" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View Portfolio Website on GitHub">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -139,7 +139,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     MIPS16 Pipeline Simulator
-                                    <Link href="https://github.com/Urthella/-MIPS16-pipeline-sim" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella/-MIPS16-pipeline-sim" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View MIPS16 Pipeline Simulator on GitHub">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -171,7 +171,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Algorithm Performance Analyzer
-                                    <Link href="https://github.com/Urthella/algortihm-test-sim" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
+                                    <Link href="https://github.com/Urthella/algortihm-test-sim" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View Algorithm Performance Analyzer on GitHub">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -203,7 +203,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center space-x-2 text-white">
                                     <span>Pen Trading via Instagram (@pen.pick)</span>
-                                    <a href="https://instagram.com/pen.pick" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
+                                    <a href="https://instagram.com/pen.pick" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors" aria-label="View Pen Trading on Instagram">
                                         <Instagram className="w-6 h-6 align-middle" />
                                     </a>
                                 </CardTitle>
