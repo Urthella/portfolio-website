@@ -18,8 +18,8 @@ import TechMarquee from '@/components/TechMarquee'
 import { StarField } from "@/components/ui/star-field"
 
 // Dynamic imports — heavy, below-fold, or desktop-only (code-split)
-const SplineScene = dynamic(
-  () => import('@/components/ui/splite').then(mod => ({ default: mod.SplineScene })),
+const DeferredSpline = dynamic(
+  () => import('@/components/ui/deferred-spline').then(mod => ({ default: mod.DeferredSpline })),
   { ssr: false }
 )
 
@@ -115,15 +115,8 @@ export default function Portfolio() {
 
       <StarField />
 
-      {/* Spline 3D — desktop only, fully skipped on mobile */}
-      {isDesktop && (
-        <div className="fixed inset-0 z-0 opacity-40">
-          <SplineScene
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
-          />
-        </div>
-      )}
+      {/* Spline 3D — desktop only, fully skipped on mobile, deferred on desktop */}
+      {isDesktop && <DeferredSpline />}
 
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isMenuOpen ? 'bg-black' : 'bg-black/80 backdrop-blur-md border-b border-gray-800'}`}>
