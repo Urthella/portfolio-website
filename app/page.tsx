@@ -18,8 +18,11 @@ import TechMarquee from '@/components/TechMarquee'
 import { StarField } from "@/components/ui/star-field"
 
 // Dynamic imports — heavy, below-fold, or desktop-only (code-split)
-const DeferredSpline = dynamic(
-  () => import('@/components/ui/deferred-spline').then(mod => ({ default: mod.DeferredSpline })),
+// 1. OUTER DYNAMIC IMPORT (The Firewall)
+// This wrapper itself is code-split. Mobile users will NEVER download this chunk
+// because `isDesktop` will be false when hydration finishes.
+const DesktopSplineWrapper = dynamic(
+  () => import('@/components/ui/desktop-spline-wrapper'),
   { ssr: false }
 )
 
@@ -43,14 +46,19 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home')
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [selectedProject, setSelectedProject] = useState<string | null>(null)
+
+  // Viewport detection
+  const [isMounted, setIsMounted] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
 
   const t = translations[language]
 
   // Detect desktop for conditional Spline loading
   useEffect(() => {
+    setIsMounted(true)
     const mql = window.matchMedia('(min-width: 768px)')
     setIsDesktop(mql.matches)
+
     const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
     mql.addEventListener('change', handler)
     return () => mql.removeEventListener('change', handler)
@@ -113,10 +121,12 @@ export default function Portfolio() {
         size={400}
       />
 
+      {/* Mobile-optimized Background (Stars) - Always loaded as it's lightweight */}
       <StarField />
 
-      {/* Spline 3D — desktop only, fully skipped on mobile, deferred on desktop */}
-      {isDesktop && <DeferredSpline />}
+      {/* Desktop-only Heavy 3D Background */}
+      {/* Strict logic: only render if mounted AND desktop. This prevents mobile from fetching the chunk. */}
+      {isMounted && isDesktop && <DesktopSplineWrapper />}
 
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isMenuOpen ? 'bg-black' : 'bg-black/80 backdrop-blur-md border-b border-gray-800'}`}>

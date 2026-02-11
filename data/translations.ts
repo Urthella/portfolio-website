@@ -14,7 +14,7 @@ export const translations = {
     },
     hero: {
       title: 'Utku Demirtaş',
-      subtitle: 'Computer Engineering Student',
+      subtitle: 'Backend & DevOps Engineer',
       description: "Welcome to my digital playground! I'm passionate about technology, innovation, and creating solutions that make a difference. Let's build something amazing together!",
       computerEngineer: 'Computer Engineer',
       guitarist: 'Guitarist',
@@ -249,7 +249,7 @@ export const translations = {
     },
     hero: {
       title: 'Utku Demirtaş',
-      subtitle: 'Bilgisayar Mühendisliği Öğrencisi',
+      subtitle: 'Backend & DevOps Mühendisi',
       description: "Dijital oyun alanıma hoş geldiniz! Teknoloji, inovasyon ve fark yaratan çözümler üretme konusunda tutkuluyum. Birlikte harika bir şeyler inşa edelim!",
       computerEngineer: 'Bilgisayar Mühendisi',
       guitarist: 'Gitarist',
