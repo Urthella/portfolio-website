@@ -74,6 +74,8 @@ export default function RootLayout({
         <link rel="icon" href="/download.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://prod.spline.design" />
+        <link rel="dns-prefetch" href="https://prod.spline.design" />
         <meta name="theme-color" content="#000000" />
         <meta name="format-detection" content="telephone=no" />
       </head>

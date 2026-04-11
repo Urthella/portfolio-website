@@ -47,15 +47,13 @@ export default function Portfolio() {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [selectedProject, setSelectedProject] = useState<string | null>(null)
 
-  // Viewport detection
-  const [isMounted, setIsMounted] = useState(false)
+  // Viewport detection — starts false (SSR-safe), set true client-side
   const [isDesktop, setIsDesktop] = useState(false)
 
   const t = translations[language]
 
   // Detect desktop for conditional Spline loading
   useEffect(() => {
-    setIsMounted(true)
     const mql = window.matchMedia('(min-width: 768px)')
     setIsDesktop(mql.matches)
 
@@ -124,9 +122,8 @@ export default function Portfolio() {
       {/* Mobile-optimized Background (Stars) - Always loaded as it's lightweight */}
       <StarField />
 
-      {/* Desktop-only Heavy 3D Background */}
-      {/* Strict logic: only render if mounted AND desktop. This prevents mobile from fetching the chunk. */}
-      {isMounted && isDesktop && <DesktopSplineWrapper />}
+      {/* Desktop-only Heavy 3D Background — isDesktop starts false (SSR), mobile never triggers this */}
+      {isDesktop && <DesktopSplineWrapper />}
 
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isMenuOpen ? 'bg-black' : 'bg-black/80 backdrop-blur-md border-b border-gray-800'}`}>
