@@ -283,22 +283,92 @@ export default function Portfolio() {
       )}
 
       {/* Project Detail Modal */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={() => setSelectedProject(null)}>
-          <div className="bg-gray-900 border border-gray-800 p-8 rounded-2xl max-w-2xl w-full relative" onClick={e => e.stopPropagation()}>
-            <button onClick={() => setSelectedProject(null)} className="absolute top-4 right-4 text-gray-400 hover:text-white" aria-label="Close project details">
-              <X className="w-6 h-6" />
-            </button>
-            <h2 className="text-2xl font-bold text-white mb-4">Project Details: {selectedProject}</h2>
-            <p className="text-gray-300">Detailed view coming soon! For now please check the GitHub repository link in the card.</p>
-            <div className="mt-6 flex justify-end">
-              <Link href="https://github.com/Urthella?tab=repositories" target="_blank" rel="noopener noreferrer">
-                <Button>View on GitHub</Button>
-              </Link>
+      {selectedProject && (() => {
+        const projectInfo: Record<string, { title: string; repo: string; summary: string; highlights: string[] }> = {
+          extramus: {
+            title: 'Extramus HR System',
+            repo: 'https://github.com/Urthella',
+            summary: 'HR management platform built during my Extramus internship — centralized intern/employee profiles, document management, task tracking, and role-based access control.',
+            highlights: ['Secure file uploads & RBAC', 'CI/CD with GitHub Actions', 'Docker-based deployment', 'Cross-functional intl. team']
+          },
+          reveil: {
+            title: 'Reveil',
+            repo: 'https://github.com/Urthella/Reveil',
+            summary: 'Privacy-focused habit-tracking mobile app — React Native (Expo) front-end + NestJS API + FastAPI AI engine, PostgreSQL persistence. Work in progress.',
+            highlights: ['Habit tracking & awareness', 'AI-assisted insights (FastAPI)', 'NestJS + PostgreSQL backend', 'Expo cross-platform mobile']
+          },
+          portfolio: {
+            title: 'Portfolio Website',
+            repo: 'https://github.com/Urthella/portfolio-website',
+            summary: 'This very site — Next.js 15, React 19, Tailwind, shadcn/ui. Bilingual TR/EN, 3D Spline scene, interactive terminal, MDX blog, EmailJS contact.',
+            highlights: ['Bilingual TR/EN i18n', '3D Spline scene (desktop-only)', 'MDX blog with [slug] routing', 'Strict perf + code-splitting']
+          },
+          mips16: {
+            title: 'MIPS16 Pipeline Simulator',
+            repo: 'https://github.com/Urthella/MIPS16-pipeline-simulator',
+            summary: '5-stage 16-bit MIPS pipeline simulator with hazard handling — Java backend (Javalin), React/TS frontend, and Verilog RTL modules.',
+            highlights: ['Forwarding / stalls / flushes', 'Verilog RTL + Java sim', 'Interactive React visualization', 'Real-time cycle stepping']
+          },
+          algorithm: {
+            title: 'Algorithm Performance Analyzer',
+            repo: 'https://github.com/Urthella/algortihm-test-sim',
+            summary: 'Sorting algorithm benchmarking suite — Quick/Heap/Shell/Merge/Radix on Random/Sorted/Reverse data, with Spring Boot API + React UI for interactive comparison.',
+            highlights: ['Time & memory analysis', 'Interactive charts (React)', 'Spring Boot REST API', 'Multiple data patterns']
+          },
+          'used-car-platform': {
+            title: 'Used Car Platform',
+            repo: 'https://github.com/Urthella/used-car-platform',
+            summary: 'Full-stack used-car marketplace — Next.js 14 + Node/Express + MongoDB. JWT auth, role-based access, favorites, in-app messaging, Cypress E2E.',
+            highlights: ['JWT auth + RBAC', 'Admin/seller/buyer flows', 'In-app messaging', 'Cypress end-to-end tests']
+          },
+          costsight: {
+            title: 'Costsight',
+            repo: 'https://github.com/Urthella/costsight',
+            summary: 'Cloud cost anomaly detection on AWS CUR data — STL, Isolation Forest, and Z-Score detectors with severity-banded alerts and a Streamlit dashboard.',
+            highlights: ['STL seasonal decomposition', 'Isolation Forest + Z-Score', 'Severity-banded alerts', 'Streamlit visual dashboard']
+          },
+          penpick: {
+            title: 'Pen Trading (@pen.pick)',
+            repo: 'https://instagram.com/pen.pick',
+            summary: 'A niche Instagram-based marketplace for premium pens — focused on fountain, rollerball, and ballpoint models.',
+            highlights: ['Product photography', 'Curated catalog', 'Community trading', 'Brand storytelling']
+          },
+          guitar: {
+            title: 'Custom Guitar Build',
+            repo: 'https://github.com/Urthella',
+            summary: 'Handcrafted custom guitar with unique design, premium components, and exceptional playability.',
+            highlights: ['Woodworking from scratch', 'Custom electronics wiring', 'Pro-grade setup & intonation', 'One-of-a-kind aesthetics']
+          }
+        }
+        const info = projectInfo[selectedProject] ?? { title: selectedProject, repo: 'https://github.com/Urthella?tab=repositories', summary: 'Project details are being prepared. Visit the GitHub link for the latest.', highlights: [] }
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={() => setSelectedProject(null)}>
+            <div className="bg-gray-900 border border-gray-800 p-8 rounded-2xl max-w-2xl w-full relative" onClick={e => e.stopPropagation()}>
+              <button onClick={() => setSelectedProject(null)} className="absolute top-4 right-4 text-gray-400 hover:text-white" aria-label="Close project details">
+                <X className="w-6 h-6" />
+              </button>
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-4">{info.title}</h2>
+              <p className="text-gray-300 leading-relaxed mb-6">{info.summary}</p>
+              {info.highlights.length > 0 && (
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6 text-sm text-gray-400">
+                  {info.highlights.map((h, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-white mt-0.5">▸</span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div className="mt-6 flex justify-end gap-3">
+                <Button variant="outline" onClick={() => setSelectedProject(null)} className="border-gray-700 text-white hover:bg-gray-800">Close</Button>
+                <Link href={info.repo} target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-white text-black hover:bg-gray-200">View on GitHub</Button>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      })()}
 
     </div>
   )

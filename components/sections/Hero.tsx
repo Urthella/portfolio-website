@@ -38,7 +38,7 @@ export default function Hero({ language }: HeroProps) {
                         <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight cursor-default">
                             {t.hero.title}
                         </h1>
-                        <h2 className="text-2xl md:text-4xl text-gray-400 mb-6 font-semibold">{t.hero.subtitle}</h2>
+                        <h2 className="text-2xl md:text-4xl mb-6 font-semibold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-500 bg-clip-text text-transparent">{t.hero.subtitle}</h2>
 
                         {/* CV Download Button */}
                         <div className="mb-8">

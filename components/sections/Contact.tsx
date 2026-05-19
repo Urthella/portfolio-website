@@ -86,7 +86,7 @@ export default function Contact({ language }: ContactProps) {
         >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold text-white mb-6">
+                    <h2 className="text-5xl font-bold mb-6 section-title-gradient">
                         {t.contact.title}
                     </h2>
                     <p className="text-xl text-gray-400">{t.contact.subtitle}</p>

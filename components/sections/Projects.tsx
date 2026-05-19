@@ -28,7 +28,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
         >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold text-white mb-6">
+                    <h2 className="text-5xl font-bold mb-6 section-title-gradient">
                         {t.projects.title}
                     </h2>
                     <p className="text-xl text-gray-400">{t.projects.subtitle}</p>
@@ -106,7 +106,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     Portfolio Website
-                                    <Link href="https://github.com/Urthella" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View Portfolio Website on GitHub">
+                                    <Link href="https://github.com/Urthella/portfolio-website" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View Portfolio Website on GitHub">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>
@@ -132,6 +132,70 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-8 mb-16">
+                    {/* Used Car Platform */}
+                    <div className="relative w-full max-w-md rounded-3xl">
+                        <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
+                            <CardHeader>
+                                <CardTitle className="flex items-center justify-between text-white">
+                                    Used Car Platform
+                                    <Link href="https://github.com/Urthella/used-car-platform" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View Used Car Platform on GitHub">
+                                        <Github className="w-6 h-6" />
+                                    </Link>
+                                </CardTitle>
+                                <CardDescription className="text-gray-400">
+                                    Full-stack used-car marketplace with JWT auth, role-based access (admin/seller/buyer), favorites, in-app messaging, and Cypress E2E tests.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Badge className="bg-gray-900 text-gray-300 border-gray-700 hover:border-gray-500 transition-colors">Next.js 14</Badge>
+                                    <Badge className="bg-gray-900 text-gray-300 border-gray-700 hover:border-gray-500 transition-colors">Express</Badge>
+                                    <Badge className="bg-gray-900 text-gray-300 border-gray-700 hover:border-gray-500 transition-colors">MongoDB</Badge>
+                                    <Badge className="bg-gray-900 text-gray-300 border-gray-700 hover:border-gray-500 transition-colors">Cypress</Badge>
+                                </div>
+                                <Button
+                                    onClick={() => setSelectedProject('used-car-platform')}
+                                    className="w-full bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
+                                >
+                                    Show Details
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {/* Costsight */}
+                    <div className="relative w-full max-w-md rounded-3xl">
+                        <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                        <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
+                            <CardHeader>
+                                <CardTitle className="flex items-center justify-between text-white">
+                                    Costsight
+                                    <Link href="https://github.com/Urthella/costsight" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View Costsight on GitHub">
+                                        <Github className="w-6 h-6" />
+                                    </Link>
+                                </CardTitle>
+                                <CardDescription className="text-gray-400">
+                                    Cloud cost anomaly detection on AWS CUR data — STL, Isolation Forest, and Z-Score detectors with severity-banded alerts and a Streamlit dashboard.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <Badge className="bg-gray-900 text-gray-300 border-gray-700 hover:border-gray-500 transition-colors">Python</Badge>
+                                    <Badge className="bg-gray-900 text-gray-300 border-gray-700 hover:border-gray-500 transition-colors">AWS</Badge>
+                                    <Badge className="bg-gray-900 text-gray-300 border-gray-700 hover:border-gray-500 transition-colors">Streamlit</Badge>
+                                    <Badge className="bg-gray-900 text-gray-300 border-gray-700 hover:border-gray-500 transition-colors">ML</Badge>
+                                </div>
+                                <Button
+                                    onClick={() => setSelectedProject('costsight')}
+                                    className="w-full bg-white text-black hover:bg-gray-200 border-none transition-all duration-300 rounded-xl"
+                                >
+                                    Show Details
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </div>
+
                     {/* MIPS16 Pipeline Simulator */}
                     <div className="relative w-full max-w-md rounded-3xl">
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
@@ -139,7 +203,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between text-white">
                                     MIPS16 Pipeline Simulator
-                                    <Link href="https://github.com/Urthella/-MIPS16-pipeline-sim" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View MIPS16 Pipeline Simulator on GitHub">
+                                    <Link href="https://github.com/Urthella/MIPS16-pipeline-simulator" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" aria-label="View MIPS16 Pipeline Simulator on GitHub">
                                         <Github className="w-6 h-6" />
                                     </Link>
                                 </CardTitle>

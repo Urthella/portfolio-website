@@ -45,7 +45,7 @@ export default function TerminalModal() {
                 )
                 break
             case 'about':
-                output = "I'm Utku, a Computer Engineering student passionate about backend, DevOps, and cybersecurity."
+                output = "I'm Utku, a Computer Engineering student and fullstack developer — building across React/Next.js front-ends and Spring Boot / Node.js back-ends, with a soft spot for DevOps and cybersecurity."
                 break
             case 'skills':
                 output = "Java, Spring Boot, TypeScript, React, Next.js, Docker, MongoDB, Kafka, Linux, Cybersecurity tools..."

@@ -6,6 +6,7 @@ import { Guitar, Dumbbell, Apple } from 'lucide-react'
 import { translations } from '@/data/translations'
 import { GlowingEffect } from '@/components/ui/glowing-effect'
 import useMediaQuery from '@/hooks/use-media-query'
+import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnimation'
 
 interface ServicesProps {
     language: 'en' | 'tr'
@@ -14,24 +15,26 @@ interface ServicesProps {
 export default function Services({ language }: ServicesProps) {
     const t = translations[language]
     const isMobile = useMediaQuery("(max-width: 768px)")
+    const { elementRef: servicesRef, isVisible: servicesVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.15 })
+    const { containerRef: servicesGridRef, visibleItems: visibleServiceItems } = useStaggeredAnimation(3, 150, true)
 
     return (
         <section
             id="services"
-            className="py-20 px-4 sm:px-6 lg:px-8 relative z-20"
+            ref={servicesRef}
+            className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${servicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold text-white mb-6">
+                    <h2 className="text-5xl font-bold mb-6 section-title-gradient">
                         {t.services.title}
                     </h2>
                     <p className="text-xl text-gray-400">{t.services.subtitle}</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div ref={servicesGridRef as React.RefObject<HTMLDivElement>} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Guitar Lessons */}
-                    {/* Guitar Lessons */}
-                    <div className="relative h-full rounded-3xl">
+                    <div className={`relative h-full rounded-3xl transition-all duration-700 ${visibleServiceItems.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
                         <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>
@@ -74,8 +77,7 @@ export default function Services({ language }: ServicesProps) {
                     </div>
 
                     {/* Fitness Coaching */}
-                    {/* Fitness Coaching */}
-                    <div className="relative h-full rounded-3xl">
+                    <div className={`relative h-full rounded-3xl transition-all duration-700 ${visibleServiceItems.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
                         <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>
@@ -118,8 +120,7 @@ export default function Services({ language }: ServicesProps) {
                     </div>
 
                     {/* Nutrition Coaching */}
-                    {/* Nutrition Coaching */}
-                    <div className="relative h-full rounded-3xl">
+                    <div className={`relative h-full rounded-3xl transition-all duration-700 ${visibleServiceItems.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <GlowingEffect spread={40} glow={true} disabled={isMobile} proximity={64} inactiveZone={0.01} borderWidth={3} />
                         <Card className="relative z-10 h-full bg-black/90 border-gray-800 rounded-3xl transition-all duration-300">
                             <CardHeader>

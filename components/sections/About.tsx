@@ -22,7 +22,7 @@ export default function About({ language }: AboutProps) {
         >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold text-white mb-6">
+                    <h2 className="text-5xl font-bold mb-6 section-title-gradient">
                         {t.about.title}
                     </h2>
                     <p className="text-xl text-gray-400">{t.about.subtitle}</p>
@@ -52,9 +52,9 @@ export default function About({ language }: AboutProps) {
                                 <div className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800">
                                     <h4 className="text-xl font-semibold text-white mb-3">{t.about.achievements}</h4>
                                     <ul className="text-gray-300 space-y-2">
-                                        <li>• Provincial basketball championship winner</li>
-                                        <li>• Professional guitarist with live performance experience</li>
-                                        <li>• Calisthenics athlete with experience</li>
+                                        {t.about.achievementsList.map((item, i) => (
+                                            <li key={i}>{item}</li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>

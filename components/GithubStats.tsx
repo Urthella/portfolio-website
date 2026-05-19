@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Github, Star, GitFork, BookOpen } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
+import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 interface Repo {
     id: number
@@ -21,6 +22,7 @@ import { repoDetails } from '@/data/projects'
 export default function GithubStats() {
     const [repos, setRepos] = useState<Repo[]>([])
     const [loading, setLoading] = useState(true)
+    const { elementRef: ghRef, isVisible: ghVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.15 })
 
     useEffect(() => {
         fetch('https://api.github.com/users/Urthella/repos?sort=updated&per_page=6')
@@ -44,12 +46,15 @@ export default function GithubStats() {
     }, [])
 
     return (
-        <section className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+        <section
+            ref={ghRef}
+            className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${ghVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold text-white mb-6 flex items-center justify-center gap-4">
+                    <h2 className="text-5xl font-bold mb-6 flex items-center justify-center gap-4 text-white">
                         <Github className="w-12 h-12 text-white" />
-                        GitHub Activity
+                        <span className="section-title-gradient">GitHub Activity</span>
                     </h2>
                     <p className="text-xl text-gray-400">Latest contributions and open source projects</p>
                 </div>

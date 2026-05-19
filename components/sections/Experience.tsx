@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge"
 import { translations } from '@/data/translations'
+import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnimation'
 
 interface ExperienceProps {
     language: 'en' | 'tr'
@@ -13,12 +14,18 @@ import useMediaQuery from '@/hooks/use-media-query'
 export default function Experience({ language }: ExperienceProps) {
     const t = translations[language]
     const isMobile = useMediaQuery("(max-width: 768px)")
+    const { elementRef: experienceRef, isVisible: experienceVisible } = useScrollAnimation({ triggerOnce: true, threshold: 0.15 })
+    const { containerRef: timelineRef, visibleItems: visibleTimelineItems } = useStaggeredAnimation(6, 140, true)
 
     return (
-        <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative z-20">
+        <section
+            id="experience"
+            ref={experienceRef}
+            className={`py-20 px-4 sm:px-6 lg:px-8 relative z-20 transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        >
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold text-white mb-6">
+                    <h2 className="text-5xl font-bold mb-6 section-title-gradient">
                         {t.experience.title}
                     </h2>
                     <p className="text-xl text-gray-400">
@@ -32,9 +39,9 @@ export default function Experience({ language }: ExperienceProps) {
                     <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-800 rounded-full hidden md:block"></div>
 
                     {/* Experience Items */}
-                    <div className="space-y-12">
+                    <div ref={timelineRef as React.RefObject<HTMLDivElement>} className="space-y-12">
                         {/* Extramus Organization */}
-                        <div className="relative flex items-center justify-between">
+                        <div className={`relative flex items-center justify-between transition-all duration-700 ${visibleTimelineItems.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
                             <div className="w-full md:w-5/12 relative rounded-3xl">
@@ -63,7 +70,7 @@ export default function Experience({ language }: ExperienceProps) {
                         </div>
 
                         {/* Telenity */}
-                        <div className="relative flex items-center justify-between flex-row-reverse">
+                        <div className={`relative flex items-center justify-between flex-row-reverse transition-all duration-700 ${visibleTimelineItems.includes(1) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
                             <div className="w-full md:w-5/12 relative rounded-3xl">
@@ -92,7 +99,7 @@ export default function Experience({ language }: ExperienceProps) {
                         </div>
 
                         {/* Anticverse Tech */}
-                        <div className="relative flex items-center justify-between">
+                        <div className={`relative flex items-center justify-between transition-all duration-700 ${visibleTimelineItems.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
                             <div className="w-full md:w-5/12 relative rounded-3xl">
@@ -120,7 +127,7 @@ export default function Experience({ language }: ExperienceProps) {
                         </div>
 
                         {/* Anticverse RedPill */}
-                        <div className="relative flex items-center justify-between flex-row-reverse">
+                        <div className={`relative flex items-center justify-between flex-row-reverse transition-all duration-700 ${visibleTimelineItems.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
                             <div className="w-full md:w-5/12 relative rounded-3xl">
@@ -148,7 +155,7 @@ export default function Experience({ language }: ExperienceProps) {
                         </div>
 
                         {/* Teknofest */}
-                        <div className="relative flex items-center justify-between">
+                        <div className={`relative flex items-center justify-between transition-all duration-700 ${visibleTimelineItems.includes(4) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
                             <div className="w-full md:w-5/12 relative rounded-3xl">
@@ -176,7 +183,7 @@ export default function Experience({ language }: ExperienceProps) {
                         </div>
 
                         {/* Education */}
-                        <div className="relative flex items-center justify-between flex-row-reverse">
+                        <div className={`relative flex items-center justify-between flex-row-reverse transition-all duration-700 ${visibleTimelineItems.includes(5) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <div className="hidden md:block w-5/12"></div>
                             <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full border-4 border-gray-900 hidden md:block z-10"></div>
                             <div className="w-full md:w-5/12 relative rounded-3xl">

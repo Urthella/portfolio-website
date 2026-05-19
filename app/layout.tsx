@@ -6,9 +6,9 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://utkuwankenobi.tech'),
-  title: 'Utku Demirtaş | Frontend Developer & Software Engineer',
-  description: 'Portfolio and projects by Utku Demirtaş, specializing in React, Next.js, Spring Boot, and modern web development. Computer Engineer, guitarist, and fitness enthusiast.',
-  keywords: ['Utku Demirtaş', 'Frontend Developer', 'Software Engineer', 'React', 'Next.js', 'Spring Boot', 'TypeScript', 'JavaScript', 'Portfolio'],
+  title: 'Utku Demirtaş | Fullstack Developer',
+  description: 'Portfolio and projects by Utku Demirtaş — Fullstack Developer specializing in React, Next.js, Node.js, Spring Boot, and modern web development. Computer Engineer, guitarist, and fitness enthusiast.',
+  keywords: ['Utku Demirtaş', 'Fullstack Developer', 'Software Engineer', 'React', 'Next.js', 'Node.js', 'Spring Boot', 'TypeScript', 'JavaScript', 'Portfolio'],
   authors: [{ name: 'Utku Demirtaş', url: 'https://utkuwankenobi.tech' }],
   creator: 'Utku Demirtaş',
   publisher: 'Utku Demirtaş',
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://utkuwankenobi.tech',
     siteName: 'Utku Demirtaş Portfolio',
-    title: 'Utku Demirtaş | Frontend Developer & Software Engineer',
-    description: 'Portfolio and projects by Utku Demirtaş, specializing in React, Next.js, Spring Boot, and modern web development.',
+    title: 'Utku Demirtaş | Fullstack Developer',
+    description: 'Portfolio and projects by Utku Demirtaş — Fullstack Developer specializing in React, Next.js, Node.js, Spring Boot, and modern web development.',
     images: [
       {
         url: '/placeholder-logo.png',
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Utku Demirtaş | Frontend Developer & Software Engineer',
-    description: 'Portfolio and projects by Utku Demirtaş, specializing in React, Next.js, Spring Boot, and modern web development.',
+    title: 'Utku Demirtaş | Fullstack Developer',
+    description: 'Portfolio and projects by Utku Demirtaş — Fullstack Developer specializing in React, Next.js, Node.js, Spring Boot, and modern web development.',
     images: ['/placeholder-logo.png'],
   },
   robots: {
