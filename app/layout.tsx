@@ -79,7 +79,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} className="bg-[#07070a] text-white antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
