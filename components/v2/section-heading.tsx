@@ -1,19 +1,23 @@
 import { Reveal } from "@/components/v2/reveal"
 
 export function SectionHeading({
-  eyebrow,
+  index,
+  label,
   title,
   subtitle,
 }: {
-  eyebrow: string
+  index: string
+  label: string
   title: string
   subtitle?: string
 }) {
   return (
-    <Reveal className="mb-14 text-center">
-      <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-blue-400">{eyebrow}</p>
+    <Reveal className="mb-12">
+      <p className="mb-4 font-mono text-xs tracking-[0.25em] text-blue-400">
+        <span className="text-blue-400/40">// {index} —</span> {label.toUpperCase()}
+      </p>
       <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">{title}</h2>
-      {subtitle && <p className="mx-auto mt-4 max-w-xl text-pretty text-white/50">{subtitle}</p>}
+      {subtitle && <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-white/50">{subtitle}</p>}
     </Reveal>
   )
 }

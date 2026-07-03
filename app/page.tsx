@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import { About } from "@/components/v2/about"
 import { AuroraBackground } from "@/components/v2/aurora-background"
@@ -11,22 +11,20 @@ import { Hero } from "@/components/v2/hero"
 import { Nav } from "@/components/v2/nav"
 import { Projects } from "@/components/v2/projects"
 import { Skills } from "@/components/v2/skills"
-import { translations } from "@/data/translations"
+import { SplineBg } from "@/components/v2/spline-bg"
+import { TechMarquee } from "@/components/v2/tech-marquee"
 
-const SECTION_IDS = ["home", "about", "experience", "skills", "projects", "contact"]
+const NAV = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+]
 
 export default function Page() {
-  const [language, setLanguage] = useState<"en" | "tr">("en")
   const [active, setActive] = useState("home")
-  const t = translations[language]
-
-  const toggleLanguage = useCallback(() => {
-    setLanguage((prev) => {
-      const next = prev === "en" ? "tr" : "en"
-      document.documentElement.lang = next
-      return next
-    })
-  }, [])
 
   useEffect(() => {
     let ticking = false
@@ -34,7 +32,7 @@ export default function Page() {
       if (ticking) return
       ticking = true
       requestAnimationFrame(() => {
-        const current = SECTION_IDS.find((id) => {
+        const current = NAV.map((n) => n.id).find((id) => {
           const el = document.getElementById(id)
           if (!el) return false
           const r = el.getBoundingClientRect()
@@ -49,32 +47,19 @@ export default function Page() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  const navItems = [
-    { id: "home", label: t.nav.home },
-    { id: "about", label: t.nav.about },
-    { id: "experience", label: t.nav.experience },
-    { id: "skills", label: t.nav.skills },
-    { id: "projects", label: t.nav.projects },
-    { id: "contact", label: t.nav.contact },
-  ]
-
   return (
     <>
       <AuroraBackground />
-      <Nav
-        items={navItems}
-        activeSection={active}
-        language={language}
-        onToggleLanguage={toggleLanguage}
-        blogLabel={t.nav.blog}
-      />
-      <main>
-        <Hero language={language} />
-        <About language={language} />
-        <Experience language={language} />
-        <Skills language={language} />
-        <Projects language={language} />
-        <Contact language={language} />
+      <SplineBg />
+      <Nav items={NAV} activeSection={active} />
+      <main className="relative z-10">
+        <Hero />
+        <TechMarquee />
+        <About />
+        <Experience />
+        <Skills />
+        <Projects />
+        <Contact />
       </main>
       <Footer />
     </>

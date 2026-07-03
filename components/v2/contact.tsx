@@ -6,17 +6,16 @@ import { useState } from "react"
 import { Reveal } from "@/components/v2/reveal"
 import { SectionHeading } from "@/components/v2/section-heading"
 import { fromLeft, scaleIn } from "@/lib/motion"
-import { translations } from "@/data/translations"
+import { profile } from "@/data/content"
 
 const socials = [
-  { href: "https://www.linkedin.com/in/utkudemirtas/", label: "LinkedIn", Icon: Linkedin },
-  { href: "https://github.com/Urthella", label: "GitHub", Icon: Github },
-  { href: "https://www.instagram.com/urthella_/", label: "Instagram", Icon: Instagram },
-  { href: "https://medium.com/@utkudemirtas0", label: "Medium", Icon: BookOpen },
+  { href: profile.socials.linkedin, label: "LinkedIn", Icon: Linkedin },
+  { href: profile.socials.github, label: "GitHub", Icon: Github },
+  { href: profile.socials.instagram, label: "Instagram", Icon: Instagram },
+  { href: profile.socials.medium, label: "Medium", Icon: BookOpen },
 ]
 
-export function Contact({ language }: { language: "en" | "tr" }) {
-  const t = translations[language]
+export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" })
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
 
@@ -30,11 +29,12 @@ export function Contact({ language }: { language: "en" | "tr" }) {
       const emailjs = (await import("@emailjs/browser")).default
       const publicKey = "lG13LwoQUrMXT7Igo"
       emailjs.init({ publicKey })
-      await emailjs.send("service_to6ga2c", "template_9ypkl6o", {
-        from_name: form.name,
-        from_email: form.email,
-        message: form.message,
-      }, publicKey)
+      await emailjs.send(
+        "service_to6ga2c",
+        "template_9ypkl6o",
+        { from_name: form.name, from_email: form.email, message: form.message },
+        publicKey,
+      )
       setStatus("success")
       setForm({ name: "", email: "", message: "" })
     } catch {
@@ -49,34 +49,36 @@ export function Contact({ language }: { language: "en" | "tr" }) {
 
   return (
     <section id="contact" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading eyebrow="05 — Contact" title={t.contact.title} subtitle={t.contact.subtitle} />
+      <SectionHeading
+        index="05"
+        label="Contact"
+        title="Let's build something"
+        subtitle="Open to internships, freelance and collaboration — drop a line and I'll get back to you."
+      />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        {/* info */}
         <Reveal variants={fromLeft}>
           <div className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
             <div className="space-y-4">
               <a
-                href="mailto:utkudemirtas0@gmail.com"
+                href={`mailto:${profile.email}`}
                 className="flex items-center gap-3 text-white/70 transition-colors hover:text-white"
               >
                 <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-blue-400">
                   <Mail className="h-5 w-5" />
                 </span>
-                utkudemirtas0@gmail.com
+                {profile.email}
               </a>
               <div className="flex items-center gap-3 text-white/70">
                 <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-blue-400">
                   <Phone className="h-5 w-5" />
                 </span>
-                +90 507 045 16 23
+                {profile.phone}
               </div>
             </div>
 
             <div className="mt-8">
-              <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-white/40">
-                {t.contact.socialMedia}
-              </p>
+              <p className="mb-3 font-mono text-xs text-white/40">// find me online</p>
               <div className="flex gap-2">
                 {socials.map(({ href, label, Icon }) => (
                   <a
@@ -95,25 +97,24 @@ export function Contact({ language }: { language: "en" | "tr" }) {
           </div>
         </Reveal>
 
-        {/* form */}
         <Reveal variants={scaleIn}>
           <form onSubmit={onSubmit} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
             <div className="grid gap-4">
               <div>
                 <label htmlFor="name" className="mb-1.5 block text-xs text-white/50">
-                  {t.contact.name}
+                  Name
                 </label>
                 <input id="name" name="name" value={form.name} onChange={onChange} required className={field} placeholder="Jane Doe" />
               </div>
               <div>
                 <label htmlFor="email" className="mb-1.5 block text-xs text-white/50">
-                  {t.contact.email}
+                  Email
                 </label>
                 <input id="email" name="email" type="email" value={form.email} onChange={onChange} required className={field} placeholder="jane@example.com" />
               </div>
               <div>
                 <label htmlFor="message" className="mb-1.5 block text-xs text-white/50">
-                  {t.contact.message}
+                  Message
                 </label>
                 <textarea id="message" name="message" value={form.message} onChange={onChange} required rows={4} className={field} placeholder="Let's build something…" />
               </div>
@@ -125,20 +126,18 @@ export function Contact({ language }: { language: "en" | "tr" }) {
               >
                 {status === "sending" ? (
                   <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    {t.contact.sending}
+                    <Loader2 className="h-4 w-4 animate-spin" /> Sending…
                   </>
                 ) : (
                   <>
-                    <Send className="h-4 w-4" />
-                    {t.contact.send}
+                    <Send className="h-4 w-4" /> Send message
                   </>
                 )}
               </button>
 
               <p aria-live="polite" className="min-h-[1.25rem] text-center text-sm">
-                {status === "success" && <span className="text-green-400">{t.contact.success}</span>}
-                {status === "error" && <span className="text-red-400">{t.contact.error}</span>}
+                {status === "success" && <span className="text-green-400">Message sent — I'll reply soon. Thanks!</span>}
+                {status === "error" && <span className="text-red-400">Something went wrong — email me directly instead.</span>}
               </p>
             </div>
           </form>

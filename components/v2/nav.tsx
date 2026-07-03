@@ -1,7 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { Globe, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
@@ -10,15 +10,7 @@ interface NavItem {
   label: string
 }
 
-interface NavProps {
-  items: NavItem[]
-  activeSection: string
-  language: "en" | "tr"
-  onToggleLanguage: () => void
-  blogLabel: string
-}
-
-export function Nav({ items, activeSection, language, onToggleLanguage, blogLabel }: NavProps) {
+export function Nav({ items, activeSection }: { items: NavItem[]; activeSection: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -45,23 +37,20 @@ export function Nav({ items, activeSection, language, onToggleLanguage, blogLabe
         className={`mx-auto flex h-16 max-w-6xl items-center justify-between px-4 transition-all duration-300 sm:px-6 ${
           scrolled
             ? "mt-2 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl sm:mt-3"
-            : "border border-transparent bg-transparent"
+            : "border border-transparent"
         }`}
       >
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="group flex items-center gap-2 font-mono text-sm font-semibold tracking-tight text-white"
+          className="group flex items-center gap-2.5 font-mono text-sm font-semibold text-white"
           aria-label="Back to top"
         >
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-transform group-hover:scale-105">
             UD
           </span>
-          <span className="hidden text-white/70 transition-colors group-hover:text-white sm:inline">
-            utkudemirtas
-          </span>
+          <span className="hidden text-white/70 transition-colors group-hover:text-white sm:inline">~/urthella</span>
         </button>
 
-        {/* desktop links */}
         <nav className="hidden items-center gap-1 md:flex">
           {items.map((item) => (
             <button
@@ -88,16 +77,8 @@ export function Nav({ items, activeSection, language, onToggleLanguage, blogLabe
             href="/blog"
             className="hidden rounded-lg border border-white/15 px-3 py-1.5 text-sm text-white/80 transition-colors hover:border-white/30 hover:text-white sm:inline-block"
           >
-            {blogLabel}
+            Blog
           </Link>
-          <button
-            onClick={onToggleLanguage}
-            className="flex items-center gap-1.5 rounded-lg border border-white/15 px-2.5 py-1.5 text-sm text-white/80 transition-colors hover:border-white/30 hover:text-white"
-            aria-label="Toggle language"
-          >
-            <Globe className="h-4 w-4" />
-            <span className="font-mono">{language.toUpperCase()}</span>
-          </button>
           <button
             onClick={() => setOpen((v) => !v)}
             className="grid h-9 w-9 place-items-center rounded-lg border border-white/15 text-white md:hidden"
@@ -109,7 +90,6 @@ export function Nav({ items, activeSection, language, onToggleLanguage, blogLabe
         </div>
       </div>
 
-      {/* mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.nav
@@ -130,12 +110,8 @@ export function Nav({ items, activeSection, language, onToggleLanguage, blogLabe
                 {item.label}
               </button>
             ))}
-            <Link
-              href="/blog"
-              className="rounded-lg px-3 py-2.5 text-left text-sm text-white/60"
-              onClick={() => setOpen(false)}
-            >
-              {blogLabel}
+            <Link href="/blog" className="rounded-lg px-3 py-2.5 text-left text-sm text-white/60" onClick={() => setOpen(false)}>
+              Blog
             </Link>
           </motion.nav>
         )}
