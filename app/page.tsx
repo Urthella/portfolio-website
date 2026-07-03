@@ -5,13 +5,13 @@ import { useEffect, useState } from "react"
 import { About } from "@/components/v2/about"
 import { AuroraBackground } from "@/components/v2/aurora-background"
 import { Contact } from "@/components/v2/contact"
+import { DottedBg } from "@/components/v2/dotted-bg"
 import { Experience } from "@/components/v2/experience"
 import { Footer } from "@/components/v2/footer"
 import { Hero } from "@/components/v2/hero"
 import { Nav } from "@/components/v2/nav"
 import { Projects } from "@/components/v2/projects"
 import { Skills } from "@/components/v2/skills"
-import { SplineBg } from "@/components/v2/spline-bg"
 import { TechMarquee } from "@/components/v2/tech-marquee"
 
 const NAV = [
@@ -50,7 +50,7 @@ export default function Page() {
   return (
     <>
       <AuroraBackground />
-      <SplineBg />
+      <DottedBg />
       <Nav items={NAV} activeSection={active} />
       <main className="relative z-10">
         <Hero />
