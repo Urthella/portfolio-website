@@ -18,7 +18,7 @@ export function Hobbies() {
   return (
     <section id="hobbies" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <SectionHeading
-        index="05"
+        index="06"
         label="Beyond code"
         title="Off the keyboard"
         subtitle="The disciplines that keep me sharp, creative and a little stubborn."

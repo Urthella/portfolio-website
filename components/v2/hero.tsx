@@ -2,9 +2,8 @@
 
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowDown, ArrowRight, BookOpen, FileDown, Github, Instagram, Linkedin } from "lucide-react"
-import Image from "next/image"
 
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card"
+import ProfileCard from "@/components/ui/profile-card"
 import { RotatingText } from "@/components/v2/rotating-text"
 import { PHOTO, profile } from "@/data/content"
 import { container, fadeUp } from "@/lib/motion"
@@ -87,49 +86,28 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* photo card — 3D tilt on hover */}
+        {/* photo — holographic tilt ProfileCard */}
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-          className="relative mx-auto w-full max-w-xs lg:max-w-none"
+          className="relative mx-auto w-full max-w-[20rem]"
         >
-          <div className="absolute -inset-4 -z-10 rounded-[28px] bg-orange-600/25 blur-3xl" />
-          <CardContainer containerClassName="py-0" className="w-full">
-            <CardBody className="h-auto w-full">
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm">
-                <CardItem
-                  as="div"
-                  translateZ={30}
-                  className="flex w-full items-center gap-2 border-b border-white/10 px-4 py-2.5"
-                >
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
-                  <span className="ml-2 font-mono text-xs text-white/40">{profile.handle}.jpg</span>
-                </CardItem>
-                <CardItem as="div" translateZ={70} className="relative block aspect-[4/5] w-full">
-                  <Image
-                    src={PHOTO}
-                    alt={`${profile.name} — ${profile.role}`}
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 20rem, 24rem"
-                    className="object-cover"
-                  />
-                  {profile.available && (
-                    <span className="absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1 font-mono text-[11px] text-white/80 backdrop-blur">
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
-                      </span>
-                      available for work
-                    </span>
-                  )}
-                </CardItem>
-              </div>
-            </CardBody>
-          </CardContainer>
+          <ProfileCard
+            name={profile.name}
+            title={profile.focus}
+            handle={profile.handle}
+            status={profile.available ? "Available for work" : "Online"}
+            contactText="Contact me"
+            avatarUrl={PHOTO}
+            miniAvatarUrl={PHOTO}
+            showUserInfo
+            enableTilt
+            innerGradient="linear-gradient(145deg, rgba(249,115,22,0.35) 0%, rgba(244,63,94,0.26) 100%)"
+            behindGlowColor="rgba(249, 130, 60, 0.55)"
+            behindGlowSize="46%"
+            onContactClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          />
         </motion.div>
       </div>
 

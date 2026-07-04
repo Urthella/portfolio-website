@@ -7,13 +7,13 @@ import { Articles } from "@/components/v2/articles"
 import { AuroraBackground } from "@/components/v2/aurora-background"
 import { Contact } from "@/components/v2/contact"
 import { Experience } from "@/components/v2/experience"
-import { Footer } from "@/components/v2/footer"
+import { Featured } from "@/components/v2/featured"
 import { GithubStats } from "@/components/v2/github-stats"
 import { Hero } from "@/components/v2/hero"
 import { Hobbies } from "@/components/v2/hobbies"
 import { Nav } from "@/components/v2/nav"
 import { Projects } from "@/components/v2/projects"
-import { SceneShader } from "@/components/v2/scene-shader"
+import { SceneFluid } from "@/components/v2/scene-fluid"
 import { ScrollProgress } from "@/components/v2/scroll-progress"
 import { Services } from "@/components/v2/services"
 import { Showcase } from "@/components/v2/showcase"
@@ -61,7 +61,7 @@ export default function Page() {
   return (
     <>
       <AuroraBackground />
-      <SceneShader />
+      <SceneFluid />
       <ScrollProgress />
       <Nav items={NAV} activeSection={active} />
       <main className="relative z-10">
@@ -71,8 +71,9 @@ export default function Page() {
         <Terminal />
         <Experience />
         <Skills />
-        <GithubStats />
+        <Featured />
         <Projects />
+        <GithubStats />
         <Showcase />
         <Statement />
         <Hobbies />
@@ -81,7 +82,6 @@ export default function Page() {
         <Snap />
         <Contact />
       </main>
-      <Footer />
     </>
   )
 }

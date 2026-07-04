@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react"
 
 const VERT = `attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }`
 
-// Warm flowing plasma whose brightest glow follows the pointer.
+// Deep, slow-drifting warm haze with a faint ember that trails the pointer.
+// Kept intentionally dark so foreground text stays the focus.
 const FRAG = `
 precision highp float;
 uniform vec2 u_res;
@@ -16,19 +17,18 @@ void main() {
   p.x *= u_res.x / u_res.y;
   vec2 m = u_mouse * 2.0 - 1.0;
   m.x *= u_res.x / u_res.y;
-  float t = u_time * 0.12;
+  float t = u_time * 0.07;
   float v = 0.0;
-  v += sin(p.x * 3.0 + t);
-  v += sin(p.y * 4.0 + t * 1.3);
-  v += sin((p.x + p.y) * 2.5 + t * 0.9);
-  float dm = length(p - m);
-  v += sin(dm * 5.0 - t * 1.8);
-  v *= 0.25;
-  vec3 base = vec3(0.05, 0.02, 0.03);
-  vec3 warm = vec3(0.98, 0.42, 0.15);
+  v += sin(p.x * 2.6 + t);
+  v += sin(p.y * 3.4 + t * 1.2);
+  v += sin((p.x + p.y) * 2.2 + t * 0.8);
+  v *= 0.16;
+  vec3 base = vec3(0.028, 0.014, 0.020);
+  vec3 warm = vec3(0.20, 0.075, 0.05);
   vec3 col = mix(base, warm, 0.5 + 0.5 * v);
-  col += vec3(0.95, 0.25, 0.35) * smoothstep(0.75, 0.0, dm) * 0.7;
-  gl_FragColor = vec4(col, 0.6);
+  float dm = length(p - m);
+  col += vec3(0.50, 0.19, 0.10) * smoothstep(0.55, 0.0, dm) * 0.30;
+  gl_FragColor = vec4(col, 0.92);
 }`
 
 export function ShaderBg({ className }: { className?: string }) {

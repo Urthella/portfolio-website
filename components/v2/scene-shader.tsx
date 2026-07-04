@@ -12,11 +12,11 @@ export function SceneShader() {
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-[5]">
       <ErrorBoundary fallback={null}>
-        <ShaderBg className="absolute inset-0 h-full w-full opacity-70" />
+        <ShaderBg className="absolute inset-0 h-full w-full opacity-50" />
       </ErrorBoundary>
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(120% 90% at 50% 30%, transparent 28%, #07070a 88%)" }}
+        style={{ background: "radial-gradient(130% 100% at 50% 25%, transparent 18%, #07070a 78%)" }}
       />
     </div>
   )

@@ -11,7 +11,7 @@ export function Articles() {
   return (
     <section id="articles" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <SectionHeading
-        index="07"
+        index="08"
         label="Writing"
         title="On Medium"
         subtitle="Notes on security, networking and the craft."

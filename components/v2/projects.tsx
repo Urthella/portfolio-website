@@ -14,7 +14,7 @@ export function Projects() {
   return (
     <section id="projects" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <SectionHeading
-        index="04"
+        index="05"
         label="Projects"
         title="Selected work"
         subtitle="Auction engines, ML detectors, CPU simulators and security tooling — a spread across the stack."
@@ -62,7 +62,7 @@ export function Projects() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-orange-500/[0.07] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
               <div
                 className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
-                style={{ background: "radial-gradient(320px circle at var(--mx) var(--my), rgba(249,115,22,0.16), transparent 60%)" }}
+                style={{ background: "radial-gradient(300px circle at var(--mx) var(--my), rgba(249,115,22,0.24), transparent 65%)" }}
               />
 
               <div className="relative flex items-center justify-between">

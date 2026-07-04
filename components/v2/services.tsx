@@ -13,7 +13,7 @@ export function Services() {
   return (
     <section id="services" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <SectionHeading
-        index="06"
+        index="07"
         label="Coaching"
         title="I also coach"
         subtitle="Years of practice, shared — guitar, training, and sustainable nutrition habits."
