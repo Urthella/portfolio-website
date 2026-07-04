@@ -27,7 +27,7 @@ export function Projects() {
             onClick={() => setFilter(c)}
             className={`rounded-full border px-3.5 py-1.5 font-mono text-xs transition-colors ${
               filter === c
-                ? "border-blue-500/50 bg-blue-500/15 text-blue-200"
+                ? "border-orange-500/50 bg-orange-500/15 text-orange-200"
                 : "border-white/10 text-white/50 hover:border-white/25 hover:text-white"
             }`}
           >
@@ -51,10 +51,10 @@ export function Projects() {
               target="_blank"
               rel="noopener noreferrer"
               className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-white/[0.02] p-6 transition-colors ${
-                p.featured ? "border-blue-500/25 hover:border-blue-500/50" : "border-white/10 hover:border-white/25"
+                p.featured ? "border-orange-500/25 hover:border-orange-500/50" : "border-white/10 hover:border-white/25"
               }`}
             >
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/[0.07] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-orange-500/[0.07] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
               <div className="relative flex items-center justify-between">
                 <div className="flex flex-wrap items-center gap-1.5">
@@ -62,7 +62,7 @@ export function Projects() {
                     {p.category}
                   </span>
                   {p.featured && (
-                    <span className="inline-flex items-center gap-1 rounded-full border border-blue-500/25 bg-blue-500/10 px-2 py-1 font-mono text-[11px] text-blue-300">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-orange-500/25 bg-orange-500/10 px-2 py-1 font-mono text-[11px] text-orange-300">
                       <Star className="h-3 w-3" /> featured
                     </span>
                   )}
@@ -84,7 +84,7 @@ export function Projects() {
               <p className="relative mt-2 flex-1 text-sm leading-relaxed text-white/55">{p.blurb}</p>
 
               {p.live && (
-                <p className="relative mt-3 font-mono text-xs text-blue-400">{p.live.replace("https://", "")} ↗</p>
+                <p className="relative mt-3 font-mono text-xs text-orange-500">{p.live.replace("https://", "")} ↗</p>
               )}
 
               <div className="relative mt-4 flex flex-wrap gap-1.5">

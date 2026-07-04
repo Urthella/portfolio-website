@@ -24,8 +24,8 @@ export function Hero() {
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
         {/* text */}
         <motion.div variants={container(0.1, 0.05)} initial="hidden" animate="show">
-          <motion.p variants={fadeUp} className="mb-5 font-mono text-xs tracking-[0.25em] text-blue-400">
-            <span className="text-blue-400/40">// </span>
+          <motion.p variants={fadeUp} className="mb-5 font-mono text-xs tracking-[0.25em] text-orange-500">
+            <span className="text-orange-500/40">// </span>
             {profile.focus.toUpperCase()}
           </motion.p>
 
@@ -34,7 +34,7 @@ export function Hero() {
           </motion.h1>
 
           <motion.p variants={fadeUp} className="mt-4 font-mono text-lg text-white/70 sm:text-xl">
-            <span className="text-blue-400">&gt;</span>{" "}
+            <span className="text-orange-500">&gt;</span>{" "}
             <RotatingText
               items={["Fullstack Developer", "Backend & DevOps", "Real-time systems", "Secure APIs"]}
               className="text-white"
@@ -56,7 +56,7 @@ export function Hero() {
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
             <button
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="group inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-medium text-white shadow-[0_0_30px_rgba(37,99,235,0.35)] transition-all hover:bg-blue-500 hover:shadow-[0_0_44px_rgba(37,99,235,0.55)]"
+              className="group inline-flex items-center gap-2 rounded-xl bg-orange-600 px-5 py-3 text-sm font-medium text-white shadow-[0_0_30px_rgba(234,88,12,0.35)] transition-all hover:bg-orange-500 hover:shadow-[0_0_44px_rgba(234,88,12,0.55)]"
             >
               View projects
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -94,7 +94,7 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
           className="relative mx-auto w-full max-w-xs lg:max-w-none"
         >
-          <div className="absolute -inset-4 -z-10 rounded-[28px] bg-blue-600/25 blur-3xl" />
+          <div className="absolute -inset-4 -z-10 rounded-[28px] bg-orange-600/25 blur-3xl" />
           <CardContainer containerClassName="py-0" className="w-full">
             <CardBody className="h-auto w-full">
               <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm">

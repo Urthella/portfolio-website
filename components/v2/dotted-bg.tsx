@@ -15,8 +15,8 @@ export function DottedBg() {
         opacity={0.45}
         color="rgba(255,255,255,0.30)"
         darkColor="rgba(255,255,255,0.32)"
-        glowColor="rgba(59,130,246,0.9)"
-        darkGlowColor="rgba(59,130,246,0.9)"
+        glowColor="rgba(249,115,22,0.9)"
+        darkGlowColor="rgba(249,115,22,0.9)"
         speedMin={0.15}
         speedMax={0.8}
       />

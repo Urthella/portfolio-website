@@ -76,7 +76,7 @@ export function Terminal() {
             {segs.map((s, i) =>
               s.type === "cmd" ? (
                 <div key={i} className="text-white/90">
-                  <span className="text-blue-400">➜</span> <span className="text-emerald-400">~</span> {s.text}
+                  <span className="text-orange-500">➜</span> <span className="text-emerald-400">~</span> {s.text}
                 </div>
               ) : (
                 <div key={i} className="pl-4 text-white/50">
@@ -85,7 +85,7 @@ export function Terminal() {
               ),
             )}
             <div className="text-white/90">
-              <span className="text-blue-400">➜</span> <span className="text-emerald-400">~</span> {typing}
+              <span className="text-orange-500">➜</span> <span className="text-emerald-400">~</span> {typing}
               <span className="ml-0.5 inline-block h-4 w-[7px] animate-pulse bg-white/70 align-middle" />
             </div>
           </div>

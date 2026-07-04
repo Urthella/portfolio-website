@@ -32,9 +32,9 @@ export function Services() {
             <motion.div
               key={s.title}
               variants={fadeUp}
-              className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-blue-500/30"
+              className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-orange-500/30"
             >
-              <span className="mb-4 grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/5 text-blue-400">
+              <span className="mb-4 grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500">
                 <Icon className="h-5 w-5" />
               </span>
               <h3 className="font-semibold text-white">{s.title}</h3>
@@ -42,7 +42,7 @@ export function Services() {
               <ul className="mt-4 space-y-2 border-t border-white/10 pt-4 text-sm text-white/60">
                 {s.includes.map((it) => (
                   <li key={it} className="flex items-start gap-2">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-orange-500" />
                     <span>{it}</span>
                   </li>
                 ))}

@@ -37,11 +37,11 @@ export function Hobbies() {
             <motion.div
               key={h.title}
               variants={scaleIn}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-blue-500/30"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-orange-500/30"
             >
-              <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-blue-500/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-orange-500/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
               <div className="mb-3 flex items-center gap-3">
-                <span className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/5 text-blue-400 transition-transform group-hover:scale-110">
+                <span className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500 transition-transform group-hover:scale-110">
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="font-semibold text-white">{h.title}</h3>

@@ -32,7 +32,7 @@ export function Articles() {
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -4 }}
-            className="group flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-blue-500/30"
+            className="group flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-orange-500/30"
           >
             <div>
               <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-white/50">
@@ -40,7 +40,7 @@ export function Articles() {
               </span>
               <h3 className="mt-3 font-semibold text-white">{a.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-white/55">{a.blurb}</p>
-              <span className="mt-3 inline-block font-mono text-xs text-blue-400">Read on Medium →</span>
+              <span className="mt-3 inline-block font-mono text-xs text-orange-500">Read on Medium →</span>
             </div>
             <ArrowUpRight className="h-5 w-5 shrink-0 text-white/30 transition-all group-hover:text-white" />
           </motion.a>

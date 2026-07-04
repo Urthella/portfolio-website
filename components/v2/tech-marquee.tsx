@@ -19,7 +19,7 @@ export function TechMarquee() {
       >
         {row.map((tech, i) => (
           <span key={i} className="flex items-center gap-2.5 font-mono text-sm text-white/40">
-            <span className="text-blue-400/60">◆</span>
+            <span className="text-orange-500/60">◆</span>
             {tech}
           </span>
         ))}

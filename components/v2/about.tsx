@@ -28,8 +28,8 @@ export function About() {
 
         <div className="grid gap-6 lg:col-span-2">
           <Reveal delay={0.05}>
-            <div className="h-full rounded-2xl border border-blue-500/20 bg-blue-500/[0.06] p-6">
-              <h3 className="mb-3 flex items-center gap-2 font-mono text-sm text-blue-300">
+            <div className="h-full rounded-2xl border border-orange-500/20 bg-orange-500/[0.06] p-6">
+              <h3 className="mb-3 flex items-center gap-2 font-mono text-sm text-orange-300">
                 <Sparkles className="h-4 w-4" /> // current-focus
               </h3>
               <p className="text-sm leading-relaxed text-white/60">{about.focus}</p>
@@ -39,7 +39,7 @@ export function About() {
           <Reveal delay={0.1}>
             <div className="h-full rounded-2xl border border-white/10 bg-white/[0.02] p-6">
               <h3 className="mb-4 flex items-center gap-2 font-mono text-sm text-white/70">
-                <Languages className="h-4 w-4 text-blue-400" /> // languages
+                <Languages className="h-4 w-4 text-orange-500" /> // languages
               </h3>
               <ul className="space-y-2.5 text-sm">
                 {about.languages.map((l) => (

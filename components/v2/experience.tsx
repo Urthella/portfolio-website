@@ -16,14 +16,14 @@ export function Experience() {
       <SectionHeading index="02" label="Experience" title="Where I've been" />
 
       <div className="relative">
-        <div className="absolute left-[13px] top-2 bottom-2 w-px bg-gradient-to-b from-blue-500/60 via-white/15 to-transparent sm:left-[15px]" />
+        <div className="absolute left-[13px] top-2 bottom-2 w-px bg-gradient-to-b from-orange-500/60 via-white/15 to-transparent sm:left-[15px]" />
 
         <div className="space-y-8">
           {experiences.map((e, i) => {
             const Icon = kindIcon[e.kind]
             return (
               <Reveal key={`${e.org}-${i}`} delay={i * 0.02} className="relative pl-10 sm:pl-12">
-                <span className="absolute left-0 top-1.5 grid h-7 w-7 place-items-center rounded-full border border-white/15 bg-[#0b0b10] text-blue-400 sm:h-8 sm:w-8">
+                <span className="absolute left-0 top-1.5 grid h-7 w-7 place-items-center rounded-full border border-white/15 bg-[#0b0b10] text-orange-500 sm:h-8 sm:w-8">
                   <Icon className="h-3.5 w-3.5" />
                 </span>
 
@@ -31,7 +31,7 @@ export function Experience() {
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div>
                       <h3 className="font-semibold text-white">{e.role}</h3>
-                      <p className="text-sm text-blue-400">{e.org}</p>
+                      <p className="text-sm text-orange-500">{e.org}</p>
                     </div>
                     <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-xs text-white/50">
                       {e.date}
