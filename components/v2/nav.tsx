@@ -1,10 +1,16 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { Languages, Menu, X } from "lucide-react"
+import { Github, Languages, Linkedin, Menu, X } from "lucide-react"
 import { useEffect, useState } from "react"
 
+import { profile } from "@/data/content"
 import { useContent, useLang } from "@/data/i18n"
+
+const HEADER_SOCIALS = [
+  { href: profile.socials.github, label: "GitHub", Icon: Github },
+  { href: profile.socials.linkedin, label: "LinkedIn", Icon: Linkedin },
+]
 
 export function Nav({ items, activeSection }: { items: string[]; activeSection: string }) {
   const [scrolled, setScrolled] = useState(false)
@@ -85,6 +91,18 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
         </nav>
 
         <div className="flex items-center gap-2">
+          {HEADER_SOCIALS.map(({ href, label, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="grid h-9 w-9 place-items-center rounded-lg border border-white/15 text-white/70 transition-colors hover:border-white/30 hover:text-white"
+            >
+              <Icon className="h-[18px] w-[18px]" />
+            </a>
+          ))}
           <LangToggle />
           <button
             onClick={() => setOpen((v) => !v)}
