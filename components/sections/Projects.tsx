@@ -176,7 +176,7 @@ export default function Projects({ language, setSelectedProject }: ProjectsProps
                                     </Link>
                                 </CardTitle>
                                 <CardDescription className="text-gray-400">
-                                    Cloud cost anomaly detection on AWS CUR data — STL, Isolation Forest, and Z-Score detectors with severity-banded alerts and a Streamlit dashboard.
+                                    Cloud cost anomaly detection on AWS CUR data using STL, Isolation Forest, and Z-Score detectors with severity-banded alerts and a Streamlit dashboard.
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>

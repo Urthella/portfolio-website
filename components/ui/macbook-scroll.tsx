@@ -299,7 +299,7 @@ export const Keypad = () => {
           <span className="block">0</span>
         </KBtn>
         <KBtn>
-          <span className="block">&mdash;</span>
+          <span className="block">-</span>
           <span className="block">_</span>
         </KBtn>
         <KBtn>

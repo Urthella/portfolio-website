@@ -11,7 +11,7 @@
     animation: marquee2 25s linear infinite;
   }
 
-  /* Subtle gradient for section titles — keeps the monochrome palette */
+  /* Subtle gradient for section titles, keeps the monochrome palette */
   .section-title-gradient {
     background-image: linear-gradient(135deg, #ffffff 0%, #d1d5db 55%, #9ca3af 100%);
     -webkit-background-clip: text;
@@ -346,7 +346,7 @@ html {
   }
 }
 
-/* StarField Animations — box-shadow positions are generated inline in the StarField component */
+/* StarField Animations: box-shadow positions are generated inline in the StarField component */
 @keyframes animStar {
   from {
     transform: translateY(0px);
@@ -378,7 +378,7 @@ html {
   animation: animStar 150s linear infinite;
 }
 
-/* Typewriter cursor blink — replaces framer-motion cursor animation */
+/* Typewriter cursor blink: replaces framer-motion cursor animation */
 @keyframes cursorBlink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }

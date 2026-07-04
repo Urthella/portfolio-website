@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic"
 
-// Dynamic import with SSR disabled — only fetched when this component renders (desktop only)
+// Dynamic import with SSR disabled; only fetched when this component renders (desktop only)
 const SplineScene = dynamic(
     () => import('@/components/ui/splite').then(mod => ({ default: mod.SplineScene })),
     { ssr: false }
