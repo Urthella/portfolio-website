@@ -1,11 +1,36 @@
 "use client"
 
+import { animate, useInView } from "framer-motion"
 import { Boxes, Server, type LucideIcon } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
 import { Reveal } from "@/components/v2/reveal"
 import { SectionHeading } from "@/components/v2/section-heading"
 import { fromLeft } from "@/lib/motion"
 import { useContent } from "@/data/i18n"
+
+// Counts a numeric value up from 0 when it scrolls into view (keeps any suffix like "+").
+function CountUp({ value }: { value: string }) {
+  const m = value.match(/^(\d+)(.*)$/)
+  const target = m ? parseInt(m[1], 10) : 0
+  const suffix = m ? m[2] : value
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.6 })
+  const [n, setN] = useState(0)
+
+  useEffect(() => {
+    if (!inView || !target) return
+    const controls = animate(0, target, { duration: 1.1, ease: "easeOut", onUpdate: (v) => setN(Math.round(v)) })
+    return () => controls.stop()
+  }, [inView, target])
+
+  return (
+    <span ref={ref}>
+      {target ? n : ""}
+      {suffix}
+    </span>
+  )
+}
 
 // Warm, on-brand accents (mapped from the old lime/pink/cyan/amber keys).
 const ACCENT: Record<string, { text: string; ring: string; bar: string; tile: string }> = {
@@ -65,7 +90,9 @@ export function About() {
                   key={st.label}
                   className={`flex aspect-square flex-col justify-between rounded-xl border-b-4 border-l-4 ${a.tile} bg-[#efe9dd] p-5 transition-transform hover:-translate-y-1`}
                 >
-                  <span className="text-5xl font-black tracking-tight text-neutral-900">{st.value}</span>
+                  <span className="text-5xl font-black tracking-tight text-neutral-900">
+                    <CountUp value={st.value} />
+                  </span>
                   <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-600">{st.label}</span>
                 </div>
               )

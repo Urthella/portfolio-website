@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowUp, BookOpen, Github, Instagram, Linkedin, Loader2, Mail, Phone, Send } from "lucide-react"
+import { ArrowUp, BookOpen, Check, Copy, Github, Instagram, Linkedin, Loader2, Mail, Phone, Send } from "lucide-react"
 import { useState } from "react"
 
 import { FallingText } from "@/components/ui/falling-text"
@@ -23,6 +23,13 @@ export function Contact() {
   const h = cc.ui.headings.contact
   const [form, setForm] = useState({ name: "", email: "", message: "" })
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = () => {
+    navigator.clipboard?.writeText(profile.email)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1800)
+  }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -67,15 +74,24 @@ export function Contact() {
         <Reveal variants={fromLeft}>
           <div className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
             <div className="space-y-4">
-              <a
-                href={`mailto:${profile.email}`}
-                className="flex items-center gap-3 text-white/70 transition-colors hover:text-white"
-              >
-                <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500">
-                  <Mail className="h-5 w-5" />
-                </span>
-                {profile.email}
-              </a>
+              <div className="flex items-center gap-2">
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="flex flex-1 items-center gap-3 text-white/70 transition-colors hover:text-white"
+                >
+                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500">
+                    <Mail className="h-5 w-5" />
+                  </span>
+                  <span className="truncate">{profile.email}</span>
+                </a>
+                <button
+                  onClick={copyEmail}
+                  aria-label="Copy email"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 text-white/50 transition-colors hover:border-orange-500/40 hover:text-white"
+                >
+                  {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
+                </button>
+              </div>
               <div className="flex items-center gap-3 text-white/70">
                 <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500">
                   <Phone className="h-5 w-5" />

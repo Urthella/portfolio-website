@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { About } from "@/components/v2/about"
 import { Articles } from "@/components/v2/articles"
 import { AuroraBackground } from "@/components/v2/aurora-background"
+import { CommandPalette } from "@/components/v2/command-palette"
 import { Contact } from "@/components/v2/contact"
 import { Experience } from "@/components/v2/experience"
 import { Featured } from "@/components/v2/featured"
@@ -58,6 +59,7 @@ export default function Page() {
       <AuroraBackground />
       <SceneFluid />
       <ScrollProgress />
+      <CommandPalette />
       <Nav items={NAV} activeSection={active} />
       <main className="relative z-10">
         <Hero />

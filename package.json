@@ -42,6 +42,7 @@
     "@splinetool/runtime": "^1.12.46",
     "@tabler/icons-react": "^3.44.0",
     "@types/matter-js": "^0.20.2",
+    "@vercel/analytics": "^2.0.1",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

@@ -91,6 +91,13 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
         </nav>
 
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => window.dispatchEvent(new Event("cmdk:open"))}
+            className="hidden items-center gap-1 rounded-lg border border-white/15 px-2.5 py-1.5 font-mono text-xs text-white/50 transition-colors hover:border-white/30 hover:text-white lg:flex"
+            aria-label="Open command menu"
+          >
+            <span className="text-sm leading-none">⌘</span>K
+          </button>
           {HEADER_SOCIALS.map(({ href, label, Icon }) => (
             <a
               key={label}
