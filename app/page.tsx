@@ -14,6 +14,7 @@ import { Hobbies } from "@/components/v2/hobbies"
 import { Nav } from "@/components/v2/nav"
 import { Projects } from "@/components/v2/projects"
 import { SceneFluid } from "@/components/v2/scene-fluid"
+import { ScrollExpand } from "@/components/v2/scroll-expand"
 import { ScrollProgress } from "@/components/v2/scroll-progress"
 import { Services } from "@/components/v2/services"
 import { Showcase } from "@/components/v2/showcase"
@@ -70,6 +71,7 @@ export default function Page() {
         <GithubStats />
         <Showcase />
         <Statement />
+        <ScrollExpand />
         <Hobbies />
         <Services />
         <Articles />

@@ -7,11 +7,12 @@ import { SectionHeading } from "@/components/v2/section-heading"
 import { fromLeft } from "@/lib/motion"
 import { useContent } from "@/data/i18n"
 
+// Warm, on-brand accents (mapped from the old lime/pink/cyan/amber keys).
 const ACCENT: Record<string, { text: string; ring: string; bar: string; tile: string }> = {
-  lime: { text: "text-lime-400", ring: "border-lime-400/50", bar: "border-lime-400", tile: "border-lime-400" },
-  pink: { text: "text-pink-400", ring: "border-pink-500/50", bar: "border-pink-500", tile: "border-pink-500" },
-  cyan: { text: "text-cyan-400", ring: "border-cyan-400/50", bar: "border-cyan-400", tile: "border-cyan-400" },
-  amber: { text: "text-amber-400", ring: "border-amber-400/50", bar: "border-amber-400", tile: "border-amber-400" },
+  lime: { text: "text-orange-400", ring: "border-orange-500/50", bar: "border-orange-500", tile: "border-orange-500" },
+  pink: { text: "text-rose-400", ring: "border-rose-500/50", bar: "border-rose-500", tile: "border-rose-500" },
+  cyan: { text: "text-red-400", ring: "border-red-500/50", bar: "border-red-500", tile: "border-red-500" },
+  amber: { text: "text-amber-400", ring: "border-amber-500/50", bar: "border-amber-500", tile: "border-amber-500" },
 }
 const accent = (k: string) => ACCENT[k] ?? ACCENT.lime
 
@@ -49,7 +50,7 @@ export function About() {
             })}
           </div>
 
-          <div className="mt-4 rounded-xl border border-l-4 border-white/10 border-l-lime-400 bg-white/[0.02] px-4 py-3 font-mono text-xs leading-relaxed text-white/55">
+          <div className="mt-4 rounded-xl border border-l-4 border-white/10 border-l-orange-400 bg-white/[0.02] px-4 py-3 font-mono text-xs leading-relaxed text-white/55">
             {aboutHero.note}
           </div>
         </Reveal>

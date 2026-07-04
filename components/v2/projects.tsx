@@ -8,12 +8,13 @@ import { SectionHeading } from "@/components/v2/section-heading"
 import { categories, type Category } from "@/data/content"
 import { useContent } from "@/data/i18n"
 
+// Warm, on-brand category accents.
 const ACCENT: Record<string, { bar: string; border: string; text: string }> = {
-  "Full-stack": { bar: "bg-lime-400", border: "border-lime-400/45", text: "text-lime-400" },
-  "AI/ML": { bar: "bg-pink-500", border: "border-pink-500/45", text: "text-pink-400" },
-  Systems: { bar: "bg-cyan-400", border: "border-cyan-400/45", text: "text-cyan-400" },
-  Security: { bar: "bg-amber-400", border: "border-amber-400/45", text: "text-amber-400" },
-  Web: { bar: "bg-orange-500", border: "border-orange-500/45", text: "text-orange-400" },
+  "Full-stack": { bar: "bg-orange-500", border: "border-orange-500/45", text: "text-orange-400" },
+  "AI/ML": { bar: "bg-rose-500", border: "border-rose-500/45", text: "text-rose-400" },
+  Systems: { bar: "bg-amber-500", border: "border-amber-500/45", text: "text-amber-400" },
+  Security: { bar: "bg-red-500", border: "border-red-500/45", text: "text-red-400" },
+  Web: { bar: "bg-orange-400", border: "border-orange-400/45", text: "text-orange-300" },
 }
 const accent = (c: string) => ACCENT[c] ?? ACCENT.Web
 
@@ -62,7 +63,7 @@ export function Projects() {
                 <div className={`flex items-center justify-between ${a.bar} px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-wide text-black`}>
                   <span className="truncate">
                     {String(i + 1).padStart(2, "0")} · {p.category}
-                    {p.live ? " · LIVE" : ""}
+                    {p.live ? (p.wip ? " · PREVIEW" : " · LIVE") : ""}
                   </span>
                   <span className="flex shrink-0 items-center gap-1.5">
                     {p.featured && (
@@ -107,7 +108,7 @@ export function Projects() {
                         rel="noopener noreferrer"
                         className={`inline-flex items-center gap-1.5 rounded-lg ${a.bar} px-3 py-1.5 font-mono text-xs font-bold text-black transition-transform hover:-translate-y-0.5`}
                       >
-                        <ArrowUpRight className="h-3.5 w-3.5" /> LIVE
+                        <ArrowUpRight className="h-3.5 w-3.5" /> {p.wip ? "PREVIEW" : "LIVE"}
                       </a>
                     )}
                     {p.privateRepo ? (

@@ -1,9 +1,9 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { Github, Instagram, Linkedin, Mail, MapPin, Phone, RefreshCw, BookOpen } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, type MouseEvent } from "react"
 
 import { PHOTO, profile } from "@/data/content"
 import { useContent } from "@/data/i18n"
@@ -24,6 +24,22 @@ export function IdCard() {
   const t = useContent().ui.idcard
   const focus = useContent().profile.focus
 
+  // Pointer-following 3D tilt (composes with the flip rotation).
+  const px = useMotionValue(0.5)
+  const py = useMotionValue(0.5)
+  const spring = { stiffness: 150, damping: 15, mass: 0.4 }
+  const rotateY = useSpring(useTransform(px, [0, 1], [13, -13]), spring)
+  const rotateX = useSpring(useTransform(py, [0, 1], [-11, 11]), spring)
+  const onMove = (e: MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    px.set((e.clientX - r.left) / r.width)
+    py.set((e.clientY - r.top) / r.height)
+  }
+  const onLeave = () => {
+    px.set(0.5)
+    py.set(0.5)
+  }
+
   const faceBase =
     "absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-500 via-rose-500 to-amber-400 p-[1.5px] shadow-2xl shadow-black/50 [backface-visibility:hidden]"
 
@@ -32,6 +48,11 @@ export function IdCard() {
       {/* warm glow */}
       <div className="absolute -inset-4 -z-10 rounded-[32px] bg-orange-600/25 blur-3xl" />
 
+      <motion.div
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      >
       <motion.button
         type="button"
         onClick={() => setFlipped((f) => !f)}
@@ -40,7 +61,6 @@ export function IdCard() {
         style={{ transformStyle: "preserve-3d", aspectRatio: "0.72" }}
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        whileHover={{ scale: 1.015 }}
       >
         {/* FRONT */}
         <div className={faceBase}>
@@ -140,6 +160,7 @@ export function IdCard() {
           </div>
         </div>
       </motion.button>
+      </motion.div>
 
       <p className="mt-4 text-center font-mono text-[11px] text-white/35">{t.clickFlip}</p>
     </div>

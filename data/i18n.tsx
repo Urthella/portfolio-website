@@ -61,7 +61,7 @@ const uiEN = {
   featured: {
     cards: [
       { title: "Okut Gitsin", tag: "Flagship SaaS", desc: "Live-stream vehicle auction platform: real-time bidding, secure payments, live at okutgitsin.com." },
-      { title: "Penpick", tag: "Product", desc: "Marketplace for pen collectors, shipped end-to-end at penpick.vercel.app." },
+      { title: "Penpick", tag: "In development", desc: "Marketplace for pen collectors, still in development, live preview at penpick.vercel.app." },
       { title: "Extramus HR", tag: "Backend & Security", desc: "HR platform backend: RBAC, secure uploads, containerized services under load." },
       { title: "CI/CD Plumbing", tag: "DevOps", desc: "Dockerized pipelines and green GitHub Actions across a dozen shipped repos." },
     ],
@@ -99,6 +99,7 @@ const uiEN = {
   },
   statement: ["SHIPPING REAL-TIME SYSTEMS", "SECURE APIS. CLEAN CI/CD.", "BACKEND, DEVOPS & CHAOS", "LET'S BUILD SOMETHING"],
   showcase: { featured: "// featured", name: "Okut Gitsin", caption: "A live-auction platform, opened up." },
+  scrollExpand: { scroll: "SCROLL", title: "Real products, shipped.", kicker: "// in production", caption: "Okut Gitsin, live and taking bids." },
   terminal: { whoami: "Halil Utku Demirtaş, backend & devops-leaning fullstack engineer" },
 }
 

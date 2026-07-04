@@ -102,6 +102,7 @@ export function CardSwap({
   const tlRef = useRef<gsap.core.Timeline | null>(null)
   const intervalRef = useRef<number | undefined>(undefined)
   const container = useRef<HTMLDivElement>(null)
+  const swapRef = useRef<() => void>(() => {})
 
   useEffect(() => {
     const total = refs.length
@@ -137,6 +138,7 @@ export function CardSwap({
         order.current = [...rest, front]
       })
     }
+    swapRef.current = swap
 
     swap()
     intervalRef.current = window.setInterval(swap, delay)
@@ -177,10 +179,18 @@ export function CardSwap({
       : child,
   )
 
+  const handleClick = () => {
+    if (tlRef.current?.isActive()) return
+    swapRef.current()
+    if (intervalRef.current) window.clearInterval(intervalRef.current)
+    intervalRef.current = window.setInterval(() => swapRef.current(), delay)
+  }
+
   return (
     <div
       ref={container}
-      className="absolute bottom-0 right-0 origin-bottom-right [perspective:900px] [transform:translate(5%,18%)] max-md:[transform:scale(0.72)_translate(20%,22%)]"
+      onClick={handleClick}
+      className="absolute bottom-0 right-0 origin-bottom-right cursor-pointer [perspective:900px] [transform:translate(5%,18%)] max-md:[transform:scale(0.72)_translate(20%,22%)]"
       style={{ width, height }}
     >
       {rendered}

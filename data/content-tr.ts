@@ -155,12 +155,14 @@ export const tr = {
     },
     {
       name: "Penpick",
-      blurb: "Kalem koleksiyoncuları için pazar yeri; Next.js 16 ve Neon Postgres üzerinde Prisma ile kuruldu.",
+      blurb:
+        "Kalem koleksiyoncuları için pazar yeri; Next.js 16 ve Neon Postgres üzerinde Prisma ile kuruldu. Hala geliştiriliyor, penpick.vercel.app'te canlı bir önizleme var.",
       stack: ["Next.js", "Prisma", "Neon Postgres", "Tailwind v4"],
       category: "Full-stack",
       href: "https://penpick.vercel.app",
       live: "https://penpick.vercel.app",
       privateRepo: true,
+      wip: true,
     },
     {
       name: "Used Car Platform",
@@ -396,7 +398,7 @@ export const tr = {
     featured: {
       cards: [
         { title: "Okut Gitsin", tag: "Amiral Gemisi SaaS", desc: "Canlı yayınlı araç açık artırma platformu: gerçek zamanlı teklif, güvenli ödeme, okutgitsin.com'da canlı." },
-        { title: "Penpick", tag: "Ürün", desc: "Kalem koleksiyoncuları için pazar yeri, uçtan uca penpick.vercel.app'te yayında." },
+        { title: "Penpick", tag: "Geliştiriliyor", desc: "Kalem koleksiyoncuları için pazar yeri, hala geliştiriliyor, canlı önizleme penpick.vercel.app." },
         { title: "Extramus İK", tag: "Backend ve Güvenlik", desc: "İK platformu backend'i: RBAC, güvenli yüklemeler, yük altında konteynerize servisler." },
         { title: "CI/CD Altyapısı", tag: "DevOps", desc: "Bir düzine projede Dockerize hatlar ve yeşil GitHub Actions." },
       ],
@@ -433,6 +435,7 @@ export const tr = {
     },
     statement: ["GERÇEK ZAMANLI SİSTEMLER", "GÜVENLİ API'LER. TEMİZ CI/CD.", "BACKEND, DEVOPS VE KAOS", "HADİ BİR ŞEY İNŞA EDELİM"],
     showcase: { featured: "// öne çıkan", name: "Okut Gitsin", caption: "Bir canlı açık artırma platformu, içiyle dışıyla." },
+    scrollExpand: { scroll: "KAYDIR", title: "Gerçek ürünler, yayında.", kicker: "// prodüksiyonda", caption: "Okut Gitsin, canlı ve teklif topluyor." },
     terminal: {
       whoami: "Halil Utku Demirtaş, backend & devops ağırlıklı fullstack mühendisi",
     },
