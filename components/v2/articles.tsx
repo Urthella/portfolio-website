@@ -5,17 +5,16 @@ import { ArrowUpRight } from "lucide-react"
 
 import { SectionHeading } from "@/components/v2/section-heading"
 import { container, fadeUp } from "@/lib/motion"
-import { MEDIUM, articles } from "@/data/content"
+import { MEDIUM } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
 export function Articles() {
+  const c = useContent()
+  const articles = c.articles
+  const head = c.ui.headings.articles
   return (
     <section id="articles" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading
-        index="08"
-        label="Writing"
-        title="On Medium"
-        subtitle="Notes on security, networking and the craft."
-      />
+      <SectionHeading index="08" label={head.label} title={head.title} subtitle={head.subtitle} />
 
       <motion.div
         variants={container(0.08)}
@@ -28,7 +27,7 @@ export function Articles() {
           <motion.a
             key={a.title}
             variants={fadeUp}
-            href={a.href}
+            href={MEDIUM}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -4 }}

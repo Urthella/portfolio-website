@@ -5,7 +5,7 @@ import { BookOpen, Dumbbell, Music, PenTool } from "lucide-react"
 
 import { SectionHeading } from "@/components/v2/section-heading"
 import { container, scaleIn } from "@/lib/motion"
-import { hobbies } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
 const iconMap: Record<string, typeof Music> = {
   music: Music,
@@ -15,14 +15,12 @@ const iconMap: Record<string, typeof Music> = {
 }
 
 export function Hobbies() {
+  const c = useContent()
+  const hobbies = c.hobbies
+  const head = c.ui.headings.hobbies
   return (
     <section id="hobbies" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading
-        index="06"
-        label="Beyond code"
-        title="Off the keyboard"
-        subtitle="The disciplines that keep me sharp, creative and a little stubborn."
-      />
+      <SectionHeading index="06" label={head.label} title={head.title} subtitle={head.subtitle} />
 
       <motion.div
         variants={container(0.09)}

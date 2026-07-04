@@ -1,18 +1,18 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Languages, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
-interface NavItem {
-  id: string
-  label: string
-}
+import { useContent, useLang } from "@/data/i18n"
 
-export function Nav({ items, activeSection }: { items: NavItem[]; activeSection: string }) {
+export function Nav({ items, activeSection }: { items: string[]; activeSection: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const c = useContent()
+  const { lang, setLang } = useLang()
+  const navLabels = c.ui.nav
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -26,6 +26,21 @@ export function Nav({ items, activeSection }: { items: NavItem[]; activeSection:
     setOpen(false)
   }
 
+  const label = (id: string) => navLabels[id as keyof typeof navLabels] ?? id
+
+  const LangToggle = () => (
+    <button
+      onClick={() => setLang(lang === "en" ? "tr" : "en")}
+      className="flex items-center gap-1.5 rounded-lg border border-white/15 px-2.5 py-1.5 font-mono text-xs text-white/70 transition-colors hover:border-white/30 hover:text-white"
+      aria-label="Toggle language"
+    >
+      <Languages className="h-3.5 w-3.5" />
+      <span className={lang === "en" ? "text-orange-400" : "text-white/40"}>EN</span>
+      <span className="text-white/25">/</span>
+      <span className={lang === "tr" ? "text-orange-400" : "text-white/40"}>TR</span>
+    </button>
+  )
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -35,9 +50,7 @@ export function Nav({ items, activeSection }: { items: NavItem[]; activeSection:
     >
       <div
         className={`mx-auto flex h-16 max-w-6xl items-center justify-between px-4 transition-all duration-300 sm:px-6 ${
-          scrolled
-            ? "mt-2 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl sm:mt-3"
-            : "border border-transparent"
+          scrolled ? "mt-2 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl sm:mt-3" : "border border-transparent"
         }`}
       >
         <button
@@ -52,16 +65,16 @@ export function Nav({ items, activeSection }: { items: NavItem[]; activeSection:
         </button>
 
         <nav className="hidden items-center gap-1 md:flex">
-          {items.map((item) => (
+          {items.map((id) => (
             <button
-              key={item.id}
-              onClick={() => go(item.id)}
+              key={id}
+              onClick={() => go(id)}
               className={`relative rounded-lg px-3 py-2 text-sm transition-colors ${
-                activeSection === item.id ? "text-white" : "text-white/55 hover:text-white"
+                activeSection === id ? "text-white" : "text-white/55 hover:text-white"
               }`}
             >
-              {item.label}
-              {activeSection === item.id && (
+              {label(id)}
+              {activeSection === id && (
                 <motion.span
                   layoutId="nav-active"
                   className="absolute inset-0 -z-10 rounded-lg bg-white/10"
@@ -73,11 +86,12 @@ export function Nav({ items, activeSection }: { items: NavItem[]; activeSection:
         </nav>
 
         <div className="flex items-center gap-2">
+          <LangToggle />
           <Link
             href="/blog"
             className="hidden rounded-lg border border-white/15 px-3 py-1.5 text-sm text-white/80 transition-colors hover:border-white/30 hover:text-white sm:inline-block"
           >
-            Blog
+            {navLabels.blog}
           </Link>
           <button
             onClick={() => setOpen((v) => !v)}
@@ -99,19 +113,19 @@ export function Nav({ items, activeSection }: { items: NavItem[]; activeSection:
             transition={{ duration: 0.2 }}
             className="mx-4 mt-2 grid gap-1 rounded-2xl border border-white/10 bg-black/80 p-2 backdrop-blur-xl md:hidden"
           >
-            {items.map((item) => (
+            {items.map((id) => (
               <button
-                key={item.id}
-                onClick={() => go(item.id)}
+                key={id}
+                onClick={() => go(id)}
                 className={`rounded-lg px-3 py-2.5 text-left text-sm ${
-                  activeSection === item.id ? "bg-white/10 text-white" : "text-white/60"
+                  activeSection === id ? "bg-white/10 text-white" : "text-white/60"
                 }`}
               >
-                {item.label}
+                {label(id)}
               </button>
             ))}
             <Link href="/blog" className="rounded-lg px-3 py-2.5 text-left text-sm text-white/60" onClick={() => setOpen(false)}>
-              Blog
+              {navLabels.blog}
             </Link>
           </motion.nav>
         )}

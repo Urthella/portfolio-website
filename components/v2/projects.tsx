@@ -5,7 +5,8 @@ import { ArrowUpRight, Github, Lock, Star, Zap } from "lucide-react"
 import { useState } from "react"
 
 import { SectionHeading } from "@/components/v2/section-heading"
-import { categories, projects, type Category } from "@/data/content"
+import { categories, type Category } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
 const ACCENT: Record<string, { bar: string; border: string; text: string }> = {
   "Full-stack": { bar: "bg-lime-400", border: "border-lime-400/45", text: "text-lime-400" },
@@ -17,17 +18,14 @@ const ACCENT: Record<string, { bar: string; border: string; text: string }> = {
 const accent = (c: string) => ACCENT[c] ?? ACCENT.Web
 
 export function Projects() {
+  const c = useContent()
+  const h = c.ui.headings.projects
   const [filter, setFilter] = useState<"All" | Category>("All")
-  const shown = projects.filter((p) => filter === "All" || p.category === filter)
+  const shown = c.projects.filter((p) => filter === "All" || p.category === filter)
 
   return (
     <section id="projects" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading
-        index="05"
-        label="Projects"
-        title="Selected work"
-        subtitle="Auction engines, ML detectors, CPU simulators and security tooling. A spread across the stack, plus repos I collaborate on."
-      />
+      <SectionHeading index="05" label={h.label} title={h.title} subtitle={h.subtitle} />
 
       <div className="mb-8 flex flex-wrap gap-2">
         {categories.map((c) => (
@@ -88,7 +86,7 @@ export function Projects() {
                     )}
                   </h3>
                   {p.collab && (
-                    <p className="mt-1 font-mono text-[11px] text-white/35">collaboration · thefcan</p>
+                    <p className="mt-1 font-mono text-[11px] text-white/35">{h.collab} · thefcan</p>
                   )}
 
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">{p.blurb}</p>

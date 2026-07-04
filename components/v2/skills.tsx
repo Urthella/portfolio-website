@@ -5,14 +5,17 @@ import { Cloud, Code, Database, Layout, Server, Shield } from "lucide-react"
 
 import { SectionHeading } from "@/components/v2/section-heading"
 import { container, scaleIn } from "@/lib/motion"
-import { skillGroups } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
 const icons = [Code, Layout, Server, Database, Cloud, Shield]
 
 export function Skills() {
+  const c = useContent()
+  const skillGroups = c.skillGroups
+  const h = c.ui.headings.skills
   return (
     <section id="skills" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading index="03" label="Skills" title="Tech I build with" />
+      <SectionHeading index="03" label={h.label} title={h.title} />
 
       <motion.div
         variants={container(0.07)}

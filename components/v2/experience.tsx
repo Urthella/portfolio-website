@@ -6,14 +6,17 @@ import { Briefcase, GraduationCap, Users } from "lucide-react"
 import { Reveal } from "@/components/v2/reveal"
 import { SectionHeading } from "@/components/v2/section-heading"
 import { container, fadeUp } from "@/lib/motion"
-import { experiences } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
 const kindIcon = { work: Briefcase, volunteer: Users, education: GraduationCap }
 
 export function Experience() {
+  const c = useContent()
+  const experiences = c.experiences
+  const h = c.ui.headings.experience
   return (
     <section id="experience" className="relative mx-auto max-w-4xl px-4 py-24 sm:px-6">
-      <SectionHeading index="02" label="Experience" title="Where I've been" />
+      <SectionHeading index="02" label={h.label} title={h.title} />
 
       <div className="relative">
         <div className="absolute left-[13px] top-2 bottom-2 w-px bg-gradient-to-b from-orange-500/60 via-white/15 to-transparent sm:left-[15px]" />

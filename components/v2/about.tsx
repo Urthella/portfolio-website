@@ -5,7 +5,7 @@ import { Boxes, Server, type LucideIcon } from "lucide-react"
 import { Reveal } from "@/components/v2/reveal"
 import { SectionHeading } from "@/components/v2/section-heading"
 import { fromLeft } from "@/lib/motion"
-import { aboutHero } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
 const ACCENT: Record<string, { text: string; ring: string; bar: string; tile: string }> = {
   lime: { text: "text-lime-400", ring: "border-lime-400/50", bar: "border-lime-400", tile: "border-lime-400" },
@@ -18,9 +18,11 @@ const accent = (k: string) => ACCENT[k] ?? ACCENT.lime
 const ICONS: Record<string, LucideIcon> = { server: Server, container: Boxes }
 
 export function About() {
+  const c = useContent()
+  const aboutHero = c.aboutHero
   return (
     <section id="about" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading index="01" label="About" title={`${aboutHero.lead} × ${aboutHero.tail}`} />
+      <SectionHeading index="01" label={c.ui.headings.about.label} title={`${aboutHero.lead} × ${aboutHero.tail}`} />
 
       <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
         {/* left: intro + two sides + note */}

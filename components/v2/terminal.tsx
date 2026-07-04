@@ -1,26 +1,31 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 import { Reveal } from "@/components/v2/reveal"
 import { profile } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
 interface Seg {
   type: "cmd" | "out"
   text: string
 }
 
-const SCRIPT: { cmd: string; out: string[] }[] = [
-  { cmd: "whoami", out: ["Halil Utku Demirtaş, backend & devops-leaning fullstack engineer"] },
-  { cmd: "cat stack.txt", out: ["Node.js · NestJS · Spring Boot · PostgreSQL · Redis · Docker · CI/CD"] },
-  { cmd: "ls projects/", out: ["okut-gitsin  reveil  costsight  penpick  mips16  used-car-platform"] },
-  { cmd: "echo $CONTACT", out: [profile.email] },
-]
-
 export function Terminal() {
+  const whoami = useContent().ui.terminal.whoami
   const [segs, setSegs] = useState<Seg[]>([])
   const [typing, setTyping] = useState("")
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
+
+  const SCRIPT = useMemo<{ cmd: string; out: string[] }[]>(
+    () => [
+      { cmd: "whoami", out: [whoami] },
+      { cmd: "cat stack.txt", out: ["Node.js · NestJS · Spring Boot · PostgreSQL · Redis · Docker · CI/CD"] },
+      { cmd: "ls projects/", out: ["okut-gitsin  reveil  costsight  penpick  mips16  used-car-platform"] },
+      { cmd: "echo $CONTACT", out: [profile.email] },
+    ],
+    [whoami],
+  )
 
   useEffect(() => {
     let cancelled = false
@@ -60,7 +65,7 @@ export function Terminal() {
       timers.current.forEach(clearTimeout)
       timers.current = []
     }
-  }, [])
+  }, [SCRIPT])
 
   return (
     <section className="relative mx-auto max-w-3xl px-4 py-12 sm:px-6">

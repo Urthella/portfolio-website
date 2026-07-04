@@ -5,19 +5,17 @@ import { Check, Dumbbell, Music, Salad } from "lucide-react"
 
 import { SectionHeading } from "@/components/v2/section-heading"
 import { container, fadeUp } from "@/lib/motion"
-import { services } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
 const icons = [Music, Dumbbell, Salad]
 
 export function Services() {
+  const c = useContent()
+  const services = c.services
+  const head = c.ui.headings.services
   return (
     <section id="services" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading
-        index="07"
-        label="Coaching"
-        title="I also coach"
-        subtitle="Years of practice, shared: guitar, training, and sustainable nutrition habits."
-      />
+      <SectionHeading index="07" label={head.label} title={head.title} subtitle={head.subtitle} />
 
       <motion.div
         variants={container(0.1)}

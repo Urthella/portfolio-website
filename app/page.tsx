@@ -22,15 +22,9 @@ import { Snap } from "@/components/v2/snap"
 import { Statement } from "@/components/v2/statement"
 import { TechMarquee } from "@/components/v2/tech-marquee"
 import { Terminal } from "@/components/v2/terminal"
+import { LangProvider } from "@/data/i18n"
 
-const NAV = [
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "hobbies", label: "Hobbies" },
-  { id: "contact", label: "Contact" },
-]
+const NAV = ["about", "experience", "skills", "projects", "hobbies", "contact"]
 
 const SPY = ["home", "about", "experience", "skills", "projects", "hobbies", "services", "articles", "contact"]
 
@@ -59,7 +53,7 @@ export default function Page() {
   }, [])
 
   return (
-    <>
+    <LangProvider>
       <AuroraBackground />
       <SceneFluid />
       <ScrollProgress />
@@ -82,6 +76,6 @@ export default function Page() {
         <Snap />
         <Contact />
       </main>
-    </>
+    </LangProvider>
   )
 }

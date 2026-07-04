@@ -8,10 +8,7 @@ import { Reveal } from "@/components/v2/reveal"
 import { SectionHeading } from "@/components/v2/section-heading"
 import { fromLeft, scaleIn } from "@/lib/motion"
 import { profile } from "@/data/content"
-
-const FALLING =
-  "Backend DevOps and Security minded. Node TypeScript Java Spring Kafka Docker CI/CD Redis Postgres. let's build something reliable"
-const FALLING_HL = ["backend", "devops", "security", "let's", "build", "something", "reliable"]
+import { useContent } from "@/data/i18n"
 
 const socials = [
   { href: profile.socials.linkedin, label: "LinkedIn", Icon: Linkedin },
@@ -21,6 +18,9 @@ const socials = [
 ]
 
 export function Contact() {
+  const cc = useContent()
+  const t = cc.ui.contact
+  const h = cc.ui.headings.contact
   const [form, setForm] = useState({ name: "", email: "", message: "" })
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
 
@@ -54,17 +54,12 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading
-        index="09"
-        label="Contact"
-        title="Let's build something"
-        subtitle="Open to internships, freelance and collaboration. Drop a line and I'll get back to you."
-      />
+      <SectionHeading index="09" label={h.label} title={h.title} subtitle={h.subtitle} />
 
       <Reveal className="mb-8">
         <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.015] sm:h-72">
-          <FallingText text={FALLING} highlightWords={FALLING_HL} trigger="scroll" gravity={0.58} fontSize="clamp(1rem, 2.6vw, 1.7rem)" />
-          <span className="pointer-events-none absolute bottom-3 right-4 font-mono text-[11px] text-white/25">drag the words ↔</span>
+          <FallingText text={t.falling} highlightWords={t.fallingHl} trigger="scroll" gravity={0.58} fontSize="clamp(1rem, 2.6vw, 1.7rem)" />
+          <span className="pointer-events-none absolute bottom-3 right-4 font-mono text-[11px] text-white/25">{t.dragWords}</span>
         </div>
       </Reveal>
 
@@ -90,7 +85,7 @@ export function Contact() {
             </div>
 
             <div className="mt-8">
-              <p className="mb-3 font-mono text-xs text-white/40">// find me online</p>
+              <p className="mb-3 font-mono text-xs text-white/40">{t.findMe}</p>
               <div className="flex gap-2">
                 {socials.map(({ href, label, Icon }) => (
                   <a
@@ -114,19 +109,19 @@ export function Contact() {
             <div className="grid gap-4">
               <div>
                 <label htmlFor="name" className="mb-1.5 block text-xs text-white/50">
-                  Name
+                  {t.name}
                 </label>
                 <input id="name" name="name" value={form.name} onChange={onChange} required className={field} placeholder="Jane Doe" />
               </div>
               <div>
                 <label htmlFor="email" className="mb-1.5 block text-xs text-white/50">
-                  Email
+                  {t.email}
                 </label>
                 <input id="email" name="email" type="email" value={form.email} onChange={onChange} required className={field} placeholder="jane@example.com" />
               </div>
               <div>
                 <label htmlFor="message" className="mb-1.5 block text-xs text-white/50">
-                  Message
+                  {t.message}
                 </label>
                 <textarea id="message" name="message" value={form.message} onChange={onChange} required rows={4} className={field} placeholder="Let's build something…" />
               </div>
@@ -138,18 +133,18 @@ export function Contact() {
               >
                 {status === "sending" ? (
                   <>
-                    <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+                    <Loader2 className="h-4 w-4 animate-spin" /> {t.sending}
                   </>
                 ) : (
                   <>
-                    <Send className="h-4 w-4" /> Send message
+                    <Send className="h-4 w-4" /> {t.send}
                   </>
                 )}
               </button>
 
               <p aria-live="polite" className="min-h-[1.25rem] text-center text-sm">
-                {status === "success" && <span className="text-green-400">Message sent, I'll reply soon. Thanks!</span>}
-                {status === "error" && <span className="text-red-400">Something went wrong, email me directly instead.</span>}
+                {status === "success" && <span className="text-green-400">{t.success}</span>}
+                {status === "error" && <span className="text-red-400">{t.error}</span>}
               </p>
             </div>
           </form>
@@ -157,12 +152,12 @@ export function Contact() {
       </div>
 
       <div className="mt-16 flex flex-col items-center gap-4 border-t border-white/10 pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
-        <p className="text-sm text-white/40">© {new Date().getFullYear()} Utku Demirtaş. Built with Next.js &amp; Framer Motion.</p>
+        <p className="text-sm text-white/40">© {new Date().getFullYear()} Utku Demirtaş. {t.built}</p>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-white"
         >
-          Back to top <ArrowUp className="h-3.5 w-3.5" />
+          {t.backToTop} <ArrowUp className="h-3.5 w-3.5" />
         </button>
       </div>
     </section>

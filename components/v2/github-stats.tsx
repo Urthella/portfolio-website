@@ -6,12 +6,9 @@ import { GitPullRequest, Github, Star, Users } from "lucide-react"
 import { Reveal } from "@/components/v2/reveal"
 import { container, fadeUp } from "@/lib/motion"
 import { profile } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
-const STATS = [
-  { icon: Users, value: "10+", label: "Public repos" },
-  { icon: GitPullRequest, value: "8", label: "Merged PRs (2026)" },
-  { icon: Star, value: "6", label: "Languages shipped" },
-]
+const STAT_ICONS = [Users, GitPullRequest, Star]
 
 // Rough share of the languages across the public repos.
 const LANGS = [
@@ -24,12 +21,13 @@ const LANGS = [
 ]
 
 export function GithubStats() {
+  const g = useContent().ui.github
   return (
     <section className="relative mx-auto max-w-5xl px-4 py-12 sm:px-6">
       <Reveal className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
         <div className="mb-6 flex items-center justify-between">
           <h3 className="flex items-center gap-2 font-mono text-sm text-white/70">
-            <Github className="h-4 w-4 text-orange-500" /> // github @Urthella
+            <Github className="h-4 w-4 text-orange-500" /> {g.title}
           </h3>
           <a
             href={profile.socials.github}
@@ -37,7 +35,7 @@ export function GithubStats() {
             rel="noopener noreferrer"
             className="font-mono text-xs text-orange-400 transition-colors hover:text-orange-300"
           >
-            view profile →
+            {g.viewProfile}
           </a>
         </div>
 
@@ -50,19 +48,22 @@ export function GithubStats() {
             viewport={{ once: true, amount: 0.4 }}
             className="grid grid-cols-3 gap-3"
           >
-            {STATS.map((s) => (
+            {g.stats.map((s, i) => {
+              const Icon = STAT_ICONS[i % STAT_ICONS.length]
+              return (
               <motion.div
                 key={s.label}
                 variants={fadeUp}
                 className="rounded-xl border border-white/10 bg-white/[0.02] p-4 text-center"
               >
-                <s.icon className="mx-auto mb-2 h-5 w-5 text-orange-500" />
+                <Icon className="mx-auto mb-2 h-5 w-5 text-orange-500" />
                 <div className="bg-gradient-to-br from-white to-white/50 bg-clip-text text-2xl font-bold text-transparent">
                   {s.value}
                 </div>
                 <div className="mt-1 text-[11px] leading-tight text-white/45">{s.label}</div>
               </motion.div>
-            ))}
+              )
+            })}
           </motion.div>
 
           {/* language bar */}

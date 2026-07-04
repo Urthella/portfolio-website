@@ -6,6 +6,7 @@ import Image from "next/image"
 import { useState } from "react"
 
 import { PHOTO, profile } from "@/data/content"
+import { useContent } from "@/data/i18n"
 
 const socials = [
   { href: profile.socials.github, label: "GitHub", Icon: Github },
@@ -20,6 +21,8 @@ const socials = [
  */
 export function IdCard() {
   const [flipped, setFlipped] = useState(false)
+  const t = useContent().ui.idcard
+  const focus = useContent().profile.focus
 
   const faceBase =
     "absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-500 via-rose-500 to-amber-400 p-[1.5px] shadow-2xl shadow-black/50 [backface-visibility:hidden]"
@@ -43,8 +46,8 @@ export function IdCard() {
         <div className={faceBase}>
           <div className="flex h-full flex-col overflow-hidden rounded-[calc(1.5rem-1.5px)] bg-neutral-950">
             <div className="flex items-center justify-between bg-orange-500/90 px-4 py-2 font-mono text-[11px] font-semibold tracking-wider text-black">
-              <span>// ACCESS</span>
-              <span>ALL AREAS</span>
+              <span>{t.access}</span>
+              <span>{t.allAreas}</span>
             </div>
 
             <div className="relative mx-4 mt-4 aspect-square overflow-hidden rounded-xl border border-white/10">
@@ -62,7 +65,7 @@ export function IdCard() {
             <div className="px-4 pt-4">
               <h3 className="text-xl font-bold leading-tight text-white">{profile.name}</h3>
               <span className="mt-2 inline-block rounded bg-rose-500 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wide text-white">
-                {profile.focus}
+                {focus}
               </span>
             </div>
 
@@ -85,7 +88,7 @@ export function IdCard() {
         {/* BACK */}
         <div className={faceBase} style={{ transform: "rotateY(180deg)" }}>
           <div className="flex h-full flex-col rounded-[calc(1.5rem-1.5px)] bg-neutral-950 p-5">
-            <p className="font-mono text-xs tracking-[0.25em] text-orange-500">// CONTACT</p>
+            <p className="font-mono text-xs tracking-[0.25em] text-orange-500">{t.contact}</p>
 
             <div className="mt-5 space-y-3">
               <a
@@ -113,7 +116,7 @@ export function IdCard() {
             </div>
 
             <div className="mt-6">
-              <p className="mb-2 font-mono text-[10px] text-white/35">// find me online</p>
+              <p className="mb-2 font-mono text-[10px] text-white/35">{t.findOnline}</p>
               <div className="flex gap-2">
                 {socials.map(({ href, label, Icon }) => (
                   <a
@@ -132,13 +135,13 @@ export function IdCard() {
             </div>
 
             <p className="mt-auto flex items-center gap-1.5 font-mono text-[10px] text-white/30">
-              <RefreshCw className="h-3 w-3" /> tap to flip back
+              <RefreshCw className="h-3 w-3" /> {t.flipBack}
             </p>
           </div>
         </div>
       </motion.button>
 
-      <p className="mt-4 text-center font-mono text-[11px] text-white/35">click the card to flip</p>
+      <p className="mt-4 text-center font-mono text-[11px] text-white/35">{t.clickFlip}</p>
     </div>
   )
 }

@@ -5,18 +5,18 @@ import { RotateCcw } from "lucide-react"
 import { useState } from "react"
 
 import { Reveal } from "@/components/v2/reveal"
-
-const LINE = "Your next design is just a snap away."
+import { useContent } from "@/data/i18n"
 
 export function Snap() {
   const [snapped, setSnapped] = useState(false)
   const reduce = useReducedMotion()
-  const chars = LINE.split("")
+  const s = useContent().ui.snap
+  const chars = s.line.split("")
 
   return (
     <section className="relative mx-auto max-w-3xl px-4 py-28 text-center sm:px-6">
       <Reveal>
-        <p className="mb-6 font-mono text-xs tracking-[0.25em] text-orange-500">// perfectly balanced</p>
+        <p className="mb-6 font-mono text-xs tracking-[0.25em] text-orange-500">{s.kicker}</p>
 
         <p className="text-3xl font-bold leading-tight text-white sm:text-4xl">
           {chars.map((c, i) => {
@@ -53,11 +53,11 @@ export function Snap() {
         >
           {snapped ? (
             <>
-              <RotateCcw className="h-4 w-4" /> restore the universe
+              <RotateCcw className="h-4 w-4" /> {s.restore}
             </>
           ) : (
             <>
-              <span className="text-lg leading-none">🫰</span> snap your fingers
+              <span className="text-lg leading-none">🫰</span> {s.snap}
             </>
           )}
         </button>
