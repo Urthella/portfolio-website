@@ -83,11 +83,11 @@ export function About() {
         {/* right: stat tiles */}
         <Reveal delay={0.1}>
           <div className="grid grid-cols-2 gap-4">
-            {aboutHero.stats.map((st) => {
+            {aboutHero.stats.map((st, i) => {
               const a = accent(st.accent)
               return (
                 <div
-                  key={st.label}
+                  key={i}
                   className={`flex aspect-square flex-col justify-between rounded-xl border-b-4 border-l-4 ${a.tile} bg-[#efe9dd] p-5 transition-transform hover:-translate-y-1`}
                 >
                   <span className="text-5xl font-black tracking-tight text-neutral-900">

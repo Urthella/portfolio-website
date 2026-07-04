@@ -14,7 +14,7 @@ export function Articles() {
   const head = c.ui.headings.articles
   return (
     <section id="articles" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading index="08" label={head.label} title={head.title} subtitle={head.subtitle} />
+      <SectionHeading index="07" label={head.label} title={head.title} subtitle={head.subtitle} />
 
       <motion.div
         variants={container(0.08)}

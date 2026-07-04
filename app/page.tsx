@@ -17,18 +17,15 @@ import { Nav } from "@/components/v2/nav"
 import { Projects } from "@/components/v2/projects"
 import { SceneFluid } from "@/components/v2/scene-fluid"
 import { ScrollProgress } from "@/components/v2/scroll-progress"
-import { Services } from "@/components/v2/services"
 import { Showcase } from "@/components/v2/showcase"
 import { Skills } from "@/components/v2/skills"
-import { Snap } from "@/components/v2/snap"
-import { Statement } from "@/components/v2/statement"
 import { TechMarquee } from "@/components/v2/tech-marquee"
 import { Terminal } from "@/components/v2/terminal"
 import { LangProvider } from "@/data/i18n"
 
 const NAV = ["about", "experience", "skills", "projects", "hobbies", "contact"]
 
-const SPY = ["home", "about", "experience", "skills", "projects", "hobbies", "services", "articles", "contact"]
+const SPY = ["home", "about", "experience", "skills", "projects", "hobbies", "articles", "contact"]
 
 export default function Page() {
   const [active, setActive] = useState("home")
@@ -73,11 +70,8 @@ export default function Page() {
         <GithubStats />
         <GithubHeatmap />
         <Showcase />
-        <Statement />
         <Hobbies />
-        <Services />
         <Articles />
-        <Snap />
         <Contact />
       </main>
     </LangProvider>

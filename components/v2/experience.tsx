@@ -48,8 +48,8 @@ export function Experience() {
                     viewport={{ once: true, amount: 0.3 }}
                     className="mt-4 grid gap-2 text-sm text-white/55"
                   >
-                    {e.points.map((p) => (
-                      <motion.li key={p} variants={fadeUp} className="flex items-start gap-2">
+                    {e.points.map((p, pi) => (
+                      <motion.li key={pi} variants={fadeUp} className="flex items-start gap-2">
                         <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-white/30" />
                         <span>{p}</span>
                       </motion.li>

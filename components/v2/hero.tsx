@@ -44,8 +44,8 @@ export function Hero() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-6 flex flex-wrap gap-2">
-            {c.profile.chips.map((chip) => (
-              <span key={chip} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-xs text-white/60">
+            {c.profile.chips.map((chip, ci) => (
+              <span key={ci} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-xs text-white/60">
                 {chip}
               </span>
             ))}
