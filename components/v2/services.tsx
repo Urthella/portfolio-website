@@ -16,7 +16,7 @@ export function Services() {
         index="07"
         label="Coaching"
         title="I also coach"
-        subtitle="Years of practice, shared — guitar, training, and sustainable nutrition habits."
+        subtitle="Years of practice, shared: guitar, training, and sustainable nutrition habits."
       />
 
       <motion.div

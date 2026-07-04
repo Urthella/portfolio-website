@@ -3,9 +3,9 @@
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowDown, ArrowRight, BookOpen, FileDown, Github, Instagram, Linkedin } from "lucide-react"
 
-import ProfileCard from "@/components/ui/profile-card"
+import { IdCard } from "@/components/v2/id-card"
 import { RotatingText } from "@/components/v2/rotating-text"
-import { PHOTO, profile } from "@/data/content"
+import { profile } from "@/data/content"
 import { container, fadeUp } from "@/lib/motion"
 
 const socialIcons = [
@@ -86,28 +86,14 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* photo — holographic tilt ProfileCard */}
+        {/* photo: click-to-flip ID card */}
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-          className="relative mx-auto w-full max-w-[20rem]"
+          className="group"
         >
-          <ProfileCard
-            name={profile.name}
-            title={profile.focus}
-            handle={profile.handle}
-            status={profile.available ? "Available for work" : "Online"}
-            contactText="Contact me"
-            avatarUrl={PHOTO}
-            miniAvatarUrl={PHOTO}
-            showUserInfo
-            enableTilt
-            innerGradient="linear-gradient(145deg, rgba(249,115,22,0.35) 0%, rgba(244,63,94,0.26) 100%)"
-            behindGlowColor="rgba(249, 130, 60, 0.55)"
-            behindGlowSize="46%"
-            onContactClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-          />
+          <IdCard />
         </motion.div>
       </div>
 

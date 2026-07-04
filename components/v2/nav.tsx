@@ -48,7 +48,7 @@ export function Nav({ items, activeSection }: { items: NavItem[]; activeSection:
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-orange-600 text-white shadow-[0_0_20px_rgba(234,88,12,0.5)] transition-transform group-hover:scale-105">
             UD
           </span>
-          <span className="hidden text-white/70 transition-colors group-hover:text-white sm:inline">~/urthella</span>
+          <span className="hidden text-white/70 transition-colors group-hover:text-white sm:inline">~/utkudem1rtas</span>
         </button>
 
         <nav className="hidden items-center gap-1 md:flex">

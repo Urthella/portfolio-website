@@ -11,14 +11,14 @@ const CARDS = [
     icon: Rocket,
     title: "Okut Gitsin",
     tag: "Flagship SaaS",
-    desc: "Second-hand book marketplace — real-time listings, secure payments, live at okutgitsin.com.",
+    desc: "Live-stream vehicle auction platform: real-time bidding, secure payments, live at okutgitsin.com.",
     grad: "from-orange-500/25 via-orange-500/5 to-transparent",
   },
   {
     icon: Boxes,
     title: "Penpick",
     tag: "Product",
-    desc: "AI-assisted content workspace shipped end-to-end — penpick.vercel.app.",
+    desc: "Marketplace for pen collectors, shipped end-to-end at penpick.vercel.app.",
     grad: "from-rose-500/25 via-rose-500/5 to-transparent",
   },
   {
@@ -46,7 +46,7 @@ export function Featured() {
             index="05"
             label="Highlights"
             title="Things I've shipped"
-            subtitle="A rotating look at the work I'm proudest of — from marketplaces to the CI/CD that ships them."
+            subtitle="A rotating look at the work I'm proudest of, from marketplaces to the CI/CD that ships them."
           />
           <Reveal delay={0.1}>
             <a

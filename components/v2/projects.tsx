@@ -1,11 +1,20 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { ArrowUpRight, Github, Star } from "lucide-react"
+import { ArrowUpRight, Github, Lock, Star, Zap } from "lucide-react"
 import { useState } from "react"
 
 import { SectionHeading } from "@/components/v2/section-heading"
 import { categories, projects, type Category } from "@/data/content"
+
+const ACCENT: Record<string, { bar: string; border: string; text: string }> = {
+  "Full-stack": { bar: "bg-lime-400", border: "border-lime-400/45", text: "text-lime-400" },
+  "AI/ML": { bar: "bg-pink-500", border: "border-pink-500/45", text: "text-pink-400" },
+  Systems: { bar: "bg-cyan-400", border: "border-cyan-400/45", text: "text-cyan-400" },
+  Security: { bar: "bg-amber-400", border: "border-amber-400/45", text: "text-amber-400" },
+  Web: { bar: "bg-orange-500", border: "border-orange-500/45", text: "text-orange-400" },
+}
+const accent = (c: string) => ACCENT[c] ?? ACCENT.Web
 
 export function Projects() {
   const [filter, setFilter] = useState<"All" | Category>("All")
@@ -17,7 +26,7 @@ export function Projects() {
         index="05"
         label="Projects"
         title="Selected work"
-        subtitle="Auction engines, ML detectors, CPU simulators and security tooling — a spread across the stack."
+        subtitle="Auction engines, ML detectors, CPU simulators and security tooling. A spread across the stack, plus repos I collaborate on."
       />
 
       <div className="mb-8 flex flex-wrap gap-2">
@@ -38,73 +47,90 @@ export function Projects() {
 
       <motion.div layout className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {shown.map((p) => (
-            <motion.a
-              key={p.name}
-              layout
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              whileHover={{ y: -5 }}
-              onMouseMove={(e) => {
-                const r = e.currentTarget.getBoundingClientRect()
-                e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`)
-                e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`)
-              }}
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-white/[0.02] p-6 transition-colors ${
-                p.featured ? "border-orange-500/25 hover:border-orange-500/50" : "border-white/10 hover:border-white/25"
-              }`}
-            >
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-orange-500/[0.07] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-              <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
-                style={{ background: "radial-gradient(300px circle at var(--mx) var(--my), rgba(249,115,22,0.24), transparent 65%)" }}
-              />
-
-              <div className="relative flex items-center justify-between">
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-white/50">
-                    {p.category}
+          {shown.map((p, i) => {
+            const a = accent(p.category)
+            return (
+              <motion.div
+                key={p.name}
+                layout
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.3 }}
+                whileHover={{ y: -4 }}
+                className={`group flex flex-col overflow-hidden rounded-2xl border-2 ${a.border} bg-neutral-950/70 backdrop-blur-sm transition-colors hover:bg-neutral-950`}
+              >
+                {/* top bar */}
+                <div className={`flex items-center justify-between ${a.bar} px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-wide text-black`}>
+                  <span className="truncate">
+                    {String(i + 1).padStart(2, "0")} · {p.category}
+                    {p.live ? " · LIVE" : ""}
                   </span>
-                  {p.featured && (
-                    <span className="inline-flex items-center gap-1 rounded-full border border-orange-500/25 bg-orange-500/10 px-2 py-1 font-mono text-[11px] text-orange-300">
-                      <Star className="h-3 w-3" /> featured
-                    </span>
-                  )}
+                  <span className="flex shrink-0 items-center gap-1.5">
+                    {p.featured && (
+                      <span className="inline-flex items-center gap-1">
+                        <Star className="h-3 w-3 fill-black" /> FEATURED
+                      </span>
+                    )}
+                    {p.collab && (
+                      <span className="inline-flex items-center gap-1">
+                        <Zap className="h-3 w-3 fill-black" /> COLLAB
+                      </span>
+                    )}
+                  </span>
                 </div>
-                <span className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/40 transition-all group-hover:border-white/25 group-hover:text-white">
-                  {p.privateRepo ? <ArrowUpRight className="h-4 w-4" /> : <Github className="h-4 w-4" />}
-                </span>
-              </div>
 
-              <h3 className="relative mt-4 flex items-center gap-2 text-lg font-semibold text-white">
-                {p.name}
-                {p.wip && (
-                  <span className="rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase text-amber-300">
-                    WIP
-                  </span>
-                )}
-              </h3>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="flex items-center gap-2 text-lg font-bold text-white">
+                    {p.name}
+                    {p.wip && (
+                      <span className="rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase text-amber-300">WIP</span>
+                    )}
+                  </h3>
+                  {p.collab && (
+                    <p className="mt-1 font-mono text-[11px] text-white/35">collaboration · thefcan</p>
+                  )}
 
-              <p className="relative mt-2 flex-1 text-sm leading-relaxed text-white/55">{p.blurb}</p>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">{p.blurb}</p>
 
-              {p.live && (
-                <p className="relative mt-3 font-mono text-xs text-orange-500">{p.live.replace("https://", "")} ↗</p>
-              )}
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {p.stack.map((s) => (
+                      <span key={s} className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-white/50">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
 
-              <div className="relative mt-4 flex flex-wrap gap-1.5">
-                {p.stack.map((s) => (
-                  <span key={s} className="rounded-md bg-white/[0.04] px-2 py-0.5 font-mono text-[11px] text-white/45">
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </motion.a>
-          ))}
+                  <div className="mt-5 flex flex-wrap items-center gap-2">
+                    {p.live && (
+                      <a
+                        href={p.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1.5 rounded-lg ${a.bar} px-3 py-1.5 font-mono text-xs font-bold text-black transition-transform hover:-translate-y-0.5`}
+                      >
+                        <ArrowUpRight className="h-3.5 w-3.5" /> LIVE
+                      </a>
+                    )}
+                    {p.privateRepo ? (
+                      <span className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-white/20 px-3 py-1.5 font-mono text-xs text-white/40">
+                        <Lock className="h-3.5 w-3.5" /> PRIVATE REPO
+                      </span>
+                    ) : (
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-1.5 font-mono text-xs text-white/75 transition-colors hover:border-white/35 hover:text-white"
+                      >
+                        <Github className="h-3.5 w-3.5" /> CODE
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            )
+          })}
         </AnimatePresence>
       </motion.div>
     </section>

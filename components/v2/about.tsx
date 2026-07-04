@@ -1,64 +1,74 @@
 "use client"
 
-import { Languages, Sparkles } from "lucide-react"
+import { Boxes, Server, type LucideIcon } from "lucide-react"
 
-import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { Reveal } from "@/components/v2/reveal"
 import { SectionHeading } from "@/components/v2/section-heading"
 import { fromLeft } from "@/lib/motion"
-import { about } from "@/data/content"
+import { aboutHero } from "@/data/content"
+
+const ACCENT: Record<string, { text: string; ring: string; bar: string; tile: string }> = {
+  lime: { text: "text-lime-400", ring: "border-lime-400/50", bar: "border-lime-400", tile: "border-lime-400" },
+  pink: { text: "text-pink-400", ring: "border-pink-500/50", bar: "border-pink-500", tile: "border-pink-500" },
+  cyan: { text: "text-cyan-400", ring: "border-cyan-400/50", bar: "border-cyan-400", tile: "border-cyan-400" },
+  amber: { text: "text-amber-400", ring: "border-amber-400/50", bar: "border-amber-400", tile: "border-amber-400" },
+}
+const accent = (k: string) => ACCENT[k] ?? ACCENT.lime
+
+const ICONS: Record<string, LucideIcon> = { server: Server, container: Boxes }
 
 export function About() {
   return (
     <section id="about" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading
-        index="01"
-        label="About"
-        title="About me"
-        subtitle="Backend &amp; DevOps-leaning fullstack engineer — with a security mindset."
-      />
+      <SectionHeading index="01" label="About" title={`${aboutHero.lead} × ${aboutHero.tail}`} />
 
-      <div className="grid gap-6 lg:grid-cols-5">
-        <Reveal variants={fromLeft} className="lg:col-span-3">
-          <SpotlightCard className="h-full">
-            <div className="space-y-4 p-6 leading-relaxed text-white/60 sm:p-8">
-              {about.bio.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </SpotlightCard>
+      <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+        {/* left: intro + two sides + note */}
+        <Reveal variants={fromLeft}>
+          <div className="space-y-4 text-lg leading-relaxed text-white/60">
+            {aboutHero.intro.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+
+          <div className="mt-7 grid gap-4 sm:grid-cols-2">
+            {aboutHero.sides.map((s) => {
+              const a = accent(s.accent)
+              const Icon = ICONS[s.icon] ?? Server
+              return (
+                <div key={s.key} className={`rounded-xl border-2 ${a.ring} bg-white/[0.02] p-5`}>
+                  <div className={`mb-3 flex items-center gap-2 ${a.text}`}>
+                    <Icon className="h-5 w-5" />
+                    <span className="font-mono text-sm font-bold tracking-wide">{s.title}</span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-white/55">{s.text}</p>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="mt-4 rounded-xl border border-l-4 border-white/10 border-l-lime-400 bg-white/[0.02] px-4 py-3 font-mono text-xs leading-relaxed text-white/55">
+            {aboutHero.note}
+          </div>
         </Reveal>
 
-        <div className="grid gap-6 lg:col-span-2">
-          <Reveal delay={0.05}>
-            <SpotlightCard className="h-full !border-orange-500/20 !bg-orange-500/[0.06]" spotlightColor="rgba(249, 115, 22, 0.28)">
-              <div className="p-6">
-                <h3 className="mb-3 flex items-center gap-2 font-mono text-sm text-orange-300">
-                  <Sparkles className="h-4 w-4" /> // current-focus
-                </h3>
-                <p className="text-sm leading-relaxed text-white/60">{about.focus}</p>
-              </div>
-            </SpotlightCard>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <SpotlightCard className="h-full">
-              <div className="p-6">
-                <h3 className="mb-4 flex items-center gap-2 font-mono text-sm text-white/70">
-                  <Languages className="h-4 w-4 text-orange-500" /> // languages
-                </h3>
-                <ul className="space-y-2.5 text-sm">
-                  {about.languages.map((l) => (
-                    <li key={l.name} className="flex items-center justify-between">
-                      <span className="text-white/70">{l.name}</span>
-                      <span className="font-mono text-xs text-white/40">{l.level}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </SpotlightCard>
-          </Reveal>
-        </div>
+        {/* right: stat tiles */}
+        <Reveal delay={0.1}>
+          <div className="grid grid-cols-2 gap-4">
+            {aboutHero.stats.map((st) => {
+              const a = accent(st.accent)
+              return (
+                <div
+                  key={st.label}
+                  className={`flex aspect-square flex-col justify-between rounded-xl border-b-4 border-l-4 ${a.tile} bg-[#efe9dd] p-5 transition-transform hover:-translate-y-1`}
+                >
+                  <span className="text-5xl font-black tracking-tight text-neutral-900">{st.value}</span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-600">{st.label}</span>
+                </div>
+              )
+            })}
+          </div>
+        </Reveal>
       </div>
     </section>
   )

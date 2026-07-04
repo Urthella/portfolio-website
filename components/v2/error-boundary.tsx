@@ -9,7 +9,7 @@ interface Props {
 
 /**
  * Catches render/commit errors (including rejected lazy imports surfaced through
- * Suspense) so a non-critical widget — e.g. a WebGL/Spline background — can fail
+ * Suspense) so a non-critical widget (e.g. a WebGL background) can fail
  * without taking down the whole page.
  */
 export class ErrorBoundary extends Component<Props, { hasError: boolean }> {
@@ -20,7 +20,7 @@ export class ErrorBoundary extends Component<Props, { hasError: boolean }> {
   }
 
   componentDidCatch() {
-    // intentionally swallowed — the guarded widget is decorative
+    // intentionally swallowed; the guarded widget is decorative
   }
 
   render() {

@@ -1,6 +1,6 @@
 import type { Variants } from "framer-motion"
 
-// Shared easing — a soft "out-expo"-ish curve for fluid, natural motion.
+// Shared easing: a soft "out-expo"-ish curve for fluid, natural motion.
 export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export const fadeUp: Variants = {
@@ -23,7 +23,7 @@ export const fromLeft: Variants = {
   show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: EASE } },
 }
 
-// Staggered parent — children animate in sequence.
+// Staggered parent: children animate in sequence.
 export function container(stagger = 0.09, delayChildren = 0): Variants {
   return {
     hidden: {},

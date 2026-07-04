@@ -11,7 +11,7 @@ interface Seg {
 }
 
 const SCRIPT: { cmd: string; out: string[] }[] = [
-  { cmd: "whoami", out: ["Halil Utku Demirtaş — backend & devops-leaning fullstack engineer"] },
+  { cmd: "whoami", out: ["Halil Utku Demirtaş, backend & devops-leaning fullstack engineer"] },
   { cmd: "cat stack.txt", out: ["Node.js · NestJS · Spring Boot · PostgreSQL · Redis · Docker · CI/CD"] },
   { cmd: "ls projects/", out: ["okut-gitsin  reveil  costsight  penpick  mips16  used-car-platform"] },
   { cmd: "echo $CONTACT", out: [profile.email] },
@@ -70,7 +70,7 @@ export function Terminal() {
             <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
             <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
             <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
-            <span className="ml-2 font-mono text-xs text-white/40">utku@urthella — zsh</span>
+            <span className="ml-2 font-mono text-xs text-white/40">utku@utkudem1rtas : zsh</span>
           </div>
           <div className="min-h-[13rem] p-5 font-mono text-sm leading-relaxed">
             {segs.map((s, i) =>

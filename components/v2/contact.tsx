@@ -10,7 +10,7 @@ import { fromLeft, scaleIn } from "@/lib/motion"
 import { profile } from "@/data/content"
 
 const FALLING =
-  "Backend DevOps and Security minded — Node TypeScript Java Spring Kafka Docker CI/CD Redis Postgres — let's build something reliable"
+  "Backend DevOps and Security minded. Node TypeScript Java Spring Kafka Docker CI/CD Redis Postgres. let's build something reliable"
 const FALLING_HL = ["backend", "devops", "security", "let's", "build", "something", "reliable"]
 
 const socials = [
@@ -58,7 +58,7 @@ export function Contact() {
         index="09"
         label="Contact"
         title="Let's build something"
-        subtitle="Open to internships, freelance and collaboration — drop a line and I'll get back to you."
+        subtitle="Open to internships, freelance and collaboration. Drop a line and I'll get back to you."
       />
 
       <Reveal className="mb-8">
@@ -148,8 +148,8 @@ export function Contact() {
               </button>
 
               <p aria-live="polite" className="min-h-[1.25rem] text-center text-sm">
-                {status === "success" && <span className="text-green-400">Message sent — I'll reply soon. Thanks!</span>}
-                {status === "error" && <span className="text-red-400">Something went wrong — email me directly instead.</span>}
+                {status === "success" && <span className="text-green-400">Message sent, I'll reply soon. Thanks!</span>}
+                {status === "error" && <span className="text-red-400">Something went wrong, email me directly instead.</span>}
               </p>
             </div>
           </form>
@@ -157,7 +157,7 @@ export function Contact() {
       </div>
 
       <div className="mt-16 flex flex-col items-center gap-4 border-t border-white/10 pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
-        <p className="text-sm text-white/40">© {new Date().getFullYear()} Utku Demirtaş — built with Next.js &amp; Framer Motion.</p>
+        <p className="text-sm text-white/40">© {new Date().getFullYear()} Utku Demirtaş. Built with Next.js &amp; Framer Motion.</p>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-white"
