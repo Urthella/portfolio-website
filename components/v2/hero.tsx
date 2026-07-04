@@ -5,6 +5,7 @@ import { ArrowDown, ArrowRight, BookOpen, FileDown, Github, Instagram, Linkedin 
 import Image from "next/image"
 
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card"
+import { RotatingText } from "@/components/v2/rotating-text"
 import { PHOTO, profile } from "@/data/content"
 import { container, fadeUp } from "@/lib/motion"
 
@@ -33,7 +34,11 @@ export function Hero() {
           </motion.h1>
 
           <motion.p variants={fadeUp} className="mt-4 font-mono text-lg text-white/70 sm:text-xl">
-            <span className="text-blue-400">&gt;</span> {profile.role}
+            <span className="text-blue-400">&gt;</span>{" "}
+            <RotatingText
+              items={["Fullstack Developer", "Backend & DevOps", "Real-time systems", "Secure APIs"]}
+              className="text-white"
+            />
           </motion.p>
 
           <motion.p variants={fadeUp} className="mt-6 max-w-xl text-pretty leading-relaxed text-white/55">

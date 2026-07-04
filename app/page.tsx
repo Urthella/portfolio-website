@@ -9,19 +9,25 @@ import { DottedBg } from "@/components/v2/dotted-bg"
 import { Experience } from "@/components/v2/experience"
 import { Footer } from "@/components/v2/footer"
 import { Hero } from "@/components/v2/hero"
+import { Hobbies } from "@/components/v2/hobbies"
 import { Nav } from "@/components/v2/nav"
 import { Projects } from "@/components/v2/projects"
+import { Scene3D } from "@/components/v2/scene-3d"
+import { ScrollProgress } from "@/components/v2/scroll-progress"
+import { Services } from "@/components/v2/services"
 import { Skills } from "@/components/v2/skills"
 import { TechMarquee } from "@/components/v2/tech-marquee"
 
 const NAV = [
-  { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
+  { id: "hobbies", label: "Hobbies" },
   { id: "contact", label: "Contact" },
 ]
+
+const SPY = ["home", "about", "experience", "skills", "projects", "hobbies", "services", "contact"]
 
 export default function Page() {
   const [active, setActive] = useState("home")
@@ -32,7 +38,7 @@ export default function Page() {
       if (ticking) return
       ticking = true
       requestAnimationFrame(() => {
-        const current = NAV.map((n) => n.id).find((id) => {
+        const current = SPY.find((id) => {
           const el = document.getElementById(id)
           if (!el) return false
           const r = el.getBoundingClientRect()
@@ -51,6 +57,8 @@ export default function Page() {
     <>
       <AuroraBackground />
       <DottedBg />
+      <Scene3D />
+      <ScrollProgress />
       <Nav items={NAV} activeSection={active} />
       <main className="relative z-10">
         <Hero />
@@ -59,6 +67,8 @@ export default function Page() {
         <Experience />
         <Skills />
         <Projects />
+        <Hobbies />
+        <Services />
         <Contact />
       </main>
       <Footer />

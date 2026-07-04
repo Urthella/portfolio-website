@@ -20,7 +20,7 @@ export const profile = {
   socials: {
     github: "https://github.com/Urthella",
     linkedin: "https://www.linkedin.com/in/utkudemirtas/",
-    instagram: "https://www.instagram.com/urthella_/",
+    instagram: "https://www.instagram.com/utkudem1rtas/",
     medium: "https://medium.com/@utkudemirtas0",
   },
 }
@@ -170,7 +170,8 @@ export const projects: Project[] = [
     blurb: "A marketplace for pen collectors — Next.js 16 + Prisma on Neon Postgres.",
     stack: ["Next.js", "Prisma", "Neon Postgres", "Tailwind v4"],
     category: "Full-stack",
-    href: "https://instagram.com/pen.pick",
+    href: "https://penpick.vercel.app",
+    live: "https://penpick.vercel.app",
     privateRepo: true,
   },
   {
@@ -223,3 +224,44 @@ export const projects: Project[] = [
 ]
 
 export const categories: ("All" | Category)[] = ["All", "Full-stack", "AI/ML", "Systems", "Security", "Web"]
+
+export const hobbies: { icon: string; title: string; text: string }[] = [
+  {
+    icon: "music",
+    title: "Music & Guitar",
+    text: "8+ years across electric, classical and acoustic guitar, plus bass and drums — from classical blues to modern metal. The discipline of music feeds straight back into how I build.",
+  },
+  {
+    icon: "dumbbell",
+    title: "Fitness & Sports",
+    text: "Calisthenics athlete and a former provincial basketball champion. Training keeps my focus sharp through long build sessions.",
+  },
+  {
+    icon: "book",
+    title: "Reading & RPGs",
+    text: "Fantasy and sci-fi, philosophy, and immersive RPGs — fuel for creativity, perspective and problem-solving.",
+  },
+  {
+    icon: "pen",
+    title: "Collecting & Trading",
+    text: "I discover, collect and trade high-quality pens, and run a small community around them (@pen.pick / penpick).",
+  },
+]
+
+export const services: { title: string; text: string; includes: string[] }[] = [
+  {
+    title: "Guitar Lessons",
+    text: "Personalized instruction from beginner to advanced — technique, musicality and long-term progress.",
+    includes: ["Technique & theory fundamentals", "Style-oriented practice", "Structured progression"],
+  },
+  {
+    title: "Fitness Coaching",
+    text: "Goal-oriented coaching focused on movement quality, consistency and sustainable training habits.",
+    includes: ["Training structure & progression", "Exercise selection & technique", "Lifestyle-aware plans"],
+  },
+  {
+    title: "Nutrition Guidance",
+    text: "Non-clinical guidance for building sustainable eating habits and lifestyle awareness.",
+    includes: ["Eating-habit analysis", "Portion & timing principles", "Nutrition education"],
+  },
+]
