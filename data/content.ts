@@ -248,6 +248,35 @@ export const hobbies: { icon: string; title: string; text: string }[] = [
   },
 ]
 
+export const MEDIUM = "https://medium.com/@utkudemirtas0"
+
+export const articles: { title: string; blurb: string; tag: string; href: string }[] = [
+  {
+    title: "The Part Where the Fun Begins: Social Engineering",
+    blurb: "How social-engineering attacks actually work — and how to defend against them.",
+    tag: "Security",
+    href: MEDIUM,
+  },
+  {
+    title: "SQL Injection: The Vulnerability That Never Goes Away",
+    blurb: "A deep dive into SQLi — attack methods and the protection techniques that hold up.",
+    tag: "Security",
+    href: MEDIUM,
+  },
+  {
+    title: "Understanding the OSI Model",
+    blurb: "The layers and mechanics of the OSI model that sit under network communication.",
+    tag: "Networking",
+    href: MEDIUM,
+  },
+  {
+    title: "VPN: The Secure Gateway of the Digital World",
+    blurb: "How VPNs work, their real security advantages, and how to pick the right one.",
+    tag: "Security",
+    href: MEDIUM,
+  },
+]
+
 export const services: { title: string; text: string; includes: string[] }[] = [
   {
     title: "Guitar Lessons",

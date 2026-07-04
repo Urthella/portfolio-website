@@ -50,7 +50,7 @@ export function Contact() {
   return (
     <section id="contact" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <SectionHeading
-        index="07"
+        index="08"
         label="Contact"
         title="Let's build something"
         subtitle="Open to internships, freelance and collaboration — drop a line and I'll get back to you."
