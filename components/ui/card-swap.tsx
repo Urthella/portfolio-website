@@ -112,6 +112,8 @@ export function CardSwap({
 
     const swap = () => {
       if (order.current.length < 2) return
+      // Re-entrancy guard: never start a new swap while one is animating.
+      if (tlRef.current && tlRef.current.isActive()) return
       const [front, ...rest] = order.current
       const elFront = refs[front].current
       if (!elFront) return
@@ -140,18 +142,21 @@ export function CardSwap({
     }
     swapRef.current = swap
 
+    // Always clear before creating so intervals can never stack up.
+    const startAuto = () => {
+      if (intervalRef.current) window.clearInterval(intervalRef.current)
+      intervalRef.current = window.setInterval(swap, delay)
+    }
+
     swap()
-    intervalRef.current = window.setInterval(swap, delay)
+    startAuto()
 
     const node = container.current
     const pause = () => {
-      tlRef.current?.pause()
       if (intervalRef.current) window.clearInterval(intervalRef.current)
+      intervalRef.current = undefined
     }
-    const resume = () => {
-      tlRef.current?.play()
-      intervalRef.current = window.setInterval(swap, delay)
-    }
+    const resume = () => startAuto()
     if (pauseOnHover && node) {
       node.addEventListener("mouseenter", pause)
       node.addEventListener("mouseleave", resume)
@@ -179,11 +184,11 @@ export function CardSwap({
       : child,
   )
 
+  // Click advances one card. swap() self-guards against mid-animation calls,
+  // and hovering has already paused the auto-interval (pauseOnHover), so we
+  // never stack intervals or overlap timelines here.
   const handleClick = () => {
-    if (tlRef.current?.isActive()) return
     swapRef.current()
-    if (intervalRef.current) window.clearInterval(intervalRef.current)
-    intervalRef.current = window.setInterval(() => swapRef.current(), delay)
   }
 
   return (
