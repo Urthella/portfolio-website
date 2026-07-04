@@ -47,6 +47,11 @@ export function Projects() {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
               whileHover={{ y: -5 }}
+              onMouseMove={(e) => {
+                const r = e.currentTarget.getBoundingClientRect()
+                e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`)
+                e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`)
+              }}
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
@@ -55,6 +60,10 @@ export function Projects() {
               }`}
             >
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-orange-500/[0.07] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
+                style={{ background: "radial-gradient(320px circle at var(--mx) var(--my), rgba(249,115,22,0.16), transparent 60%)" }}
+              />
 
               <div className="relative flex items-center justify-between">
                 <div className="flex flex-wrap items-center gap-1.5">
