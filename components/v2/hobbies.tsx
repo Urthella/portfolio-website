@@ -33,7 +33,7 @@ export function Hobbies() {
           const Icon = iconMap[h.icon] ?? Music
           return (
             <motion.div
-              key={h.title}
+              key={h.icon}
               variants={scaleIn}
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-orange-500/30"
             >

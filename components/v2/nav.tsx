@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { Languages, Menu, X } from "lucide-react"
-import Link from "next/link"
 import { useEffect, useState } from "react"
 
 import { useContent, useLang } from "@/data/i18n"
@@ -87,12 +86,6 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
 
         <div className="flex items-center gap-2">
           <LangToggle />
-          <Link
-            href="/blog"
-            className="hidden rounded-lg border border-white/15 px-3 py-1.5 text-sm text-white/80 transition-colors hover:border-white/30 hover:text-white sm:inline-block"
-          >
-            {navLabels.blog}
-          </Link>
           <button
             onClick={() => setOpen((v) => !v)}
             className="grid h-9 w-9 place-items-center rounded-lg border border-white/15 text-white md:hidden"
@@ -124,9 +117,6 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
                 {label(id)}
               </button>
             ))}
-            <Link href="/blog" className="rounded-lg px-3 py-2.5 text-left text-sm text-white/60" onClick={() => setOpen(false)}>
-              {navLabels.blog}
-            </Link>
           </motion.nav>
         )}
       </AnimatePresence>

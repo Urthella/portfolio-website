@@ -40,7 +40,7 @@ export function Featured() {
               const { icon: Icon, grad } = META[i % META.length]
               return (
                 <Card
-                  key={card.title}
+                  key={i}
                   className="border border-white/12 bg-neutral-950/90 p-6 shadow-2xl shadow-black/50 backdrop-blur-xl"
                 >
                   <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${grad}`} />

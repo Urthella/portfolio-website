@@ -28,7 +28,7 @@ export function Services() {
           const Icon = icons[i % icons.length]
           return (
             <motion.div
-              key={s.title}
+              key={i}
               variants={fadeUp}
               className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-orange-500/30"
             >

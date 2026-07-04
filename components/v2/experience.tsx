@@ -25,7 +25,7 @@ export function Experience() {
           {experiences.map((e, i) => {
             const Icon = kindIcon[e.kind]
             return (
-              <Reveal key={`${e.org}-${i}`} delay={i * 0.02} className="relative pl-10 sm:pl-12">
+              <Reveal key={i} delay={i * 0.02} className="relative pl-10 sm:pl-12">
                 <span className="absolute left-0 top-1.5 grid h-7 w-7 place-items-center rounded-full border border-white/15 bg-[#0b0b10] text-orange-500 sm:h-8 sm:w-8">
                   <Icon className="h-3.5 w-3.5" />
                 </span>

@@ -8,13 +8,13 @@ import { AuroraBackground } from "@/components/v2/aurora-background"
 import { Contact } from "@/components/v2/contact"
 import { Experience } from "@/components/v2/experience"
 import { Featured } from "@/components/v2/featured"
+import { GithubHeatmap } from "@/components/v2/github-heatmap"
 import { GithubStats } from "@/components/v2/github-stats"
 import { Hero } from "@/components/v2/hero"
 import { Hobbies } from "@/components/v2/hobbies"
 import { Nav } from "@/components/v2/nav"
 import { Projects } from "@/components/v2/projects"
 import { SceneFluid } from "@/components/v2/scene-fluid"
-import { ScrollExpand } from "@/components/v2/scroll-expand"
 import { ScrollProgress } from "@/components/v2/scroll-progress"
 import { Services } from "@/components/v2/services"
 import { Showcase } from "@/components/v2/showcase"
@@ -69,9 +69,9 @@ export default function Page() {
         <Featured />
         <Projects />
         <GithubStats />
+        <GithubHeatmap />
         <Showcase />
         <Statement />
-        <ScrollExpand />
         <Hobbies />
         <Services />
         <Articles />

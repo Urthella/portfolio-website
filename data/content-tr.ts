@@ -406,6 +406,7 @@ export const tr = {
     github: {
       title: "// github @Urthella",
       viewProfile: "profili gör →",
+      heatmap: "katkı (son bir yıl)",
       stats: [
         { value: "10+", label: "Açık repo" },
         { value: "8", label: "Birleşen PR (2026)" },
@@ -435,7 +436,6 @@ export const tr = {
     },
     statement: ["GERÇEK ZAMANLI SİSTEMLER", "GÜVENLİ API'LER. TEMİZ CI/CD.", "BACKEND, DEVOPS VE KAOS", "HADİ BİR ŞEY İNŞA EDELİM"],
     showcase: { featured: "// öne çıkan", name: "Okut Gitsin", caption: "Bir canlı açık artırma platformu, içiyle dışıyla." },
-    scrollExpand: { scroll: "KAYDIR", title: "Gerçek ürünler, yayında.", kicker: "// prodüksiyonda", caption: "Okut Gitsin, canlı ve teklif topluyor." },
     terminal: {
       whoami: "Halil Utku Demirtaş, backend & devops ağırlıklı fullstack mühendisi",
     },

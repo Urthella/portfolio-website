@@ -23,9 +23,9 @@ export function Articles() {
         viewport={{ once: true, amount: 0.15 }}
         className="grid gap-5 sm:grid-cols-2"
       >
-        {articles.map((a) => (
+        {articles.map((a, i) => (
           <motion.a
-            key={a.title}
+            key={i}
             variants={fadeUp}
             href={MEDIUM}
             target="_blank"
@@ -53,7 +53,7 @@ export function Articles() {
           rel="noopener noreferrer"
           className="font-mono text-sm text-white/50 transition-colors hover:text-white"
         >
-          @utkudemirtas0 on Medium →
+          @urthella1 on Medium →
         </a>
       </div>
     </section>

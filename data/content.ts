@@ -21,7 +21,7 @@ export const profile = {
     github: "https://github.com/Urthella",
     linkedin: "https://www.linkedin.com/in/utkudemirtas/",
     instagram: "https://www.instagram.com/utkudem1rtas/",
-    medium: "https://medium.com/@utkudemirtas0",
+    medium: "https://medium.com/@urthella1",
   },
 }
 
@@ -353,7 +353,7 @@ export const hobbies: { icon: string; title: string; text: string }[] = [
   },
 ]
 
-export const MEDIUM = "https://medium.com/@utkudemirtas0"
+export const MEDIUM = "https://medium.com/@urthella1"
 
 export const articles: { title: string; blurb: string; tag: string; href: string }[] = [
   {

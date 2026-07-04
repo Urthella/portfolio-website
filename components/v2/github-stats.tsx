@@ -52,7 +52,7 @@ export function GithubStats() {
               const Icon = STAT_ICONS[i % STAT_ICONS.length]
               return (
               <motion.div
-                key={s.label}
+                key={i}
                 variants={fadeUp}
                 className="rounded-xl border border-white/10 bg-white/[0.02] p-4 text-center"
               >

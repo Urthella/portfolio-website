@@ -28,7 +28,7 @@ export function Skills() {
           const Icon = icons[i % icons.length]
           return (
             <motion.div
-              key={group.label}
+              key={i}
               variants={scaleIn}
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-orange-500/30"
             >
