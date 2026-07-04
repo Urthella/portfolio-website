@@ -119,6 +119,7 @@ export const tr = {
     { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot", "REST API"] },
     { label: "Veritabanları", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"] },
     { label: "DevOps ve Araçlar", items: ["Docker", "GitHub Actions", "Kafka", "Linux", "Postman"] },
+    { label: "Bulut ve Yapay Zeka", items: ["AWS", "AWS ML Foundations", "OpenAI API", "FastAPI"] },
     { label: "Güvenlik ve Gerçek Zamanlı", items: ["OWASP", "Wireshark", "Burp Suite", "WebSocket", "LiveKit"] },
   ],
 

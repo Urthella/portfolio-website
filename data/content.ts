@@ -144,6 +144,7 @@ export const skillGroups: { label: string; items: string[] }[] = [
   { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot", "REST APIs"] },
   { label: "Databases", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"] },
   { label: "DevOps & Tools", items: ["Docker", "GitHub Actions", "Kafka", "Linux", "Postman"] },
+  { label: "Cloud & AI", items: ["AWS", "AWS ML Foundations", "OpenAI API", "FastAPI"] },
   { label: "Security & Realtime", items: ["OWASP", "Wireshark", "Burp Suite", "WebSocket", "LiveKit"] },
 ]
 
