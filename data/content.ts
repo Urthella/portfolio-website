@@ -67,7 +67,7 @@ export const aboutHero = {
   stats: [
     { value: "18+", label: "Projects", accent: "lime" },
     { value: "8", label: "Languages", accent: "pink" },
-    { value: "4", label: "Experiences", accent: "cyan" },
+    { value: "5", label: "Experiences", accent: "cyan" },
     { value: "2026", label: "Graduating", accent: "amber" },
   ],
 }
@@ -82,6 +82,19 @@ export interface Experience {
 }
 
 export const experiences: Experience[] = [
+  {
+    role: "Founder & Fullstack Engineer",
+    org: "Okut Gitsin",
+    kind: "work",
+    date: "Nov 2025 - Present",
+    points: [
+      "Designed and built a live-stream vehicle auction platform end to end, from data model to deployment",
+      "Engineered an atomic bid engine on Redis and Lua for millisecond-level, race-free bidding",
+      "Built real-time bidding over WebSocket and live video auctions with LiveKit",
+      "Added an escrow payment flow (held, refunded, forfeited) with IBAN verification, Helmet CSP/HSTS, rate limiting and GitHub Actions CI/CD",
+    ],
+    stack: ["NestJS", "Next.js", "PostgreSQL", "Prisma", "Redis", "Socket.IO", "LiveKit"],
+  },
   {
     role: "DevOps & Backend Developer",
     org: "Extramus",

@@ -51,12 +51,25 @@ export const tr = {
     stats: [
       { value: "18+", label: "Proje", accent: "lime" },
       { value: "8", label: "Dil", accent: "pink" },
-      { value: "4", label: "Deneyim", accent: "cyan" },
+      { value: "5", label: "Deneyim", accent: "cyan" },
       { value: "2026", label: "Mezuniyet", accent: "amber" },
     ],
   },
 
   experiences: [
+    {
+      role: "Kurucu & Fullstack Mühendis",
+      org: "Okut Gitsin",
+      kind: "work",
+      date: "Kas 2025 - Günümüz",
+      points: [
+        "Canlı yayınlı araç açık artırma platformunu uçtan uca tasarlayıp geliştirdim: veri modelinden dağıtıma",
+        "Redis ve Lua ile milisaniye seviyesinde, yarışsız teklif için atomik bir teklif motoru kurdum",
+        "WebSocket ile gerçek zamanlı teklif ve LiveKit ile canlı video açık artırması geliştirdim",
+        "Emanet ödeme akışı (bloke, iade, temerrüt) ve IBAN doğrulaması, Helmet CSP/HSTS, rate limiting ve GitHub Actions CI/CD ekledim",
+      ],
+      stack: ["NestJS", "Next.js", "PostgreSQL", "Prisma", "Redis", "Socket.IO", "LiveKit"],
+    },
     {
       role: "DevOps ve Backend Geliştirici",
       org: "Extramus",
