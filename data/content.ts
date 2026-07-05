@@ -83,7 +83,7 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    role: "Founder & Fullstack Engineer",
+    role: "Founder / Lead Developer",
     org: "Okut Gitsin",
     kind: "work",
     date: "Nov 2025 - Present",

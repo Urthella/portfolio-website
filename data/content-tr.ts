@@ -58,7 +58,7 @@ export const tr = {
 
   experiences: [
     {
-      role: "Kurucu & Fullstack Mühendis",
+      role: "Kurucu / Baş Geliştirici",
       org: "Okut Gitsin",
       kind: "work",
       date: "Kas 2025 - Günümüz",
