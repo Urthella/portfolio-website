@@ -359,6 +359,7 @@ export const tr = {
   ui: {
     nav: { about: "Hakkımda", experience: "Deneyim", skills: "Yetenekler", projects: "Projeler", hobbies: "Hobiler", contact: "İletişim", blog: "Blog" },
     hero: {
+      welcome: "OYUN ALANIMA HOŞ GELDİN",
       rotating: ["Fullstack Geliştirici", "Backend & DevOps", "Gerçek zamanlı sistemler", "Güvenli API'ler"],
       viewProjects: "Projeleri gör",
       resume: "Özgeçmiş",
@@ -455,8 +456,8 @@ export const tr = {
     },
     footer: {
       talk: "BENİMLE KONUŞ",
-      titleA: "Oyun alanıma",
-      titleB: "hoş geldin",
+      titleA: "Bir şeyler",
+      titleB: "inşa edelim",
       cta: "Bana yaz",
       colSections: "Bölümler",
       colWork: "İşler",

@@ -77,8 +77,24 @@ export default function Page() {
         <ThemeLab />
         <Hobbies />
         <Articles />
-        <Contact />
-        <Footer />
+        {/* Contact + Footer merged on one space backdrop; the masked top keeps
+            the fixed fluid/aurora layers visible, so the page flows in seamlessly */}
+        <div className="relative overflow-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url(/footer-bg.jpg)",
+              maskImage: "linear-gradient(to bottom, transparent, black 55%)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent, black 55%)",
+            }}
+          />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-[#07070a]/35 to-[#07070a]/15" />
+          <div className="relative">
+            <Contact />
+            <Footer />
+          </div>
+        </div>
       </main>
       {/* content melts into a soft blur at the bottom edge of the viewport (desktop only) */}
       <GradualBlur

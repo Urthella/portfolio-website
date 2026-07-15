@@ -43,23 +43,11 @@ export function Footer() {
   const colTitle = "font-mono text-xs text-white/40"
 
   return (
-    <footer className="relative overflow-hidden">
-      {/* space backdrop: the top stays transparent (mask) so the fixed fluid and
-          aurora layers keep showing through — Contact flows into the footer
-          without a visible seam */}
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url(/footer-bg.png)",
-          maskImage: "linear-gradient(to bottom, transparent, black 45%)",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent, black 45%)",
-        }}
-      />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-[#07070a]/45 to-[#07070a]/20" />
-
+    // The space backdrop lives on the shared Contact+Footer wrapper in
+    // page.tsx, so both sections sit on one continuous image.
+    <footer className="relative">
       {/* CTA */}
-      <div className="relative z-10 px-4 pb-16 pt-24 text-center sm:px-6">
+      <div className="relative z-10 px-4 pb-16 pt-10 text-center sm:px-6">
         <p className="font-mono text-xs tracking-[0.25em] text-orange-500">
           <span className="text-orange-500/40">//</span> {t.talk}
         </p>

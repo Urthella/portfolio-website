@@ -8,6 +8,7 @@ import { tr } from "@/data/content-tr"
 const uiEN = {
   nav: { about: "About", experience: "Experience", skills: "Skills", projects: "Projects", hobbies: "Hobbies", contact: "Contact", blog: "Blog" },
   hero: {
+    welcome: "WELCOME TO MY PLAYGROUND",
     rotating: ["Fullstack Developer", "Backend & DevOps", "Real-time systems", "Secure APIs"],
     viewProjects: "View projects",
     resume: "Résumé",
@@ -105,8 +106,8 @@ const uiEN = {
   },
   footer: {
     talk: "TALK TO ME",
-    titleA: "Welcome to",
-    titleB: "my playground",
+    titleA: "Let's build",
+    titleB: "something",
     cta: "Contact me",
     colSections: "Sections",
     colWork: "Work",

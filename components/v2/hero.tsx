@@ -27,7 +27,7 @@ export function Hero() {
         <motion.div variants={container(0.1, 0.05)} initial="hidden" animate="show">
           <motion.p variants={fadeUp} className="mb-5 font-mono text-xs tracking-[0.25em] text-orange-500">
             <span className="text-orange-500/40">// </span>
-            {c.profile.focus.toUpperCase()}
+            {c.ui.hero.welcome}
           </motion.p>
 
           <motion.h1 variants={fadeUp} className="text-balance text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
