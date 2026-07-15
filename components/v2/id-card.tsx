@@ -77,35 +77,38 @@ export function IdCard() {
               <div className={faceBase}>
                 <div className="relative flex h-full flex-col rounded-[calc(1.5rem-1.5px)] bg-neutral-950 [backface-visibility:hidden] [transform-style:preserve-3d]">
                   <CardItem
-                    translateZ={25}
+                    translateZ={20}
                     className={`flex w-full items-center justify-between rounded-t-[calc(1.5rem-1.5px)] bg-orange-500/90 px-4 py-2 font-mono text-[11px] font-semibold tracking-wider text-black ${faceItem}`}
                   >
                     <span>{t.access}</span>
                     <span>{t.allAreas}</span>
                   </CardItem>
 
-                  <CardItem translateZ={70} className={`mx-4 mt-4 w-auto ${faceItem}`}>
-                    <div className="relative aspect-square overflow-hidden rounded-xl border border-white/10">
-                      <Image
-                        src={PHOTO}
-                        alt={profile.name}
-                        fill
-                        priority
-                        sizes="20rem"
-                        className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
-                      />
-                      <span className="absolute left-0 top-0 h-8 w-8 rounded-br-xl bg-orange-500" />
-                    </div>
+                  {/* the photo box is the flex child itself (min-h-0 + shrink) so the
+                      column can compress it and the footer never spills past the card */}
+                  <CardItem
+                    translateZ={45}
+                    className={`relative mx-4 mt-4 aspect-square w-auto min-h-0 shrink overflow-hidden rounded-xl border border-white/10 ${faceItem}`}
+                  >
+                    <Image
+                      src={PHOTO}
+                      alt={profile.name}
+                      fill
+                      priority
+                      sizes="20rem"
+                      className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+                    />
+                    <span className="absolute left-0 top-0 h-8 w-8 rounded-br-xl bg-orange-500" />
                   </CardItem>
 
-                  <CardItem translateZ={55} className={`w-full px-4 pt-4 ${faceItem}`}>
+                  <CardItem translateZ={40} className={`w-full px-4 pt-4 ${faceItem}`}>
                     <h3 className="text-xl font-bold leading-tight text-white">{profile.name}</h3>
                     <span className="mt-2 inline-block rounded bg-rose-500 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wide text-white">
                       {focus}
                     </span>
                   </CardItem>
 
-                  <CardItem translateZ={35} className={`mt-auto w-full px-4 pb-4 ${faceItem}`}>
+                  <CardItem translateZ={25} className={`mt-auto w-full px-4 pb-4 ${faceItem}`}>
                     <div className="mb-2 mt-3 border-t border-dashed border-white/15" />
                     <div className="flex items-end justify-between gap-3">
                       <div className="flex h-8 items-stretch gap-[2px]" aria-hidden>
@@ -120,7 +123,7 @@ export function IdCard() {
 
                   {/* holographic sheen (follows the cursor, floats above the layers) */}
                   <CardItem
-                    translateZ={80}
+                    translateZ={55}
                     className={`pointer-events-none absolute inset-0 z-20 w-auto overflow-hidden rounded-[calc(1.5rem-1.5px)] ${faceItem}`}
                   >
                     <motion.div
@@ -128,7 +131,7 @@ export function IdCard() {
                       className="absolute inset-0 mix-blend-color-dodge opacity-40"
                       style={{
                         backgroundImage:
-                          "linear-gradient(115deg, transparent 18%, rgba(249,115,22,0.55) 38%, rgba(251,113,133,0.55) 48%, rgba(245,158,11,0.55) 58%, transparent 82%)",
+                          "linear-gradient(115deg, transparent 18%, color-mix(in srgb, var(--color-orange-500) 55%, transparent) 38%, color-mix(in srgb, var(--color-rose-400) 55%, transparent) 48%, color-mix(in srgb, var(--color-amber-500) 55%, transparent) 58%, transparent 82%)",
                         backgroundSize: "220% 220%",
                         backgroundPosition: holoPosition,
                       }}
@@ -147,13 +150,13 @@ export function IdCard() {
                 <div className="flex h-full flex-col rounded-[calc(1.5rem-1.5px)] bg-neutral-950 p-5 [backface-visibility:hidden] [transform-style:preserve-3d]">
                   <CardItem
                     as="p"
-                    translateZ={30}
+                    translateZ={25}
                     className={`font-mono text-xs tracking-[0.25em] text-orange-500 ${faceItem}`}
                   >
                     {t.contact}
                   </CardItem>
 
-                  <CardItem translateZ={50} className={`mt-5 w-full space-y-3 ${faceItem}`}>
+                  <CardItem translateZ={35} className={`mt-5 w-full space-y-3 ${faceItem}`}>
                     <a
                       href={`mailto:${profile.email}`}
                       onClick={(e) => e.stopPropagation()}
@@ -178,7 +181,7 @@ export function IdCard() {
                     </div>
                   </CardItem>
 
-                  <CardItem translateZ={60} className={`mt-6 w-full ${faceItem}`}>
+                  <CardItem translateZ={45} className={`mt-6 w-full ${faceItem}`}>
                     <p className="mb-2 font-mono text-[10px] text-white/35">{t.findOnline}</p>
                     <div className="flex gap-2">
                       {socials.map(({ href, label, Icon }) => (
@@ -199,7 +202,7 @@ export function IdCard() {
 
                   <CardItem
                     as="p"
-                    translateZ={20}
+                    translateZ={15}
                     className={`mt-auto flex items-center gap-1.5 font-mono text-[10px] text-white/30 ${faceItem}`}
                   >
                     <RefreshCw className="h-3 w-3" /> {t.flipBack}

@@ -47,7 +47,7 @@ export function TechMarquee() {
   const row = [...marqueeTech, ...marqueeTech]
 
   return (
-    <div className="relative w-full overflow-hidden border-y border-white/[0.06] bg-black/20 py-5">
+    <div className="relative z-40 w-full overflow-hidden border-y border-white/[0.06] bg-black/20 py-5 backdrop-blur-sm">
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#07070a] to-transparent sm:w-32" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#07070a] to-transparent sm:w-32" />
       <motion.div
