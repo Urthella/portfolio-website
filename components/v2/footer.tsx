@@ -39,24 +39,30 @@ export function Footer() {
 
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
 
-  const link = "font-mono text-xs uppercase tracking-wide text-white/85 transition-colors hover:text-orange-400"
-  const colTitle = "font-mono text-xs uppercase tracking-widest text-white/40"
+  const link = "text-sm text-white/55 transition-colors hover:text-white"
+  const colTitle = "font-mono text-xs text-white/40"
 
   return (
     <footer className="relative overflow-hidden">
-      {/* space backdrop, fading in from the page background */}
+      {/* space backdrop: the top stays transparent (mask) so the fixed fluid and
+          aurora layers keep showing through — Contact flows into the footer
+          without a visible seam */}
       <div
         aria-hidden
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url(/footer-bg.jpg)" }}
+        style={{
+          backgroundImage: "url(/footer-bg.png)",
+          maskImage: "linear-gradient(to bottom, transparent, black 45%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent, black 45%)",
+        }}
       />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-[#07070a] via-[#07070a]/70 to-[#07070a]/25" />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-[#07070a]/45 to-[#07070a]/20" />
 
       {/* CTA */}
-      <div className="relative z-10 px-4 pb-16 pt-36 text-center sm:px-6">
-        <span className="inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.3em] text-white/55">
-          <span className="h-1.5 w-1.5 bg-orange-500" aria-hidden /> {t.talk}
-        </span>
+      <div className="relative z-10 px-4 pb-16 pt-24 text-center sm:px-6">
+        <p className="font-mono text-xs tracking-[0.25em] text-orange-500">
+          <span className="text-orange-500/40">//</span> {t.talk}
+        </p>
         <h2 className="mt-7 text-[clamp(2.8rem,9vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-white">
           {t.titleA}
           <br />
@@ -64,7 +70,7 @@ export function Footer() {
         </h2>
         <a
           href={`mailto:${profile.email}`}
-          className="mt-10 inline-block bg-white px-6 py-4 font-mono text-xs font-bold uppercase tracking-widest text-black transition-colors hover:bg-orange-500"
+          className="mt-10 inline-block rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-black transition-colors hover:bg-orange-500 hover:text-white"
         >
           {t.cta}
         </a>
@@ -73,7 +79,7 @@ export function Footer() {
       {/* link columns */}
       <div className="relative z-10 mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-16 sm:px-6 md:grid-cols-5">
         <div>
-          <div className={colTitle}>{t.colSections}</div>
+          <div className={colTitle}>// {t.colSections}</div>
           <ul className="mt-5 space-y-2.5">
             {sections.map((id) => (
               <li key={id}>
@@ -86,7 +92,7 @@ export function Footer() {
         </div>
 
         <div>
-          <div className={colTitle}>{t.colWork}</div>
+          <div className={colTitle}>// {t.colWork}</div>
           <ul className="mt-5 space-y-2.5">
             {work.map(({ label, href }) => (
               <li key={label}>
@@ -99,14 +105,14 @@ export function Footer() {
         </div>
 
         <div>
-          <div className={colTitle}>{t.colMore}</div>
+          <div className={colTitle}>// {t.colMore}</div>
           <ul className="mt-5 space-y-2.5">
             {more.map(({ label, href }) => (
               <li key={label}>
                 <a
                   href={href}
                   {...(href.startsWith("mailto:") ? {} : { target: "_blank", rel: "noopener noreferrer" })}
-                  className={`${link} normal-case`}
+                  className={link}
                 >
                   {label}
                 </a>
@@ -128,14 +134,14 @@ export function Footer() {
 
       {/* legal bar */}
       <div className="relative z-10 mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 border-t border-white/15 px-4 py-6 sm:px-6">
-        <span className="font-mono text-[11px] uppercase tracking-wide text-white/45">
+        <span className="text-sm text-white/40">
           © {new Date().getFullYear()} Utku Demirtaş. {t.rights}
         </span>
         <div className="flex items-center gap-6">
-          <span className="hidden font-mono text-[11px] text-white/35 sm:inline">{ct.built}</span>
+          <span className="hidden text-sm text-white/35 sm:inline">{ct.built}</span>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wide text-white/60 transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-white"
           >
             {ct.backToTop} <ArrowUp className="h-3.5 w-3.5" />
           </button>
