@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Github, Languages, Linkedin, Menu, X } from "lucide-react"
 import { useEffect, useState } from "react"
 
-import { ThemePicker } from "@/components/v2/theme-picker"
 import { profile } from "@/data/content"
 import { useContent, useLang } from "@/data/i18n"
 
@@ -102,7 +101,6 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
           >
             <span className="text-sm leading-none">⌘</span>K
           </button>
-          <ThemePicker />
           {HEADER_SOCIALS.map(({ href, label, Icon }) => (
             <a
               key={label}

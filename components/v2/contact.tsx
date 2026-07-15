@@ -61,7 +61,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading index="08" label={h.label} title={h.title} subtitle={h.subtitle} />
+      <SectionHeading index="09" label={h.label} title={h.title} subtitle={h.subtitle} />
 
       <Reveal className="mb-8">
         <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.015] sm:h-72">

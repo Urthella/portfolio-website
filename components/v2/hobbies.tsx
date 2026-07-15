@@ -20,7 +20,7 @@ export function Hobbies() {
   const head = c.ui.headings.hobbies
   return (
     <section id="hobbies" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading index="06" label={head.label} title={head.title} subtitle={head.subtitle} />
+      <SectionHeading index="07" label={head.label} title={head.title} subtitle={head.subtitle} />
 
       <motion.div
         variants={container(0.09)}

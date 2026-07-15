@@ -403,6 +403,11 @@ export const tr = {
         title: "Medium'da",
         subtitle: "Güvenlik, ağ ve zanaat üzerine notlar.",
       },
+      playground: {
+        label: "Oyun Alanı",
+        title: "Siteyi boya",
+        subtitle: "Bir vurgu rengi seç; sitedeki her gradyan, kenarlık ve parıltı ondan canlı olarak türesin. Seçimin bu tarayıcıda saklanır.",
+      },
       contact: {
         label: "İletişim",
         title: "Bir şeyler inşa edelim",
@@ -442,10 +447,16 @@ export const tr = {
       falling: "Backend DevOps ve Güvenlik odaklı. Node TypeScript Java Spring Kafka Docker CI/CD Redis Postgres. güvenilir bir şeyler inşa edelim",
       fallingHl: ["backend", "devops", "güvenlik", "inşa", "edelim", "güvenilir"],
     },
+    playground: {
+      comment: "hazır birini seç ya da kendi rengini getir",
+      presets: "hazır renkler",
+      custom: "senin seçimin",
+      reset: "sıfırla",
+    },
     footer: {
-      talk: "benimle konuş",
-      titleA: "Bir fikrin mi var?",
-      titleB: "Hadi yayına alalım",
+      talk: "BENİMLE KONUŞ",
+      titleA: "Oyun alanıma",
+      titleB: "hoş geldin",
       cta: "Bana yaz",
       colSections: "Bölümler",
       colWork: "İşler",

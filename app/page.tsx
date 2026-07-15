@@ -19,8 +19,8 @@ import { Projects } from "@/components/v2/projects"
 import { SceneFluid } from "@/components/v2/scene-fluid"
 import { ScrollProgress } from "@/components/v2/scroll-progress"
 import { SideNav } from "@/components/v2/side-nav"
-import { Showcase } from "@/components/v2/showcase"
 import { Skills } from "@/components/v2/skills"
+import { ThemeLab } from "@/components/v2/theme-lab"
 import { TechMarquee } from "@/components/v2/tech-marquee"
 import { Terminal } from "@/components/v2/terminal"
 import GradualBlur from "@/components/ui/gradual-blur"
@@ -74,7 +74,7 @@ export default function Page() {
         <Projects />
         <GithubStats />
         <GithubHeatmap />
-        <Showcase />
+        <ThemeLab />
         <Hobbies />
         <Articles />
         <Contact />

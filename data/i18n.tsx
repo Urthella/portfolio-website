@@ -52,6 +52,11 @@ const uiEN = {
       title: "On Medium",
       subtitle: "Notes on security, networking and the craft.",
     },
+    playground: {
+      label: "Playground",
+      title: "Paint the site",
+      subtitle: "Pick an accent and every gradient, border and glow re-derives from it, live. Your pick sticks to this browser.",
+    },
     contact: {
       label: "Contact",
       title: "Let's build something",
@@ -92,10 +97,16 @@ const uiEN = {
       "Backend DevOps and Security minded. Node TypeScript Java Spring Kafka Docker CI/CD Redis Postgres. let's build something reliable",
     fallingHl: ["backend", "devops", "security", "let's", "build", "reliable"],
   },
+  playground: {
+    comment: "pick a preset or bring your own color",
+    presets: "presets",
+    custom: "your pick",
+    reset: "reset",
+  },
   footer: {
-    talk: "talk to me",
-    titleA: "Got an idea?",
-    titleB: "Let's ship it",
+    talk: "TALK TO ME",
+    titleA: "Welcome to",
+    titleB: "my playground",
     cta: "Contact me",
     colSections: "Sections",
     colWork: "Work",
