@@ -6,10 +6,9 @@ import { About } from "@/components/v2/about"
 import { Articles } from "@/components/v2/articles"
 import { AuroraBackground } from "@/components/v2/aurora-background"
 import { CommandPalette } from "@/components/v2/command-palette"
-import { Contact } from "@/components/v2/contact"
+import { ContactFooter } from "@/components/v2/contact-footer"
 import { Experience } from "@/components/v2/experience"
 import { Featured } from "@/components/v2/featured"
-import { Footer } from "@/components/v2/footer"
 import { GithubHeatmap } from "@/components/v2/github-heatmap"
 import { GithubStats } from "@/components/v2/github-stats"
 import { Hero } from "@/components/v2/hero"
@@ -77,24 +76,7 @@ export default function Page() {
         <ThemeLab />
         <Hobbies />
         <Articles />
-        {/* Contact + Footer merged on one space backdrop; the masked top keeps
-            the fixed fluid/aurora layers visible, so the page flows in seamlessly */}
-        <div className="relative overflow-hidden">
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: "url(/footer-bg.jpg)",
-              maskImage: "linear-gradient(to bottom, transparent, black 55%)",
-              WebkitMaskImage: "linear-gradient(to bottom, transparent, black 55%)",
-            }}
-          />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-[#07070a]/35 to-[#07070a]/15" />
-          <div className="relative">
-            <Contact />
-            <Footer />
-          </div>
-        </div>
+        <ContactFooter />
       </main>
       {/* content melts into a soft blur at the bottom edge of the viewport (desktop only) */}
       <GradualBlur
