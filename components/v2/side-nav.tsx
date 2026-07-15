@@ -18,7 +18,7 @@ export function SideNav({ items, activeSection }: { items: string[]; activeSecti
     <aside className="fixed left-6 top-1/2 z-30 hidden -translate-y-1/2 2xl:block" aria-label="Section navigation">
       <LineSidebar
         items={labels}
-        accentColor="#f97316"
+        accentColor="var(--color-orange-500)"
         textColor="#8b8b92"
         markerColor="#52525b"
         showIndex

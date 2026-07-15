@@ -54,7 +54,7 @@ export function Hero() {
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
             <button
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="group inline-flex items-center gap-2 rounded-xl bg-orange-600 px-5 py-3 text-sm font-medium text-white shadow-[0_0_30px_rgba(234,88,12,0.35)] transition-all hover:bg-orange-500 hover:shadow-[0_0_44px_rgba(234,88,12,0.55)]"
+              className="group inline-flex items-center gap-2 rounded-xl bg-orange-600 px-5 py-3 text-sm font-medium text-white shadow-[0_0_30px_color-mix(in_srgb,var(--color-orange-600)_35%,transparent)] transition-all hover:bg-orange-500 hover:shadow-[0_0_44px_color-mix(in_srgb,var(--color-orange-600)_55%,transparent)]"
             >
               {c.ui.hero.viewProjects}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

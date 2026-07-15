@@ -86,6 +86,13 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
         <meta name="format-detection" content="telephone=no" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
+        {/* apply the saved accent color before first paint so a custom theme doesn't flash orange */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var a=localStorage.getItem('accent-base');if(a&&/^#[0-9a-f]{6}$/i.test(a))document.documentElement.style.setProperty('--accent-base',a)}catch(e){}",
+          }}
+        />
       </head>
       <body suppressHydrationWarning={true} className="bg-[#07070a] text-white antialiased">
         <ThemeProvider

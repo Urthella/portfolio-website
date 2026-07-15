@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Github, Languages, Linkedin, Menu, X } from "lucide-react"
 import { useEffect, useState } from "react"
 
+import { ThemePicker } from "@/components/v2/theme-picker"
 import { profile } from "@/data/content"
 import { useContent, useLang } from "@/data/i18n"
 
@@ -63,7 +64,10 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
           className="group flex items-center gap-2.5 font-mono text-sm font-semibold text-white"
           aria-label="Back to top"
         >
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-orange-600 text-white shadow-[0_0_20px_rgba(234,88,12,0.5)] transition-transform group-hover:scale-105">
+          <span
+            className="grid h-8 w-8 place-items-center rounded-lg bg-orange-600 text-white transition-transform group-hover:scale-105"
+            style={{ boxShadow: "0 0 20px color-mix(in srgb, var(--color-orange-600) 50%, transparent)" }}
+          >
             UD
           </span>
           <span className="hidden text-white/70 transition-colors group-hover:text-white sm:inline">~/utkudem1rtas</span>
@@ -98,6 +102,7 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
           >
             <span className="text-sm leading-none">⌘</span>K
           </button>
+          <ThemePicker />
           {HEADER_SOCIALS.map(({ href, label, Icon }) => (
             <a
               key={label}

@@ -11,13 +11,14 @@ import { useContent } from "@/data/i18n"
 const STAT_ICONS = [Users, GitPullRequest, Star]
 
 // Rough share of the languages across the public repos.
+// Palette vars so the bar follows the accent theme.
 const LANGS = [
-  { name: "TypeScript", pct: 46, color: "#f97316" },
-  { name: "Python", pct: 20, color: "#fb7185" },
-  { name: "Java", pct: 14, color: "#f59e0b" },
-  { name: "Go", pct: 9, color: "#fbbf24" },
-  { name: "Rust", pct: 6, color: "#fda4af" },
-  { name: "C++ / Shell", pct: 5, color: "#fdba74" },
+  { name: "TypeScript", pct: 46, color: "var(--color-orange-500)" },
+  { name: "Python", pct: 20, color: "var(--color-rose-400)" },
+  { name: "Java", pct: 14, color: "var(--color-amber-500)" },
+  { name: "Go", pct: 9, color: "var(--color-amber-400)" },
+  { name: "Rust", pct: 6, color: "var(--color-rose-300)" },
+  { name: "C++ / Shell", pct: 5, color: "var(--color-orange-300)" },
 ]
 
 export function GithubStats() {

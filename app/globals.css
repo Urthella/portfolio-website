@@ -386,3 +386,31 @@ html {
 .animate-cursor-blink {
   animation: cursorBlink 0.8s step-end infinite;
 }
+
+/* ── Accent theming ─────────────────────────────────────────────────────────
+   The site's warm palette (every orange/rose/amber utility) is re-derived from
+   a single --accent-base color via OKLCH relative colors: each shade keeps its
+   stock lightness/chroma and only rotates its hue by the shade's original
+   offset from orange-500 (47.604deg). With the default base the stock palette
+   is reproduced exactly; the theme picker swaps --accent-base at runtime.
+   These overrides are unlayered, so they win over Tailwind's @layer theme.
+   Browsers without relative-color support keep the stock palette. */
+:root {
+  --accent-base: oklch(70.5% 0.213 47.604); /* orange-500 */
+}
+
+@supports (color: oklch(from red l c h)) {
+  :root {
+    --color-orange-200: oklch(from var(--accent-base) 90.1% 0.076 calc(h + 23.093deg));
+    --color-orange-300: oklch(from var(--accent-base) 83.7% 0.128 calc(h + 18.686deg));
+    --color-orange-400: oklch(from var(--accent-base) 75% 0.183 calc(h + 8.33deg));
+    --color-orange-500: oklch(from var(--accent-base) 70.5% 0.213 h);
+    --color-orange-600: oklch(from var(--accent-base) 64.6% 0.222 calc(h - 6.488deg));
+    --color-rose-300: oklch(from var(--accent-base) 81% 0.117 calc(h - 35.966deg));
+    --color-rose-400: oklch(from var(--accent-base) 71.2% 0.194 calc(h - 34.176deg));
+    --color-rose-500: oklch(from var(--accent-base) 64.5% 0.246 calc(h - 31.165deg));
+    --color-amber-300: oklch(from var(--accent-base) 87.9% 0.169 calc(h + 44.001deg));
+    --color-amber-400: oklch(from var(--accent-base) 82.8% 0.189 calc(h + 36.825deg));
+    --color-amber-500: oklch(from var(--accent-base) 76.9% 0.188 calc(h + 22.476deg));
+  }
+}
