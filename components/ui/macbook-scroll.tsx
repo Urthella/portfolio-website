@@ -37,9 +37,14 @@ export const MacbookScroll = ({
   badge?: React.ReactNode;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
+  // Progress starts when the section enters the viewport and ends once it has
+  // scrolled past. The section is 200vh tall, so the section's top aligns with
+  // the top of the viewport at exactly p = 1/3 on every screen size: the lid
+  // starts opening on approach and finishes just past that alignment, instead
+  // of only starting there (which left it half-open on short laptop screens).
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"],
+    offset: ["start end", "end start"],
   });
 
   const [isMobile, setIsMobile] = useState(false);
@@ -52,18 +57,18 @@ export const MacbookScroll = ({
 
   const scaleX = useTransform(
     scrollYProgress,
-    [0, 0.3],
+    [0.1, 0.38],
     [1.2, isMobile ? 1 : 1.5],
   );
   const scaleY = useTransform(
     scrollYProgress,
-    [0, 0.3],
+    [0.1, 0.38],
     [0.6, isMobile ? 1 : 1.5],
   );
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 1500]);
-  const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
-  const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const translate = useTransform(scrollYProgress, [0, 1], [0, 900]);
+  const rotate = useTransform(scrollYProgress, [0.12, 0.15, 0.38], [-28, -28, 0]);
+  const textTransform = useTransform(scrollYProgress, [0.05, 0.38], [0, 100]);
+  const textOpacity = useTransform(scrollYProgress, [0.2, 0.35], [1, 0]);
 
   return (
     <div
