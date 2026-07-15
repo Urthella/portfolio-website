@@ -2,8 +2,9 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowUpRight, Github, Lock, Star, Zap } from "lucide-react"
-import { useState } from "react"
+import { useRef, useState, type PointerEvent } from "react"
 
+import TargetCursor from "@/components/ui/target-cursor"
 import { SectionHeading } from "@/components/v2/section-heading"
 import { categories, type Category } from "@/data/content"
 import { useContent } from "@/data/i18n"
@@ -18,14 +19,49 @@ const ACCENT: Record<string, { bar: string; border: string; text: string }> = {
 }
 const accent = (c: string) => ACCENT[c] ?? ACCENT.Web
 
+// gsap needs a concrete color (it can't tween to a var()), so read the themed
+// accent the same place the theme picker stores it. The cursor remounts on
+// every section entry, so it always picks up the current theme.
+const accentHex = () => {
+  try {
+    const v = localStorage.getItem("accent-base")
+    if (v && /^#[0-9a-f]{6}$/i.test(v)) return v
+  } catch {}
+  return "#f97316"
+}
+
 export function Projects() {
   const c = useContent()
   const h = c.ui.headings.projects
   const [filter, setFilter] = useState<"All" | Category>("All")
   const shown = c.projects.filter((p) => filter === "All" || p.category === filter)
 
+  // The target cursor lives only inside this section: mounted while the
+  // pointer is over it (unmount restores the native cursor everywhere else).
+  const [cursorOn, setCursorOn] = useState(false)
+  const cursorPos = useRef<{ x: number; y: number } | undefined>(undefined)
+
   return (
-    <section id="projects" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
+    <section
+      id="projects"
+      className={`relative mx-auto max-w-6xl px-4 py-24 sm:px-6 ${cursorOn ? "cursor-none [&_*]:cursor-none" : ""}`}
+      onPointerEnter={(e: PointerEvent<HTMLElement>) => {
+        cursorPos.current = { x: e.clientX, y: e.clientY }
+        setCursorOn(true)
+      }}
+      onPointerLeave={() => setCursorOn(false)}
+    >
+      {cursorOn && (
+        <TargetCursor
+          targetSelector=".cursor-target"
+          spinDuration={2}
+          hideDefaultCursor
+          parallaxOn
+          cursorColor="#ffffff"
+          cursorColorOnTarget={accentHex()}
+          initialPosition={cursorPos.current}
+        />
+      )}
       <SectionHeading index="05" label={h.label} title={h.title} subtitle={h.subtitle} />
 
       <div className="mb-8 flex flex-wrap gap-2">
@@ -33,7 +69,7 @@ export function Projects() {
           <button
             key={c}
             onClick={() => setFilter(c)}
-            className={`rounded-full border px-3.5 py-1.5 font-mono text-xs transition-colors ${
+            className={`cursor-target rounded-full border px-3.5 py-1.5 font-mono text-xs transition-colors ${
               filter === c
                 ? "border-orange-500/50 bg-orange-500/15 text-orange-200"
                 : "border-white/10 text-white/50 hover:border-white/25 hover:text-white"
@@ -57,7 +93,7 @@ export function Projects() {
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.3 }}
                 whileHover={{ y: -4 }}
-                className={`group flex flex-col overflow-hidden rounded-2xl border-2 ${a.border} bg-neutral-950/70 backdrop-blur-sm transition-colors hover:bg-neutral-950`}
+                className={`cursor-target group flex flex-col overflow-hidden rounded-2xl border-2 ${a.border} bg-neutral-950/70 backdrop-blur-sm transition-colors hover:bg-neutral-950`}
               >
                 {/* top bar */}
                 <div className={`flex items-center justify-between ${a.bar} px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-wide text-black`}>
