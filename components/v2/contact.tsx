@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowUp, BookOpen, Check, Copy, Github, Instagram, Linkedin, Loader2, Mail, Phone, Send } from "lucide-react"
+import { BookOpen, Check, Copy, Github, Instagram, Linkedin, Loader2, Mail, Phone, Send } from "lucide-react"
 import { useState } from "react"
 
 import { FallingText } from "@/components/ui/falling-text"
@@ -165,16 +165,6 @@ export function Contact() {
             </div>
           </form>
         </Reveal>
-      </div>
-
-      <div className="mt-16 flex flex-col items-center gap-4 border-t border-white/10 pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
-        <p className="text-sm text-white/40">© {new Date().getFullYear()} Utku Demirtaş. {t.built}</p>
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-white"
-        >
-          {t.backToTop} <ArrowUp className="h-3.5 w-3.5" />
-        </button>
       </div>
     </section>
   )

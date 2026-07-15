@@ -9,6 +9,7 @@ import { CommandPalette } from "@/components/v2/command-palette"
 import { Contact } from "@/components/v2/contact"
 import { Experience } from "@/components/v2/experience"
 import { Featured } from "@/components/v2/featured"
+import { Footer } from "@/components/v2/footer"
 import { GithubHeatmap } from "@/components/v2/github-heatmap"
 import { GithubStats } from "@/components/v2/github-stats"
 import { Hero } from "@/components/v2/hero"
@@ -60,8 +61,9 @@ export default function Page() {
       <ScrollProgress />
       <CommandPalette />
       <Nav items={NAV} activeSection={active} />
-      <SideNav items={NAV} activeSection={active} />
       <main className="relative z-10">
+        {/* inside <main> so the marquee (z-40) can layer above it within the same stacking context */}
+        <SideNav items={NAV} activeSection={active} />
         <Hero />
         <TechMarquee />
         <About />
@@ -76,6 +78,7 @@ export default function Page() {
         <Hobbies />
         <Articles />
         <Contact />
+        <Footer />
       </main>
       {/* content melts into a soft blur at the bottom edge of the viewport (desktop only) */}
       <GradualBlur

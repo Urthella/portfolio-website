@@ -92,6 +92,16 @@ const uiEN = {
       "Backend DevOps and Security minded. Node TypeScript Java Spring Kafka Docker CI/CD Redis Postgres. let's build something reliable",
     fallingHl: ["backend", "devops", "security", "let's", "build", "reliable"],
   },
+  footer: {
+    talk: "talk to me",
+    titleA: "Got an idea?",
+    titleB: "Let's ship it",
+    cta: "Contact me",
+    colSections: "Sections",
+    colWork: "Work",
+    colMore: "More",
+    rights: "All rights reserved.",
+  },
   snap: {
     kicker: "// perfectly balanced",
     line: "Your next design is just a snap away.",

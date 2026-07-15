@@ -442,6 +442,16 @@ export const tr = {
       falling: "Backend DevOps ve Güvenlik odaklı. Node TypeScript Java Spring Kafka Docker CI/CD Redis Postgres. güvenilir bir şeyler inşa edelim",
       fallingHl: ["backend", "devops", "güvenlik", "inşa", "edelim", "güvenilir"],
     },
+    footer: {
+      talk: "benimle konuş",
+      titleA: "Bir fikrin mi var?",
+      titleB: "Hadi yayına alalım",
+      cta: "Bana yaz",
+      colSections: "Bölümler",
+      colWork: "İşler",
+      colMore: "Daha fazlası",
+      rights: "Tüm hakları saklıdır.",
+    },
     snap: {
       kicker: "// mükemmel denge",
       line: "Bir sonraki tasarımın bir şıklatma uzağında.",
