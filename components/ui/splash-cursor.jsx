@@ -889,13 +889,36 @@ function SplashCursor({
       if (!config.RAINBOW_MODE) {
         return hexToRGB(config.COLOR)
       }
-      // Constrain hue to a warm band: reds → oranges → ambers, plus a little pink.
-      const warmHue = Math.random() < 0.72 ? Math.random() * 0.09 : 0.92 + Math.random() * 0.08
-      let c = HSVtoRGB(warmHue, 1.0, 1.0)
+      // Follow the accent theme when one is set (the picker writes an inline
+      // --accent-base on <html>): band the hue around the accent. Read per
+      // splat, so a theme change re-tints the fluid immediately. With no
+      // custom accent, keep the stock warm band (reds → oranges → pink).
+      const accent = document.documentElement.style.getPropertyValue('--accent-base').trim()
+      let hue
+      if (/^#[0-9a-f]{6}$/i.test(accent)) {
+        hue = (hexToHue(accent) + (Math.random() - 0.35) * 0.14 + 1) % 1
+      } else {
+        hue = Math.random() < 0.72 ? Math.random() * 0.09 : 0.92 + Math.random() * 0.08
+      }
+      let c = HSVtoRGB(hue, 1.0, 1.0)
       c.r *= 0.15
       c.g *= 0.15
       c.b *= 0.15
       return c
+    }
+
+    function hexToHue(hex) {
+      const r = parseInt(hex.slice(1, 3), 16) / 255
+      const g = parseInt(hex.slice(3, 5), 16) / 255
+      const b = parseInt(hex.slice(5, 7), 16) / 255
+      const max = Math.max(r, g, b)
+      const d = max - Math.min(r, g, b)
+      if (d === 0) return 0
+      let h
+      if (max === r) h = ((g - b) / d) % 6
+      else if (max === g) h = (b - r) / d + 2
+      else h = (r - g) / d + 4
+      return (h / 6 + 1) % 1
     }
 
     function HSVtoRGB(h, s, v) {
