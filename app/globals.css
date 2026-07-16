@@ -387,6 +387,38 @@ html {
   animation: cursorBlink 0.8s step-end infinite;
 }
 
+/* Heartbeat: double-thump scale + glow pulse in the accent color.
+   Used by the hero kicker; disabled under prefers-reduced-motion. */
+@keyframes heartbeat {
+  0%, 30%, 64%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 12px color-mix(in srgb, var(--color-orange-400) 75%, transparent);
+  }
+  10% {
+    transform: scale(1.09);
+    text-shadow:
+      0 0 8px color-mix(in srgb, var(--color-orange-300) 95%, transparent),
+      0 0 32px color-mix(in srgb, var(--color-orange-400) 95%, transparent);
+  }
+  42% {
+    transform: scale(1.06);
+    text-shadow:
+      0 0 7px color-mix(in srgb, var(--color-orange-300) 85%, transparent),
+      0 0 26px color-mix(in srgb, var(--color-orange-400) 85%, transparent);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-heartbeat {
+    animation: none;
+    text-shadow: 0 0 12px color-mix(in srgb, var(--color-orange-400) 75%, transparent);
+  }
+}
+
 /* ── Accent theming ─────────────────────────────────────────────────────────
    The site's warm palette (every orange/rose/amber utility) is re-derived from
    a single --accent-base color via OKLCH relative colors: each shade keeps its
