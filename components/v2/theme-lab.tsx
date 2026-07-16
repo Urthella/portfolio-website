@@ -30,6 +30,51 @@ const DERIVED = [
   { name: "amber", cssVar: "--color-amber-500", formula: "oklch(from base 76.9% 0.188 calc(h + 22.5))" },
 ]
 
+// Tailwind family names by HSL hue (boundaries are midpoints between the
+// families' -500 hues) — used to re-label the derived rows after a pick.
+const HUE_STOPS: Array<[number, string]> = [
+  [12, "red"], [31, "orange"], [43, "amber"], [65, "yellow"], [112, "lime"],
+  [151, "green"], [166, "emerald"], [181, "teal"], [194, "cyan"], [208, "sky"],
+  [228, "blue"], [248, "indigo"], [264, "violet"], [281, "purple"],
+  [311, "fuchsia"], [340, "pink"], [355, "rose"], [361, "red"],
+]
+
+// Resolve a palette variable to concrete sRGB by bouncing it through a probe
+// element (var substitution) and a 1px canvas (normalizes oklch to sRGB),
+// then name it by hue.
+function liveName(cssVar: string, fallback: string): string {
+  try {
+    const probe = document.createElement("span")
+    probe.style.color = `var(${cssVar})`
+    document.body.appendChild(probe)
+    const resolved = getComputedStyle(probe).color
+    probe.remove()
+
+    const canvas = document.createElement("canvas")
+    canvas.width = canvas.height = 1
+    const ctx = canvas.getContext("2d", { willReadFrequently: true })
+    if (!ctx) return fallback
+    ctx.fillStyle = resolved
+    ctx.fillRect(0, 0, 1, 1)
+    const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data
+
+    const rn = r / 255
+    const gn = g / 255
+    const bn = b / 255
+    const max = Math.max(rn, gn, bn)
+    const d = max - Math.min(rn, gn, bn)
+    if (d < 0.08) return "gray"
+    let hue
+    if (max === rn) hue = ((gn - bn) / d) % 6
+    else if (max === gn) hue = (bn - rn) / d + 2
+    else hue = (rn - gn) / d + 4
+    hue = (hue * 60 + 360) % 360
+    return HUE_STOPS.find(([bound]) => hue < bound)?.[1] ?? fallback
+  } catch {
+    return fallback
+  }
+}
+
 /**
  * The theme picker as a section: a code-window that exposes --accent-base with
  * live color codes. Same storage/vars as the pre-paint script in layout.tsx.
@@ -39,6 +84,7 @@ export function ThemeLab() {
   const h = c.ui.headings.playground
   const p = c.ui.playground
   const [accent, setAccent] = useState<string | null>(null)
+  const [names, setNames] = useState(DERIVED.map((d) => d.name))
 
   useEffect(() => {
     try {
@@ -46,6 +92,11 @@ export function ThemeLab() {
       if (saved && /^#[0-9a-f]{6}$/i.test(saved)) setAccent(saved)
     } catch {}
   }, [])
+
+  // Re-label the derived rows from the live palette after every pick.
+  useEffect(() => {
+    setNames(DERIVED.map((d) => liveName(d.cssVar, d.name)))
+  }, [accent])
 
   const apply = (hex: string) => {
     setAccent(hex)
@@ -113,9 +164,9 @@ export function ThemeLab() {
               <span className="text-amber-300">{`"${current}"`},</span>
               <span className="text-white/25">{`// ${p.custom}`}</span>
             </div>
-            {DERIVED.map((d) => (
+            {DERIVED.map((d, i) => (
               <div key={d.name} className="flex items-center gap-3 whitespace-nowrap pl-6">
-                <span className="text-white/70">{d.name}:</span>
+                <span className="text-white/70">{names[i]}:</span>
                 <span
                   aria-hidden
                   className="h-3.5 w-3.5 shrink-0 rounded border border-white/15"
