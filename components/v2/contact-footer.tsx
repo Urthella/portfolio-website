@@ -126,7 +126,7 @@ export function ContactFooter() {
         {/* info card + form */}
         <div className="mx-auto mt-6 grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-2">
           <Reveal variants={fromLeft}>
-            <div className="flex h-full flex-col justify-between rounded-2xl border border-white/[0.06] bg-neutral-950/30 p-6 backdrop-blur-sm sm:p-8">
+            <div className="flex h-full flex-col justify-between rounded-2xl border border-white/15 bg-neutral-950/30 p-6 shadow-[0_0_40px_color-mix(in_srgb,var(--color-orange-500)_14%,transparent)] backdrop-blur-sm sm:p-8">
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <a
@@ -175,7 +175,7 @@ export function ContactFooter() {
           </Reveal>
 
           <Reveal variants={scaleIn}>
-            <form onSubmit={onSubmit} className="rounded-2xl border border-white/[0.06] bg-neutral-950/30 p-6 backdrop-blur-sm sm:p-8">
+            <form onSubmit={onSubmit} className="rounded-2xl border border-white/15 bg-neutral-950/30 p-6 shadow-[0_0_40px_color-mix(in_srgb,var(--color-orange-500)_14%,transparent)] backdrop-blur-sm sm:p-8">
               <div className="grid gap-4">
                 <div>
                   <label htmlFor="name" className="mb-1.5 block text-xs text-white/50">
@@ -283,7 +283,7 @@ export function ContactFooter() {
                 speed={55}
                 deleteSpeed={28}
                 waitTime={1700}
-                className="font-medium text-orange-400"
+                className="font-medium text-orange-400 [text-shadow:0_0_14px_color-mix(in_srgb,var(--color-orange-400)_80%,transparent)]"
                 cursorClassName="text-orange-400"
               />
             </span>
