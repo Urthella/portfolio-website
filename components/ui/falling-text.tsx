@@ -121,6 +121,20 @@ export function FallingText({
     })
 
     const mouse = Mouse.create(container)
+    // Matter's Mouse preventDefaults wheel and touch events, which traps page
+    // scrolling while the pointer is over the box — detach those listeners so
+    // the page keeps scrolling (mouse-dragging the words still works).
+    const m = mouse as unknown as {
+      mousewheel: EventListener
+      mousedown: EventListener
+      mousemove: EventListener
+      mouseup: EventListener
+    }
+    container.removeEventListener("mousewheel", m.mousewheel)
+    container.removeEventListener("DOMMouseScroll", m.mousewheel)
+    container.removeEventListener("touchstart", m.mousedown)
+    container.removeEventListener("touchmove", m.mousemove)
+    container.removeEventListener("touchend", m.mouseup)
     const mouseConstraint = MouseConstraint.create(engine, {
       mouse,
       constraint: { stiffness: mouseConstraintStiffness, render: { visible: false } },
