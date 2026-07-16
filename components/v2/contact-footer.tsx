@@ -4,6 +4,7 @@ import { ArrowUp, BookOpen, Check, Copy, Github, Instagram, Linkedin, Loader2, M
 import { useState } from "react"
 
 import { FallingText } from "@/components/ui/falling-text"
+import { Typewriter } from "@/components/ui/typewriter"
 import { Reveal } from "@/components/v2/reveal"
 import { fromLeft, scaleIn } from "@/lib/motion"
 import { profile } from "@/data/content"
@@ -66,8 +67,9 @@ export function ContactFooter() {
 
   const field =
     "w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-orange-500/50 focus:bg-white/[0.05]"
-  const link = "text-sm text-white/55 transition-colors hover:text-white"
-  const colTitle = "font-mono text-xs text-white/40"
+  // Higher opacities than the site norm: these sit on the busy rock backdrop.
+  const link = "text-sm text-white/80 transition-colors hover:text-white"
+  const colTitle = "font-mono text-xs text-white/60"
 
   const sections = ["about", "experience", "projects", "hobbies"] as const
 
@@ -97,7 +99,7 @@ export function ContactFooter() {
           WebkitMaskImage: "linear-gradient(to bottom, transparent, black 50%)",
         }}
       />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-[#07070a]/35 to-[#07070a]/15" />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-[#07070a]/45 to-[#07070a]/45" />
 
       <div className="relative">
         {/* display heading opens the section */}
@@ -124,7 +126,7 @@ export function ContactFooter() {
         {/* info card + form */}
         <div className="mx-auto mt-6 grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-2">
           <Reveal variants={fromLeft}>
-            <div className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-neutral-950/50 p-6 backdrop-blur-sm sm:p-8">
+            <div className="flex h-full flex-col justify-between rounded-2xl border border-white/[0.06] bg-neutral-950/30 p-6 backdrop-blur-sm sm:p-8">
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <a
@@ -173,7 +175,7 @@ export function ContactFooter() {
           </Reveal>
 
           <Reveal variants={scaleIn}>
-            <form onSubmit={onSubmit} className="rounded-2xl border border-white/10 bg-neutral-950/50 p-6 backdrop-blur-sm sm:p-8">
+            <form onSubmit={onSubmit} className="rounded-2xl border border-white/[0.06] bg-neutral-950/30 p-6 backdrop-blur-sm sm:p-8">
               <div className="grid gap-4">
                 <div>
                   <label htmlFor="name" className="mb-1.5 block text-xs text-white/50">
@@ -270,14 +272,24 @@ export function ContactFooter() {
 
         {/* legal bar */}
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 border-t border-white/15 px-4 py-6 sm:px-6">
-          <span className="text-sm text-white/40">
+          <span className="text-sm text-white/60">
             © {new Date().getFullYear()} Utku Demirtaş. {f.rights}
           </span>
           <div className="flex items-center gap-6">
-            <span className="hidden text-sm text-white/35 sm:inline">{t.built}</span>
+            <span className="hidden min-w-[16rem] text-sm text-white/60 sm:inline">
+              {f.builtWith}{" "}
+              <Typewriter
+                text={f.builtItems}
+                speed={55}
+                deleteSpeed={28}
+                waitTime={1700}
+                className="font-medium text-orange-400"
+                cursorClassName="text-orange-400"
+              />
+            </span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-white"
             >
               {t.backToTop} <ArrowUp className="h-3.5 w-3.5" />
             </button>

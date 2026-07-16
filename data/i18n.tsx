@@ -109,6 +109,8 @@ const uiEN = {
     titleA: "Let's build",
     titleB: "something",
     cta: "Contact me",
+    builtWith: "Built with",
+    builtItems: ["Next.js & Framer Motion", "passion ❤️‍🔥", "less sleep 😴", "even less sleep 🥱", "a LOT of coffee ☕"],
     colSections: "Sections",
     colWork: "Work",
     colMore: "More",

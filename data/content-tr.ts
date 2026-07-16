@@ -459,6 +459,8 @@ export const tr = {
       titleA: "Bir şeyler",
       titleB: "inşa edelim",
       cta: "Bana yaz",
+      builtWith: "Malzemeler:",
+      builtItems: ["Next.js & Framer Motion", "tutku ❤️‍🔥", "az uyku 😴", "daha da az uyku 🥱", "BOL kahve ☕"],
       colSections: "Bölümler",
       colWork: "İşler",
       colMore: "Daha fazlası",
