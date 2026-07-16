@@ -159,7 +159,26 @@ export function FallingText({
     }
     raf = requestAnimationFrame(update)
 
+    // Physics, canvas render and DOM sync all pause while the box is
+    // off-screen — no reason to simulate what nobody can see.
+    let paused = false
+    const visObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && paused) {
+        paused = false
+        Runner.run(runner, engine)
+        Render.run(render)
+        raf = requestAnimationFrame(update)
+      } else if (!entry.isIntersecting && !paused) {
+        paused = true
+        Runner.stop(runner)
+        Render.stop(render)
+        cancelAnimationFrame(raf)
+      }
+    })
+    visObserver.observe(container)
+
     return () => {
+      visObserver.disconnect()
       cancelAnimationFrame(raf)
       Render.stop(render)
       Runner.stop(runner)

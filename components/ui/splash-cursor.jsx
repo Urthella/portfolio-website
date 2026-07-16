@@ -1045,6 +1045,22 @@ function SplashCursor({
       }
     }
 
+    // Pause the whole simulation while the tab is hidden — no rAF, no GPU work.
+    function handleVisibility() {
+      if (document.hidden) {
+        isActive = false
+        if (animationFrameId.current) {
+          cancelAnimationFrame(animationFrameId.current)
+          animationFrameId.current = null
+        }
+      } else if (!isActive) {
+        isActive = true
+        lastUpdateTime = Date.now() // avoid a huge dt spike on resume
+        updateFrame()
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
+
     window.addEventListener('mousedown', handleMouseDown)
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('touchstart', handleTouchStart)
@@ -1059,6 +1075,7 @@ function SplashCursor({
         cancelAnimationFrame(animationFrameId.current)
         animationFrameId.current = null
       }
+      document.removeEventListener('visibilitychange', handleVisibility)
       window.removeEventListener('mousedown', handleMouseDown)
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('touchstart', handleTouchStart)

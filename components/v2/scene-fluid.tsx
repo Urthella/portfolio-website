@@ -25,7 +25,9 @@ export function SceneFluid() {
 
   return (
     <ErrorBoundary fallback={null}>
-      <SplashCursor SPLAT_RADIUS={0.18} DENSITY_DISSIPATION={4.2} VELOCITY_DISSIPATION={2.4} />
+      {/* DYE 720 (default 1440): quarters the dye framebuffer memory (~50MB
+          GPU) with no visible difference on an abstract blurred background */}
+      <SplashCursor SPLAT_RADIUS={0.18} DENSITY_DISSIPATION={4.2} VELOCITY_DISSIPATION={2.4} DYE_RESOLUTION={720} />
     </ErrorBoundary>
   )
 }
