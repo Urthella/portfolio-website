@@ -981,7 +981,9 @@ function SplashCursor({
     }
 
     function scaleByPixelRatio(input) {
-      const pixelRatio = window.devicePixelRatio || 1
+      // Cap at 1.5x: full retina resolution is wasted on a blurred fluid
+      // backdrop and doubles the canvas backing-store memory.
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5)
       return Math.floor(input * pixelRatio)
     }
 
