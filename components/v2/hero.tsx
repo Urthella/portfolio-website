@@ -25,8 +25,11 @@ export function Hero() {
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
         {/* text */}
         <motion.div variants={container(0.1, 0.05)} initial="hidden" animate="show">
-          <motion.p variants={fadeUp} className="mb-5 font-mono text-xs tracking-[0.25em] text-orange-500">
-            <span className="text-orange-500/40">// </span>
+          <motion.p
+            variants={fadeUp}
+            className="mb-5 font-mono text-xs tracking-[0.25em] text-orange-400 [text-shadow:0_0_16px_color-mix(in_srgb,var(--color-orange-400)_85%,transparent)]"
+          >
+            <span className="text-orange-500/60">// </span>
             {c.ui.hero.welcome}
           </motion.p>
 

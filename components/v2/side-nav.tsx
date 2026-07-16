@@ -19,8 +19,8 @@ export function SideNav({ items, activeSection }: { items: string[]; activeSecti
       <LineSidebar
         items={labels}
         accentColor="var(--color-orange-500)"
-        textColor="#8b8b92"
-        markerColor="#52525b"
+        textColor="#c6c6cc"
+        markerColor="#77777f"
         showIndex
         showMarker
         proximityRadius={90}
