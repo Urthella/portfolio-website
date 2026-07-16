@@ -390,7 +390,7 @@ html {
 /* Heartbeat: double-thump scale + glow pulse in the accent color.
    Used by the hero kicker; disabled under prefers-reduced-motion. */
 @keyframes heartbeat {
-  0%, 30%, 64%, 100% {
+  0%, 20%, 48%, 100% {
     transform: scale(1);
     text-shadow: 0 0 12px color-mix(in srgb, var(--color-orange-400) 75%, transparent);
   }
@@ -400,7 +400,7 @@ html {
       0 0 8px color-mix(in srgb, var(--color-orange-300) 95%, transparent),
       0 0 32px color-mix(in srgb, var(--color-orange-400) 95%, transparent);
   }
-  42% {
+  28% {
     transform: scale(1.06);
     text-shadow:
       0 0 7px color-mix(in srgb, var(--color-orange-300) 85%, transparent),
