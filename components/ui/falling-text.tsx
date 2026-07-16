@@ -130,7 +130,8 @@ export function FallingText({
       mousemove: EventListener
       mouseup: EventListener
     }
-    container.removeEventListener("mousewheel", m.mousewheel)
+    container.removeEventListener("wheel", m.mousewheel) // matter-js >= 0.19 registers 'wheel'
+    container.removeEventListener("mousewheel", m.mousewheel) // legacy names, older versions
     container.removeEventListener("DOMMouseScroll", m.mousewheel)
     container.removeEventListener("touchstart", m.mousedown)
     container.removeEventListener("touchmove", m.mousemove)

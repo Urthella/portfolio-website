@@ -12,7 +12,7 @@ import { useContent } from "@/data/i18n"
 // Warm, on-brand category accents.
 const ACCENT: Record<string, { bar: string; border: string; text: string }> = {
   "Full-stack": { bar: "bg-orange-500", border: "border-orange-500/45", text: "text-orange-400" },
-  "AI/ML": { bar: "bg-rose-500", border: "border-rose-500/45", text: "text-rose-400" },
+  "AI/ML": { bar: "bg-amber-400", border: "border-amber-400/45", text: "text-amber-300" },
   Systems: { bar: "bg-amber-500", border: "border-amber-500/45", text: "text-amber-400" },
   Security: { bar: "bg-red-500", border: "border-red-500/45", text: "text-red-400" },
   Web: { bar: "bg-orange-400", border: "border-orange-400/45", text: "text-orange-300" },

@@ -408,6 +408,8 @@ html {
     --color-orange-400: oklch(from var(--accent-base) 75% 0.183 calc(h + 8.33));
     --color-orange-500: oklch(from var(--accent-base) 70.5% 0.213 h);
     --color-orange-600: oklch(from var(--accent-base) 64.6% 0.222 calc(h - 6.488));
+    --color-red-400: oklch(from var(--accent-base) 70.4% 0.191 calc(h - 25.388));
+    --color-red-500: oklch(from var(--accent-base) 63.7% 0.237 calc(h - 22.273));
     --color-rose-300: oklch(from var(--accent-base) 81% 0.117 calc(h - 35.966));
     --color-rose-400: oklch(from var(--accent-base) 71.2% 0.194 calc(h - 34.176));
     --color-rose-500: oklch(from var(--accent-base) 64.5% 0.246 calc(h - 31.165));

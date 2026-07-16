@@ -116,7 +116,7 @@ export function ContactFooter() {
         {/* falling words */}
         <Reveal className="mx-auto mt-14 max-w-6xl px-4 sm:px-6">
           <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.015] sm:h-72">
-            <FallingText text={t.falling} highlightWords={t.fallingHl} trigger="scroll" gravity={0.58} fontSize="clamp(1rem, 2.6vw, 1.7rem)" />
+            <FallingText text={t.falling} highlightWords={t.fallingHl} trigger="scroll" gravity={0} fontSize="clamp(1rem, 2.6vw, 1.7rem)" />
             <span className="pointer-events-none absolute bottom-3 right-4 font-mono text-[11px] text-white/25">{t.dragWords}</span>
           </div>
         </Reveal>
@@ -212,7 +212,8 @@ export function ContactFooter() {
 
                 <p aria-live="polite" className="min-h-[1.25rem] text-center text-sm">
                   {status === "success" && <span className="text-green-400">{t.success}</span>}
-                  {status === "error" && <span className="text-red-400">{t.error}</span>}
+                  {/* literal red: error feedback must stay red under every theme */}
+                  {status === "error" && <span className="text-[#f87171]">{t.error}</span>}
                 </p>
               </div>
             </form>
