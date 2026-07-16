@@ -115,8 +115,9 @@ export function ContactFooter() {
           <p className="mx-auto mt-6 max-w-2xl text-pretty leading-relaxed text-white/50">{subtitle}</p>
         </Reveal>
 
-        {/* falling words */}
-        <Reveal className="mx-auto mt-14 max-w-6xl px-4 sm:px-6">
+        {/* falling words — desktop only: the physics sim is too heavy for phones,
+            and while hidden the scroll trigger never fires, so matter-js never boots */}
+        <Reveal className="mx-auto mt-14 hidden max-w-6xl px-4 sm:px-6 md:block">
           <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.015] sm:h-72">
             <FallingText text={t.falling} highlightWords={t.fallingHl} trigger="scroll" gravity={0} fontSize="clamp(1rem, 2.6vw, 1.7rem)" />
             <span className="pointer-events-none absolute bottom-3 right-4 font-mono text-[11px] text-white/25">{t.dragWords}</span>

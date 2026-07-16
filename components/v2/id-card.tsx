@@ -1,9 +1,9 @@
 "use client"
 
-import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import { BookOpen, Github, Instagram, Linkedin, Mail, MapPin, Phone, RefreshCw } from "lucide-react"
 import Image from "next/image"
-import { useState, type MouseEvent } from "react"
+import { useState } from "react"
 
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card"
 import { PHOTO, profile } from "@/data/content"
@@ -24,34 +24,12 @@ const faceItem = "[backface-visibility:hidden]"
 /**
  * Access-badge ID card built on the 3d-card primitives: the whole card tilts
  * toward the cursor (CardContainer) while its layers float out in Z on hover
- * (CardItem). It keeps the holographic sheen (a specular highlight plus a
- * shifting iridescent band) and the click-to-flip between photo and contact.
+ * (CardItem). Click to flip between photo and contact.
  */
 export function IdCard() {
   const [flipped, setFlipped] = useState(false)
   const t = useContent().ui.idcard
   const focus = useContent().profile.focus
-
-  // Pointer position 0..1, springed into the holo + glare positions.
-  const px = useMotionValue(0.5)
-  const py = useMotionValue(0.5)
-  const spr = { stiffness: 200, damping: 20, mass: 0.5 }
-  const gx = useSpring(useTransform(px, [0, 1], [0, 100]), spr)
-  const gy = useSpring(useTransform(py, [0, 1], [0, 100]), spr)
-  const holoPos = useSpring(useTransform(px, [0, 1], [0, 100]), spr)
-
-  const glare = useMotionTemplate`radial-gradient(circle 220px at ${gx}% ${gy}%, rgba(255,255,255,0.5), transparent 55%)`
-  const holoPosition = useMotionTemplate`${holoPos}% 50%`
-
-  const onMove = (e: MouseEvent<HTMLDivElement>) => {
-    const r = e.currentTarget.getBoundingClientRect()
-    px.set((e.clientX - r.left) / r.width)
-    py.set((e.clientY - r.top) / r.height)
-  }
-  const onLeave = () => {
-    px.set(0.5)
-    py.set(0.5)
-  }
 
   const faceBase =
     "absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-500 via-rose-500 to-amber-400 p-[1.5px] shadow-2xl shadow-black/50 [backface-visibility:hidden] [transform-style:preserve-3d]"
@@ -61,8 +39,7 @@ export function IdCard() {
       {/* warm glow */}
       <div className="absolute -inset-4 -z-10 rounded-[32px] bg-orange-600/25 blur-3xl" />
 
-      <div onMouseMove={onMove} onMouseLeave={onLeave}>
-        <CardContainer containerClassName="py-0" className="w-full">
+      <CardContainer containerClassName="py-0" className="w-full">
           <CardBody className="h-auto w-full">
             <motion.button
               type="button"
@@ -96,7 +73,7 @@ export function IdCard() {
                       fill
                       priority
                       sizes="20rem"
-                      className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+                      className="object-cover contrast-125 grayscale transition-all duration-500 group-hover:grayscale-0"
                     />
                     <span className="absolute left-0 top-0 h-8 w-8 rounded-br-xl bg-orange-500" />
                   </CardItem>
@@ -121,27 +98,6 @@ export function IdCard() {
                     <p className="mt-2 font-mono text-[10px] text-white/35">{profile.site}</p>
                   </CardItem>
 
-                  {/* holographic sheen (follows the cursor, floats above the layers) */}
-                  <CardItem
-                    translateZ={55}
-                    className={`pointer-events-none absolute inset-0 z-20 w-auto overflow-hidden rounded-[calc(1.5rem-1.5px)] ${faceItem}`}
-                  >
-                    <motion.div
-                      aria-hidden
-                      className="absolute inset-0 mix-blend-color-dodge opacity-40"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(115deg, transparent 18%, color-mix(in srgb, var(--color-orange-500) 55%, transparent) 38%, color-mix(in srgb, var(--color-rose-400) 55%, transparent) 48%, color-mix(in srgb, var(--color-amber-500) 55%, transparent) 58%, transparent 82%)",
-                        backgroundSize: "220% 220%",
-                        backgroundPosition: holoPosition,
-                      }}
-                    />
-                    <motion.div
-                      aria-hidden
-                      className="absolute inset-0 mix-blend-overlay opacity-70"
-                      style={{ background: glare }}
-                    />
-                  </CardItem>
                 </div>
               </div>
 
@@ -212,7 +168,6 @@ export function IdCard() {
             </motion.button>
           </CardBody>
         </CardContainer>
-      </div>
 
       <p className="mt-4 text-center font-mono text-[11px] text-white/35">{t.clickFlip}</p>
     </div>
