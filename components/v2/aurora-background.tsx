@@ -2,13 +2,17 @@
 
 import { motion, useReducedMotion } from "framer-motion"
 
+import { usePerf } from "@/hooks/use-perf"
+
 /**
  * Fixed, fluid background: drifting colored blobs behind a faint grid, capped
  * with a radial vignette so foreground text stays legible. Drift pauses under
- * prefers-reduced-motion.
+ * prefers-reduced-motion and in lite mode — the blobs stay as a static glow.
  */
 export function AuroraBackground() {
   const reduce = useReducedMotion()
+  const { lite } = usePerf()
+  const still = reduce || lite
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#07070a]">
@@ -25,17 +29,17 @@ export function AuroraBackground() {
 
       <motion.div
         className="absolute -top-40 left-1/4 h-[42rem] w-[42rem] rounded-full bg-orange-600/12 blur-[150px]"
-        animate={reduce ? undefined : { x: [0, 60, -30, 0], y: [0, -40, 30, 0] }}
+        animate={still ? undefined : { x: [0, 60, -30, 0], y: [0, -40, 30, 0] }}
         transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute top-1/3 -right-40 h-[38rem] w-[38rem] rounded-full bg-rose-500/9 blur-[150px]"
-        animate={reduce ? undefined : { x: [0, -50, 20, 0], y: [0, 40, -25, 0] }}
+        animate={still ? undefined : { x: [0, -50, 20, 0], y: [0, 40, -25, 0] }}
         transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute -bottom-40 left-1/3 h-[34rem] w-[34rem] rounded-full bg-amber-500/7 blur-[150px]"
-        animate={reduce ? undefined : { x: [0, 40, -40, 0], y: [0, -20, 20, 0] }}
+        animate={still ? undefined : { x: [0, 40, -40, 0], y: [0, -20, 20, 0] }}
         transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
       />
 

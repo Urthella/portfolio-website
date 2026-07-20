@@ -42,7 +42,8 @@ export function FallingText({
     if (!textRef.current) return
     textRef.current.innerHTML = words
       .map((word) => {
-        const highlighted = highlightWords.some((hw) => word.replace(/[^\w']/g, "").toLowerCase() === hw.toLowerCase())
+        // \p{L}\p{N} instead of \w so Turkish letters (ü, ş, İ…) survive the strip
+        const highlighted = highlightWords.some((hw) => word.replace(/[^\p{L}\p{N}']/gu, "").toLowerCase() === hw.toLowerCase())
         return `<span class="inline-block mx-[3px] select-none ${highlighted ? highlightClass : ""}">${word}</span>`
       })
       .join(" ")

@@ -1,11 +1,12 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { Github, Languages, Linkedin, Menu, X } from "lucide-react"
+import { Github, Languages, Linkedin, Menu, X, Zap, ZapOff } from "lucide-react"
 import { useEffect, useState } from "react"
 
 import { profile } from "@/data/content"
 import { useContent, useLang } from "@/data/i18n"
+import { usePerf } from "@/hooks/use-perf"
 
 const HEADER_SOCIALS = [
   { href: profile.socials.github, label: "GitHub", Icon: Github },
@@ -17,7 +18,9 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
   const [open, setOpen] = useState(false)
   const c = useContent()
   const { lang, setLang } = useLang()
+  const { lite, setLite } = usePerf()
   const navLabels = c.ui.nav
+  const perfLabel = lite ? c.ui.perf.enableFull : c.ui.perf.enableLite
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -113,6 +116,16 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
               <Icon className="h-[18px] w-[18px]" />
             </a>
           ))}
+          {/* heavy-visuals toggle: lightning on = full experience, off = lite */}
+          <button
+            onClick={() => setLite(!lite)}
+            title={perfLabel}
+            aria-label={perfLabel}
+            aria-pressed={lite}
+            className="hidden h-9 w-9 place-items-center rounded-lg border border-white/15 text-white/70 transition-colors hover:border-white/30 hover:text-white sm:grid"
+          >
+            {lite ? <ZapOff className="h-[18px] w-[18px]" /> : <Zap className="h-[18px] w-[18px] text-orange-400" />}
+          </button>
           <LangToggle />
           <button
             onClick={() => setOpen((v) => !v)}

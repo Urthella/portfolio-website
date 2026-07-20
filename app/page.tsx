@@ -24,6 +24,7 @@ import { TechMarquee } from "@/components/v2/tech-marquee"
 import { Terminal } from "@/components/v2/terminal"
 import GradualBlur from "@/components/ui/gradual-blur"
 import { LangProvider } from "@/data/i18n"
+import { PerfProvider } from "@/hooks/use-perf"
 
 const NAV = ["about", "experience", "skills", "projects", "hobbies", "contact"]
 
@@ -55,42 +56,44 @@ export default function Page() {
 
   return (
     <LangProvider>
-      <AuroraBackground />
-      <SceneFluid />
-      <ScrollProgress />
-      <CommandPalette />
-      <Nav items={NAV} activeSection={active} />
-      <main className="relative z-10">
-        {/* inside <main> so the marquee (z-40) can layer above it within the same stacking context */}
-        <SideNav items={NAV} activeSection={active} />
-        <Hero />
-        <TechMarquee />
-        <About />
-        <Terminal />
-        <Experience />
-        <Skills />
-        <Featured />
-        <Projects />
-        <GithubStats />
-        <GithubHeatmap />
-        <ThemeLab />
-        <Hobbies />
-        <Articles />
-        <ContactFooter />
-      </main>
-      {/* content melts into a soft blur at the bottom edge of the viewport (desktop only) */}
-      <GradualBlur
-        target="page"
-        position="bottom"
-        height="6rem"
-        strength={2}
-        divCount={5}
-        curve="bezier"
-        exponential
-        opacity={1}
-        style={{ zIndex: 30 }}
-        className="hidden md:block"
-      />
+      <PerfProvider>
+        <AuroraBackground />
+        <SceneFluid />
+        <ScrollProgress />
+        <CommandPalette />
+        <Nav items={NAV} activeSection={active} />
+        <main className="relative z-10">
+          {/* inside <main> so the marquee (z-40) can layer above it within the same stacking context */}
+          <SideNav items={NAV} activeSection={active} />
+          <Hero />
+          <TechMarquee />
+          <About />
+          <Terminal />
+          <Experience />
+          <Skills />
+          <Featured />
+          <Projects />
+          <GithubStats />
+          <GithubHeatmap />
+          <ThemeLab />
+          <Hobbies />
+          <Articles />
+          <ContactFooter />
+        </main>
+        {/* content melts into a soft blur at the bottom edge of the viewport (desktop only) */}
+        <GradualBlur
+          target="page"
+          position="bottom"
+          height="6rem"
+          strength={2}
+          divCount={5}
+          curve="bezier"
+          exponential
+          opacity={1}
+          style={{ zIndex: 30 }}
+          className="hidden md:block"
+        />
+      </PerfProvider>
     </LangProvider>
   )
 }

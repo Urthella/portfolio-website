@@ -1,12 +1,13 @@
 "use client"
 
 import { Command } from "cmdk"
-import { ArrowUp, BookOpen, Copy, CornerDownLeft, Download, Github, Instagram, Languages, Linkedin } from "lucide-react"
+import { ArrowUp, BookOpen, Copy, CornerDownLeft, Download, Github, Instagram, Languages, Linkedin, Zap, ZapOff } from "lucide-react"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 
 import { profile } from "@/data/content"
 import { useContent, useLang } from "@/data/i18n"
+import { usePerf } from "@/hooks/use-perf"
 
 const SECTIONS = ["about", "experience", "skills", "projects", "hobbies", "contact"] as const
 
@@ -15,6 +16,7 @@ export function CommandPalette() {
   const [mounted, setMounted] = useState(false)
   const c = useContent()
   const { lang, setLang } = useLang()
+  const { lite, setLite } = usePerf()
   const nav = c.ui.nav
 
   useEffect(() => setMounted(true), [])
@@ -104,6 +106,14 @@ export function CommandPalette() {
             </Command.Item>
             <Command.Item value="language toggle tr en dil" className={itemCls} onSelect={() => run(() => setLang(lang === "en" ? "tr" : "en"))}>
               <Languages className="h-4 w-4 text-orange-400" /> {lang === "en" ? "Türkçe'ye geç" : "Switch to English"}
+            </Command.Item>
+            <Command.Item
+              value="animations lite mode performance animasyon hafif"
+              className={itemCls}
+              onSelect={() => run(() => setLite(!lite))}
+            >
+              {lite ? <Zap className="h-4 w-4 text-orange-400" /> : <ZapOff className="h-4 w-4 text-orange-400" />}
+              {lite ? c.ui.perf.enableFull : c.ui.perf.enableLite}
             </Command.Item>
           </Command.Group>
         </Command.List>

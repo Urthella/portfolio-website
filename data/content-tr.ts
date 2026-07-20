@@ -477,5 +477,9 @@ export const tr = {
     terminal: {
       whoami: "Halil Utku Demirtaş, backend & devops ağırlıklı fullstack mühendisi",
     },
+    perf: {
+      enableLite: "Animasyonları kapat (hafif mod)",
+      enableFull: "Animasyonları aç",
+    },
   },
 }

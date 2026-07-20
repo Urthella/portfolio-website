@@ -9,6 +9,7 @@ import { Reveal } from "@/components/v2/reveal"
 import { fromLeft, scaleIn } from "@/lib/motion"
 import { profile } from "@/data/content"
 import { useContent } from "@/data/i18n"
+import { usePerf } from "@/hooks/use-perf"
 
 const socials = [
   { href: profile.socials.linkedin, label: "LinkedIn", Icon: Linkedin },
@@ -25,6 +26,7 @@ const socials = [
  */
 export function ContactFooter() {
   const c = useContent()
+  const { lite } = usePerf()
   const t = c.ui.contact
   const f = c.ui.footer
   const nav = c.ui.nav
@@ -116,11 +118,34 @@ export function ContactFooter() {
         </Reveal>
 
         {/* falling words — desktop only: the physics sim is too heavy for phones,
-            and while hidden the scroll trigger never fires, so matter-js never boots */}
+            and while hidden the scroll trigger never fires, so matter-js never boots.
+            Lite mode keeps the words but skips matter-js entirely. */}
         <Reveal className="mx-auto mt-14 hidden max-w-6xl px-4 sm:px-6 md:block">
           <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.015] sm:h-72">
-            <FallingText text={t.falling} highlightWords={t.fallingHl} trigger="scroll" gravity={0} fontSize="clamp(1rem, 2.6vw, 1.7rem)" />
-            <span className="pointer-events-none absolute bottom-3 right-4 font-mono text-[11px] text-white/25">{t.dragWords}</span>
+            {lite ? (
+              <p
+                className="flex h-full flex-wrap content-center justify-center gap-x-2.5 gap-y-1 px-10 text-center text-white"
+                style={{ fontSize: "clamp(1rem, 2.6vw, 1.7rem)" }}
+              >
+                {t.falling.split(" ").map((word, i) => (
+                  <span
+                    key={i}
+                    className={
+                      t.fallingHl.some((hw) => word.replace(/[^\p{L}\p{N}']/gu, "").toLowerCase() === hw.toLowerCase())
+                        ? "font-semibold text-orange-400"
+                        : undefined
+                    }
+                  >
+                    {word}
+                  </span>
+                ))}
+              </p>
+            ) : (
+              <>
+                <FallingText text={t.falling} highlightWords={t.fallingHl} trigger="scroll" gravity={0} fontSize="clamp(1rem, 2.6vw, 1.7rem)" />
+                <span className="pointer-events-none absolute bottom-3 right-4 font-mono text-[11px] text-white/25">{t.dragWords}</span>
+              </>
+            )}
           </div>
         </Reveal>
 
