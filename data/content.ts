@@ -14,7 +14,7 @@ export const profile = {
     "Backend and DevOps leaning fullstack engineer. I build production systems: real-time engines, secure APIs, CI/CD and containers. Also a guitarist and calisthenics athlete.",
   email: "utkudemirtas0@gmail.com",
   phone: "+90 507 045 16 23",
-  site: "utkuwankenobi.tech",
+  site: "utkudemirtas.tech",
   resume: "/Utku Demirtas CV.pdf",
   chips: ["Backend & DevOps", "Cybersecurity", "Guitarist", "Calisthenics"],
   socials: {

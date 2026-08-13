@@ -9,9 +9,9 @@ const personLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Utku Demirtaş',
-  url: 'https://utkuwankenobi.tech',
+  url: 'https://utkudemirtas.tech',
   jobTitle: 'Backend & DevOps Engineer',
-  image: 'https://utkuwankenobi.tech/PP.jpg',
+  image: 'https://utkudemirtas.tech/PP.jpg',
   sameAs: [
     'https://github.com/Urthella',
     'https://www.linkedin.com/in/utkudemirtas/',
@@ -22,18 +22,18 @@ const personLd = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://utkuwankenobi.tech'),
+  metadataBase: new URL('https://utkudemirtas.tech'),
   title: 'Utku Demirtaş | Fullstack Developer',
   description: 'Portfolio and projects by Utku Demirtaş, Fullstack Developer specializing in React, Next.js, Node.js, Spring Boot, and modern web development. Computer Engineer, guitarist, and fitness enthusiast.',
   keywords: ['Utku Demirtaş', 'Fullstack Developer', 'Software Engineer', 'React', 'Next.js', 'Node.js', 'Spring Boot', 'TypeScript', 'JavaScript', 'Portfolio'],
-  authors: [{ name: 'Utku Demirtaş', url: 'https://utkuwankenobi.tech' }],
+  authors: [{ name: 'Utku Demirtaş', url: 'https://utkudemirtas.tech' }],
   creator: 'Utku Demirtaş',
   publisher: 'Utku Demirtaş',
   generator: 'Next.js',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://utkuwankenobi.tech',
+    url: 'https://utkudemirtas.tech',
     siteName: 'Utku Demirtaş Portfolio',
     title: 'Utku Demirtaş | Fullstack Developer',
     description: 'Portfolio and projects by Utku Demirtaş, Fullstack Developer specializing in React, Next.js, Node.js, Spring Boot, and modern web development.',

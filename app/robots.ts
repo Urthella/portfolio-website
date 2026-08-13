@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://utkuwankenobi.tech/sitemap.xml',
+    sitemap: 'https://utkudemirtas.tech/sitemap.xml',
   }
 }
