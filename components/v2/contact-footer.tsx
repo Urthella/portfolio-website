@@ -322,14 +322,14 @@ export function ContactFooter() {
           </div>
         </div>
 
-        {/* giant wordmark (13 chars — sized to span the viewport like TURION's 6 at 26vw) */}
+        {/* giant wordmark (12 chars — sized to span the viewport like TURION's 6 at 26vw) */}
         <div className="overflow-hidden px-2 pb-2">
           <div
             className="select-none whitespace-nowrap text-center font-bold leading-[0.8] text-white"
-            style={{ fontSize: "clamp(2.25rem, 10.5vw, 10.5rem)", letterSpacing: "-0.05em" }}
+            style={{ fontSize: "clamp(2.4rem, 11.4vw, 11.4rem)", letterSpacing: "-0.05em" }}
             aria-hidden
           >
-            UTKUWANKENOBI
+            UTKUDEMIRTAS
           </div>
         </div>
       </div>
