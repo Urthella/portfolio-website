@@ -127,9 +127,9 @@ export const tr = {
   ],
 
   skillGroups: [
-    { label: "Diller", items: ["Java", "Python", "JavaScript", "TypeScript", "SQL", "Verilog"] },
+    { label: "Diller", items: ["Java 17", "Python", "JavaScript", "TypeScript", "SQL", "Verilog"] },
     { label: "Frontend", items: ["Next.js", "React", "Vue.js", "Tailwind CSS"] },
-    { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot", "REST API"] },
+    { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot 3", "REST API"] },
     { label: "Veritabanları", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"] },
     { label: "DevOps ve Araçlar", items: ["Docker", "GitHub Actions", "Kafka", "Linux", "Postman"] },
     { label: "Bulut ve Yapay Zeka", items: ["AWS", "AWS ML Foundations", "OpenAI API", "FastAPI"] },
@@ -189,8 +189,8 @@ export const tr = {
     {
       name: "MIPS16 Pipeline Simulator",
       blurb:
-        "Tehlike yönetimli (forwarding, stall, flush) 5 aşamalı 16-bit MIPS pipeline simülatörü. Java backend, React/TS frontend ve Verilog RTL.",
-      stack: ["Java", "React", "Verilog"],
+        "Tehlike yönetimli (forwarding, stall, flush) 5 aşamalı 16-bit MIPS pipeline simülatörü. Java 17 backend, React/TS frontend ve Verilog RTL.",
+      stack: ["Java 17", "React", "Verilog"],
       category: "Systems",
       href: "https://github.com/Urthella/MIPS16-pipeline-simulator",
     },
@@ -198,7 +198,7 @@ export const tr = {
       name: "Algorithm Analyzer",
       blurb:
         "Performans ve bellek görselleştirmeli sıralama algoritması kıyaslama aracı (Quick, Heap, Shell, Merge, Radix).",
-      stack: ["Spring Boot", "Java", "React", "Vite"],
+      stack: ["Spring Boot 3", "Java 17", "React", "Vite"],
       category: "Systems",
       href: "https://github.com/Urthella/algortihm-test-sim",
     },

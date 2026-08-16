@@ -152,9 +152,9 @@ export const experiences: Experience[] = [
 ]
 
 export const skillGroups: { label: string; items: string[] }[] = [
-  { label: "Languages", items: ["Java", "Python", "JavaScript", "TypeScript", "SQL", "Verilog"] },
+  { label: "Languages", items: ["Java 17", "Python", "JavaScript", "TypeScript", "SQL", "Verilog"] },
   { label: "Frontend", items: ["Next.js", "React", "Vue.js", "Tailwind CSS"] },
-  { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot", "REST APIs"] },
+  { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot 3", "REST APIs"] },
   { label: "Databases", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"] },
   { label: "DevOps & Tools", items: ["Docker", "GitHub Actions", "Kafka", "Linux", "Postman"] },
   { label: "Cloud & AI", items: ["AWS", "AWS ML Foundations", "OpenAI API", "FastAPI"] },
@@ -234,8 +234,8 @@ export const projects: Project[] = [
   {
     name: "MIPS16 Pipeline Simulator",
     blurb:
-      "A 5-stage 16-bit MIPS pipeline simulator with hazard handling (forwarding, stalls, flushes). Java backend, React/TS frontend and Verilog RTL.",
-    stack: ["Java", "React", "Verilog"],
+      "A 5-stage 16-bit MIPS pipeline simulator with hazard handling (forwarding, stalls, flushes). Java 17 backend, React/TS frontend and Verilog RTL.",
+    stack: ["Java 17", "React", "Verilog"],
     category: "Systems",
     href: "https://github.com/Urthella/MIPS16-pipeline-simulator",
   },
@@ -243,7 +243,7 @@ export const projects: Project[] = [
     name: "Algorithm Analyzer",
     blurb:
       "A sorting-algorithm benchmarking tool (Quick, Heap, Shell, Merge, Radix) with performance and memory visualization.",
-    stack: ["Spring Boot", "Java", "React", "Vite"],
+    stack: ["Spring Boot 3", "Java 17", "React", "Vite"],
     category: "Systems",
     href: "https://github.com/Urthella/algortihm-test-sim",
   },

@@ -27,11 +27,11 @@ export const repoDetails: Record<string, { description?: string, language?: stri
         language: "TypeScript"
     },
     "MIPS16-pipeline-simulator": {
-        description: "5-stage 16-bit MIPS pipeline simulator with hazard detection (forwarding, stalls, flushes). Java backend (Javalin), React/TS frontend and Verilog RTL.",
+        description: "5-stage 16-bit MIPS pipeline simulator with hazard detection (forwarding, stalls, flushes). Java 17 backend (Javalin), React/TS frontend and Verilog RTL.",
         language: "TypeScript"
     },
     "algortihm-test-sim": {
-        description: "Sorting algorithm benchmarking suite: Quick/Heap/Shell/Merge/Radix on Random/Sorted/Reverse data, with Spring Boot API and React UI.",
+        description: "Sorting algorithm benchmarking suite: Quick/Heap/Shell/Merge/Radix on Random/Sorted/Reverse data, with Spring Boot 3 (Java 17) API and React UI.",
         language: "TypeScript"
     },
     "Urthella": {
