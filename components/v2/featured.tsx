@@ -20,7 +20,8 @@ export function Featured() {
   const cards = content.ui.featured.cards
 
   return (
-    <section className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
+    // overflow-x-clip: the card stack fans right past the column and caused a page-wide horizontal scroll around 1024-1300px
+    <section className="relative mx-auto max-w-6xl overflow-x-clip px-4 py-24 sm:px-6">
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <div>
           <SectionHeading index="04" label={h.label} title={h.title} subtitle={h.subtitle} />
