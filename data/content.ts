@@ -65,7 +65,7 @@ export const aboutHero = {
   ],
   note: "// Secure uploads, RBAC and green CI on an HR platform at Extramus, plus test and CI work merged into a dozen shipped repos.",
   stats: [
-    { value: "18+", label: "Projects", accent: "lime" },
+    { value: "23+", label: "Projects", accent: "lime" },
     { value: "8", label: "Languages", accent: "pink" },
     { value: "5", label: "Experiences", accent: "cyan" },
     { value: "2026", label: "Graduating", accent: "amber" },
@@ -156,7 +156,7 @@ export const skillGroups: { label: string; items: string[] }[] = [
   { label: "Frontend", items: ["Next.js", "React", "Vue.js", "Tailwind CSS"] },
   { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot 3", "REST APIs"] },
   { label: "Databases", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"] },
-  { label: "DevOps & Tools", items: ["Docker", "GitHub Actions", "Kafka", "Linux", "Postman"] },
+  { label: "DevOps & Tools", items: ["Docker", "GitHub Actions", "Kafka", "RabbitMQ", "Prometheus", "OpenTelemetry", "Linux", "Postman"] },
   { label: "Cloud & AI", items: ["AWS", "AWS ML Foundations", "OpenAI API", "FastAPI"] },
   { label: "Security & Realtime", items: ["OWASP", "Wireshark", "Burp Suite", "WebSocket", "LiveKit"] },
 ]
@@ -222,6 +222,46 @@ export const projects: Project[] = [
     live: "https://penpick.vercel.app",
     privateRepo: true,
     wip: true,
+  },
+  {
+    name: "Realtime Collab Editor",
+    blurb:
+      "Google-Docs-style collaborative editor: Yjs CRDTs synced over a custom WebSocket server, live cursors and presence, JWT sharing, and debounced snapshot persistence with version history.",
+    stack: ["React", "Yjs", "WebSocket", "Node.js", "SQLite"],
+    category: "Full-stack",
+    href: "https://github.com/Urthella/realtime-collab-editor",
+  },
+  {
+    name: "Distributed Rate Limiter",
+    blurb:
+      "API gateway with token bucket, sliding window and fixed window limiters, backed by atomic Redis Lua scripts so limits hold across replicas. Prometheus metrics and a Grafana dashboard.",
+    stack: ["TypeScript", "Redis", "Lua", "Prometheus", "Grafana"],
+    category: "Systems",
+    href: "https://github.com/Urthella/distributed-rate-limiter",
+  },
+  {
+    name: "Codebase RAG Q&A",
+    blurb:
+      "Ask questions about a repo and get answers with file:line citations: tree-sitter AST chunking, hybrid BM25 and vector retrieval, and an eval harness (94% hit@3).",
+    stack: ["Python", "FastAPI", "tree-sitter", "pgvector"],
+    category: "AI/ML",
+    href: "https://github.com/Urthella/rag-codebase-qa",
+  },
+  {
+    name: "Event-Driven Order System",
+    blurb:
+      "Five microservices coordinating an order saga, with compensating transactions, idempotent consumers under at-least-once delivery, and one OpenTelemetry trace per order.",
+    stack: ["TypeScript", "RabbitMQ", "OpenTelemetry", "Docker"],
+    category: "Systems",
+    href: "https://github.com/Urthella/event-driven-order-system",
+  },
+  {
+    name: "Job Queue Orchestrator",
+    blurb:
+      "A from-scratch mini Celery: race-safe job claiming, exponential backoff with a dead-letter queue, a crash-recovery reaper and a DAG workflow engine with a dashboard.",
+    stack: ["Python", "asyncio", "FastAPI", "SQLite", "PostgreSQL"],
+    category: "Systems",
+    href: "https://github.com/Urthella/job-queue-orchestrator",
   },
   {
     name: "Used Car Platform",

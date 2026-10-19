@@ -35,7 +35,7 @@ const uiEN = {
     projects: {
       label: "Projects",
       title: "Selected work",
-      subtitle: "Auction engines, ML detectors, CPU simulators and security tooling. A spread across the stack, plus repos I collaborate on.",
+      subtitle: "Auction engines, distributed systems, ML detectors, CPU simulators and security tooling. A spread across the stack, plus repos I collaborate on.",
       collab: "collaboration",
     },
     hobbies: {
@@ -67,6 +67,7 @@ const uiEN = {
   featured: {
     cards: [
       { title: "Okut Gitsin", tag: "Flagship SaaS", desc: "Live-stream vehicle auction platform: real-time bidding, secure payments, live at okutgitsin.com." },
+      { title: "Distributed Systems Series", tag: "Backend", desc: "Five from-scratch builds: CRDT sync, Redis Lua rate limiting, saga orchestration, hybrid RAG and a race-safe job queue." },
       { title: "Penpick", tag: "In development", desc: "Marketplace for pen collectors, still in development, live preview at penpick.vercel.app." },
       { title: "Extramus HR", tag: "Backend & Security", desc: "HR platform backend: RBAC, secure uploads, containerized services under load." },
       { title: "CI/CD Plumbing", tag: "DevOps", desc: "Dockerized pipelines and green GitHub Actions across a dozen shipped repos." },
@@ -77,7 +78,7 @@ const uiEN = {
     viewProfile: "view profile →",
     heatmap: "contributions in the last year",
     stats: [
-      { value: "10+", label: "Public repos" },
+      { value: "14+", label: "Public repos" },
       { value: "8", label: "Merged PRs (2026)" },
       { value: "6", label: "Languages shipped" },
     ],

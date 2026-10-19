@@ -49,7 +49,7 @@ export const tr = {
     ],
     note: "// Extramus'ta bir İK platformunda güvenli yüklemeler, RBAC ve yeşil CI, artı bir düzine projede birleştirilen test ve CI çalışması.",
     stats: [
-      { value: "18+", label: "Proje", accent: "lime" },
+      { value: "23+", label: "Proje", accent: "lime" },
       { value: "8", label: "Dil", accent: "pink" },
       { value: "5", label: "Deneyim", accent: "cyan" },
       { value: "2026", label: "Mezuniyet", accent: "amber" },
@@ -131,7 +131,7 @@ export const tr = {
     { label: "Frontend", items: ["Next.js", "React", "Vue.js", "Tailwind CSS"] },
     { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot 3", "REST API"] },
     { label: "Veritabanları", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"] },
-    { label: "DevOps ve Araçlar", items: ["Docker", "GitHub Actions", "Kafka", "Linux", "Postman"] },
+    { label: "DevOps ve Araçlar", items: ["Docker", "GitHub Actions", "Kafka", "RabbitMQ", "Prometheus", "OpenTelemetry", "Linux", "Postman"] },
     { label: "Bulut ve Yapay Zeka", items: ["AWS", "AWS ML Foundations", "OpenAI API", "FastAPI"] },
     { label: "Güvenlik ve Gerçek Zamanlı", items: ["OWASP", "Wireshark", "Burp Suite", "WebSocket", "LiveKit"] },
   ],
@@ -177,6 +177,46 @@ export const tr = {
       live: "https://penpick.vercel.app",
       privateRepo: true,
       wip: true,
+    },
+    {
+      name: "Realtime Collab Editor",
+      blurb:
+        "Google Docs tarzı ortak düzenleme aracı: özel bir WebSocket sunucusu üzerinden senkronize edilen Yjs CRDT'leri, canlı imleçler ve varlık bilgisi, JWT ile paylaşım ve sürüm geçmişli, debounce edilmiş anlık görüntü kalıcılığı.",
+      stack: ["React", "Yjs", "WebSocket", "Node.js", "SQLite"],
+      category: "Full-stack",
+      href: "https://github.com/Urthella/realtime-collab-editor",
+    },
+    {
+      name: "Distributed Rate Limiter",
+      blurb:
+        "Token bucket, sliding window ve fixed window sınırlayıcılara sahip API gateway; limitlerin replikalar arasında korunması için atomik Redis Lua betikleri. Prometheus metrikleri ve Grafana paneli.",
+      stack: ["TypeScript", "Redis", "Lua", "Prometheus", "Grafana"],
+      category: "Systems",
+      href: "https://github.com/Urthella/distributed-rate-limiter",
+    },
+    {
+      name: "Codebase RAG Q&A",
+      blurb:
+        "Bir repo hakkında soru sor, dosya:satır atıflı cevap al: tree-sitter ile AST tabanlı parçalama, hibrit BM25 ve vektör arama ve bir değerlendirme düzeneği (%94 hit@3).",
+      stack: ["Python", "FastAPI", "tree-sitter", "pgvector"],
+      category: "AI/ML",
+      href: "https://github.com/Urthella/rag-codebase-qa",
+    },
+    {
+      name: "Event-Driven Order System",
+      blurb:
+        "Bir sipariş saga'sını koordine eden beş mikroservis: telafi işlemleri, en az bir kez teslimatta idempotent tüketiciler ve sipariş başına tek bir OpenTelemetry trace'i.",
+      stack: ["TypeScript", "RabbitMQ", "OpenTelemetry", "Docker"],
+      category: "Systems",
+      href: "https://github.com/Urthella/event-driven-order-system",
+    },
+    {
+      name: "Job Queue Orchestrator",
+      blurb:
+        "Sıfırdan yazılmış mini bir Celery: yarış güvenli iş alma, dead-letter kuyruklu üstel geri çekilme, çöken işçilerin işlerini kurtaran bir reaper ve panelli bir DAG iş akışı motoru.",
+      stack: ["Python", "asyncio", "FastAPI", "SQLite", "PostgreSQL"],
+      category: "Systems",
+      href: "https://github.com/Urthella/job-queue-orchestrator",
     },
     {
       name: "Used Car Platform",
@@ -386,7 +426,7 @@ export const tr = {
       projects: {
         label: "Projeler",
         title: "Seçili işler",
-        subtitle: "Açık artırma motorları, ML dedektörleri, işlemci simülatörleri ve güvenlik araçları. Stack boyunca bir yelpaze, artı katkı verdiğim repolar.",
+        subtitle: "Açık artırma motorları, dağıtık sistemler, ML dedektörleri, işlemci simülatörleri ve güvenlik araçları. Stack boyunca bir yelpaze, artı katkı verdiğim repolar.",
         collab: "iş birliği",
       },
       hobbies: {
@@ -418,6 +458,7 @@ export const tr = {
     featured: {
       cards: [
         { title: "Okut Gitsin", tag: "Amiral Gemisi SaaS", desc: "Canlı yayınlı araç açık artırma platformu: gerçek zamanlı teklif, güvenli ödeme, okutgitsin.com'da canlı." },
+        { title: "Dağıtık Sistemler Serisi", tag: "Backend", desc: "Sıfırdan beş proje: CRDT senkronizasyonu, Redis Lua ile rate limiting, saga orkestrasyonu, hibrit RAG ve yarış güvenli bir iş kuyruğu." },
         { title: "Penpick", tag: "Geliştiriliyor", desc: "Kalem koleksiyoncuları için pazar yeri, hala geliştiriliyor, canlı önizleme penpick.vercel.app." },
         { title: "Extramus İK", tag: "Backend ve Güvenlik", desc: "İK platformu backend'i: RBAC, güvenli yüklemeler, yük altında konteynerize servisler." },
         { title: "CI/CD Altyapısı", tag: "DevOps", desc: "Bir düzine projede Dockerize hatlar ve yeşil GitHub Actions." },
@@ -428,7 +469,7 @@ export const tr = {
       viewProfile: "profili gör →",
       heatmap: "katkı (son bir yıl)",
       stats: [
-        { value: "10+", label: "Açık repo" },
+        { value: "14+", label: "Açık repo" },
         { value: "8", label: "Birleşen PR (2026)" },
         { value: "6", label: "Kullanılan dil" },
       ],
