@@ -58,7 +58,6 @@ const TargetCursor = ({
   // Where the cursor first appears (viewport coords). Read through a ref so it
   // only matters at mount and never re-runs the main effect.
   const initialPositionRef = useRef(initialPosition);
-  initialPositionRef.current = initialPosition;
 
   const isMobile = useMemo(() => {
     if (typeof window === 'undefined') return false;

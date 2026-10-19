@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowUpRight, Github, Lock, Star, Zap } from "lucide-react"
-import { useRef, useState, type PointerEvent } from "react"
+import { useState, type PointerEvent } from "react"
 
 import TargetCursor from "@/components/ui/target-cursor"
 import { SectionHeading } from "@/components/v2/section-heading"
@@ -39,14 +39,14 @@ export function Projects() {
   // The target cursor lives only inside this section: mounted while the
   // pointer is over it (unmount restores the native cursor everywhere else).
   const [cursorOn, setCursorOn] = useState(false)
-  const cursorPos = useRef<{ x: number; y: number } | undefined>(undefined)
+  const [cursorPos, setCursorPos] = useState<{ x: number; y: number }>()
 
   return (
     <section
       id="projects"
       className={`relative mx-auto max-w-6xl px-4 py-24 sm:px-6 ${cursorOn ? "cursor-none [&_*]:cursor-none" : ""}`}
       onPointerEnter={(e: PointerEvent<HTMLElement>) => {
-        cursorPos.current = { x: e.clientX, y: e.clientY }
+        setCursorPos({ x: e.clientX, y: e.clientY })
         setCursorOn(true)
       }}
       onPointerLeave={() => setCursorOn(false)}
@@ -59,7 +59,7 @@ export function Projects() {
           parallaxOn
           cursorColor="#ffffff"
           cursorColorOnTarget={accentHex()}
-          initialPosition={cursorPos.current}
+          initialPosition={cursorPos}
         />
       )}
       <SectionHeading index="05" label={h.label} title={h.title} subtitle={h.subtitle} />

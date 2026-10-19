@@ -36,7 +36,8 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
 
   const label = (id: string) => navLabels[id as keyof typeof navLabels] ?? id
 
-  const LangToggle = () => (
+  // A plain element, not a nested component: a component defined in render remounts every render.
+  const langToggle = (
     <button
       onClick={() => setLang(lang === "en" ? "tr" : "en")}
       className="flex items-center gap-1.5 rounded-lg border border-white/15 px-2.5 py-1.5 font-mono text-xs text-white/70 transition-colors hover:border-white/30 hover:text-white"
@@ -126,7 +127,7 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
           >
             {lite ? <ZapOff className="h-[18px] w-[18px]" /> : <Zap className="h-[18px] w-[18px] text-orange-400" />}
           </button>
-          <LangToggle />
+          {langToggle}
           <button
             onClick={() => setOpen((v) => !v)}
             className="grid h-9 w-9 place-items-center rounded-lg border border-white/15 text-white md:hidden"

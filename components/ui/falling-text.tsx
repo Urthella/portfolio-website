@@ -187,7 +187,6 @@ export function FallingText({
       World.clear(engine.world, false)
       Engine.clear(engine)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [started, gravity, wireframes, backgroundColor, mouseConstraintStiffness])
 
   const manualTrigger = () => {

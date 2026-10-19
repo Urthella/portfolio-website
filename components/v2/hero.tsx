@@ -28,7 +28,7 @@ export function Hero() {
           <motion.p variants={fadeUp} className="mb-5 font-mono text-xs tracking-[0.25em] text-orange-300">
             {/* transform lives on the inner span so the beat never fights framer's entrance */}
             <span className="animate-heartbeat inline-block">
-              <span className="text-orange-500/60">// </span>
+              <span className="text-orange-500/60">{"// "}</span>
               {c.ui.hero.welcome}
             </span>
           </motion.p>

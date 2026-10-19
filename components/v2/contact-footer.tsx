@@ -107,7 +107,7 @@ export function ContactFooter() {
         {/* display heading opens the section */}
         <Reveal className="mx-auto max-w-6xl px-4 pt-24 text-center sm:px-6">
           <p className="font-mono text-xs tracking-[0.25em] text-orange-500">
-            <span className="text-orange-500/40">//</span> {f.talk}
+            <span className="text-orange-500/40">{"//"}</span> {f.talk}
           </p>
           <h2 className="mt-6 text-[clamp(2.8rem,9vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-white">
             {f.titleA}
@@ -251,7 +251,7 @@ export function ContactFooter() {
         {/* link columns (socials live as icons in the info card above) */}
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-20 sm:grid-cols-3 sm:px-6">
           <div>
-            <div className={colTitle}>// {f.colSections}</div>
+            <div className={colTitle}>{"// "}{f.colSections}</div>
             <ul className="mt-5 space-y-2.5">
               {sections.map((id) => (
                 <li key={id}>
@@ -264,7 +264,7 @@ export function ContactFooter() {
           </div>
 
           <div>
-            <div className={colTitle}>// {f.colWork}</div>
+            <div className={colTitle}>{"// "}{f.colWork}</div>
             <ul className="mt-5 space-y-2.5">
               {work.map(({ label, href }) => (
                 <li key={label}>
@@ -277,7 +277,7 @@ export function ContactFooter() {
           </div>
 
           <div>
-            <div className={colTitle}>// {f.colMore}</div>
+            <div className={colTitle}>{"// "}{f.colMore}</div>
             <ul className="mt-5 space-y-2.5">
               {more.map(({ label, href }) => (
                 <li key={label}>

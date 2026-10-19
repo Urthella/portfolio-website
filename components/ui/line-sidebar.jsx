@@ -68,7 +68,7 @@ const LineSidebar = ({
   // Single rAF loop that eases every item's --effect toward its target using
   // frame-rate independent exponential smoothing, so color, shift and scale
   // all move together without staggering CSS transitions.
-  const runFrame = useCallback(now => {
+  const runFrame = useCallback(function frame(now) {
     const dt = Math.min((now - lastRef.current) / 1000, 0.05);
     lastRef.current = now;
     const tau = Math.max(smoothingRef.current, 1) / 1000;
@@ -89,7 +89,7 @@ const LineSidebar = ({
       if (!settled) moving = true;
     }
 
-    rafRef.current = moving ? requestAnimationFrame(runFrame) : null;
+    rafRef.current = moving ? requestAnimationFrame(frame) : null;
   }, []);
 
   const startLoop = useCallback(() => {
