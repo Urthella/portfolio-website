@@ -11,6 +11,33 @@ interface Seg {
   text: string
 }
 
+const toSegs = (c: { cmd: string; out: string[] }): Seg[] => [
+  { type: "cmd", text: c.cmd },
+  ...c.out.map((o) => ({ type: "out" as const, text: o })),
+]
+
+function Transcript({ segs, typing }: { segs: Seg[]; typing: string }) {
+  return (
+    <>
+      {segs.map((s, i) =>
+        s.type === "cmd" ? (
+          <div key={i} className="text-white/90">
+            <span className="text-orange-500">➜</span> <span className="text-emerald-400">~</span> {s.text}
+          </div>
+        ) : (
+          <div key={i} className="pl-4 text-white/50">
+            {s.text}
+          </div>
+        ),
+      )}
+      <div className="text-white/90">
+        <span className="text-orange-500">➜</span> <span className="text-emerald-400">~</span> {typing}
+        <span className="ml-0.5 inline-block h-4 w-[7px] animate-pulse bg-white/70 align-middle" />
+      </div>
+    </>
+  )
+}
+
 export function Terminal() {
   const whoami = useContent().ui.terminal.whoami
   const [segs, setSegs] = useState<Seg[]>([])
@@ -26,6 +53,7 @@ export function Terminal() {
     ],
     [whoami],
   )
+  const finished = useMemo(() => SCRIPT.flatMap(toSegs), [SCRIPT])
 
   useEffect(() => {
     let cancelled = false
@@ -47,11 +75,7 @@ export function Terminal() {
           }
           if (cancelled) return
           await wait(280)
-          setSegs((s) => [
-            ...s,
-            { type: "cmd" as const, text: c.cmd },
-            ...c.out.map((o) => ({ type: "out" as const, text: o })),
-          ])
+          setSegs((s) => [...s, ...toSegs(c)])
           setTyping("")
           await wait(650)
         }
@@ -77,21 +101,13 @@ export function Terminal() {
             <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
             <span className="ml-2 font-mono text-xs text-white/40">utku@utkudem1rtas : zsh</span>
           </div>
-          <div className="min-h-[13rem] p-5 font-mono text-sm leading-relaxed">
-            {segs.map((s, i) =>
-              s.type === "cmd" ? (
-                <div key={i} className="text-white/90">
-                  <span className="text-orange-500">➜</span> <span className="text-emerald-400">~</span> {s.text}
-                </div>
-              ) : (
-                <div key={i} className="pl-4 text-white/50">
-                  {s.text}
-                </div>
-              ),
-            )}
-            <div className="text-white/90">
-              <span className="text-orange-500">➜</span> <span className="text-emerald-400">~</span> {typing}
-              <span className="ml-0.5 inline-block h-4 w-[7px] animate-pulse bg-white/70 align-middle" />
+          {/* The finished transcript sits invisibly in the same grid cell, so the box is always its final size and never grows while typing. */}
+          <div className="grid p-5 font-mono text-sm leading-relaxed">
+            <div aria-hidden className="invisible col-start-1 row-start-1">
+              <Transcript segs={finished} typing="" />
+            </div>
+            <div className="col-start-1 row-start-1">
+              <Transcript segs={segs} typing={typing} />
             </div>
           </div>
         </div>
