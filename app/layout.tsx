@@ -74,8 +74,8 @@ export default function RootLayout({
         <style>{`
           html {
             font-family: ${GeistSans.style.fontFamily};
-            --font-sans: ${GeistSans.variable};
-            --font-mono: ${GeistMono.variable};
+            --font-sans: ${GeistSans.style.fontFamily};
+            --font-mono: ${GeistMono.style.fontFamily};
           }
         `}</style>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
