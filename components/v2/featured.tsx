@@ -20,8 +20,7 @@ export function Featured() {
   const cards = content.ui.featured.cards
 
   return (
-    // overflow-x-clip: the card stack fans right past the column and caused a page-wide horizontal scroll around 1024-1300px
-    <section className="relative mx-auto max-w-6xl overflow-x-clip px-4 py-24 sm:px-6">
+    <section className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <div>
           <SectionHeading index="04" label={h.label} title={h.title} subtitle={h.subtitle} />
@@ -35,7 +34,10 @@ export function Featured() {
           </Reveal>
         </div>
 
-        <div className="relative h-[360px] w-full max-md:h-[300px]">
+        {/* Single column: the box grows with the stack's fit scale (~min(1, column/518px)) so the fan's top
+            (444px above the stage at full size, 54px of it below the box) lines up with the box top and never
+            rises into the button above. Two columns: the fan may overhang upward beside the text. */}
+        <div className="relative h-[min(390px,calc(85.8vw_-_82px))] w-full lg:h-[360px]">
           <CardSwap width={420} height={300} cardDistance={50} verticalDistance={56} delay={4000}>
             {cards.map((card, i) => {
               const { icon: Icon, grad } = META[i % META.length]

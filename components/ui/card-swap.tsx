@@ -7,6 +7,7 @@ import {
   forwardRef,
   isValidElement,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   type HTMLAttributes,
@@ -52,6 +53,22 @@ const makeSlot = (i: number, distX: number, distY: number, total: number): Slot 
   z: -i * distX * 1.5,
   zIndex: total - i,
 })
+
+const PERSPECTIVE = 900
+
+/**
+ * How far the fanned-out back cards reach past the front card's right edge,
+ * after perspective (origin: the stack's centre) shrinks them toward the middle.
+ */
+const fanOverhang = (count: number, width: number, distX: number) => {
+  let reach = width
+  for (let i = 1; i < count; i++) {
+    const { x, z } = makeSlot(i, distX, 0, count)
+    const s = PERSPECTIVE / (PERSPECTIVE - z)
+    reach = Math.max(reach, width / 2 + s * (x + width / 2))
+  }
+  return reach - width
+}
 
 const placeNow = (el: HTMLElement, slot: Slot, skew: number) =>
   gsap.set(el, {
@@ -102,6 +119,7 @@ export function CardSwap({
   const tlRef = useRef<gsap.core.Timeline | null>(null)
   const intervalRef = useRef<number | undefined>(undefined)
   const container = useRef<HTMLDivElement>(null)
+  const stage = useRef<HTMLDivElement>(null)
   const swapRef = useRef<() => void>(() => {})
 
   useEffect(() => {
@@ -172,6 +190,23 @@ export function CardSwap({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing])
 
+  // The stage spans the whole fan, so it is what has to fit inside the parent box.
+  const footprint = Math.ceil(width + fanOverhang(childArr.length, width, cardDistance))
+
+  // Scale the stack down whenever its box is narrower than the fan, so no card spills out of the column.
+  useLayoutEffect(() => {
+    const el = stage.current
+    const box = el?.parentElement
+    if (!el || !box) return
+    const fit = () => {
+      el.style.scale = String(Math.min(1, box.clientWidth / footprint))
+    }
+    fit()
+    const ro = new ResizeObserver(fit)
+    ro.observe(box)
+    return () => ro.disconnect()
+  }, [footprint])
+
   const rendered = childArr.map((child, i) =>
     isValidElement(child)
       ? cloneElement(child as ReactElement<CardProps>, {
@@ -192,13 +227,21 @@ export function CardSwap({
   }
 
   return (
+    // contain:layout turns the stack's overflow into ink overflow: Chrome sizes the perspective-shrunk back
+    // cards larger for scrolling than they paint, which gave the page a phantom horizontal scroll near 1024-1150px.
     <div
-      ref={container}
-      onClick={handleClick}
-      className="absolute bottom-0 right-0 origin-bottom-right cursor-pointer [perspective:900px] [transform:translate(5%,18%)] max-md:[transform:scale(0.72)_translate(20%,22%)]"
-      style={{ width, height }}
+      ref={stage}
+      className="absolute bottom-0 right-0 origin-bottom-right translate-y-[18%] [contain:layout]"
+      style={{ width: footprint, height }}
     >
-      {rendered}
+      <div
+        ref={container}
+        onClick={handleClick}
+        className="relative cursor-pointer"
+        style={{ width, height, perspective: PERSPECTIVE }}
+      >
+        {rendered}
+      </div>
     </div>
   )
 }
