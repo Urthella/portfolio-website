@@ -128,9 +128,9 @@ export const tr = {
 
   skillGroups: [
     { label: "Diller", items: ["Java 17", "Python", "JavaScript", "TypeScript", "SQL", "Verilog"] },
-    { label: "Frontend", items: ["Next.js", "React", "Vue.js", "Tailwind CSS"] },
+    { label: "Frontend", items: ["Next.js", "React", "Tailwind CSS"] },
     { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot 3", "REST API"] },
-    { label: "Veritabanları", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"] },
+    { label: "Veritabanları", items: ["PostgreSQL", "MongoDB", "Redis", "Prisma"] },
     { label: "DevOps ve Araçlar", items: ["Docker", "GitHub Actions", "Kafka", "RabbitMQ", "Prometheus", "OpenTelemetry", "Linux", "Postman"] },
     { label: "Bulut ve Yapay Zeka", items: ["AWS", "AWS ML Foundations", "OpenAI API", "FastAPI"] },
     { label: "Güvenlik ve Gerçek Zamanlı", items: ["OWASP", "Wireshark", "Burp Suite", "WebSocket", "LiveKit"] },

@@ -153,9 +153,9 @@ export const experiences: Experience[] = [
 
 export const skillGroups: { label: string; items: string[] }[] = [
   { label: "Languages", items: ["Java 17", "Python", "JavaScript", "TypeScript", "SQL", "Verilog"] },
-  { label: "Frontend", items: ["Next.js", "React", "Vue.js", "Tailwind CSS"] },
+  { label: "Frontend", items: ["Next.js", "React", "Tailwind CSS"] },
   { label: "Backend", items: ["Node.js", "Express.js", "NestJS", "Spring Boot 3", "REST APIs"] },
-  { label: "Databases", items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"] },
+  { label: "Databases", items: ["PostgreSQL", "MongoDB", "Redis", "Prisma"] },
   { label: "DevOps & Tools", items: ["Docker", "GitHub Actions", "Kafka", "RabbitMQ", "Prometheus", "OpenTelemetry", "Linux", "Postman"] },
   { label: "Cloud & AI", items: ["AWS", "AWS ML Foundations", "OpenAI API", "FastAPI"] },
   { label: "Security & Realtime", items: ["OWASP", "Wireshark", "Burp Suite", "WebSocket", "LiveKit"] },
