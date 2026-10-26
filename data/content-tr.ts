@@ -170,11 +170,11 @@ export const tr = {
     {
       name: "Penpick",
       blurb:
-        "Kalem koleksiyoncuları için pazar yeri; Next.js 16 ve Neon Postgres üzerinde Prisma ile kuruldu. Hala geliştiriliyor, penpick.vercel.app'te canlı bir önizleme var.",
+        "Kalem koleksiyoncuları için pazar yeri; Next.js 16 ve Neon Postgres üzerinde Prisma ile kuruldu. Çok yakında açılıyor, bekleme listesi penpick.com.tr'de açık.",
       stack: ["Next.js", "Prisma", "Neon Postgres", "Tailwind v4"],
       category: "Full-stack",
-      href: "https://penpick.vercel.app",
-      live: "https://penpick.vercel.app",
+      href: "https://penpick.com.tr",
+      live: "https://penpick.com.tr",
       privateRepo: true,
       wip: true,
     },
@@ -472,7 +472,7 @@ export const tr = {
       cards: [
         { title: "Okut Gitsin", tag: "Amiral Gemisi SaaS", desc: "Canlı yayınlı araç açık artırma platformu: gerçek zamanlı teklif, güvenli ödeme, okutgitsin.com'da canlı." },
         { title: "Dağıtık Sistemler Serisi", tag: "Backend", desc: "Sıfırdan beş proje: CRDT senkronizasyonu, Redis Lua ile rate limiting, saga orkestrasyonu, hibrit RAG ve yarış güvenli bir iş kuyruğu." },
-        { title: "Penpick", tag: "Geliştiriliyor", desc: "Kalem koleksiyoncuları için pazar yeri, hala geliştiriliyor, canlı önizleme penpick.vercel.app." },
+        { title: "Penpick", tag: "Çok yakında", desc: "Kalem koleksiyoncuları için pazar yeri, çok yakında açılıyor, bekleme listesi penpick.com.tr'de açık." },
         { title: "Extramus İK", tag: "Backend ve Güvenlik", desc: "İK platformu backend'i: RBAC, güvenli yüklemeler, yük altında konteynerize servisler." },
         { title: "CI/CD Altyapısı", tag: "DevOps", desc: "Bir düzine projede Dockerize hatlar ve yeşil GitHub Actions." },
       ],
