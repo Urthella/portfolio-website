@@ -481,6 +481,12 @@ html {
 [data-venom-stage] > div {
   background: transparent !important;
 }
+/* while the venom draws the glove itself (over its stage, or wherever it holds the hand), the
+   system cursor hides everywhere so there is only one hand */
+html.venom-hand,
+html.venom-hand * {
+  cursor: none !important;
+}
 
 /* The glove is the cursor everywhere on the site (the venom's own glove,
    public/cursors/glove.svg); text fields keep the caret. The projects

@@ -21,7 +21,9 @@ const NATIVE_GRIPS: [number, number][] = [[0, 0], [5, 7], [-4, 6], [8, 13], [-2,
 const NATIVE_BANDS: [number, number][] = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]];
 
 /* Limits baked into the shader. */
-const MS = 7; // thick strands rendered as goo
+const MH = 7; // thick strands that reach for the hand
+const MB = 4; // portfolio addition: tentacles that carry the burst slabs out of the pill
+const MS = MH + MB; // strands rendered as goo
 const NP = 12; // points per strand
 const MSPK = 8;
 const MDROP = 6;
@@ -48,6 +50,11 @@ uniform vec4 uDrop[${MDROP}];  // x, y, r, alive
 uniform vec4 uMound;    // from x, y to x, y
 uniform vec2 uMoundR;   // radius at base, radius at tip
 uniform float uLean;
+// portfolio additions: each strand's bounding box (min x, y, max x, y), so pixels far from a long
+// tentacle skip its cones, and the burst slabs (centre x, y, half w, half h / corner, thickness, alive)
+uniform vec4 uBB[${MS}];
+uniform vec4 uPan[${MB}];
+uniform vec4 uPanR[${MB}];
 
 vec2 smin(vec2 a, vec2 b, float k){
   // smooth union of (distance, thickness) pairs
@@ -92,6 +99,9 @@ vec2 field(vec2 p){
   vec2 st = vec2(1e5, 2.0);
   for (int s = 0; s < ${MS}; s++) {
     if (float(s) >= uCount) break;
+    // past 24px from its box a strand is too far to change the surface or its shadow
+    vec4 bb = uBB[s];
+    if (p.x < bb.x - 24.0 || p.y < bb.y - 24.0 || p.x > bb.z + 24.0 || p.y > bb.w + 24.0) continue;
     // one strand is a hard union of its pieces (no beads at the joints)...
     vec2 one = vec2(1e5, 2.0);
     for (int i = 0; i < ${NP - 1}; i++) {
@@ -111,6 +121,13 @@ vec2 field(vec2 p){
   for (int k = 0; k < ${MDROP}; k++) {
     if (uDrop[k].w < 0.5) continue;
     st = smin(st, vec2(length(p - uDrop[k].xy) - uDrop[k].z, uDrop[k].z), 5.0);
+  }
+  // portfolio addition: the burst slabs, rounded boxes with a bevelled rim, melted onto their tentacles
+  for (int k = 0; k < ${MB}; k++) {
+    if (uPanR[k].z < 0.5) continue;
+    vec2 q = abs(p - uPan[k].xy) - uPan[k].zw + uPanR[k].x;
+    float d = length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - uPanR[k].x;
+    st = smin(st, vec2(d, uPanR[k].y), 10.0);
   }
   vec2 res = smin(body, st, 11.0);
   // deep inside the body, keep the body's round profile even where a strand root overlaps it
@@ -204,6 +221,24 @@ export type VenomButtonProps = {
    * the page around can react to the takeover.
    */
   onTakeover?: (taken: boolean) => void;
+  /**
+   * Added for this portfolio: draw on a fixed, full-viewport canvas instead of inside the stage, so
+   * the strands can reach for a pointer anywhere on the page (mouse only: a finger still has to
+   * start on the stage). The glove is drawn while the pointer is over the stage or held.
+   */
+  fullscreen?: boolean;
+  /**
+   * Added for this portfolio: while `open`, the goo bursts out of the pill into each element
+   * matching `targets` (up to 4): a tentacle shoots to it carrying a drop that swells into a glossy
+   * slab the size of the element's box, and reels it back in once `open` turns false. Each target
+   * gets a --goo custom property (0 to 1) once its slab has filled, to fade its content in.
+   * Needs `fullscreen` when the targets lie outside the stage.
+   */
+  burst?: { open: boolean; targets: string };
+  /** Added for this portfolio: called once the goo is unavailable (no WebGL, or the context was lost). */
+  onFallback?: () => void;
+  /** Added for this portfolio: set when the button opens a dialog, for aria-haspopup / aria-expanded. */
+  expanded?: boolean;
   /** Thick strands (2 to 7); about as many fine hairs are added between them. */
   strands?: number;
   /** Distance from the edge, in px, at which the goo notices the cursor and starts reaching for it. */
@@ -228,6 +263,10 @@ export function VenomButton({
   label = "let’s collaborate",
   onClick,
   onTakeover,
+  fullscreen = false,
+  burst,
+  onFallback,
+  expanded,
   strands = 7,
   sense = 290,
   reach = 140,
@@ -244,11 +283,26 @@ export function VenomButton({
   const handRef = useRef<HTMLCanvasElement>(null);
   const [fallback, setFallback] = useState(false);
   const reduced = !!useReducedMotion();
-  // portfolio addition: the latest onTakeover, read from the animation loop without restarting it
+  // portfolio addition: the latest onTakeover and burst, read from the animation loop without
+  // restarting it; `wake` restarts a loop that went to sleep off screen when a burst opens
   const onTakeoverRef = useRef(onTakeover);
+  const burstRef = useRef(burst);
+  const wakeRef = useRef<() => void>(undefined);
   useEffect(() => {
     onTakeoverRef.current = onTakeover;
+    burstRef.current = burst;
   });
+  const burstOpen = !!burst?.open;
+  useEffect(() => {
+    if (burstOpen) wakeRef.current?.();
+  }, [burstOpen]);
+  const onFallbackRef = useRef(onFallback);
+  useEffect(() => {
+    onFallbackRef.current = onFallback;
+  });
+  useEffect(() => {
+    if (fallback) onFallbackRef.current?.();
+  }, [fallback]);
 
   useEffect(() => {
     const stage = stageRef.current!, btn = btnRef.current!;
@@ -299,13 +353,24 @@ export function VenomButton({
       setFallback(true);
       return;
     }
+    // portfolio change: a lost context is the end of the goo. Everything stops, so nothing keeps
+    // holding (or hiding) the pointer behind the plain pill that replaces it.
+    let dead = false;
     const onContextLost = (e: Event) => {
       e.preventDefault();
+      dead = true;
+      cancelAnimationFrame(raf);
+      raf = 0;
+      reeled = false;
+      showHand(false);
+      if (taken) { taken = false; onTakeoverRef.current?.(false); }
+      fx.setTransform(1, 0, 0, 1, 0, 0); fx.clearRect(0, 0, fxc.width, fxc.height);
+      hx.setTransform(1, 0, 0, 1, 0, 0); hx.clearRect(0, 0, hc.width, hc.height);
       setFallback(true);
     };
     glc.addEventListener("webglcontextlost", onContextLost);
     gl.useProgram(prog);
-    for (const n of ["uRes", "uDpr", "uPill", "uPts", "uCount", "uSpk", "uSpkR", "uDrop", "uMound", "uMoundR", "uLean"]) U[n] = gl.getUniformLocation(prog, n);
+    for (const n of ["uRes", "uDpr", "uPill", "uPts", "uCount", "uSpk", "uSpkR", "uDrop", "uMound", "uMoundR", "uLean", "uBB", "uPan", "uPanR"]) U[n] = gl.getUniformLocation(prog, n);
     quad = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, quad);
     const aLoc = gl.getAttribLocation(prog, "a");
@@ -314,6 +379,7 @@ export function VenomButton({
     const quadData = new Float32Array(8);
     const pts = new Float32Array(MS * NP * 4);
     const spk = new Float32Array(MSPK * 4), spkR = new Float32Array(MSPK * 4), drp = new Float32Array(MDROP * 4);
+    const bbs = new Float32Array(MS * 4), pan = new Float32Array(MB * 4), panR = new Float32Array(MB * 4);
 
     let w = 0, h = 0, dpr = 1;
     const gloveP = new Path2D(GLOVE), gloveL = new Path2D(GLOVE_LINES), cuffP = new Path2D(CUFF), cuffL = new Path2D(CUFF_LINES);
@@ -321,12 +387,18 @@ export function VenomButton({
     handClip.addPath(gloveP);
     handClip.addPath(cuffP);
 
-    // the pill in stage coordinates, re-measured every frame (it scales when pressed). Everything
+    // the pill in canvas coordinates, re-measured every frame (it scales when pressed). Everything
     // here is in layout px: if a parent is scaled with a CSS transform, rect sizes are divided by k.
+    // (portfolio change: measured against the canvas, not the stage, so the same code serves the
+    // in-stage canvas and the full-viewport one; `box` is the stage within the canvas.)
     const pill = { x: 0, y: 0, w: 0, h: 0, r: 0, ls: 0, P: 1 };
+    const box = { x: 0, y: 0, w: 0, h: 0 };
+    const org = { x: 0, y: 0, k: 1 };
     const measure = () => {
-      const a = stage.getBoundingClientRect(), b = btn.getBoundingClientRect();
-      const k = stage.offsetWidth ? a.width / stage.offsetWidth : 1;
+      const a = glc.getBoundingClientRect(), b = btn.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+      const k = glc.offsetWidth ? a.width / glc.offsetWidth : 1;
+      org.x = a.left; org.y = a.top; org.k = k;
+      box.x = (sr.left - a.left) / k; box.y = (sr.top - a.top) / k; box.w = sr.width / k; box.h = sr.height / k;
       pill.x = (b.left - a.left) / k; pill.y = (b.top - a.top) / k; pill.w = b.width / k; pill.h = b.height / k;
       pill.r = pill.h / 2;
       pill.ls = Math.max(0, pill.w - pill.h);
@@ -370,9 +442,9 @@ export function VenomButton({
     };
 
     const fit = () => {
-      const r = stage.getBoundingClientRect();
+      const r = glc.getBoundingClientRect();
       dpr = Math.min(2, window.devicePixelRatio || 1);
-      w = stage.offsetWidth || r.width; h = stage.offsetHeight || r.height;
+      w = glc.offsetWidth || r.width; h = glc.offsetHeight || r.height;
       for (const c of [glc, fxc, hc]) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
       gl.viewport(0, 0, glc.width, glc.height);
       measure();
@@ -384,16 +456,23 @@ export function VenomButton({
     const ghostOn = !!autoplay;
     const LINGER = 1700; // ms the goo keeps hold after a finger lifts
     const FINGER_LIFT = 52; // px the glove is drawn above a finger, so the hand is not hidden under it
-    const ptr = { x: -999, y: -999, inside: false, last: 0, touch: false, down: false, upAt: 0 };
+    const ptr = { x: -999, y: -999, inside: false, inWin: false, last: 0, touch: false, down: false, upAt: 0, movedAt: -1e9 };
     let touched = false;
     const place = (e: PointerEvent) => {
-      const r = stage.getBoundingClientRect();
+      const r = glc.getBoundingClientRect();
       // Undo any CSS scale on a parent so pointer space matches layout space.
-      const k = stage.offsetWidth ? r.width / stage.offsetWidth : 1;
+      const k = glc.offsetWidth ? r.width / glc.offsetWidth : 1;
       ptr.x = (e.clientX - r.left) / k;
       ptr.y = (e.clientY - r.top) / k;
-      ptr.inside = ptr.x >= 0 && ptr.y >= 0 && ptr.x <= w && ptr.y <= h;
-      if (ptr.inside) { touched = true; ptr.last = performance.now(); }
+      // portfolio change: a finger is over the stage by its box, as before; a mouse only when the
+      // stage itself is under it, not the nav or a dialog on top (inWin: anywhere in the window)
+      const sr = stage.getBoundingClientRect();
+      ptr.inside = e.pointerType === "touch"
+        ? e.clientX >= sr.left && e.clientY >= sr.top && e.clientX <= sr.right && e.clientY <= sr.bottom
+        : e.target instanceof Node && stage.contains(e.target);
+      ptr.inWin = true;
+      ptr.movedAt = performance.now();
+      if (ptr.inside) { touched = true; ptr.last = ptr.movedAt; }
     };
     const onMove = (e: PointerEvent) => {
       if (e.pointerType === "touch") {
@@ -416,7 +495,7 @@ export function VenomButton({
       if (e.type === "pointercancel") { ptr.inside = false; ptr.last = ptr.upAt; }
     };
     // a mouse that leaves the window sends no more moves, so without this the goo would keep holding
-    const onLeaveWindow = () => { if (!ptr.touch) ptr.inside = false; };
+    const onLeaveWindow = () => { if (!ptr.touch) { ptr.inside = false; ptr.inWin = false; } };
     window.addEventListener("pointermove", onMove, { passive: true });
     stage.addEventListener("pointerdown", onDown, { passive: true });
     window.addEventListener("pointerup", onUp, { passive: true });
@@ -439,7 +518,7 @@ export function VenomButton({
       const e = f * f * (3 - 2 * f);
       const cr = (a: number, b: number, c: number, d: number) =>
         0.5 * (2 * b + (-a + c) * e + (2 * a - 5 * b + 4 * c - d) * e * e + (-a + 3 * b - 3 * c + d) * e * e * e);
-      return { x: cr(p0[0], p1[0], p2[0], p3[0]) * w, y: cr(p0[1], p1[1], p2[1], p3[1]) * h };
+      return { x: box.x + cr(p0[0], p1[0], p2[0], p3[0]) * box.w, y: box.y + cr(p0[1], p1[1], p2[1], p3[1]) * box.h };
     };
 
     // ---- goo state ----
@@ -468,13 +547,39 @@ export function VenomButton({
     const coat = new Float32Array(GRIPS.length);
     // portfolio addition: whether onTakeover was last told the hand is swallowed
     let taken = false;
+    // portfolio addition: the burst, one slot per target. A slot outlives its target while the slab
+    // reels back in (the element may be gone by then), so it keeps the last box it saw.
+    type Burst = { st: Strand; el: HTMLElement; bx: number; by: number; bw: number; bh: number; cr: number; p: number; wait: number };
+    const bursts: (Burst | null)[] = new Array(MB).fill(null);
+    let armed = true; // after a burst the goo won't grab again until the pointer has backed off
+    let handShown = false; // whether the system cursor is hidden for the drawn glove
+    const showHand = (on: boolean) => {
+      if (on === handShown) return;
+      handShown = on;
+      document.documentElement.classList.toggle("venom-hand", on);
+    };
+    // portfolio addition: once it holds the hand the goo reels it in over PULL seconds, dragging the
+    // drawn glove onto the pill. The real pointer can't be moved, so the glove leaves it behind (yank
+    // past `release` and it snaps back); while the glove sits on the pill, a click is the button's.
+    const PULL = 1.2;
+    let pull = 0;
+    let reeled = false;
+    let fxInk = false, hxInk = false; // whether the 2D layers were drawn on (and need clearing)
+    let asleep = false; // canvases shrunk to 1px while the loop sleeps
+    const onClickCapture = (e: MouseEvent) => {
+      if (!reeled || !handShown || (e.target instanceof Node && btn.contains(e.target))) return;
+      e.preventDefault();
+      e.stopPropagation();
+      btn.click();
+    };
+    window.addEventListener("click", onClickCapture, true);
 
     const gripAt = (g: [number, number]) =>
       glove ? { x: hand.x + (g[0] - HOT_X) * sc, y: hand.y + (g[1] - HOT_Y) * sc } : { x: hand.x + g[0], y: hand.y + g[1] };
 
     const spawn = () => {
       list = [];
-      const main = Math.max(2, Math.min(MS, Math.round(strands)));
+      const main = Math.max(2, Math.min(MH, Math.round(strands)));
       const total = main * 2 - 1;
       const root = at(near.s);
       for (let k = 0; k < total; k++) {
@@ -534,6 +639,44 @@ export function VenomButton({
       }
     };
 
+    // One verlet step for a strand rooted at (rx, ry): viscous drift, a slow wave, gravity, then the
+    // length constraints and a little bending stiffness. (Portfolio change: lifted out of the loop
+    // below unchanged, so the burst tentacles move the same way.)
+    const rope = (st: Strand, rx: number, ry: number, pinTip: boolean, damp: number, time: number, dt: number) => {
+      for (let i = 1; i < NP; i++) {
+        const vx = (st.x[i] - st.px[i]) * damp, vy = (st.y[i] - st.py[i]) * damp;
+        st.px[i] = st.x[i]; st.py[i] = st.y[i];
+        const mid = Math.sin((i / (NP - 1)) * Math.PI);
+        const wx = Math.sin(time * 1.6 + st.phase + i * 0.55) * 14 * mid;
+        const wy = Math.cos(time * 1.3 + st.phase * 1.3 + i * 0.45) * 14 * mid;
+        st.x[i] += vx + wx * dt * dt;
+        st.y[i] += vy + (260 + wy) * dt * dt;
+      }
+      st.x[0] = st.px[0] = rx; st.y[0] = st.py[0] = ry;
+      if (pinTip) { st.x[NP - 1] = st.ex; st.y[NP - 1] = st.ey; }
+      const len = Math.max(0.01, st.seg);
+      for (let it = 0; it < 14; it++) {
+        for (let i = 0; i < NP - 1; i++) {
+          const dx = st.x[i + 1] - st.x[i], dy = st.y[i + 1] - st.y[i];
+          const d = Math.hypot(dx, dy) || 0.0001;
+          const diff = (d - len) / d;
+          const a = i === 0 ? 0 : 0.5, b = pinTip && i + 1 === NP - 1 ? 0 : i === 0 ? 1 : 0.5;
+          const m = a + b || 1;
+          st.x[i] += dx * diff * (a / m); st.y[i] += dy * diff * (a / m);
+          st.x[i + 1] -= dx * diff * (b / m); st.y[i + 1] -= dy * diff * (b / m);
+        }
+      }
+      // a little bending stiffness, so a strand curves like goo instead of folding into kinks
+      for (let pass = 0; pass < 2; pass++) {
+        for (let i = 1; i < NP - 1; i++) {
+          if (pinTip && i === NP - 1) continue;
+          st.x[i] += ((st.x[i - 1] + st.x[i + 1]) / 2 - st.x[i]) * 0.22;
+          st.y[i] += ((st.y[i - 1] + st.y[i + 1]) / 2 - st.y[i]) * 0.22;
+        }
+      }
+      if (!Number.isFinite(st.x[NP - 1])) { st.x.fill(rx); st.y.fill(ry); st.px.fill(rx); st.py.fill(ry); }
+    };
+
     let raf = 0;
     let visible = true;
     let prev = performance.now();
@@ -548,31 +691,54 @@ export function VenomButton({
       // a lifted finger keeps hold for a moment, then lets go
       if (ptr.touch && !ptr.down && ptr.inside && now - ptr.upAt > LINGER) { ptr.inside = false; ptr.last = now; }
       const ghost = ghostOn && !reduced && !ptr.down && (!touched || (!ptr.inside && now - ptr.last > 2500));
-      let live = ptr.inside;
+      // portfolio change: on the full-viewport canvas a mouse is followed anywhere in the window
+      let live = fullscreen && !ptr.touch ? ptr.inWin : ptr.inside;
       if (ghost) { hand = ghostAt(time); live = true; } else hand = { x: ptr.x, y: ptr.touch ? ptr.y - FINGER_LIFT : ptr.y };
-      stage.style.cursor = glove && !ghost && live ? "none" : "";
-      btn.style.cursor = glove ? "none" : "pointer";
+      // portfolio addition: while a burst is out the goo lets go of the hand (the form needs the pointer)
+      const bs = burstRef.current;
+      const open = !!bs?.open;
 
       // distance is measured from the middle of the hand; over the button it counts as touching
       anchor = glove ? { x: hand.x + (16 - HOT_X) * sc, y: hand.y + (18 - HOT_Y) * sc } : { x: hand.x, y: hand.y };
       near = nearest(anchor.x, anchor.y);
       const D = Math.max(0, near.dist);
       // on a narrow touch stage the sensing distance shrinks with it, or the whole stage would be inside `sense`
-      const dk = ptr.touch || (touchOnly && ghost) ? Math.max(0.55, Math.min(1, w / 560)) : 1;
+      const dk = ptr.touch || (touchOnly && ghost) ? Math.max(0.55, Math.min(1, box.w / 560)) : 1;
       // a finger is a clumsy pointer: it keeps the full grab and let-go distances and only senses sooner
       const sn = sense * dk, rc = reach, rl = release;
       const cx = pill.x + pill.w / 2;
       lean += ((live ? Math.max(-1, Math.min(1, (hand.x - cx) / (pill.w * 1.5))) : 0) - lean) * Math.min(1, dt * 4);
 
       if (!reduced) {
-        if (mode === "idle" && live && D < sn) spawn();
+        // portfolio addition: a burst takes all its attention, and whatever it held is let go at once
+        if (open) { if (mode === "seek") snap(false); else if (mode === "grow" || mode === "hold") snap(true); }
+        else if (mode === "idle" && live && D < sn) spawn();
         else if (mode === "snap" && !violentSnap && live && D < sn) mode = "seek"; // changed its mind
         else if (mode === "seek" && (!live || D > sn + 25)) snap(false);
-        else if (mode === "seek" && D < rc) { mode = "grow"; grow = 0; }
+        // (portfolio change: only a pointer that has just moved is grabbed, not one the page scrolled the pill under)
+        else if (mode === "seek" && D < rc && armed && (ptr.touch || ghost || now - ptr.movedAt < 800)) { mode = "grow"; grow = 0; }
         else if ((mode === "grow" || mode === "hold") && (!live || D > rl)) snap(true);
+        // portfolio addition: after a burst it only grabs again once the pointer has backed off
+        if (open) armed = false;
+        else if (!armed && (!live || D > rl)) armed = true;
       }
       const holding = mode === "hold" || mode === "grow";
       const seeking = mode === "seek";
+      // portfolio change: the glove is drawn over the stage, or wherever the goo still holds it; the
+      // system cursor hides only while it is (an html class, as the hand may be outside the stage)
+      const handOn = glove && live && !open && (ghost || ptr.inside || holding);
+      showHand(handOn && !ghost);
+      // portfolio addition: reel the held hand in, its middle sinking just inside the pill's rim (D
+      // above stays the real pointer's distance, so pulling away still breaks the hold)
+      pull = mode === "hold" ? Math.min(1, pull + dt / PULL) : Math.max(0, pull - dt * 4);
+      if (pull > 0 && near.dist > 0) {
+        const e = at(near.s), k = pull * pull * (3 - 2 * pull);
+        const ox = (e.x - e.nx * 10 - anchor.x) * k, oy = (e.y - e.ny * 10 - anchor.y) * k;
+        hand = { x: hand.x + ox, y: hand.y + oy };
+        anchor = { x: anchor.x + ox, y: anchor.y + oy };
+        near = nearest(anchor.x, anchor.y);
+      }
+      reeled = holding && pull > 0.8;
       // how hard it is reaching: nothing at the edge of its senses, everything at grabbing range
       const fT = seeking ? Math.max(0, Math.min(1, (sn - D) / Math.max(1, sn - rc))) : holding ? 1 : 0;
       seekF += (fT - seekF) * Math.min(1, dt * 5);
@@ -583,7 +749,7 @@ export function VenomButton({
       }
 
       // ---- simulate ----
-      const spreadPx = Math.max(14, Math.min(pill.w * 0.3, D * 0.4 + 14)) * (seeking ? 0.65 : 1);
+      const spreadPx = Math.max(14, Math.min(pill.w * 0.3, Math.max(0, near.dist) * 0.4 + 14)) * (seeking ? 0.65 : 1);
       let alive = 0;
       for (const st of list) {
         const target = near.s + st.spread * spreadPx;
@@ -626,39 +792,7 @@ export function VenomButton({
           st.seg *= Math.exp(-dt * 5.5); // reel back in, slowly, like something heavy
           if (st.seg * (NP - 1) > 1.5) alive++;
         }
-        const damp = mode === "snap" ? 0.86 : 0.92;
-        for (let i = 1; i < NP; i++) {
-          const vx = (st.x[i] - st.px[i]) * damp, vy = (st.y[i] - st.py[i]) * damp;
-          st.px[i] = st.x[i]; st.py[i] = st.y[i];
-          const mid = Math.sin((i / (NP - 1)) * Math.PI);
-          const wx = Math.sin(time * 1.6 + st.phase + i * 0.55) * 14 * mid;
-          const wy = Math.cos(time * 1.3 + st.phase * 1.3 + i * 0.45) * 14 * mid;
-          st.x[i] += vx + wx * dt * dt;
-          st.y[i] += vy + (260 + wy) * dt * dt;
-        }
-        st.x[0] = st.px[0] = rx; st.y[0] = st.py[0] = ry;
-        if (pinTip) { st.x[NP - 1] = st.ex; st.y[NP - 1] = st.ey; }
-        const len = Math.max(0.01, st.seg);
-        for (let it = 0; it < 14; it++) {
-          for (let i = 0; i < NP - 1; i++) {
-            const dx = st.x[i + 1] - st.x[i], dy = st.y[i + 1] - st.y[i];
-            const d = Math.hypot(dx, dy) || 0.0001;
-            const diff = (d - len) / d;
-            const a = i === 0 ? 0 : 0.5, b = pinTip && i + 1 === NP - 1 ? 0 : i === 0 ? 1 : 0.5;
-            const m = a + b || 1;
-            st.x[i] += dx * diff * (a / m); st.y[i] += dy * diff * (a / m);
-            st.x[i + 1] -= dx * diff * (b / m); st.y[i + 1] -= dy * diff * (b / m);
-          }
-        }
-        // a little bending stiffness, so a strand curves like goo instead of folding into kinks
-        for (let pass = 0; pass < 2; pass++) {
-          for (let i = 1; i < NP - 1; i++) {
-            if (pinTip && i === NP - 1) continue;
-            st.x[i] += ((st.x[i - 1] + st.x[i + 1]) / 2 - st.x[i]) * 0.22;
-            st.y[i] += ((st.y[i - 1] + st.y[i + 1]) / 2 - st.y[i]) * 0.22;
-          }
-        }
-        if (!Number.isFinite(st.x[NP - 1])) { st.x.fill(rx); st.y.fill(ry); st.px.fill(rx); st.py.fill(ry); }
+        rope(st, rx, ry, pinTip, mode === "snap" ? 0.86 : 0.92, time, dt);
       }
       if (mode === "snap" && alive === 0) { mode = "idle"; list = []; webs = []; }
 
@@ -684,11 +818,71 @@ export function VenomButton({
         if (d.age > 0.9 || nearest(d.x, d.y).dist < -d.r) drops.splice(k, 1);
       }
 
+      // ---- portfolio addition: the burst ----
+      // Each target gets a tentacle that shoots out of the pill carrying a drop (progress 0 to 0.45),
+      // the drop swells into a slab the size of the target with a little overshoot (0.4 to 1), and
+      // the target's content fades in over the last stretch. Closing plays it backwards.
+      const els = open && bs ? document.querySelectorAll<HTMLElement>(bs.targets) : null;
+      for (let i = 0; i < MB; i++) {
+        const el = els && i < els.length ? els[i] : null;
+        let b = bursts[i];
+        if (el) {
+          const r = el.getBoundingClientRect();
+          const bx = (r.left - org.x) / org.k, by = (r.top - org.y) / org.k, bw = r.width / org.k, bh = r.height / org.k;
+          if (!b || b.el !== el) {
+            // a new target (or the same slot re-rendered): keep a tentacle that is still out
+            const s0 = b ? b.st.s : nearest(bx + bw / 2, by + bh / 2).s;
+            const root = at(s0);
+            const st: Strand = b?.st ?? {
+              x: new Float32Array(NP).fill(root.x), y: new Float32Array(NP).fill(root.y),
+              px: new Float32Array(NP).fill(root.x), py: new Float32Array(NP).fill(root.y),
+              spread: 0, s: s0, slack: 1.05, width: 1.5, grip: [0, 0], band: [0, 0], gi: -1, reachK: 1,
+              ex: root.x, ey: root.y, follow: 0, seg: 0, phase: i * 1.7 + 0.4, hair: false,
+            };
+            b = bursts[i] = {
+              st, el, bx, by, bw, bh,
+              cr: parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0,
+              p: b ? b.p : 0, wait: b ? 0 : i * 0.09,
+            };
+          } else { b.bx = bx; b.by = by; b.bw = bw; b.bh = bh; }
+        } else if (b && b.el.isConnected) {
+          // closing: the slab keeps following its target while the target is still on the page
+          const r = b.el.getBoundingClientRect();
+          b.bx = (r.left - org.x) / org.k; b.by = (r.top - org.y) / org.k; b.bw = r.width / org.k; b.bh = r.height / org.k;
+        }
+        if (!b) continue;
+        if (el) { if (b.wait > 0) b.wait -= dt; else b.p = Math.min(1, b.p + dt / 0.95); }
+        else b.p = Math.max(0, b.p - dt / 0.7);
+        if (!el && b.p <= 0) { b.el.style.removeProperty("--goo"); bursts[i] = null; continue; }
+        b.el.style.setProperty("--goo", Math.max(0, Math.min(1, (b.p - 0.82) / 0.18)).toFixed(3));
+        // the root slides round the pill to face its slab; the tip rides out to the slab's centre
+        const st = b.st;
+        const cx = b.bx + b.bw / 2, cy = b.by + b.bh / 2;
+        st.s += loopDiff(st.s, nearest(cx, cy).s) * Math.min(1, dt * 6);
+        const root = at(st.s);
+        const rx = root.x - root.nx * 3, ry = root.y - root.ny * 3;
+        const s1 = Math.min(1, b.p / 0.45);
+        const e1 = 1 - Math.pow(1 - s1, 3);
+        st.ex = rx + (cx - rx) * e1; st.ey = ry + (cy - ry) * e1;
+        st.seg = (Math.hypot(st.ex - rx, st.ey - ry) * st.slack) / (NP - 1);
+        rope(st, rx, ry, true, 0.9, time, dt);
+      }
+
       // ---- upload to the shader ----
       const thin = 1 - 0.5 * stretch;
-      const mains = list.filter((s) => !s.hair).slice(0, MS);
+      const mains = list.filter((s) => !s.hair).slice(0, MH);
       let minX = pill.x, minY = pill.y, maxX = pill.x + pill.w, maxY = pill.y + pill.h;
       const grow2 = seeking ? 0.55 + 0.45 * seekF : 1;
+      // portfolio addition: each strand slot's box, for the shader to skip far pixels
+      const bound = (st: Strand, slot: number) => {
+        let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+        for (let i = 0; i < NP; i++) {
+          x0 = Math.min(x0, st.x[i]); x1 = Math.max(x1, st.x[i]);
+          y0 = Math.min(y0, st.y[i]); y1 = Math.max(y1, st.y[i]);
+        }
+        bbs[slot * 4] = x0; bbs[slot * 4 + 1] = y0; bbs[slot * 4 + 2] = x1; bbs[slot * 4 + 3] = y1;
+        minX = Math.min(minX, x0); maxX = Math.max(maxX, x1); minY = Math.min(minY, y0); maxY = Math.max(maxY, y1);
+      };
       mains.forEach((st, si) => {
         for (let i = 0; i < NP; i++) {
           const f = i / (NP - 1);
@@ -699,9 +893,35 @@ export function VenomButton({
           if (mode === "snap") r *= 1.15; // gathering up as it slumps back
           const o = (si * NP + i) * 4;
           pts[o] = st.x[i]; pts[o + 1] = st.y[i]; pts[o + 2] = Math.max(0.55, r); pts[o + 3] = 1;
-          minX = Math.min(minX, st.x[i]); maxX = Math.max(maxX, st.x[i]);
-          minY = Math.min(minY, st.y[i]); maxY = Math.max(maxY, st.y[i]);
         }
+        bound(st, si);
+      });
+      // portfolio addition: the burst tentacles take the slots after the hand's, then their slabs
+      let slots = mains.length;
+      pan.fill(0); panR.fill(0);
+      bursts.forEach((b, k) => {
+        if (!b) return;
+        const st = b.st;
+        for (let i = 0; i < NP; i++) {
+          const f = i / (NP - 1);
+          let r = st.width * (3.0 - 1.9 * f);
+          // once its slab is full it feeds it, a pulse running out from the pill
+          if (b.p >= 1) r *= 1 + 0.2 * Math.sin(f * 9 - time * 6 + st.phase) * Math.sin(f * Math.PI);
+          const o = (slots * NP + i) * 4;
+          pts[o] = st.x[i]; pts[o + 1] = st.y[i]; pts[o + 2] = Math.max(0.55, r); pts[o + 3] = 1;
+        }
+        bound(st, slots++);
+        // the slab: a drop riding the tip that swells into the target's box (ease-out with a little overshoot)
+        const s1 = Math.min(1, b.p / 0.45);
+        const drop = Math.min(3 + 13 * (1 - Math.pow(1 - s1, 3)), b.bw / 2, b.bh / 2);
+        const s2 = Math.max(0, Math.min(1, (b.p - 0.4) / 0.6));
+        const e2 = s2 > 0 ? 1 + 2.2 * Math.pow(s2 - 1, 3) + 1.2 * Math.pow(s2 - 1, 2) : 0;
+        const hw = Math.max(0.5, drop + (b.bw / 2 - drop) * e2), hh = Math.max(0.5, drop + (b.bh / 2 - drop) * e2);
+        const rr = Math.min(hw, hh, drop + (Math.min(b.cr, b.bw / 2, b.bh / 2) - drop) * e2);
+        pan[k * 4] = st.ex; pan[k * 4 + 1] = st.ey; pan[k * 4 + 2] = hw; pan[k * 4 + 3] = hh;
+        panR[k * 4] = Math.max(0, rr); panR[k * 4 + 1] = Math.min(14, hw, hh); panR[k * 4 + 2] = 1;
+        minX = Math.min(minX, st.ex - hw); maxX = Math.max(maxX, st.ex + hw);
+        minY = Math.min(minY, st.ey - hh); maxY = Math.max(maxY, st.ey + hh);
       });
       spk.fill(0); spkR.fill(0);
       spikes.forEach((sp, k) => {
@@ -732,7 +952,10 @@ export function VenomButton({
       gl.uniform1f(U.uDpr, dpr);
       gl.uniform4f(U.uPill, pill.x, pill.y, pill.w, pill.h);
       gl.uniform4fv(U.uPts, pts);
-      gl.uniform1f(U.uCount, mains.length);
+      gl.uniform1f(U.uCount, slots);
+      gl.uniform4fv(U.uBB, bbs);
+      gl.uniform4fv(U.uPan, pan);
+      gl.uniform4fv(U.uPanR, panR);
       gl.uniform4fv(U.uSpk, spk);
       gl.uniform4fv(U.uSpkR, spkR);
       gl.uniform4fv(U.uDrop, drp);
@@ -748,11 +971,14 @@ export function VenomButton({
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
       // ---- fine hairs and web threads on top, in 2D ----
+      // (portfolio change: the 2D layers may span the viewport, so they are only cleared after a
+      // frame that drew on them; an untouched canvas costs nothing to show)
       fx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      fx.clearRect(0, 0, w, h);
+      if (fxInk) { fx.clearRect(0, 0, w, h); fxInk = false; }
       fx.lineCap = "round";
       fx.lineJoin = "round";
       if (list.length && (holding || mode === "snap")) {
+        fxInk = true;
         fx.strokeStyle = "rgba(6,6,8,0.9)";
         for (const st of list) {
           if (!st.hair) continue;
@@ -794,8 +1020,9 @@ export function VenomButton({
 
       // ---- the glove, always on top, then the goo wrapped round each finger it has caught ----
       hx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      hx.clearRect(0, 0, w, h);
-      if (glove && live) {
+      if (hxInk) { hx.clearRect(0, 0, w, h); hxInk = false; }
+      if (handOn) {
+        hxInk = true;
         hx.save();
         hx.translate(hand.x - HOT_X * sc, hand.y - HOT_Y * sc);
         hx.scale(sc, sc);
@@ -844,6 +1071,7 @@ export function VenomButton({
         hx.restore();
       }
       if (holding && list.length) {
+        hxInk = true;
         hx.lineCap = "round";
         hx.lineJoin = "round";
         for (const st of list) {
@@ -871,15 +1099,36 @@ export function VenomButton({
     };
     // Animated: one rAF loop that sleeps while the button is off screen. Reduced motion: no loop,
     // the still pill is drawn once at the start and again whenever the stage is resized.
+    // (portfolio change: a burst keeps it running off screen too, so its slabs never freeze, and a
+    // loop going to sleep shrinks its canvases to a pixel: that wipes them, as they may cover the
+    // whole viewport, and frees their memory on pages where the footer is out of sight.)
     const frame = (now: number) => {
-      raf = visible ? requestAnimationFrame(frame) : 0;
-      if (visible) draw(now);
+      if (dead) { raf = 0; return; }
+      if (!visible && !burstRef.current?.open && !bursts.some(Boolean)) {
+        raf = 0;
+        for (const c of [glc, fxc, hc]) { c.width = 1; c.height = 1; }
+        fxInk = hxInk = false;
+        asleep = true;
+        showHand(false);
+        return;
+      }
+      raf = requestAnimationFrame(frame);
+      draw(now);
     };
+    const start = () => {
+      if (raf || reduced || dead) return;
+      if (asleep) { asleep = false; fit(); }
+      prev = performance.now();
+      raf = requestAnimationFrame(frame);
+    };
+    wakeRef.current = start;
     const ro = new ResizeObserver(() => {
+      if (asleep) return; // refitted on waking
       fit();
       if (reduced) draw(performance.now());
     });
-    ro.observe(stage);
+    // portfolio change: the canvas, which is the stage's size or the viewport's
+    ro.observe(glc);
     // the still pill is not re-measured every frame, so redraw when the button itself changes size
     if (reduced) ro.observe(btn);
     fit();
@@ -888,13 +1137,12 @@ export function VenomButton({
       draw(performance.now());
     } else {
       raf = requestAnimationFrame(frame);
+      // (portfolio change: on the full-viewport canvas the feelers reach well past the stage, so it
+      // counts as on screen a little before it scrolls in and after it scrolls out)
       io = new IntersectionObserver(([entry]) => {
         visible = entry.isIntersecting;
-        if (visible && !raf) {
-          prev = performance.now();
-          raf = requestAnimationFrame(frame);
-        }
-      });
+        if (visible) start();
+      }, { rootMargin: fullscreen ? "400px" : "0px" });
       io.observe(stage);
     }
     return () => {
@@ -907,13 +1155,20 @@ export function VenomButton({
       window.removeEventListener("pointercancel", onUp);
       document.documentElement.removeEventListener("mouseleave", onLeaveWindow);
       glc.removeEventListener("webglcontextlost", onContextLost);
-      stage.style.cursor = "";
-      btn.style.cursor = "";
-      // portfolio addition: never leave the page stuck in its taken-over state
+      // portfolio additions: never leave the page stuck in its taken-over state, the cursor hidden,
+      // or a target half faded
       if (taken) onTakeoverRef.current?.(false);
+      showHand(false);
+      window.removeEventListener("click", onClickCapture, true);
+      for (const b of bursts) b?.el.style.removeProperty("--goo");
+      wakeRef.current = undefined;
       disposeGL();
     };
-  }, [strands, sense, reach, release, cursor, autoplay, reduced]);
+  }, [strands, sense, reach, release, cursor, autoplay, reduced, fullscreen]);
+
+  // portfolio addition: the still pill of reduced motion stays in the stage (it is drawn once and
+  // would not follow the page on a fixed canvas)
+  const layer = fullscreen && !reduced ? "fixed" : "absolute";
 
   return (
     <div
@@ -927,15 +1182,18 @@ export function VenomButton({
         fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Inter, system-ui, sans-serif",
       }}
     >
-      <canvas ref={handRef} className="pointer-events-none absolute inset-0 h-full w-full" style={{ zIndex: 30 }} aria-hidden="true" />
-      <canvas ref={glRef} className="pointer-events-none absolute inset-0 z-10 h-full w-full" aria-hidden="true" />
+      <canvas ref={handRef} className={cn("pointer-events-none inset-0 h-full w-full", layer)} style={{ zIndex: 30 }} aria-hidden="true" />
+      <canvas ref={glRef} className={cn("pointer-events-none inset-0 z-10 h-full w-full", layer)} aria-hidden="true" />
       <motion.button
         ref={btnRef}
         type="button"
         onClick={onClick}
         whileTap={reduced ? undefined : { scale: 0.96 }}
         transition={{ type: "spring", stiffness: 420, damping: 18 }}
-        className="relative z-20 h-[64px] rounded-full border-0 px-9 text-[20px] font-bold tracking-[-0.02em] text-[#f4f4f4] outline-none focus-visible:ring-4 focus-visible:ring-black/25"
+        aria-haspopup={expanded === undefined ? undefined : "dialog"}
+        aria-expanded={expanded}
+        // portfolio change: a light ring, as the pill sits on a dark page here
+        className="relative z-20 h-[64px] rounded-full border-0 px-9 text-[20px] font-bold tracking-[-0.02em] text-[#f4f4f4] outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07070a]"
         style={{
           background: fallback ? "linear-gradient(180deg,#1c1c1e 0%,#0a0a0a 42%,#020202 100%)" : "transparent",
           boxShadow: fallback ? "inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1.5px 0 rgba(255,255,255,.22), 0 18px 28px -14px rgba(0,0,0,.55)" : "none",
@@ -944,7 +1202,7 @@ export function VenomButton({
       >
         {label}
       </motion.button>
-      <canvas ref={fxRef} className="pointer-events-none absolute inset-0 z-[25] h-full w-full" aria-hidden="true" />
+      <canvas ref={fxRef} className={cn("pointer-events-none inset-0 z-[25] h-full w-full", layer)} aria-hidden="true" />
     </div>
   );
 }

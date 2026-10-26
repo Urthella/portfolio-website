@@ -499,6 +499,10 @@ export const tr = {
       collaborate: "birlikte çalışalım",
       formTitle: "İletişim formu",
       close: "Kapat",
+      copyEmail: "E-postayı kopyala",
+      namePlaceholder: "Ayşe Yılmaz",
+      emailPlaceholder: "ayse@ornek.com",
+      messagePlaceholder: "Bir şeyler inşa edelim…",
       built: "Next.js & Framer Motion ile yapıldı.",
     },
     footer: {

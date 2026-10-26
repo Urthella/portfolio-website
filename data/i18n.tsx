@@ -103,6 +103,10 @@ const uiEN = {
     collaborate: "let’s collaborate",
     formTitle: "Contact form",
     close: "Close",
+    copyEmail: "Copy email",
+    namePlaceholder: "Jane Doe",
+    emailPlaceholder: "jane@example.com",
+    messagePlaceholder: "Let's build something…",
     built: "Built with Next.js & Framer Motion.",
   },
   footer: {

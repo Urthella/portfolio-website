@@ -2,7 +2,8 @@
 
 import { useReducedMotion } from "framer-motion"
 import { ArrowUp, BookOpen, Check, Copy, FileDown, Github, Instagram, Linkedin, Mail, Phone } from "lucide-react"
-import { useCallback, useRef, useState, useSyncExternalStore } from "react"
+import { usePathname } from "next/navigation"
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react"
 
 import { Typewriter } from "@/components/ui/typewriter"
 import { VenomButton } from "@/components/venom-button"
@@ -30,14 +31,15 @@ const isFine = () => window.matchMedia(FINE).matches
 
 /**
  * Contact and footer as one compact section: a line of intro, the Venom
- * Button (its click flies the contact form in as windows), the contact
- * details, then the legal bar and the wordmark — on a space backdrop whose
- * masked top lets the fixed fluid/aurora layers show through.
+ * Button, the contact details, then the legal bar and the wordmark — on a
+ * space backdrop whose masked top lets the fixed fluid/aurora layers show
+ * through.
  *
- * The takeover: once the venom has fully swallowed the glove, and while the
- * form is open, an ink layer spreads out of the pill and inverts the page
- * behind it (globals.css .venom-ink); the venom's stage and the form windows
- * sit above the ink, so the symbiote stays black on the whitened page.
+ * The takeover: once the venom has fully swallowed the glove (or on a click)
+ * it bursts the contact form out of its pill as glossy slabs, and while it
+ * holds the hand or the form is open an ink layer spreads out of the pill and
+ * inverts the page behind it (globals.css .venom-ink); the venom's goo and the
+ * form sit above the ink, so the symbiote stays black on the whitened page.
  */
 export function ContactFooter() {
   const c = useContent()
@@ -50,34 +52,65 @@ export function ContactFooter() {
 
   const [copied, setCopied] = useState(false)
   const [taken, setTaken] = useState(false)
-  const [formOpen, setFormOpen] = useState(false)
+  const [formOn, setFormOn] = useState(false)
+  const [formTop, setFormTop] = useState(0)
+  // the footer outlives navigations (it is in the layout): a form counts as open only on the page
+  // it was opened on, so following a nav link closes it (and lets the page's colours back)
+  const pathname = usePathname()
+  const [formPath, setFormPath] = useState(pathname)
+  const formOpen = formOn && formPath === pathname
+  const footerRef = useRef<HTMLElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
   const liteRef = useRef<HTMLButtonElement>(null)
   const inkRef = useRef<HTMLDivElement>(null)
 
-  const trigger = () => stageRef.current?.querySelector("button") ?? liteRef.current
+  // the goo bursts the form out of the pill only for a mouse (its canvas then spans the viewport);
+  // touch, lite, reduced motion and a button without WebGL get plain panels
+  const [gooLost, setGooLost] = useState(false)
+  const goo = fine && !reduce && !lite && !gooLost
+  const trigger = useCallback(() => stageRef.current?.querySelector("button") ?? liteRef.current, [])
 
-  // the ink spreads from the pill: aim it there whenever a takeover starts
-  const aimInk = () => {
+  // the ink spreads from the pill: aim it there whenever a takeover starts, and keep it there while
+  // the page scrolls (opening the form scrolls it into view)
+  const aimInk = useCallback(() => {
     const b = trigger()?.getBoundingClientRect()
     if (!b || !inkRef.current) return
     inkRef.current.style.setProperty("--venom-x", `${b.left + b.width / 2}px`)
     inkRef.current.style.setProperty("--venom-y", `${b.top + b.height / 2}px`)
-  }
-  const onTakeover = (on: boolean) => {
-    if (on) aimInk()
-    setTaken(on)
-  }
+  }, [trigger])
+  // the panels hang just under the button
+  const placeForm = useCallback(() => {
+    const b = trigger()?.getBoundingClientRect(), fr = footerRef.current?.getBoundingClientRect()
+    if (b && fr) setFormTop(Math.round(b.bottom - fr.top + 28))
+  }, [trigger])
   const openForm = () => {
     aimInk()
-    setFormOpen(true)
+    placeForm()
+    setFormPath(pathname)
+    setFormOn(true)
+  }
+  // once the venom has the whole hand, it bursts the form out too
+  const onTakeover = (on: boolean) => {
+    if (on) openForm()
+    setTaken(on)
   }
   const closeForm = useCallback(() => {
-    setFormOpen(false)
-    ;(stageRef.current?.querySelector("button") ?? liteRef.current)?.focus({ preventScroll: true })
-  }, [])
+    setFormOn(false)
+    trigger()?.focus({ preventScroll: true })
+  }, [trigger])
+
+  useEffect(() => {
+    if (!formOpen) return
+    window.addEventListener("resize", placeForm)
+    return () => window.removeEventListener("resize", placeForm)
+  }, [formOpen, placeForm])
 
   const inverted = fine && !reduce && !lite && (taken || formOpen)
+  useEffect(() => {
+    if (!inverted) return
+    window.addEventListener("scroll", aimInk, { passive: true })
+    return () => window.removeEventListener("scroll", aimInk)
+  }, [inverted, aimInk])
 
   const copyEmail = () => {
     navigator.clipboard?.writeText(profile.email)
@@ -90,7 +123,8 @@ export function ContactFooter() {
     "grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-white/60 transition-all hover:-translate-y-0.5 hover:border-orange-500/40 hover:text-white"
 
   return (
-    <footer id="contact" className="relative overflow-hidden">
+    // clipped sideways only: the form panels may hang below the footer's end, growing the page
+    <footer ref={footerRef} id="contact" className="relative overflow-x-clip">
       {/* space backdrop: masked top keeps the fixed fluid/aurora layers visible */}
       <div
         aria-hidden
@@ -120,6 +154,7 @@ export function ContactFooter() {
                 type="button"
                 onClick={openForm}
                 aria-haspopup="dialog"
+                aria-expanded={formOpen}
                 className="inline-flex h-12 items-center rounded-full bg-white px-7 text-base font-bold tracking-tight text-[#07070a] outline-none transition-colors hover:bg-white/85 focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07070a]"
               >
                 {t.collaborate}
@@ -128,8 +163,23 @@ export function ContactFooter() {
           ) : (
             // above the ink (z-2), so the symbiote keeps its colors when the page inverts
             <div ref={stageRef} data-venom-stage className="relative z-[2] mt-2">
-              {/* Nexus UI's Venom Button; its defaults suit a 420px boxed stage */}
-              <VenomButton label={t.collaborate} onClick={openForm} onTakeover={onTakeover} height={360} sense={220} reach={110} release={160} />
+              {/* Nexus UI's Venom Button. With a mouse its canvas spans the viewport, so the
+                  feelers notice the cursor from across the page (sense); close by they latch on
+                  (reach) and reel the glove onto the pill, where it is swallowed and the form
+                  bursts out; yank the mouse well away (release) and they snap. */}
+              <VenomButton
+                label={t.collaborate}
+                onClick={openForm}
+                onTakeover={onTakeover}
+                fullscreen={fine}
+                burst={goo ? { open: formOpen, targets: "[data-goo-panel]" } : undefined}
+                onFallback={() => setGooLost(true)}
+                expanded={formOpen}
+                height={240}
+                sense={1400}
+                reach={120}
+                release={260}
+              />
             </div>
           )}
 
@@ -144,7 +194,7 @@ export function ContactFooter() {
               </a>
               <button
                 onClick={copyEmail}
-                aria-label="Copy email"
+                aria-label={t.copyEmail}
                 className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 text-white/50 transition-colors hover:border-orange-500/40 hover:text-white"
               >
                 {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
@@ -209,7 +259,7 @@ export function ContactFooter() {
       </div>
 
       {/* the contact form, as windows flying in from the edges; above the ink too */}
-      <ContactWindows open={formOpen} onClose={closeForm} />
+      <ContactWindows open={formOpen} onClose={closeForm} top={formTop} goo={goo} />
     </footer>
   )
 }
