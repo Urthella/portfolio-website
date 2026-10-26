@@ -77,7 +77,7 @@ export function ContactFooter() {
 
   const work = [
     { label: "Okut Gitsin", href: "https://okutgitsin.com" },
-    { label: "Penpick", href: "https://penpick.vercel.app" },
+    { label: "Penpick", href: "https://penpick.com.tr" },
     { label: "GitHub", href: profile.socials.github },
   ]
 

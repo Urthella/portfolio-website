@@ -68,7 +68,7 @@ const uiEN = {
     cards: [
       { title: "Okut Gitsin", tag: "Flagship SaaS", desc: "Live-stream vehicle auction platform: real-time bidding, secure payments, live at okutgitsin.com." },
       { title: "Distributed Systems Series", tag: "Backend", desc: "Five from-scratch builds: CRDT sync, Redis Lua rate limiting, saga orchestration, hybrid RAG and a race-safe job queue." },
-      { title: "Penpick", tag: "In development", desc: "Marketplace for pen collectors, still in development, live preview at penpick.vercel.app." },
+      { title: "Penpick", tag: "Launching soon", desc: "Marketplace for pen collectors, launching soon, waitlist open at penpick.com.tr." },
       { title: "Extramus HR", tag: "Backend & Security", desc: "HR platform backend: RBAC, secure uploads, containerized services under load." },
       { title: "CI/CD Plumbing", tag: "DevOps", desc: "Dockerized pipelines and green GitHub Actions across a dozen shipped repos." },
     ],

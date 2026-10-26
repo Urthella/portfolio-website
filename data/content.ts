@@ -215,11 +215,11 @@ export const projects: Project[] = [
   {
     name: "Penpick",
     blurb:
-      "A marketplace for pen collectors, built with Next.js 16 and Prisma on Neon Postgres. Still in development, a live preview runs at penpick.vercel.app.",
+      "A marketplace for pen collectors, built with Next.js 16 and Prisma on Neon Postgres. Launching soon, the waitlist is open at penpick.com.tr.",
     stack: ["Next.js", "Prisma", "Neon Postgres", "Tailwind v4"],
     category: "Full-stack",
-    href: "https://penpick.vercel.app",
-    live: "https://penpick.vercel.app",
+    href: "https://penpick.com.tr",
+    live: "https://penpick.com.tr",
     privateRepo: true,
     wip: true,
   },
