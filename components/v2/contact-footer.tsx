@@ -1,16 +1,13 @@
 "use client"
 
-import { ArrowUp, BookOpen, Check, Copy, Github, Instagram, Linkedin, Loader2, Mail, Phone, Send } from "lucide-react"
+import { ArrowUp, BookOpen, Check, Copy, FileDown, Github, Instagram, Linkedin, Loader2, Mail, Phone, Send } from "lucide-react"
 import { useState } from "react"
 
-import { FallingText } from "@/components/ui/falling-text"
 import { Typewriter } from "@/components/ui/typewriter"
 import { Reveal } from "@/components/v2/reveal"
-import { useGoto } from "@/components/v2/routes"
 import { fromLeft, scaleIn } from "@/lib/motion"
 import { profile } from "@/data/content"
 import { useContent } from "@/data/i18n"
-import { usePerf } from "@/hooks/use-perf"
 
 const socials = [
   { href: profile.socials.linkedin, label: "LinkedIn", Icon: Linkedin },
@@ -20,17 +17,15 @@ const socials = [
 ]
 
 /**
- * Contact and footer as one section: the big display title opens it, the
- * form + info card follow, then link columns, the legal bar and the giant
- * wordmark — all on a single space backdrop whose masked top lets the fixed
- * fluid/aurora layers show through, so the page flows in with no seam.
+ * Contact and footer as one compact section: heading and contact details on
+ * the left, the form on the right, then the legal bar and the wordmark — all
+ * on a space backdrop whose masked top lets the fixed fluid/aurora layers
+ * show through, so the page flows in with no seam.
  */
 export function ContactFooter() {
   const c = useContent()
-  const { lite } = usePerf()
   const t = c.ui.contact
   const f = c.ui.footer
-  const nav = c.ui.nav
   const subtitle = c.ui.headings.contact.subtitle
 
   const [form, setForm] = useState({ name: "", email: "", message: "" })
@@ -70,38 +65,14 @@ export function ContactFooter() {
 
   const field =
     "w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-orange-500/50 focus:bg-white/[0.05]"
-  // Higher opacities than the site norm: these sit on the busy rock backdrop.
-  const link = "text-sm text-white/80 transition-colors hover:text-white"
-  const colTitle = "font-mono text-xs text-white/60"
-
-  // page routes: scroll when already on the page, navigate otherwise (useGoto)
-  const sections = [
-    { id: "about", href: "/about" },
-    { id: "experience", href: "/about#experience" },
-    { id: "projects", href: "/projects" },
-    { id: "hobbies", href: "/beyond" },
-  ] as const
-
-  const work = [
-    { label: "Okut Gitsin", href: "https://okutgitsin.com" },
-    { label: "Penpick", href: "https://penpick.com.tr" },
-    { label: "GitHub", href: profile.socials.github },
-  ]
-
-  const more = [
-    { label: c.ui.hero.resume, href: "/Utku%20Demirtas%20CV.pdf" },
-    { label: "Medium", href: profile.socials.medium },
-    { label: c.ui.headings.playground.label, href: "/beyond#playground", internal: true },
-  ]
-
-  const go = useGoto()
+  const tile = "grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500"
 
   return (
     <footer id="contact" className="relative overflow-hidden">
       {/* space backdrop: masked top keeps the fixed fluid/aurora layers visible */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center grayscale"
         style={{
           backgroundImage: "url(/footer-bg.jpg)",
           maskImage: "linear-gradient(to bottom, transparent, black 50%)",
@@ -111,104 +82,73 @@ export function ContactFooter() {
       <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-[#07070a]/45 to-[#07070a]/45" />
 
       <div className="relative">
-        {/* display heading opens the section */}
-        <Reveal className="mx-auto max-w-6xl px-4 pt-24 text-center sm:px-6">
-          <p className="font-mono text-xs tracking-[0.25em] text-orange-500">
-            <span className="text-orange-500/40">{"//"}</span> {f.talk}
-          </p>
-          <h2 className="mt-6 text-[clamp(2.8rem,9vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-white">
-            {f.titleA}
-            <br />
-            {f.titleB}
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty leading-relaxed text-white/50">{subtitle}</p>
-        </Reveal>
-
-        {/* falling words — desktop only: the physics sim is too heavy for phones,
-            and while hidden the scroll trigger never fires, so matter-js never boots.
-            Lite mode keeps the words but skips matter-js entirely. */}
-        <Reveal className="mx-auto mt-14 hidden max-w-6xl px-4 sm:px-6 md:block">
-          <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.015] sm:h-72">
-            {lite ? (
-              <p
-                className="flex h-full flex-wrap content-center justify-center gap-x-2.5 gap-y-1 px-10 text-center text-white"
-                style={{ fontSize: "clamp(1rem, 2.6vw, 1.7rem)" }}
-              >
-                {t.falling.split(" ").map((word, i) => (
-                  <span
-                    key={i}
-                    className={
-                      t.fallingHl.some((hw) => word.replace(/[^\p{L}\p{N}']/gu, "").toLowerCase() === hw.toLowerCase())
-                        ? "font-semibold text-orange-400"
-                        : undefined
-                    }
-                  >
-                    {word}
-                  </span>
-                ))}
-              </p>
-            ) : (
-              <>
-                <FallingText text={t.falling} highlightWords={t.fallingHl} trigger="scroll" gravity={0} fontSize="clamp(1rem, 2.6vw, 1.7rem)" />
-                <span className="pointer-events-none absolute bottom-3 right-4 font-mono text-[11px] text-white/25">{t.dragWords}</span>
-              </>
-            )}
-          </div>
-        </Reveal>
-
-        {/* info card + form */}
-        <div className="mx-auto mt-6 grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-14">
+          {/* heading + contact details */}
           <Reveal variants={fromLeft}>
-            <div className="flex h-full flex-col justify-between rounded-2xl border border-white/15 bg-neutral-950/30 p-6 shadow-[0_0_40px_color-mix(in_srgb,var(--color-orange-500)_14%,transparent)] backdrop-blur-sm sm:p-8">
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <a
-                    href={`mailto:${profile.email}`}
-                    className="flex flex-1 items-center gap-3 text-white/70 transition-colors hover:text-white"
-                  >
-                    <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500">
-                      <Mail className="h-5 w-5" />
-                    </span>
-                    <span className="truncate">{profile.email}</span>
-                  </a>
-                  <button
-                    onClick={copyEmail}
-                    aria-label="Copy email"
-                    className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 text-white/50 transition-colors hover:border-orange-500/40 hover:text-white"
-                  >
-                    {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
-                  </button>
-                </div>
-                <div className="flex items-center gap-3 text-white/70">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500">
-                    <Phone className="h-5 w-5" />
-                  </span>
-                  {profile.phone}
-                </div>
-              </div>
+            <p className="font-mono text-xs tracking-[0.25em] text-orange-500">
+              <span className="text-orange-500/40">{"//"}</span> {f.talk}
+            </p>
+            <h2 className="mt-4 text-[clamp(2.4rem,5.5vw,4.25rem)] font-bold leading-[0.95] tracking-tight text-white">
+              {f.titleA} {f.titleB}
+            </h2>
+            <p className="mt-4 max-w-md text-pretty leading-relaxed text-white/60">{subtitle}</p>
 
-              <div className="mt-8">
-                <p className="mb-3 font-mono text-xs text-white/40">{t.findMe}</p>
-                <div className="flex gap-2">
-                  {socials.map(({ href, label, Icon }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                      className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 text-white/60 transition-all hover:-translate-y-0.5 hover:border-orange-500/40 hover:text-white"
-                    >
-                      <Icon className="h-5 w-5" />
-                    </a>
-                  ))}
-                </div>
+            <div data-colorize className="mt-8 space-y-3">
+              <div className="flex items-center gap-2">
+                <a href={`mailto:${profile.email}`} className="flex min-w-0 flex-1 items-center gap-3 text-white/75 transition-colors hover:text-white">
+                  <span className={tile}>
+                    <Mail className="h-5 w-5" />
+                  </span>
+                  <span className="truncate">{profile.email}</span>
+                </a>
+                <button
+                  onClick={copyEmail}
+                  aria-label="Copy email"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 text-white/50 transition-colors hover:border-orange-500/40 hover:text-white"
+                >
+                  {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
+                </button>
+              </div>
+              <div className="flex items-center gap-3 text-white/75">
+                <span className={tile}>
+                  <Phone className="h-5 w-5" />
+                </span>
+                {profile.phone}
+              </div>
+              <div className="flex gap-2 pt-2">
+                {socials.map(({ href, label, Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 text-white/60 transition-all hover:-translate-y-0.5 hover:border-orange-500/40 hover:text-white"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </a>
+                ))}
+                {/* the résumé, reachable from every page now that the link columns are gone */}
+                <a
+                  href={profile.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={c.ui.hero.resume}
+                  title={c.ui.hero.resume}
+                  className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 text-white/60 transition-all hover:-translate-y-0.5 hover:border-orange-500/40 hover:text-white"
+                >
+                  <FileDown className="h-5 w-5" />
+                </a>
               </div>
             </div>
           </Reveal>
 
           <Reveal variants={scaleIn}>
-            <form onSubmit={onSubmit} className="rounded-2xl border border-white/15 bg-neutral-950/30 p-6 shadow-[0_0_40px_color-mix(in_srgb,var(--color-orange-500)_14%,transparent)] backdrop-blur-sm sm:p-8">
+            <form
+              data-colorize
+              onSubmit={onSubmit}
+              className="rounded-2xl border border-white/15 bg-neutral-950/30 p-6 shadow-[0_0_40px_color-mix(in_srgb,var(--color-orange-500)_14%,transparent)] backdrop-blur-sm sm:p-8"
+            >
               <div className="grid gap-4">
                 <div>
                   <label htmlFor="name" className="mb-1.5 block text-xs text-white/50">
@@ -253,54 +193,6 @@ export function ContactFooter() {
               </div>
             </form>
           </Reveal>
-        </div>
-
-        {/* link columns (socials live as icons in the info card above) */}
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-20 sm:grid-cols-3 sm:px-6">
-          <div>
-            <div className={colTitle}>{"// "}{f.colSections}</div>
-            <ul className="mt-5 space-y-2.5">
-              {sections.map(({ id, href }) => (
-                <li key={id}>
-                  <button onClick={() => go(href)} className={link}>
-                    {nav[id]}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <div className={colTitle}>{"// "}{f.colWork}</div>
-            <ul className="mt-5 space-y-2.5">
-              {work.map(({ label, href }) => (
-                <li key={label}>
-                  <a href={href} target="_blank" rel="noopener noreferrer" className={link}>
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <div className={colTitle}>{"// "}{f.colMore}</div>
-            <ul className="mt-5 space-y-2.5">
-              {more.map(({ label, href, internal }) => (
-                <li key={label}>
-                  {internal ? (
-                    <button onClick={() => go(href)} className={link}>
-                      {label}
-                    </button>
-                  ) : (
-                    <a href={href} target="_blank" rel="noopener noreferrer" className={link}>
-                      {label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         {/* legal bar */}

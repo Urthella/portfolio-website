@@ -29,13 +29,13 @@ const faceItem = "[backface-visibility:hidden]"
 export function IdCard() {
   const [flipped, setFlipped] = useState(false)
   const t = useContent().ui.idcard
-  const focus = useContent().profile.focus
+  const role = useContent().profile.role
 
   const faceBase =
     "absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-500 via-rose-500 to-amber-400 p-[1.5px] shadow-2xl shadow-black/50 [backface-visibility:hidden] [transform-style:preserve-3d]"
 
   return (
-    <div className="relative mx-auto w-full max-w-[20rem]">
+    <div data-colorize className="relative mx-auto w-full max-w-[20rem]">
       {/* warm glow */}
       <div className="absolute -inset-4 -z-10 rounded-[32px] bg-orange-600/25 blur-3xl" />
 
@@ -81,7 +81,7 @@ export function IdCard() {
                   <CardItem translateZ={40} className={`w-full px-4 pt-4 ${faceItem}`}>
                     <h3 className="text-xl font-bold leading-tight text-white">{profile.name}</h3>
                     <span className="mt-2 inline-block rounded bg-rose-500 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wide text-white">
-                      {focus}
+                      {role}
                     </span>
                   </CardItem>
 

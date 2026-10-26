@@ -10,14 +10,6 @@
   .animate-marquee2 {
     animation: marquee2 25s linear infinite;
   }
-
-  /* Subtle gradient for section titles, keeps the monochrome palette */
-  .section-title-gradient {
-    background-image: linear-gradient(135deg, #ffffff 0%, #d1d5db 55%, #9ca3af 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
 }
 
 @keyframes marquee {
@@ -429,24 +421,52 @@ html {
    Browsers without relative-color support keep the stock palette. */
 :root {
   --accent-base: oklch(70.5% 0.213 47.604); /* orange-500 */
+  --accent-chroma: 1;
+}
+
+/* Black-and-white site: under .mono (the site pages, not utkuOS) every accent
+   shade keeps its lightness but loses its chroma. Whatever you hover or focus
+   (links, buttons, [data-colorize] cards) gets the chroma back, and since the
+   shades are re-declared on that element, its whole subtree is in color. */
+.mono {
+  --accent-chroma: 0;
+}
+.mono :is(a, button, [data-colorize]):is(:hover, :focus-visible),
+.mono [data-colorize]:focus-within {
+  --accent-chroma: 1;
+}
+.mono [data-colorize] {
+  /* no `transform`: framer-motion writes it every frame on these cards; `translate` keeps Tailwind hover lifts */
+  transition-property: color, background-color, border-color, box-shadow, translate;
+  transition-duration: 0.3s;
+}
+/* A gray primary button reads as disabled: in black and white it is white with
+   black text, and turns back into the accent button on hover/focus. */
+.mono :is(a, button).bg-orange-600:not(:hover, :focus-visible, :disabled) {
+  background-color: #fff;
+  color: #07070a;
+  box-shadow: 0 0 30px rgb(255 255 255 / 0.12);
 }
 
 @supports (color: oklch(from red l c h)) {
-  :root {
+  :root,
+  .mono,
+  .mono :is(a, button, [data-colorize]):is(:hover, :focus-visible),
+  .mono [data-colorize]:focus-within {
     /* NOTE: `h` resolves to a unitless number in relative color syntax —
        adding `deg` inside calc() makes the whole value invalid. */
-    --color-orange-200: oklch(from var(--accent-base) 90.1% 0.076 calc(h + 23.093));
-    --color-orange-300: oklch(from var(--accent-base) 83.7% 0.128 calc(h + 18.686));
-    --color-orange-400: oklch(from var(--accent-base) 75% 0.183 calc(h + 8.33));
-    --color-orange-500: oklch(from var(--accent-base) 70.5% 0.213 h);
-    --color-orange-600: oklch(from var(--accent-base) 64.6% 0.222 calc(h - 6.488));
-    --color-red-400: oklch(from var(--accent-base) 70.4% 0.191 calc(h - 25.388));
-    --color-red-500: oklch(from var(--accent-base) 63.7% 0.237 calc(h - 22.273));
-    --color-rose-300: oklch(from var(--accent-base) 81% 0.117 calc(h - 35.966));
-    --color-rose-400: oklch(from var(--accent-base) 71.2% 0.194 calc(h - 34.176));
-    --color-rose-500: oklch(from var(--accent-base) 64.5% 0.246 calc(h - 31.165));
-    --color-amber-300: oklch(from var(--accent-base) 87.9% 0.169 calc(h + 44.001));
-    --color-amber-400: oklch(from var(--accent-base) 82.8% 0.189 calc(h + 36.825));
-    --color-amber-500: oklch(from var(--accent-base) 76.9% 0.188 calc(h + 22.476));
+    --color-orange-200: oklch(from var(--accent-base) 90.1% calc(0.076 * var(--accent-chroma)) calc(h + 23.093));
+    --color-orange-300: oklch(from var(--accent-base) 83.7% calc(0.128 * var(--accent-chroma)) calc(h + 18.686));
+    --color-orange-400: oklch(from var(--accent-base) 75% calc(0.183 * var(--accent-chroma)) calc(h + 8.33));
+    --color-orange-500: oklch(from var(--accent-base) 70.5% calc(0.213 * var(--accent-chroma)) h);
+    --color-orange-600: oklch(from var(--accent-base) 64.6% calc(0.222 * var(--accent-chroma)) calc(h - 6.488));
+    --color-red-400: oklch(from var(--accent-base) 70.4% calc(0.191 * var(--accent-chroma)) calc(h - 25.388));
+    --color-red-500: oklch(from var(--accent-base) 63.7% calc(0.237 * var(--accent-chroma)) calc(h - 22.273));
+    --color-rose-300: oklch(from var(--accent-base) 81% calc(0.117 * var(--accent-chroma)) calc(h - 35.966));
+    --color-rose-400: oklch(from var(--accent-base) 71.2% calc(0.194 * var(--accent-chroma)) calc(h - 34.176));
+    --color-rose-500: oklch(from var(--accent-base) 64.5% calc(0.246 * var(--accent-chroma)) calc(h - 31.165));
+    --color-amber-300: oklch(from var(--accent-base) 87.9% calc(0.169 * var(--accent-chroma)) calc(h + 44.001));
+    --color-amber-400: oklch(from var(--accent-base) 82.8% calc(0.189 * var(--accent-chroma)) calc(h + 36.825));
+    --color-amber-500: oklch(from var(--accent-base) 76.9% calc(0.188 * var(--accent-chroma)) calc(h + 22.476));
   }
 }

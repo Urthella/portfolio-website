@@ -24,7 +24,7 @@ const LANGS = [
 export function GithubStats() {
   const g = useContent().ui.github
   return (
-    <section className="relative mx-auto max-w-5xl px-4 py-12 sm:px-6">
+    <section data-colorize className="relative mx-auto max-w-5xl px-4 py-12 sm:px-6">
       <Reveal className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
         <div className="mb-6 flex items-center justify-between">
           <h3 className="flex items-center gap-2 font-mono text-sm text-white/70">

@@ -3,11 +3,11 @@
 
 export const tr = {
   profile: {
-    role: "Fullstack Geliştirici",
-    focus: "Backend & DevOps Mühendisi",
+    role: "Yazılım Mühendisi",
+    focus: "Backend · Dağıtık Sistemler · Yapay Zeka",
     tagline:
-      "Backend ve DevOps ağırlıklı fullstack mühendisi. Prodüksiyon sistemleri kuruyorum: gerçek zamanlı motorlar, güvenli API'ler, CI/CD ve konteynerler. Ayrıca gitarist ve kalisteni sporcusuyum.",
-    chips: ["Backend & DevOps", "Siber Güvenlik", "Gitarist", "Kalisteni"],
+      "Gerçek zamanlı motorlar, olay güdümlü servisler ve RAG hatları kuruyor, bunları CI/CD ve konteynerlerle yayına taşıyorum. Ayrıca gitarist ve kalisteni sporcusuyum.",
+    chips: ["DevOps ve Bulut", "Siber Güvenlik", "Gitarist", "Kalisteni"],
   },
 
   about: {
@@ -25,26 +25,31 @@ export const tr = {
   },
 
   aboutHero: {
-    lead: "BACKEND",
-    tail: "DEVOPS",
     intro: [
-      "Gerçek zamanlı açık artırma motorlarından Kubernetes dayanıklılık testlerine kadar prodüksiyon sistemleri geliştiren bir bilgisayar mühendisiyim.",
-      "Bir tarafta Node, NestJS, Spring Boot ve Python ile ölçeklenebilir backend'ler. Diğer tarafta bunları taşıyan Docker, CI/CD ve bulut altyapısı. İkisini de gerçek projelerle besliyorum.",
+      "Canlı yayınlı bir açık artırma platformu ve bir İK platformunun doküman altyapısı gibi prodüksiyon sistemleri geliştiren bir bilgisayar mühendisiyim.",
+      "Node, NestJS, Spring Boot ve Python ile backend'ler, atomik teklif motorlarından sagalara ve iş kuyruklarına kadar yük altında da doğru çalışan dağıtık sistemler ve gerçek veriye dayanan yapay zeka özellikleri geliştiriyorum. Hepsini Docker ve CI/CD ile yayına alıyorum.",
     ],
     sides: [
       {
         key: "backend",
         accent: "pink",
         icon: "server",
-        title: "BACKEND TARAFI",
-        text: "Gerçek zamanlı teklif motorları, güvenli REST API'ler, mesaj kuyrukları ve veritabanları. Node/TypeScript, Spring Boot/Java ve Python.",
+        title: "BACKEND",
+        text: "NestJS, Spring Boot ve FastAPI ile güvenli REST API'ler ve gerçek zamanlı servisler.",
       },
       {
-        key: "devops",
+        key: "distributed",
         accent: "cyan",
-        icon: "container",
-        title: "DEVOPS TARAFI",
-        text: "Dockerize servisler, GitHub Actions CI/CD, Kubernetes dayanıklılığı ve güvenli, konteynerize dağıtımlar.",
+        icon: "network",
+        title: "DAĞITIK SİSTEMLER",
+        text: "Redis, RabbitMQ ve Postgres üzerinde atomik teklif motorları, sagalar, rate limiter'lar ve iş kuyrukları.",
+      },
+      {
+        key: "ai",
+        accent: "amber",
+        icon: "brain",
+        title: "YAPAY ZEKA",
+        text: "pgvector ile kaynak gösteren RAG, OpenAI API üzerinde LLM özellikleri ve ML modelleri.",
       },
     ],
     note: "// Extramus'ta bir İK platformunda güvenli yüklemeler, RBAC ve yeşil CI, artı bir düzine projede birleştirilen test ve CI çalışması.",
@@ -413,7 +418,6 @@ export const tr = {
     palette: { openDesktop: "Masaüstünü aç (utkuOS)" },
     hero: {
       welcome: "OYUN ALANIMA HOŞ GELDİN",
-      rotating: ["Fullstack Geliştirici", "Backend & DevOps", "Gerçek zamanlı sistemler", "Güvenli API'ler"],
       viewProjects: "Projeleri gör",
       resume: "Özgeçmiş",
     },
@@ -457,11 +461,6 @@ export const tr = {
         title: "Medium'da",
         subtitle: "Güvenlik, ağ ve zanaat üzerine notlar.",
       },
-      playground: {
-        label: "Oyun Alanı",
-        title: "Siteyi boya",
-        subtitle: "Bir vurgu rengi seç; sitedeki her gradyan, kenarlık ve parıltı ondan canlı olarak türesin. Seçimin bu tarayıcıda saklanır.",
-      },
       contact: {
         label: "İletişim",
         title: "Bir şeyler inşa edelim",
@@ -498,15 +497,6 @@ export const tr = {
       findMe: "// çevrimiçi bul",
       backToTop: "Başa dön",
       built: "Next.js & Framer Motion ile yapıldı.",
-      dragWords: "kelimeleri sürükle ↔",
-      falling: "Backend DevOps ve Güvenlik odaklı. Node TypeScript Java Spring Kafka Docker CI/CD Redis Postgres. güvenilir bir şeyler inşa edelim",
-      fallingHl: ["backend", "devops", "güvenlik", "inşa", "edelim", "güvenilir"],
-    },
-    playground: {
-      comment: "hazır birini seç ya da kendi rengini getir",
-      presets: "hazır renkler",
-      custom: "senin seçimin",
-      reset: "sıfırla",
     },
     footer: {
       talk: "BENİMLE KONUŞ",
@@ -515,9 +505,6 @@ export const tr = {
       cta: "Bana yaz",
       builtWith: "Malzemeler:",
       builtItems: ["Next.js & Framer Motion", "tutku ❤️‍🔥", "az uyku 😴", "daha da az uyku 🥱", "BOL kahve ☕"],
-      colSections: "Bölümler",
-      colWork: "İşler",
-      colMore: "Daha fazlası",
       rights: "Tüm hakları saklıdır.",
     },
     snap: {
@@ -529,7 +516,7 @@ export const tr = {
     statement: ["GERÇEK ZAMANLI SİSTEMLER", "GÜVENLİ API'LER. TEMİZ CI/CD.", "BACKEND, DEVOPS VE KAOS", "HADİ BİR ŞEY İNŞA EDELİM"],
     showcase: { featured: "// öne çıkan", name: "Okut Gitsin", caption: "Bir canlı açık artırma platformu, içiyle dışıyla." },
     terminal: {
-      whoami: "Halil Utku Demirtaş, backend & devops ağırlıklı fullstack mühendisi",
+      whoami: "Halil Utku Demirtaş, yazılım mühendisi: backend, dağıtık sistemler ve yapay zeka",
       boot: "→ masaüstünü başlat",
     },
     perf: {

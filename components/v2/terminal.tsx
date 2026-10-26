@@ -113,7 +113,7 @@ export function Terminal() {
   return (
     <section className="relative mx-auto max-w-3xl px-4 py-12 sm:px-6">
       <Reveal>
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm">
+        <div data-colorize className="overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm">
           <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
             <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]/70" />
             <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />

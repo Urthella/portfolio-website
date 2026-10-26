@@ -2,8 +2,8 @@ import type { Lang } from "@/data/i18n"
 
 /**
  * Accent color helpers. Same storage key and CSS variable as the pre-paint
- * script in app/layout.tsx and components/v2/theme-lab.tsx: app/globals.css
- * derives the orange/rose/amber palettes from --accent-base.
+ * script in app/layout.tsx: app/globals.css derives the orange/rose/amber
+ * palettes from --accent-base (utkuOS Settings and the terminal's `theme`).
  */
 
 export const ACCENT_KEY = "accent-base"

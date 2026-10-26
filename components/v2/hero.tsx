@@ -5,7 +5,6 @@ import { ArrowDown, ArrowRight, BookOpen, FileDown, Github, Instagram, Linkedin,
 import Link from "next/link"
 
 import { IdCard } from "@/components/v2/id-card"
-import { RotatingText } from "@/components/v2/rotating-text"
 import { profile } from "@/data/content"
 import { useContent } from "@/data/i18n"
 import { container, fadeUp } from "@/lib/motion"
@@ -38,9 +37,11 @@ export function Hero() {
             {profile.name}
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="mt-4 font-mono text-lg text-white/70 sm:text-xl">
-            <span className="text-orange-500">&gt;</span>{" "}
-            <RotatingText items={c.ui.hero.rotating} className="text-white" />
+          <motion.p variants={fadeUp} className="mt-4 font-mono text-lg text-white sm:text-xl">
+            <span className="text-orange-500">&gt;</span> {c.profile.role}
+          </motion.p>
+          <motion.p variants={fadeUp} className="mt-2 font-mono text-sm tracking-wide text-white/55 sm:text-base">
+            {c.profile.focus}
           </motion.p>
 
           <motion.p variants={fadeUp} className="mt-6 max-w-xl text-pretty leading-relaxed text-white/55">

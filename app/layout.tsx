@@ -9,7 +9,7 @@ const personLd = {
   '@type': 'Person',
   name: 'Utku Demirtaş',
   url: 'https://utkudemirtas.tech',
-  jobTitle: 'Backend & DevOps Engineer',
+  jobTitle: 'Software Engineer',
   image: 'https://utkudemirtas.tech/PP.jpg',
   sameAs: [
     'https://github.com/Urthella',
@@ -17,14 +17,14 @@ const personLd = {
     'https://www.instagram.com/utkudem1rtas/',
     'https://medium.com/@urthella1',
   ],
-  knowsAbout: ['Backend', 'DevOps', 'Node.js', 'NestJS', 'Spring Boot', 'Docker', 'Kubernetes', 'Cybersecurity'],
+  knowsAbout: ['Backend', 'Distributed Systems', 'AI', 'RAG', 'Node.js', 'NestJS', 'Spring Boot', 'Docker', 'Kubernetes', 'Cybersecurity'],
 }
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://utkudemirtas.tech'),
-  title: 'Utku Demirtaş | Fullstack Developer',
-  description: 'Portfolio and projects by Utku Demirtaş, Fullstack Developer specializing in React, Next.js, Node.js, Spring Boot, and modern web development. Computer Engineer, guitarist, and fitness enthusiast.',
-  keywords: ['Utku Demirtaş', 'Fullstack Developer', 'Software Engineer', 'React', 'Next.js', 'Node.js', 'Spring Boot', 'TypeScript', 'JavaScript', 'Portfolio'],
+  title: 'Utku Demirtaş | Software Engineer',
+  description: 'Portfolio of Utku Demirtaş, a software engineer focused on backend, distributed systems and AI: real-time engines, event-driven services and RAG pipelines.',
+  keywords: ['Utku Demirtaş', 'Software Engineer', 'Backend Engineer', 'Distributed Systems', 'AI', 'RAG', 'Node.js', 'NestJS', 'Spring Boot', 'TypeScript', 'Python', 'Portfolio'],
   authors: [{ name: 'Utku Demirtaş', url: 'https://utkudemirtas.tech' }],
   creator: 'Utku Demirtaş',
   publisher: 'Utku Demirtaş',
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://utkudemirtas.tech',
     siteName: 'Utku Demirtaş Portfolio',
-    title: 'Utku Demirtaş | Fullstack Developer',
-    description: 'Portfolio and projects by Utku Demirtaş, Fullstack Developer specializing in React, Next.js, Node.js, Spring Boot, and modern web development.',
+    title: 'Utku Demirtaş | Software Engineer',
+    description: 'Portfolio of Utku Demirtaş, a software engineer focused on backend, distributed systems and AI: real-time engines, event-driven services and RAG pipelines.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Utku Demirtaş | Fullstack Developer',
-    description: 'Portfolio and projects by Utku Demirtaş, Fullstack Developer specializing in React, Next.js, Node.js, Spring Boot, and modern web development.',
+    title: 'Utku Demirtaş | Software Engineer',
+    description: 'Portfolio of Utku Demirtaş, a software engineer focused on backend, distributed systems and AI: real-time engines, event-driven services and RAG pipelines.',
   },
   robots: {
     index: true,

@@ -85,7 +85,7 @@ export function CommandPalette() {
         <Command.List className="max-h-[340px] overflow-y-auto p-2">
           <Command.Empty className="py-6 text-center text-sm text-white/40">No results.</Command.Empty>
 
-          <Command.Group heading="Navigate" className={groupCls}>
+          <Command.Group heading={<span lang="en">Navigate</span>} className={groupCls}>
             <Command.Item value="top home" className={itemCls} onSelect={() => run(() => window.scrollTo({ top: 0, behavior: "smooth" }))}>
               <ArrowUp className="h-4 w-4 text-orange-400" /> Top
             </Command.Item>
@@ -96,7 +96,7 @@ export function CommandPalette() {
             ))}
           </Command.Group>
 
-          <Command.Group heading="Links" className={groupCls}>
+          <Command.Group heading={<span lang="en">Links</span>} className={groupCls}>
             <Command.Item value="github code" className={itemCls} onSelect={() => run(() => openUrl(profile.socials.github))}>
               <Github className="h-4 w-4 text-orange-400" /> GitHub
             </Command.Item>
@@ -111,7 +111,7 @@ export function CommandPalette() {
             </Command.Item>
           </Command.Group>
 
-          <Command.Group heading="Actions" className={groupCls}>
+          <Command.Group heading={<span lang="en">Actions</span>} className={groupCls}>
             <Command.Item value="desktop utkuos os masaüstü" className={itemCls} onSelect={() => run(() => router.push("/desktop"))}>
               <Monitor className="h-4 w-4 text-orange-400" /> {c.ui.palette.openDesktop}
             </Command.Item>

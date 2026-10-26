@@ -72,9 +72,8 @@ export default function Resume() {
         <div className="mx-auto flex max-w-3xl flex-col gap-4 px-5 py-5 @lg:flex-row @lg:items-end @lg:justify-between @lg:px-10 @lg:py-7">
           <div className="min-w-0">
             <h1 className="text-2xl font-semibold tracking-tight text-white @lg:text-3xl">{profile.name}</h1>
-            <p className="mt-1 text-sm text-orange-400">
-              {c.profile.role} <span className="text-white/25">·</span> {c.profile.focus}
-            </p>
+            <p className="mt-1 text-sm text-orange-400">{c.profile.role}</p>
+            <p className="mt-0.5 text-xs text-white/55">{c.profile.focus}</p>
             <p className="mt-1.5 flex items-center gap-1.5 text-xs text-white/45">
               <MapPin aria-hidden className="h-3.5 w-3.5" />
               {profile.location}

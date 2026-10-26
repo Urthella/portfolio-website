@@ -91,7 +91,8 @@ export function buildFS(c: Content, lang: Lang): FsDir {
 
   const readme = [
     `# ${profile.name}`,
-    `${c.profile.role} · ${c.profile.focus}`,
+    c.profile.role,
+    c.profile.focus,
     `📍 ${profile.location}`,
     "",
     c.profile.tagline,
@@ -162,7 +163,7 @@ export function buildFS(c: Content, lang: Lang): FsDir {
     "BEGIN:VCARD",
     "VERSION:4.0",
     `FN:${profile.name}`,
-    `TITLE:${c.profile.focus}`,
+    `TITLE:${c.profile.role}`,
     `EMAIL:${profile.email}`,
     `TEL:${profile.phone}`,
     `URL:https://${profile.site}`,

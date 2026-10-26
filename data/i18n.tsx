@@ -22,7 +22,6 @@ const uiEN = {
   palette: { openDesktop: "Open desktop (utkuOS)" },
   hero: {
     welcome: "WELCOME TO MY PLAYGROUND",
-    rotating: ["Fullstack Developer", "Backend & DevOps", "Real-time systems", "Secure APIs"],
     viewProjects: "View projects",
     resume: "Résumé",
   },
@@ -66,11 +65,6 @@ const uiEN = {
       title: "On Medium",
       subtitle: "Notes on security, networking and the craft.",
     },
-    playground: {
-      label: "Playground",
-      title: "Paint the site",
-      subtitle: "Pick an accent and every gradient, border and glow re-derives from it, live. Your pick sticks to this browser.",
-    },
     contact: {
       label: "Contact",
       title: "Let's build something",
@@ -107,16 +101,6 @@ const uiEN = {
     findMe: "// find me online",
     backToTop: "Back to top",
     built: "Built with Next.js & Framer Motion.",
-    dragWords: "drag the words ↔",
-    falling:
-      "Backend DevOps and Security minded. Node TypeScript Java Spring Kafka Docker CI/CD Redis Postgres. let's build something reliable",
-    fallingHl: ["backend", "devops", "security", "let's", "build", "reliable"],
-  },
-  playground: {
-    comment: "pick a preset or bring your own color",
-    presets: "presets",
-    custom: "your pick",
-    reset: "reset",
   },
   footer: {
     talk: "TALK TO ME",
@@ -125,9 +109,6 @@ const uiEN = {
     cta: "Contact me",
     builtWith: "Built with",
     builtItems: ["Next.js & Framer Motion", "passion ❤️‍🔥", "less sleep 😴", "even less sleep 🥱", "a LOT of coffee ☕"],
-    colSections: "Sections",
-    colWork: "Work",
-    colMore: "More",
     rights: "All rights reserved.",
   },
   snap: {
@@ -138,7 +119,7 @@ const uiEN = {
   },
   statement: ["SHIPPING REAL-TIME SYSTEMS", "SECURE APIS. CLEAN CI/CD.", "BACKEND, DEVOPS & CHAOS", "LET'S BUILD SOMETHING"],
   showcase: { featured: "// featured", name: "Okut Gitsin", caption: "A live-auction platform, opened up." },
-  terminal: { whoami: "Halil Utku Demirtaş, backend & devops-leaning fullstack engineer", boot: "→ boot the desktop" },
+  terminal: { whoami: "Halil Utku Demirtaş, software engineer: backend, distributed systems & AI", boot: "→ boot the desktop" },
   perf: {
     enableLite: "Turn animations off (lite mode)",
     enableFull: "Turn animations on",
@@ -171,6 +152,11 @@ export function LangProvider({ children }: { children: ReactNode }) {
       if (s === "tr" || s === "en") setLang(s)
     } catch {}
   }, [])
+
+  // <html lang> follows the choice: screen readers switch voice, and CSS uppercase maps i -> İ in Turkish
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
 
   const set = (l: Lang) => {
     setLang(l)

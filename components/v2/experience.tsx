@@ -30,7 +30,7 @@ export function Experience() {
                   <Icon className="h-3.5 w-3.5" />
                 </span>
 
-                <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-colors hover:border-white/20 sm:p-6">
+                <div data-colorize className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-colors hover:border-white/20 sm:p-6">
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div>
                       <h3 className="font-semibold text-white">{e.role}</h3>

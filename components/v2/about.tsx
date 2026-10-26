@@ -1,7 +1,7 @@
 "use client"
 
 import { animate, useInView } from "framer-motion"
-import { Boxes, Server, type LucideIcon } from "lucide-react"
+import { BrainCircuit, Network, Server, type LucideIcon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 import { Reveal } from "@/components/v2/reveal"
@@ -41,14 +41,14 @@ const ACCENT: Record<string, { text: string; ring: string; bar: string; tile: st
 }
 const accent = (k: string) => ACCENT[k] ?? ACCENT.lime
 
-const ICONS: Record<string, LucideIcon> = { server: Server, container: Boxes }
+const ICONS: Record<string, LucideIcon> = { server: Server, network: Network, brain: BrainCircuit }
 
 export function About() {
   const c = useContent()
   const aboutHero = c.aboutHero
   return (
     <section id="about" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading index="01" label={c.ui.headings.about.label} title={`${aboutHero.lead} × ${aboutHero.tail}`} />
+      <SectionHeading index="01" label={c.ui.headings.about.label} title={aboutHero.sides.map((s) => s.title).join(" × ")} />
 
       <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
         {/* left: intro + two sides + note */}
@@ -59,12 +59,12 @@ export function About() {
             ))}
           </div>
 
-          <div className="mt-7 grid gap-4 sm:grid-cols-2">
+          <div className="mt-7 grid gap-4 sm:grid-cols-3">
             {aboutHero.sides.map((s) => {
               const a = accent(s.accent)
               const Icon = ICONS[s.icon] ?? Server
               return (
-                <div key={s.key} className={`rounded-xl border-2 ${a.ring} bg-white/[0.02] p-5`}>
+                <div key={s.key} data-colorize className={`rounded-xl border-2 ${a.ring} bg-white/[0.02] p-5`}>
                   <div className={`mb-3 flex items-center gap-2 ${a.text}`}>
                     <Icon className="h-5 w-5" />
                     <span className="font-mono text-sm font-bold tracking-wide">{s.title}</span>
@@ -88,6 +88,7 @@ export function About() {
               return (
                 <div
                   key={i}
+                  data-colorize
                   className={`flex aspect-square flex-col justify-between rounded-xl border-b-4 border-l-4 ${a.tile} bg-[#efe9dd] p-5 transition-transform hover:-translate-y-1`}
                 >
                   <span className="text-5xl font-black tracking-tight text-neutral-900">
