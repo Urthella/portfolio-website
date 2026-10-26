@@ -440,22 +440,64 @@ html {
   transition-property: color, background-color, border-color, box-shadow, translate;
   transition-duration: 0.3s;
 }
-/* Venom takeover: while the Venom Button (components/venom-button) holds the
-   hand, the whole page inverts (contact-footer.tsx toggles the class). The
-   filter sits on the root element, which (unlike any other element) does not
-   become the containing block for fixed descendants, so the nav and the fluid
-   canvas stay put. Photos and the venom's own stage are inverted back, so the
-   symbiote stays black while the page around it turns white. */
-html,
-[data-venom-stage] {
-  /* the stage's counter-inversion fades with the page's, or the symbiote would flash negative */
-  transition: filter 0.45s ease;
+/* Venom takeover: once the Venom Button (components/venom-button) has fully
+   swallowed the hand, its ink seeps out of the pill and inverts the page
+   behind it (contact-footer.tsx sets data-on and the origin). It is a fixed
+   backdrop-filter layer under the venom's stage and the form windows, so the
+   symbiote stays black while the page around it turns white; a registered
+   radius lets the radial mask grow slowly instead of flipping at once.
+   visibility (discrete) stays visible for the whole transition each way. */
+@property --venom-r {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
 }
-html.venom-inverted {
-  filter: invert(1) hue-rotate(180deg);
+.venom-ink {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  visibility: hidden;
+  backdrop-filter: invert(1) hue-rotate(180deg);
+  --venom-r: 0px;
+  mask-image: radial-gradient(
+    circle at var(--venom-x, 50%) var(--venom-y, 100%),
+    #000 calc(var(--venom-r) * 0.75),
+    transparent var(--venom-r)
+  );
+  transition:
+    --venom-r 1.4s cubic-bezier(0.5, 0, 0.3, 1),
+    visibility 1.4s;
 }
-html.venom-inverted :is(img, video, [data-venom-stage]) {
-  filter: invert(1) hue-rotate(180deg);
+.venom-ink[data-on="true"] {
+  visibility: visible;
+  /* the solid core (75%) must clear the farthest corner: 1.42vmax / 0.75 */
+  --venom-r: 200vmax;
+  transition:
+    --venom-r 2.6s cubic-bezier(0.55, 0, 0.35, 1),
+    visibility 0s;
+}
+/* no stage box on the site: the goo floats on the page itself */
+[data-venom-stage] > div {
+  background: transparent !important;
+}
+
+/* The glove is the cursor everywhere on the site (the venom's own glove,
+   public/cursors/glove.svg); text fields keep the caret. The projects
+   section hides it for its target cursor with utilities, which win here. */
+@layer base {
+  .mono,
+  .mono * {
+    cursor: url("/cursors/glove.svg") 18 2, auto;
+  }
+  .mono :is(input, textarea, select, [contenteditable="true"]) {
+    cursor: text;
+  }
+}
+@layer utilities {
+  .mono .cursor-pointer {
+    cursor: url("/cursors/glove.svg") 18 2, auto;
+  }
 }
 
 /* A gray primary button reads as disabled: in black and white it is white with

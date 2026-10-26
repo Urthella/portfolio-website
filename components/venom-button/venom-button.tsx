@@ -199,10 +199,11 @@ export type VenomButtonProps = {
   label?: string;
   onClick?: () => void;
   /**
-   * Added for this portfolio (not in the Nexus UI original): called with true when the strands
-   * lunge for the hand and false once they let go, so the page around can react to the takeover.
+   * Added for this portfolio (not in the Nexus UI original): called with true once the black skin
+   * has swallowed the hand it holds (about 2s after the grab) and false when the goo lets go, so
+   * the page around can react to the takeover.
    */
-  onGrab?: (grabbed: boolean) => void;
+  onTakeover?: (taken: boolean) => void;
   /** Thick strands (2 to 7); about as many fine hairs are added between them. */
   strands?: number;
   /** Distance from the edge, in px, at which the goo notices the cursor and starts reaching for it. */
@@ -226,7 +227,7 @@ export type VenomButtonProps = {
 export function VenomButton({
   label = "let’s collaborate",
   onClick,
-  onGrab,
+  onTakeover,
   strands = 7,
   sense = 290,
   reach = 140,
@@ -243,10 +244,10 @@ export function VenomButton({
   const handRef = useRef<HTMLCanvasElement>(null);
   const [fallback, setFallback] = useState(false);
   const reduced = !!useReducedMotion();
-  // portfolio addition: the latest onGrab, read from the animation loop without restarting it
-  const onGrabRef = useRef(onGrab);
+  // portfolio addition: the latest onTakeover, read from the animation loop without restarting it
+  const onTakeoverRef = useRef(onTakeover);
   useEffect(() => {
-    onGrabRef.current = onGrab;
+    onTakeoverRef.current = onTakeover;
   });
 
   useEffect(() => {
@@ -465,8 +466,8 @@ export function VenomButton({
     // how far the goo has crept over each part of the glove (0 to 1); it lives apart from the
     // strands so it can keep receding after they are gone
     const coat = new Float32Array(GRIPS.length);
-    // portfolio addition: whether onGrab was last told the goo is holding on
-    let grabbed = false;
+    // portfolio addition: whether onTakeover was last told the hand is swallowed
+    let taken = false;
 
     const gripAt = (g: [number, number]) =>
       glove ? { x: hand.x + (g[0] - HOT_X) * sc, y: hand.y + (g[1] - HOT_Y) * sc } : { x: hand.x + g[0], y: hand.y + g[1] };
@@ -571,8 +572,6 @@ export function VenomButton({
         else if ((mode === "grow" || mode === "hold") && (!live || D > rl)) snap(true);
       }
       const holding = mode === "hold" || mode === "grow";
-      // portfolio addition: tell the page when the goo grabs and when it lets go
-      if (holding !== grabbed) { grabbed = holding; onGrabRef.current?.(holding); }
       const seeking = mode === "seek";
       // how hard it is reaching: nothing at the edge of its senses, everything at grabbing range
       const fT = seeking ? Math.max(0, Math.min(1, (sn - D) / Math.max(1, sn - rc))) : holding ? 1 : 0;
@@ -785,6 +784,13 @@ export function VenomButton({
         // it spreads slowly while it holds on, and slides off quickly when it lets go
         coat[g] = caught ? Math.min(1, coat[g] + dt * 0.5) : Math.max(0, coat[g] - dt * 1.4);
       }
+      // portfolio addition: the takeover is complete once the fingers it holds are nearly all black
+      // (released below 60% so it doesn't flicker at the threshold, or at once when it lets go)
+      let held = 0, coated = 0;
+      for (const st of list) if (!st.hair && st.gi >= 0) { held++; coated += coat[st.gi]; }
+      const swallowed = held > 0 ? coated / held : 0;
+      if (!taken && holding && swallowed >= 0.9) { taken = true; onTakeoverRef.current?.(true); }
+      else if (taken && (!holding || swallowed < 0.6)) { taken = false; onTakeoverRef.current?.(false); }
 
       // ---- the glove, always on top, then the goo wrapped round each finger it has caught ----
       hx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -904,7 +910,7 @@ export function VenomButton({
       stage.style.cursor = "";
       btn.style.cursor = "";
       // portfolio addition: never leave the page stuck in its taken-over state
-      if (grabbed) onGrabRef.current?.(false);
+      if (taken) onTakeoverRef.current?.(false);
       disposeGL();
     };
   }, [strands, sense, reach, release, cursor, autoplay, reduced]);
