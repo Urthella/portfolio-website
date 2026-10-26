@@ -99,7 +99,7 @@ export function Projects() {
                 <div className={`flex items-center justify-between ${a.bar} px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-wide text-black`}>
                   <span className="truncate">
                     {String(i + 1).padStart(2, "0")} · {p.category}
-                    {p.live ? (p.wip ? " · WAITLIST" : " · LIVE") : ""}
+                    {p.live ? (p.waitlist ? " · WAITLIST" : " · LIVE") : ""}
                   </span>
                   <span className="flex shrink-0 items-center gap-1.5">
                     {p.featured && (
@@ -144,7 +144,7 @@ export function Projects() {
                         rel="noopener noreferrer"
                         className={`inline-flex items-center gap-1.5 rounded-lg ${a.bar} px-3 py-1.5 font-mono text-xs font-bold text-black transition-transform hover:-translate-y-0.5`}
                       >
-                        <ArrowUpRight className="h-3.5 w-3.5" /> {p.wip ? "WAITLIST" : "LIVE"}
+                        <ArrowUpRight className="h-3.5 w-3.5" /> {p.waitlist ? "WAITLIST" : "LIVE"}
                       </a>
                     )}
                     {p.privateRepo ? (

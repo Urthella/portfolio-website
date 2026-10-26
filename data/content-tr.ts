@@ -140,11 +140,12 @@ export const tr = {
     {
       name: "Okut Gitsin",
       blurb:
-        "Canlı yayınlı araç açık artırma platformu: token tabanlı giriş, Redis ve Lua ile atomik teklif motoru, WebSocket ile gerçek zamanlı teklif, LiveKit yayını ve emanet ödeme akışı.",
+        "Canlı yayınlı araç açık artırma platformu: token tabanlı giriş, Redis ve Lua ile atomik teklif motoru, WebSocket ile gerçek zamanlı teklif, LiveKit yayını ve emanet ödeme akışı. Çok yakında açılıyor, bekleme listesi okutgitsin.com'da açık.",
       stack: ["NestJS", "Next.js", "PostgreSQL", "Prisma", "Redis", "Socket.IO", "LiveKit"],
       category: "Full-stack",
       href: "https://okutgitsin.com",
       live: "https://okutgitsin.com",
+      waitlist: true,
       featured: true,
       privateRepo: true,
     },
@@ -175,6 +176,7 @@ export const tr = {
       category: "Full-stack",
       href: "https://penpick.com.tr",
       live: "https://penpick.com.tr",
+      waitlist: true,
       privateRepo: true,
       wip: true,
     },
@@ -457,7 +459,7 @@ export const tr = {
     },
     featured: {
       cards: [
-        { title: "Okut Gitsin", tag: "Amiral Gemisi SaaS", desc: "Canlı yayınlı araç açık artırma platformu: gerçek zamanlı teklif, güvenli ödeme, okutgitsin.com'da canlı." },
+        { title: "Okut Gitsin", tag: "Amiral Gemisi SaaS", desc: "Canlı yayınlı araç açık artırma platformu: gerçek zamanlı teklif, güvenli ödeme, çok yakında açılıyor, bekleme listesi okutgitsin.com'da açık." },
         { title: "Dağıtık Sistemler Serisi", tag: "Backend", desc: "Sıfırdan beş proje: CRDT senkronizasyonu, Redis Lua ile rate limiting, saga orkestrasyonu, hibrit RAG ve yarış güvenli bir iş kuyruğu." },
         { title: "Penpick", tag: "Çok yakında", desc: "Kalem koleksiyoncuları için pazar yeri, çok yakında açılıyor, bekleme listesi penpick.com.tr'de açık." },
         { title: "Extramus İK", tag: "Backend ve Güvenlik", desc: "İK platformu backend'i: RBAC, güvenli yüklemeler, yük altında konteynerize servisler." },

@@ -177,6 +177,7 @@ export interface Project {
   live?: string
   featured?: boolean
   wip?: boolean
+  waitlist?: boolean
   privateRepo?: boolean
   collab?: boolean
 }
@@ -185,11 +186,12 @@ export const projects: Project[] = [
   {
     name: "Okut Gitsin",
     blurb:
-      "Live-stream vehicle auction platform: token-based entry, a Redis and Lua atomic bid engine, WebSocket real-time bidding, LiveKit broadcasting and an escrow payment flow.",
+      "Live-stream vehicle auction platform: token-based entry, a Redis and Lua atomic bid engine, WebSocket real-time bidding, LiveKit broadcasting and an escrow payment flow. Launching soon, the waitlist is open at okutgitsin.com.",
     stack: ["NestJS", "Next.js", "PostgreSQL", "Prisma", "Redis", "Socket.IO", "LiveKit"],
     category: "Full-stack",
     href: "https://okutgitsin.com",
     live: "https://okutgitsin.com",
+    waitlist: true,
     featured: true,
     privateRepo: true,
   },
@@ -220,6 +222,7 @@ export const projects: Project[] = [
     category: "Full-stack",
     href: "https://penpick.com.tr",
     live: "https://penpick.com.tr",
+    waitlist: true,
     privateRepo: true,
     wip: true,
   },
