@@ -43,7 +43,7 @@ const L = {
     stack: "Stack",
     links: "Links",
     live: "Live",
-    preview: "Preview",
+    waitlist: "Waitlist",
     source: "Source",
     privateRepo: "Private repository",
     category: "Category",
@@ -60,7 +60,7 @@ const L = {
     stack: "Teknolojiler",
     links: "Bağlantılar",
     live: "Canlı",
-    preview: "Önizleme",
+    waitlist: "Bekleme listesi",
     source: "Kaynak kod",
     privateRepo: "Gizli repo",
     category: "Kategori",
@@ -119,7 +119,7 @@ export function buildFS(c: Content, lang: Lang): FsDir {
       `${t.stack}: ${p.stack.join(", ")}`,
       "",
       `## ${t.links}`,
-      ...(p.live ? [`- ${p.wip ? t.preview : t.live}: ${p.live}`] : []),
+      ...(p.live ? [`- ${p.wip ? t.waitlist : t.live}: ${p.live}`] : []),
       p.privateRepo ? `- ${t.source}: ${t.privateRepo}` : `- ${t.source}: ${p.href}`,
     ]
     const children: FsNode[] = [
@@ -128,7 +128,7 @@ export function buildFS(c: Content, lang: Lang): FsDir {
         meta: { category: p.category, featured: String(!!p.featured), blurb: p.blurb, stack: p.stack.join(", ") },
       }),
     ]
-    if (p.live) children.push(file(p.wip ? "preview.url" : "live.url", { href: p.live }))
+    if (p.live) children.push(file(p.wip ? "waitlist.url" : "live.url", { href: p.live }))
     if (!p.privateRepo && p.href !== p.live) children.push(file("source.url", { href: p.href }))
     return dir(slug(p.name), children)
   })
