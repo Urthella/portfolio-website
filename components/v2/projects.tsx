@@ -93,10 +93,12 @@ export function Projects() {
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.3 }}
                 whileHover={{ y: -4 }}
+                data-colorize
                 className={`cursor-target group flex flex-col overflow-hidden rounded-2xl border-2 ${a.border} bg-neutral-950/70 backdrop-blur-sm transition-colors hover:bg-neutral-950`}
               >
                 {/* top bar */}
-                <div className={`flex items-center justify-between ${a.bar} px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-wide text-black`}>
+                {/* lang="en": English-only labels, so Turkish case mapping can't turn SECURITY into SECURİTY */}
+                <div lang="en" className={`flex items-center justify-between ${a.bar} px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-wide text-black`}>
                   <span className="truncate">
                     {String(i + 1).padStart(2, "0")} · {p.category}
                     {p.live ? (p.waitlist ? " · WAITLIST" : " · LIVE") : ""}

@@ -60,7 +60,7 @@ export function GithubHeatmap() {
   }
 
   return (
-    <section className="relative mx-auto max-w-5xl px-4 pb-12 sm:px-6">
+    <section data-colorize className="relative mx-auto max-w-5xl px-4 pb-12 sm:px-6">
       <Reveal className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
         <h3 className="mb-5 font-mono text-sm text-white/70">
           <span className="text-orange-500">{"//"}</span> {total}&nbsp;{g.heatmap}

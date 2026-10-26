@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og"
 
-export const alt = "Utku Demirtaş, Backend & DevOps Engineer"
+export const alt = "Utku Demirtaş, Software Engineer"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -40,13 +40,13 @@ export default function OpengraphImage() {
         </div>
 
         <div style={{ fontSize: 88, fontWeight: 800, letterSpacing: -2 }}>Utku Demirtaş</div>
-        <div style={{ fontSize: 42, color: "#fdba74", marginTop: 14 }}>Backend &amp; DevOps Engineer</div>
+        <div style={{ fontSize: 42, color: "#fdba74", marginTop: 14 }}>Software Engineer</div>
         <div style={{ fontSize: 26, color: "#a3a3a3", marginTop: 28, maxWidth: 940 }}>
-          Real-time engines, secure APIs, CI/CD and containers. Fullstack with a security mindset.
+          Backend · Distributed Systems · AI. Real-time engines, event-driven services and RAG pipelines.
         </div>
 
         <div style={{ display: "flex", gap: 14, marginTop: 46 }}>
-          {["Node", "NestJS", "Spring Boot", "Docker", "Kubernetes"].map((tsk) => (
+          {["NestJS", "Spring Boot", "Redis", "PostgreSQL", "RAG"].map((tsk) => (
             <div
               key={tsk}
               style={{

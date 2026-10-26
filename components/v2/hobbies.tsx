@@ -35,6 +35,7 @@ export function Hobbies() {
             <motion.div
               key={h.icon}
               variants={scaleIn}
+              data-colorize
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-orange-500/30"
             >
               <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-orange-500/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />

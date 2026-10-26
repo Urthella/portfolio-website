@@ -1,10 +1,10 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
-import { ArrowDown, ArrowRight, BookOpen, FileDown, Github, Instagram, Linkedin } from "lucide-react"
+import { ArrowDown, ArrowRight, BookOpen, FileDown, Github, Instagram, Linkedin, SquareTerminal } from "lucide-react"
+import Link from "next/link"
 
 import { IdCard } from "@/components/v2/id-card"
-import { RotatingText } from "@/components/v2/rotating-text"
 import { profile } from "@/data/content"
 import { useContent } from "@/data/i18n"
 import { container, fadeUp } from "@/lib/motion"
@@ -15,6 +15,11 @@ const socialIcons = [
   { href: profile.socials.instagram, label: "Instagram", Icon: Instagram },
   { href: profile.socials.medium, label: "Medium", Icon: BookOpen },
 ]
+
+// The Venom Button's glossy black lacquer pill; on the home page the tentacle layer grows goo from
+// the edges of everything marked data-tentacles.
+const lacquer =
+  "inline-flex items-center gap-2 rounded-full bg-[linear-gradient(180deg,#1c1c1e_0%,#0a0a0a_42%,#020202_100%)] px-5 py-3 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,.14),inset_0_-1.5px_0_rgba(255,255,255,.22),0_18px_28px_-14px_rgba(0,0,0,.55),0_0_0_1px_rgba(255,255,255,.1)] transition hover:brightness-125"
 
 export function Hero() {
   const reduce = useReducedMotion()
@@ -37,9 +42,11 @@ export function Hero() {
             {profile.name}
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="mt-4 font-mono text-lg text-white/70 sm:text-xl">
-            <span className="text-orange-500">&gt;</span>{" "}
-            <RotatingText items={c.ui.hero.rotating} className="text-white" />
+          <motion.p variants={fadeUp} className="mt-4 font-mono text-lg text-white sm:text-xl">
+            <span className="text-orange-500">&gt;</span> {c.profile.role}
+          </motion.p>
+          <motion.p variants={fadeUp} className="mt-2 font-mono text-sm tracking-wide text-white/55 sm:text-base">
+            {c.profile.focus}
           </motion.p>
 
           <motion.p variants={fadeUp} className="mt-6 max-w-xl text-pretty leading-relaxed text-white/55">
@@ -55,22 +62,18 @@ export function Hero() {
           </motion.div>
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="group inline-flex items-center gap-2 rounded-xl bg-orange-600 px-5 py-3 text-sm font-medium text-white shadow-[0_0_30px_color-mix(in_srgb,var(--color-orange-600)_35%,transparent)] transition-all hover:bg-orange-500 hover:shadow-[0_0_44px_color-mix(in_srgb,var(--color-orange-600)_55%,transparent)]"
-            >
+            <Link href="/projects" data-tentacles className={`group ${lacquer}`}>
               {c.ui.hero.viewProjects}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </button>
-            <a
-              href={profile.resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-medium text-white/85 transition-colors hover:border-white/30 hover:text-white"
-            >
+            </Link>
+            <a href={profile.resume} target="_blank" rel="noopener noreferrer" data-tentacles className={lacquer}>
               <FileDown className="h-4 w-4" />
               {c.ui.hero.resume}
             </a>
+            <Link href="/desktop" data-tentacles className={lacquer}>
+              <SquareTerminal className="h-4 w-4" />
+              {c.ui.nav.desktop}
+            </Link>
             <div className="ml-1 flex items-center gap-1.5">
               {socialIcons.map(({ href, label, Icon }) => (
                 <a
@@ -101,7 +104,7 @@ export function Hero() {
 
       {!reduce && (
         <motion.a
-          href="#about"
+          href="#contact"
           aria-label="Scroll down"
           className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40"
           animate={{ y: [0, 8, 0] }}

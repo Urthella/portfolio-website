@@ -6,17 +6,17 @@ export const PHOTO = "/PP.jpg"
 export const profile = {
   name: "Utku Demirtaş",
   handle: "utkudem1rtas",
-  role: "Fullstack Developer",
-  focus: "Backend & DevOps Engineer",
+  role: "Software Engineer",
+  focus: "Backend · Distributed Systems · AI",
   location: "Konya, Türkiye",
   available: true,
   tagline:
-    "Backend and DevOps leaning fullstack engineer. I build production systems: real-time engines, secure APIs, CI/CD and containers. Also a guitarist and calisthenics athlete.",
+    "I build real-time engines, event-driven services and RAG pipelines, plus the CI/CD and containers that ship them. Also a guitarist and calisthenics athlete.",
   email: "utkudemirtas0@gmail.com",
   phone: "+90 507 045 16 23",
   site: "utkudemirtas.tech",
   resume: "/Utku Demirtas CV.pdf",
-  chips: ["Backend & DevOps", "Cybersecurity", "Guitarist", "Calisthenics"],
+  chips: ["DevOps & Cloud", "Cybersecurity", "Guitarist", "Calisthenics"],
   socials: {
     github: "https://github.com/Urthella",
     linkedin: "https://www.linkedin.com/in/utkudemirtas/",
@@ -39,28 +39,33 @@ export const about = {
   ],
 }
 
-// Rich "two sides" about block (backend / devops) plus quick stats.
+// About block: one card per focus area (the heading joins their titles), plus quick stats.
 export const aboutHero = {
-  lead: "BACKEND",
-  tail: "DEVOPS",
   intro: [
-    "I'm a computer engineer who ships production systems, from real-time auction engines to Kubernetes resilience harnesses.",
-    "On one side, scalable backends with Node, NestJS, Spring Boot and Python. On the other, the Docker, CI/CD and cloud plumbing that ships them. I feed both with real projects.",
+    "I'm a computer engineer who ships production systems, like a live-stream auction platform and the document backend of an HR platform.",
+    "Backends in Node, NestJS, Spring Boot and Python; distributed systems that stay correct under load, from atomic bid engines to sagas and job queues; and AI features grounded in real data. Docker and CI/CD ship all of it.",
   ],
   sides: [
     {
       key: "backend",
       accent: "pink",
       icon: "server",
-      title: "BACKEND SIDE",
-      text: "Real-time bid engines, secure REST APIs, message queues and databases. Node/TypeScript, Spring Boot/Java and Python.",
+      title: "BACKEND",
+      text: "Secure REST APIs and real-time services in NestJS, Spring Boot and FastAPI.",
     },
     {
-      key: "devops",
+      key: "distributed",
       accent: "cyan",
-      icon: "container",
-      title: "DEVOPS SIDE",
-      text: "Dockerized services, GitHub Actions CI/CD, Kubernetes resilience and secure, containerized deployments.",
+      icon: "network",
+      title: "DISTRIBUTED SYSTEMS",
+      text: "Atomic bid engines, sagas, rate limiters and job queues over Redis, RabbitMQ and Postgres.",
+    },
+    {
+      key: "ai",
+      accent: "amber",
+      icon: "brain",
+      title: "AI",
+      text: "RAG with pgvector and cited answers, LLM features on the OpenAI API, and ML models.",
     },
   ],
   note: "// Secure uploads, RBAC and green CI on an HR platform at Extramus, plus test and CI work merged into a dozen shipped repos.",

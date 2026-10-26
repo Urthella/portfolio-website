@@ -1,12 +1,14 @@
 "use client"
 
-import { ArrowUp, BookOpen, Check, Copy, Github, Instagram, Linkedin, Loader2, Mail, Phone, Send } from "lucide-react"
-import { useState } from "react"
+import { useReducedMotion } from "framer-motion"
+import { ArrowUp, BookOpen, Check, Copy, FileDown, Github, Instagram, Linkedin, Mail, Phone } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react"
 
-import { FallingText } from "@/components/ui/falling-text"
 import { Typewriter } from "@/components/ui/typewriter"
+import { VenomButton } from "@/components/venom-button"
+import { ContactWindows } from "@/components/v2/contact-windows"
 import { Reveal } from "@/components/v2/reveal"
-import { fromLeft, scaleIn } from "@/lib/motion"
 import { profile } from "@/data/content"
 import { useContent } from "@/data/i18n"
 import { usePerf } from "@/hooks/use-perf"
@@ -18,23 +20,97 @@ const socials = [
   { href: profile.socials.medium, label: "Medium", Icon: BookOpen },
 ]
 
+// Only a real mouse gets the page-wide takeover; touch plays the goo without flipping the page.
+const FINE = "(hover: hover) and (pointer: fine)"
+const subscribeFine = (cb: () => void) => {
+  const mq = window.matchMedia(FINE)
+  mq.addEventListener("change", cb)
+  return () => mq.removeEventListener("change", cb)
+}
+const isFine = () => window.matchMedia(FINE).matches
+
 /**
- * Contact and footer as one section: the big display title opens it, the
- * form + info card follow, then link columns, the legal bar and the giant
- * wordmark — all on a single space backdrop whose masked top lets the fixed
- * fluid/aurora layers show through, so the page flows in with no seam.
+ * Contact and footer as one compact section: a line of intro, the Venom
+ * Button, the contact details, then the legal bar and the wordmark — on a
+ * space backdrop whose masked top lets the fixed fluid/aurora layers show
+ * through.
+ *
+ * The takeover: once the venom has fully swallowed the glove (or on a click)
+ * it bursts the contact form out of its pill as glossy slabs, and while it
+ * holds the hand or the form is open an ink layer spreads out of the pill and
+ * inverts the page behind it (globals.css .venom-ink); the venom's goo and the
+ * form sit above the ink, so the symbiote stays black on the whitened page.
  */
 export function ContactFooter() {
   const c = useContent()
   const { lite } = usePerf()
+  const reduce = useReducedMotion()
+  const fine = useSyncExternalStore(subscribeFine, isFine, () => false)
   const t = c.ui.contact
   const f = c.ui.footer
-  const nav = c.ui.nav
   const subtitle = c.ui.headings.contact.subtitle
 
-  const [form, setForm] = useState({ name: "", email: "", message: "" })
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
   const [copied, setCopied] = useState(false)
+  const [taken, setTaken] = useState(false)
+  const [formOn, setFormOn] = useState(false)
+  const [formTop, setFormTop] = useState(0)
+  // the footer outlives navigations (it is in the layout): a form counts as open only on the page
+  // it was opened on, so following a nav link closes it (and lets the page's colours back)
+  const pathname = usePathname()
+  const [formPath, setFormPath] = useState(pathname)
+  const formOpen = formOn && formPath === pathname
+  const footerRef = useRef<HTMLElement>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
+  const liteRef = useRef<HTMLButtonElement>(null)
+  const inkRef = useRef<HTMLDivElement>(null)
+
+  // the goo bursts the form out of the pill only for a mouse (its canvas then spans the viewport);
+  // touch, lite, reduced motion and a button without WebGL get plain panels
+  const [gooLost, setGooLost] = useState(false)
+  const goo = fine && !reduce && !lite && !gooLost
+  const trigger = useCallback(() => stageRef.current?.querySelector("button") ?? liteRef.current, [])
+
+  // the ink spreads from the pill: aim it there whenever a takeover starts, and keep it there while
+  // the page scrolls (opening the form scrolls it into view)
+  const aimInk = useCallback(() => {
+    const b = trigger()?.getBoundingClientRect()
+    if (!b || !inkRef.current) return
+    inkRef.current.style.setProperty("--venom-x", `${b.left + b.width / 2}px`)
+    inkRef.current.style.setProperty("--venom-y", `${b.top + b.height / 2}px`)
+  }, [trigger])
+  // the panels hang just under the button
+  const placeForm = useCallback(() => {
+    const b = trigger()?.getBoundingClientRect(), fr = footerRef.current?.getBoundingClientRect()
+    if (b && fr) setFormTop(Math.round(b.bottom - fr.top + 28))
+  }, [trigger])
+  const openForm = () => {
+    aimInk()
+    placeForm()
+    setFormPath(pathname)
+    setFormOn(true)
+  }
+  // once the venom has the whole hand, it bursts the form out too
+  const onTakeover = (on: boolean) => {
+    if (on) openForm()
+    setTaken(on)
+  }
+  const closeForm = useCallback(() => {
+    setFormOn(false)
+    trigger()?.focus({ preventScroll: true })
+  }, [trigger])
+
+  useEffect(() => {
+    if (!formOpen) return
+    window.addEventListener("resize", placeForm)
+    return () => window.removeEventListener("resize", placeForm)
+  }, [formOpen, placeForm])
+
+  const inverted = fine && !reduce && !lite && (taken || formOpen)
+  useEffect(() => {
+    if (!inverted) return
+    window.addEventListener("scroll", aimInk, { passive: true })
+    return () => window.removeEventListener("scroll", aimInk)
+  }, [inverted, aimInk])
 
   const copyEmail = () => {
     navigator.clipboard?.writeText(profile.email)
@@ -42,59 +118,17 @@ export function ContactFooter() {
     setTimeout(() => setCopied(false), 1800)
   }
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus("sending")
-    try {
-      const emailjs = (await import("@emailjs/browser")).default
-      const publicKey = "lG13LwoQUrMXT7Igo"
-      emailjs.init({ publicKey })
-      await emailjs.send(
-        "service_to6ga2c",
-        "template_9ypkl6o",
-        { from_name: form.name, from_email: form.email, message: form.message },
-        publicKey,
-      )
-      setStatus("success")
-      setForm({ name: "", email: "", message: "" })
-    } catch {
-      setStatus("error")
-    } finally {
-      setTimeout(() => setStatus("idle"), 5000)
-    }
-  }
-
-  const field =
-    "w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-orange-500/50 focus:bg-white/[0.05]"
-  // Higher opacities than the site norm: these sit on the busy rock backdrop.
-  const link = "text-sm text-white/80 transition-colors hover:text-white"
-  const colTitle = "font-mono text-xs text-white/60"
-
-  const sections = ["about", "experience", "projects", "hobbies"] as const
-
-  const work = [
-    { label: "Okut Gitsin", href: "https://okutgitsin.com" },
-    { label: "Penpick", href: "https://penpick.com.tr" },
-    { label: "GitHub", href: profile.socials.github },
-  ]
-
-  const more = [
-    { label: c.ui.hero.resume, href: "/Utku%20Demirtas%20CV.pdf" },
-    { label: "Medium", href: profile.socials.medium },
-    { label: c.ui.headings.playground.label, href: "#playground" },
-  ]
-
-  const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+  const tile = "grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500"
+  const iconLink =
+    "grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-white/60 transition-all hover:-translate-y-0.5 hover:border-orange-500/40 hover:text-white"
 
   return (
-    <footer id="contact" className="relative overflow-hidden">
+    // clipped sideways only: the form panels may hang below the footer's end, growing the page
+    <footer ref={footerRef} id="contact" className="relative overflow-x-clip">
       {/* space backdrop: masked top keeps the fixed fluid/aurora layers visible */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center grayscale"
         style={{
           backgroundImage: "url(/footer-bg.jpg)",
           maskImage: "linear-gradient(to bottom, transparent, black 50%)",
@@ -103,196 +137,86 @@ export function ContactFooter() {
       />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-[#07070a]/45 to-[#07070a]/45" />
 
+      {/* the venom's ink: inverts everything under it, spreading out of the pill */}
+      <div ref={inkRef} aria-hidden data-on={inverted} className="venom-ink" />
+
       <div className="relative">
-        {/* display heading opens the section */}
-        <Reveal className="mx-auto max-w-6xl px-4 pt-24 text-center sm:px-6">
-          <p className="font-mono text-xs tracking-[0.25em] text-orange-500">
-            <span className="text-orange-500/40">{"//"}</span> {f.talk}
-          </p>
-          <h2 className="mt-6 text-[clamp(2.8rem,9vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-white">
-            {f.titleA}
-            <br />
-            {f.titleB}
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty leading-relaxed text-white/50">{subtitle}</p>
-        </Reveal>
+        <div className="mx-auto max-w-6xl px-4 pb-12 pt-16 sm:px-6">
+          <Reveal>
+            <p className="mx-auto max-w-xl text-center text-pretty leading-relaxed text-white/60">{subtitle}</p>
+          </Reveal>
 
-        {/* falling words — desktop only: the physics sim is too heavy for phones,
-            and while hidden the scroll trigger never fires, so matter-js never boots.
-            Lite mode keeps the words but skips matter-js entirely. */}
-        <Reveal className="mx-auto mt-14 hidden max-w-6xl px-4 sm:px-6 md:block">
-          <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.015] sm:h-72">
-            {lite ? (
-              <p
-                className="flex h-full flex-wrap content-center justify-center gap-x-2.5 gap-y-1 px-10 text-center text-white"
-                style={{ fontSize: "clamp(1rem, 2.6vw, 1.7rem)" }}
+          {lite ? (
+            // lite mode skips the WebGL goo: just the button
+            <div className="mt-8 flex justify-center">
+              <button
+                ref={liteRef}
+                type="button"
+                onClick={openForm}
+                aria-haspopup="dialog"
+                aria-expanded={formOpen}
+                className="inline-flex h-12 items-center rounded-full bg-white px-7 text-base font-bold tracking-tight text-[#07070a] outline-none transition-colors hover:bg-white/85 focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07070a]"
               >
-                {t.falling.split(" ").map((word, i) => (
-                  <span
-                    key={i}
-                    className={
-                      t.fallingHl.some((hw) => word.replace(/[^\p{L}\p{N}']/gu, "").toLowerCase() === hw.toLowerCase())
-                        ? "font-semibold text-orange-400"
-                        : undefined
-                    }
-                  >
-                    {word}
-                  </span>
-                ))}
-              </p>
-            ) : (
-              <>
-                <FallingText text={t.falling} highlightWords={t.fallingHl} trigger="scroll" gravity={0} fontSize="clamp(1rem, 2.6vw, 1.7rem)" />
-                <span className="pointer-events-none absolute bottom-3 right-4 font-mono text-[11px] text-white/25">{t.dragWords}</span>
-              </>
-            )}
-          </div>
-        </Reveal>
-
-        {/* info card + form */}
-        <div className="mx-auto mt-6 grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-2">
-          <Reveal variants={fromLeft}>
-            <div className="flex h-full flex-col justify-between rounded-2xl border border-white/15 bg-neutral-950/30 p-6 shadow-[0_0_40px_color-mix(in_srgb,var(--color-orange-500)_14%,transparent)] backdrop-blur-sm sm:p-8">
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <a
-                    href={`mailto:${profile.email}`}
-                    className="flex flex-1 items-center gap-3 text-white/70 transition-colors hover:text-white"
-                  >
-                    <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500">
-                      <Mail className="h-5 w-5" />
-                    </span>
-                    <span className="truncate">{profile.email}</span>
-                  </a>
-                  <button
-                    onClick={copyEmail}
-                    aria-label="Copy email"
-                    className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 text-white/50 transition-colors hover:border-orange-500/40 hover:text-white"
-                  >
-                    {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
-                  </button>
-                </div>
-                <div className="flex items-center gap-3 text-white/70">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500">
-                    <Phone className="h-5 w-5" />
-                  </span>
-                  {profile.phone}
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <p className="mb-3 font-mono text-xs text-white/40">{t.findMe}</p>
-                <div className="flex gap-2">
-                  {socials.map(({ href, label, Icon }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                      className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 text-white/60 transition-all hover:-translate-y-0.5 hover:border-orange-500/40 hover:text-white"
-                    >
-                      <Icon className="h-5 w-5" />
-                    </a>
-                  ))}
-                </div>
-              </div>
+                {t.collaborate}
+              </button>
             </div>
-          </Reveal>
+          ) : (
+            // above the ink (z-2), so the symbiote keeps its colors when the page inverts
+            <div ref={stageRef} data-venom-stage className="relative z-[2] mt-2">
+              {/* Nexus UI's Venom Button. With a mouse its canvas spans the viewport, so the
+                  feelers notice the cursor from across the page (sense); close by they latch on
+                  (reach) and reel the glove onto the pill, where it is swallowed and the form
+                  bursts out; yank the mouse well away (release) and they snap. */}
+              <VenomButton
+                label={t.collaborate}
+                onClick={openForm}
+                onTakeover={onTakeover}
+                fullscreen={fine}
+                burst={goo ? { open: formOpen, targets: "[data-goo-panel]" } : undefined}
+                onFallback={() => setGooLost(true)}
+                expanded={formOpen}
+                height={240}
+                sense={1400}
+                reach={120}
+                release={260}
+              />
+            </div>
+          )}
 
-          <Reveal variants={scaleIn}>
-            <form onSubmit={onSubmit} className="rounded-2xl border border-white/15 bg-neutral-950/30 p-6 shadow-[0_0_40px_color-mix(in_srgb,var(--color-orange-500)_14%,transparent)] backdrop-blur-sm sm:p-8">
-              <div className="grid gap-4">
-                <div>
-                  <label htmlFor="name" className="mb-1.5 block text-xs text-white/50">
-                    {t.name}
-                  </label>
-                  <input id="name" name="name" value={form.name} onChange={onChange} required className={field} placeholder="Jane Doe" />
-                </div>
-                <div>
-                  <label htmlFor="email" className="mb-1.5 block text-xs text-white/50">
-                    {t.email}
-                  </label>
-                  <input id="email" name="email" type="email" value={form.email} onChange={onChange} required className={field} placeholder="jane@example.com" />
-                </div>
-                <div>
-                  <label htmlFor="message" className="mb-1.5 block text-xs text-white/50">
-                    {t.message}
-                  </label>
-                  <textarea id="message" name="message" value={form.message} onChange={onChange} required rows={4} className={field} placeholder="Let's build something…" />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-orange-500 disabled:opacity-60"
-                >
-                  {status === "sending" ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin" /> {t.sending}
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4" /> {t.send}
-                    </>
-                  )}
-                </button>
-
-                <p aria-live="polite" className="min-h-[1.25rem] text-center text-sm">
-                  {status === "success" && <span className="text-green-400">{t.success}</span>}
-                  {/* literal red: error feedback must stay red under every theme */}
-                  {status === "error" && <span className="text-[#f87171]">{t.error}</span>}
-                </p>
-              </div>
-            </form>
-          </Reveal>
-        </div>
-
-        {/* link columns (socials live as icons in the info card above) */}
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-20 sm:grid-cols-3 sm:px-6">
-          <div>
-            <div className={colTitle}>{"// "}{f.colSections}</div>
-            <ul className="mt-5 space-y-2.5">
-              {sections.map((id) => (
-                <li key={id}>
-                  <button onClick={() => go(id)} className={link}>
-                    {nav[id]}
-                  </button>
-                </li>
+          {/* contact details */}
+          <div data-colorize className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            <div className="flex items-center gap-2">
+              <a href={`mailto:${profile.email}`} className="flex min-w-0 items-center gap-3 text-white/75 transition-colors hover:text-white">
+                <span className={tile}>
+                  <Mail className="h-5 w-5" />
+                </span>
+                <span className="truncate">{profile.email}</span>
+              </a>
+              <button
+                onClick={copyEmail}
+                aria-label={t.copyEmail}
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 text-white/50 transition-colors hover:border-orange-500/40 hover:text-white"
+              >
+                {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
+              </button>
+            </div>
+            <div className="flex items-center gap-3 text-white/75">
+              <span className={tile}>
+                <Phone className="h-5 w-5" />
+              </span>
+              {profile.phone}
+            </div>
+            <div className="flex gap-2">
+              {socials.map(({ href, label, Icon }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className={iconLink}>
+                  <Icon className="h-5 w-5" />
+                </a>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <div className={colTitle}>{"// "}{f.colWork}</div>
-            <ul className="mt-5 space-y-2.5">
-              {work.map(({ label, href }) => (
-                <li key={label}>
-                  <a href={href} target="_blank" rel="noopener noreferrer" className={link}>
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <div className={colTitle}>{"// "}{f.colMore}</div>
-            <ul className="mt-5 space-y-2.5">
-              {more.map(({ label, href }) => (
-                <li key={label}>
-                  {href.startsWith("#") ? (
-                    <button onClick={() => go(href.slice(1))} className={link}>
-                      {label}
-                    </button>
-                  ) : (
-                    <a href={href} target="_blank" rel="noopener noreferrer" className={link}>
-                      {label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
+              {/* the résumé, reachable from every page */}
+              <a href={profile.resume} target="_blank" rel="noopener noreferrer" aria-label={c.ui.hero.resume} title={c.ui.hero.resume} className={iconLink}>
+                <FileDown className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -333,6 +257,9 @@ export function ContactFooter() {
           </div>
         </div>
       </div>
+
+      {/* the contact form, as windows flying in from the edges; above the ink too */}
+      <ContactWindows open={formOpen} onClose={closeForm} top={formTop} goo={goo} />
     </footer>
   )
 }

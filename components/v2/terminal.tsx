@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useMemo, useRef, useState } from "react"
 
 import { Reveal } from "@/components/v2/reveal"
@@ -9,11 +10,18 @@ import { useContent } from "@/data/i18n"
 interface Seg {
   type: "cmd" | "out"
   text: string
+  href?: string
 }
 
-const toSegs = (c: { cmd: string; out: string[] }): Seg[] => [
+interface Step {
+  cmd: string
+  out: string[]
+  href?: string // turns the output lines into links
+}
+
+const toSegs = (c: Step): Seg[] => [
   { type: "cmd", text: c.cmd },
-  ...c.out.map((o) => ({ type: "out" as const, text: o })),
+  ...c.out.map((o) => ({ type: "out" as const, text: o, href: c.href })),
 ]
 
 function Transcript({ segs, typing }: { segs: Seg[]; typing: string }) {
@@ -23,6 +31,15 @@ function Transcript({ segs, typing }: { segs: Seg[]; typing: string }) {
         s.type === "cmd" ? (
           <div key={i} className="text-white/90">
             <span className="text-orange-500">➜</span> <span className="text-emerald-400">~</span> {s.text}
+          </div>
+        ) : s.href ? (
+          <div key={i} className="pl-4">
+            <Link
+              href={s.href}
+              className="rounded text-orange-400 underline-offset-4 outline-none hover:text-orange-300 hover:underline focus-visible:ring-2 focus-visible:ring-orange-500/60"
+            >
+              {s.text}
+            </Link>
           </div>
         ) : (
           <div key={i} className="pl-4 text-white/50">
@@ -39,19 +56,20 @@ function Transcript({ segs, typing }: { segs: Seg[]; typing: string }) {
 }
 
 export function Terminal() {
-  const whoami = useContent().ui.terminal.whoami
+  const { whoami, boot } = useContent().ui.terminal
   const [segs, setSegs] = useState<Seg[]>([])
   const [typing, setTyping] = useState("")
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
 
-  const SCRIPT = useMemo<{ cmd: string; out: string[] }[]>(
+  const SCRIPT = useMemo<Step[]>(
     () => [
       { cmd: "whoami", out: [whoami] },
       { cmd: "cat stack.txt", out: ["Node.js · NestJS · Spring Boot · PostgreSQL · Redis · Docker · CI/CD"] },
       { cmd: "ls projects/", out: ["okut-gitsin  reveil  costsight  penpick  mips16  used-car-platform"] },
       { cmd: "echo $CONTACT", out: [profile.email] },
+      { cmd: "./utkuOS", out: [boot], href: "/desktop" },
     ],
-    [whoami],
+    [whoami, boot],
   )
   const finished = useMemo(() => SCRIPT.flatMap(toSegs), [SCRIPT])
 
@@ -79,7 +97,8 @@ export function Terminal() {
           setTyping("")
           await wait(650)
         }
-        await wait(2400)
+        // ponytail: fixed hold so the closing desktop link stays clickable; pause-on-hover if 6s proves short
+        await wait(6000)
       }
     }
     void run()
@@ -94,7 +113,7 @@ export function Terminal() {
   return (
     <section className="relative mx-auto max-w-3xl px-4 py-12 sm:px-6">
       <Reveal>
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm">
+        <div data-colorize className="overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm">
           <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
             <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]/70" />
             <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />

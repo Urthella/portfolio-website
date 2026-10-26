@@ -37,7 +37,7 @@ export function Featured() {
         {/* Single column: the box grows with the stack's fit scale (~min(1, column/518px)) so the fan's top
             (444px above the stage at full size, 54px of it below the box) lines up with the box top and never
             rises into the button above. Two columns: the fan may overhang upward beside the text. */}
-        <div className="relative h-[min(390px,calc(85.8vw_-_82px))] w-full lg:h-[360px]">
+        <div data-colorize className="relative h-[min(390px,calc(85.8vw_-_82px))] w-full lg:h-[360px]">
           <CardSwap width={420} height={300} cardDistance={50} verticalDistance={56} delay={4000}>
             {cards.map((card, i) => {
               const { icon: Icon, grad } = META[i % META.length]
