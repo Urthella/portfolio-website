@@ -6,6 +6,7 @@ import { useState } from "react"
 import { FallingText } from "@/components/ui/falling-text"
 import { Typewriter } from "@/components/ui/typewriter"
 import { Reveal } from "@/components/v2/reveal"
+import { useGoto } from "@/components/v2/routes"
 import { fromLeft, scaleIn } from "@/lib/motion"
 import { profile } from "@/data/content"
 import { useContent } from "@/data/i18n"
@@ -73,7 +74,13 @@ export function ContactFooter() {
   const link = "text-sm text-white/80 transition-colors hover:text-white"
   const colTitle = "font-mono text-xs text-white/60"
 
-  const sections = ["about", "experience", "projects", "hobbies"] as const
+  // page routes: scroll when already on the page, navigate otherwise (useGoto)
+  const sections = [
+    { id: "about", href: "/about" },
+    { id: "experience", href: "/about#experience" },
+    { id: "projects", href: "/projects" },
+    { id: "hobbies", href: "/beyond" },
+  ] as const
 
   const work = [
     { label: "Okut Gitsin", href: "https://okutgitsin.com" },
@@ -84,10 +91,10 @@ export function ContactFooter() {
   const more = [
     { label: c.ui.hero.resume, href: "/Utku%20Demirtas%20CV.pdf" },
     { label: "Medium", href: profile.socials.medium },
-    { label: c.ui.headings.playground.label, href: "#playground" },
+    { label: c.ui.headings.playground.label, href: "/beyond#playground", internal: true },
   ]
 
-  const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+  const go = useGoto()
 
   return (
     <footer id="contact" className="relative overflow-hidden">
@@ -253,9 +260,9 @@ export function ContactFooter() {
           <div>
             <div className={colTitle}>{"// "}{f.colSections}</div>
             <ul className="mt-5 space-y-2.5">
-              {sections.map((id) => (
+              {sections.map(({ id, href }) => (
                 <li key={id}>
-                  <button onClick={() => go(id)} className={link}>
+                  <button onClick={() => go(href)} className={link}>
                     {nav[id]}
                   </button>
                 </li>
@@ -279,10 +286,10 @@ export function ContactFooter() {
           <div>
             <div className={colTitle}>{"// "}{f.colMore}</div>
             <ul className="mt-5 space-y-2.5">
-              {more.map(({ label, href }) => (
+              {more.map(({ label, href, internal }) => (
                 <li key={label}>
-                  {href.startsWith("#") ? (
-                    <button onClick={() => go(href.slice(1))} className={link}>
+                  {internal ? (
+                    <button onClick={() => go(href)} className={link}>
                       {label}
                     </button>
                   ) : (

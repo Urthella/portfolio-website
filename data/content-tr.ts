@@ -397,7 +397,20 @@ export const tr = {
   ],
 
   ui: {
-    nav: { about: "Hakkımda", experience: "Deneyim", skills: "Yetenekler", projects: "Projeler", hobbies: "Hobiler", contact: "İletişim", blog: "Blog" },
+    nav: {
+      home: "Ana sayfa",
+      about: "Hakkımda",
+      experience: "Deneyim",
+      skills: "Yetenekler",
+      projects: "Projeler",
+      hobbies: "Hobiler",
+      contact: "İletişim",
+      blog: "Blog",
+      writing: "Yazılar",
+      beyond: "Kodun Ötesi",
+      desktop: "Masaüstü",
+    },
+    palette: { openDesktop: "Masaüstünü aç (utkuOS)" },
     hero: {
       welcome: "OYUN ALANIMA HOŞ GELDİN",
       rotating: ["Fullstack Geliştirici", "Backend & DevOps", "Gerçek zamanlı sistemler", "Güvenli API'ler"],
@@ -517,6 +530,7 @@ export const tr = {
     showcase: { featured: "// öne çıkan", name: "Okut Gitsin", caption: "Bir canlı açık artırma platformu, içiyle dışıyla." },
     terminal: {
       whoami: "Halil Utku Demirtaş, backend & devops ağırlıklı fullstack mühendisi",
+      boot: "→ masaüstünü başlat",
     },
     perf: {
       enableLite: "Animasyonları kapat (hafif mod)",

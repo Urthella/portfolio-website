@@ -62,7 +62,7 @@ export function Projects() {
           initialPosition={cursorPos}
         />
       )}
-      <SectionHeading index="05" label={h.label} title={h.title} subtitle={h.subtitle} />
+      <SectionHeading index="02" label={h.label} title={h.title} subtitle={h.subtitle} />
 
       <div className="mb-8 flex flex-wrap gap-2">
         {categories.map((c) => (

@@ -1,7 +1,8 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
-import { ArrowDown, ArrowRight, BookOpen, FileDown, Github, Instagram, Linkedin } from "lucide-react"
+import { ArrowDown, ArrowRight, BookOpen, FileDown, Github, Instagram, Linkedin, SquareTerminal } from "lucide-react"
+import Link from "next/link"
 
 import { IdCard } from "@/components/v2/id-card"
 import { RotatingText } from "@/components/v2/rotating-text"
@@ -55,13 +56,13 @@ export function Hero() {
           </motion.div>
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+            <Link
+              href="/projects"
               className="group inline-flex items-center gap-2 rounded-xl bg-orange-600 px-5 py-3 text-sm font-medium text-white shadow-[0_0_30px_color-mix(in_srgb,var(--color-orange-600)_35%,transparent)] transition-all hover:bg-orange-500 hover:shadow-[0_0_44px_color-mix(in_srgb,var(--color-orange-600)_55%,transparent)]"
             >
               {c.ui.hero.viewProjects}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </button>
+            </Link>
             <a
               href={profile.resume}
               target="_blank"
@@ -71,6 +72,13 @@ export function Hero() {
               <FileDown className="h-4 w-4" />
               {c.ui.hero.resume}
             </a>
+            <Link
+              href="/desktop"
+              className="inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-5 py-3 text-sm font-medium text-orange-200 transition-all hover:border-orange-500/50 hover:bg-orange-500/20"
+            >
+              <SquareTerminal className="h-4 w-4" />
+              {c.ui.nav.desktop}
+            </Link>
             <div className="ml-1 flex items-center gap-1.5">
               {socialIcons.map(({ href, label, Icon }) => (
                 <a
@@ -101,7 +109,7 @@ export function Hero() {
 
       {!reduce && (
         <motion.a
-          href="#about"
+          href="#contact"
           aria-label="Scroll down"
           className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40"
           animate={{ y: [0, 8, 0] }}

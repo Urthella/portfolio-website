@@ -118,7 +118,7 @@ export function ThemeLab() {
 
   return (
     <section id="playground" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionHeading index="06" label={h.label} title={h.title} subtitle={h.subtitle} />
+      <SectionHeading index="02" label={h.label} title={h.title} subtitle={h.subtitle} />
 
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/80 backdrop-blur-sm">
         {/* window chrome */}

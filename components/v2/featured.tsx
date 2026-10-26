@@ -23,7 +23,7 @@ export function Featured() {
     <section className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <div>
-          <SectionHeading index="04" label={h.label} title={h.title} subtitle={h.subtitle} />
+          <SectionHeading index="01" label={h.label} title={h.title} subtitle={h.subtitle} />
           <Reveal delay={0.1}>
             <a
               href="#projects"

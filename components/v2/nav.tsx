@@ -1,9 +1,12 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { Github, Languages, Linkedin, Menu, X, Zap, ZapOff } from "lucide-react"
+import { ArrowUpRight, Github, Languages, Linkedin, Menu, X, Zap, ZapOff } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
+import { PAGES, isActive, useGoto } from "@/components/v2/routes"
 import { profile } from "@/data/content"
 import { useContent, useLang } from "@/data/i18n"
 import { usePerf } from "@/hooks/use-perf"
@@ -13,9 +16,22 @@ const HEADER_SOCIALS = [
   { href: profile.socials.linkedin, label: "LinkedIn", Icon: Linkedin },
 ]
 
-export function Nav({ items, activeSection }: { items: string[]; activeSection: string }) {
+// the logo is home; the header lists the rest
+const ITEMS = PAGES.filter((p) => p.href !== "/")
+
+const ring = "outline-none focus-visible:ring-2 focus-visible:ring-orange-500/60"
+
+export function Nav() {
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  // Nav persists across pages (site layout): close the mobile menu on any route change, however it happened
+  const [menuPath, setMenuPath] = useState(pathname)
+  if (menuPath !== pathname) {
+    setMenuPath(pathname)
+    setOpen(false)
+  }
+  const goto = useGoto()
   const c = useContent()
   const { lang, setLang } = useLang()
   const { lite, setLite } = usePerf()
@@ -28,13 +44,6 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
-
-  const go = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-    setOpen(false)
-  }
-
-  const label = (id: string) => navLabels[id as keyof typeof navLabels] ?? id
 
   // A plain element, not a nested component: a component defined in render remounts every render.
   const langToggle = (
@@ -62,10 +71,17 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
           scrolled ? "mt-2 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl sm:mt-3" : "border border-transparent"
         }`}
       >
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="group flex items-center gap-2.5 font-mono text-sm font-semibold text-white"
-          aria-label="Back to top"
+        <Link
+          href="/"
+          onClick={(e) => {
+            // already home: Next won't scroll a same-URL navigation, so do it ourselves
+            if (pathname === "/") {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: "smooth" })
+            }
+          }}
+          className={`group flex items-center gap-2.5 rounded-lg font-mono text-sm font-semibold text-white ${ring}`}
+          aria-label={navLabels.home}
         >
           <span
             className="grid h-8 w-8 place-items-center rounded-lg bg-orange-600 text-white transition-transform group-hover:scale-105"
@@ -73,31 +89,53 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
           >
             UD
           </span>
-          <span className="hidden text-white/70 transition-colors group-hover:text-white sm:inline">~/utkudem1rtas</span>
-        </button>
+          {/* hidden at md, where the page links need the room */}
+          <span className="hidden text-white/70 transition-colors group-hover:text-white sm:inline md:hidden lg:inline">
+            ~/utkudem1rtas
+          </span>
+        </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {items.map((id) => (
-            <button
-              key={id}
-              onClick={() => go(id)}
-              className={`relative rounded-lg px-3 py-2 text-sm transition-colors ${
-                activeSection === id ? "text-white" : "text-white/55 hover:text-white"
-              }`}
-            >
-              {label(id)}
-              {activeSection === id && (
-                <motion.span
-                  layoutId="nav-active"
-                  className="absolute inset-0 -z-10 rounded-lg bg-white/10"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-            </button>
-          ))}
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
+          {ITEMS.map(({ key, href }) => {
+            const active = isActive(pathname, href)
+            return (
+              <Link
+                key={key}
+                href={href}
+                aria-current={active ? "page" : undefined}
+                className={`relative whitespace-nowrap rounded-lg px-2 py-2 text-sm lg:px-3 transition-colors ${ring} ${
+                  active ? "text-white" : "text-white/55 hover:text-white"
+                }`}
+              >
+                {navLabels[key]}
+                {active && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute inset-0 -z-10 rounded-lg bg-white/10"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </Link>
+            )
+          })}
+          {/* the contact form is the footer, on every page */}
+          <button
+            onClick={() => goto("#contact")}
+            className={`whitespace-nowrap rounded-lg px-2 py-2 text-sm text-white/55 lg:px-3 transition-colors hover:text-white ${ring}`}
+          >
+            {navLabels.contact}
+          </button>
         </nav>
 
         <div className="flex items-center gap-2">
+          <Link
+            href="/desktop"
+            aria-label={navLabels.desktop}
+            className={`hidden items-center gap-1.5 rounded-lg border border-orange-500/40 bg-orange-500/10 px-2.5 py-1.5 text-sm font-medium text-orange-200 transition-colors hover:border-orange-500/60 hover:bg-orange-500/20 hover:text-white sm:inline-flex ${ring}`}
+          >
+            <span className="md:hidden lg:inline">{navLabels.desktop}</span>
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
           <button
             onClick={() => window.dispatchEvent(new Event("cmdk:open"))}
             className="hidden items-center gap-1 rounded-lg border border-white/15 px-2.5 py-1.5 font-mono text-xs text-white/50 transition-colors hover:border-white/30 hover:text-white lg:flex"
@@ -148,17 +186,37 @@ export function Nav({ items, activeSection }: { items: string[]; activeSection: 
             transition={{ duration: 0.2 }}
             className="mx-4 mt-2 grid gap-1 rounded-2xl border border-white/10 bg-black/80 p-2 backdrop-blur-xl md:hidden"
           >
-            {items.map((id) => (
-              <button
-                key={id}
-                onClick={() => go(id)}
-                className={`rounded-lg px-3 py-2.5 text-left text-sm ${
-                  activeSection === id ? "bg-white/10 text-white" : "text-white/60"
-                }`}
-              >
-                {label(id)}
-              </button>
-            ))}
+            {ITEMS.map(({ key, href }) => {
+              const active = isActive(pathname, href)
+              return (
+                <Link
+                  key={key}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`rounded-lg px-3 py-2.5 text-left text-sm ${ring} ${active ? "bg-white/10 text-white" : "text-white/60"}`}
+                >
+                  {navLabels[key]}
+                </Link>
+              )
+            })}
+            <button
+              onClick={() => {
+                setOpen(false)
+                goto("#contact")
+              }}
+              className={`rounded-lg px-3 py-2.5 text-left text-sm text-white/60 ${ring}`}
+            >
+              {navLabels.contact}
+            </button>
+            <Link
+              href="/desktop"
+              onClick={() => setOpen(false)}
+              className={`mt-1 flex items-center justify-between rounded-lg border border-orange-500/30 bg-orange-500/10 px-3 py-2.5 text-sm font-medium text-orange-200 ${ring}`}
+            >
+              {navLabels.desktop}
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </motion.nav>
         )}
       </AnimatePresence>

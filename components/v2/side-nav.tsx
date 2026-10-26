@@ -1,23 +1,26 @@
 "use client"
 
+import { usePathname, useRouter } from "next/navigation"
+
 import LineSidebar from "@/components/ui/line-sidebar"
+import { PAGES, isActive } from "@/components/v2/routes"
 import { useContent } from "@/data/i18n"
 
 /**
- * Fixed left-edge section nav mirroring the header items: same labels (i18n),
- * same smooth-scroll on click, and it follows the page's scroll spy via
- * LineSidebar's controlled activeIndex. Only shown where the centered
- * max-w-6xl content leaves room for it.
+ * Fixed left-edge page nav: same i18n labels as the header, the current route
+ * highlighted via LineSidebar's controlled activeIndex, click navigates. Only
+ * shown where the centered max-w-6xl content leaves room for it.
  */
-export function SideNav({ items, activeSection }: { items: string[]; activeSection: string }) {
+export function SideNav() {
   const navLabels = useContent().ui.nav
-  const labels = items.map((id) => navLabels[id as keyof typeof navLabels] ?? id)
-  const active = items.indexOf(activeSection)
+  const pathname = usePathname()
+  const router = useRouter()
+  const active = PAGES.findIndex((p) => isActive(pathname, p.href))
 
   return (
-    <aside className="fixed left-6 top-1/2 z-30 hidden -translate-y-1/2 2xl:block" aria-label="Section navigation">
+    <aside className="fixed left-6 top-1/2 z-30 hidden -translate-y-1/2 2xl:block" aria-label="Page navigation">
       <LineSidebar
-        items={labels}
+        items={PAGES.map((p) => navLabels[p.key])}
         accentColor="var(--color-orange-500)"
         textColor="#c6c6cc"
         markerColor="#77777f"
@@ -34,9 +37,7 @@ export function SideNav({ items, activeSection }: { items: string[]; activeSecti
         fontSize={0.8}
         smoothing={100}
         activeIndex={active >= 0 ? active : null}
-        onItemClick={(index: number) => {
-          document.getElementById(items[index])?.scrollIntoView({ behavior: "smooth" })
-        }}
+        onItemClick={(index: number) => router.push(PAGES[index].href)}
       />
     </aside>
   )

@@ -6,7 +6,20 @@ import { about, aboutHero, articles, experiences, hobbies, profile, projects, se
 import { tr } from "@/data/content-tr"
 
 const uiEN = {
-  nav: { about: "About", experience: "Experience", skills: "Skills", projects: "Projects", hobbies: "Hobbies", contact: "Contact", blog: "Blog" },
+  nav: {
+    home: "Home",
+    about: "About",
+    experience: "Experience",
+    skills: "Skills",
+    projects: "Projects",
+    hobbies: "Hobbies",
+    contact: "Contact",
+    blog: "Blog",
+    writing: "Writing",
+    beyond: "Beyond",
+    desktop: "Desktop",
+  },
+  palette: { openDesktop: "Open desktop (utkuOS)" },
   hero: {
     welcome: "WELCOME TO MY PLAYGROUND",
     rotating: ["Fullstack Developer", "Backend & DevOps", "Real-time systems", "Secure APIs"],
@@ -125,7 +138,7 @@ const uiEN = {
   },
   statement: ["SHIPPING REAL-TIME SYSTEMS", "SECURE APIS. CLEAN CI/CD.", "BACKEND, DEVOPS & CHAOS", "LET'S BUILD SOMETHING"],
   showcase: { featured: "// featured", name: "Okut Gitsin", caption: "A live-auction platform, opened up." },
-  terminal: { whoami: "Halil Utku Demirtaş, backend & devops-leaning fullstack engineer" },
+  terminal: { whoami: "Halil Utku Demirtaş, backend & devops-leaning fullstack engineer", boot: "→ boot the desktop" },
   perf: {
     enableLite: "Turn animations off (lite mode)",
     enableFull: "Turn animations on",

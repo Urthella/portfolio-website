@@ -1,15 +1,28 @@
 "use client"
 
 import { Command } from "cmdk"
-import { ArrowUp, BookOpen, Copy, CornerDownLeft, Download, Github, Instagram, Languages, Linkedin, Zap, ZapOff } from "lucide-react"
+import { ArrowUp, BookOpen, Copy, CornerDownLeft, Download, Github, Instagram, Languages, Linkedin, Monitor, Zap, ZapOff } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 
+import { useGoto } from "@/components/v2/routes"
 import { profile } from "@/data/content"
 import { useContent, useLang } from "@/data/i18n"
 import { usePerf } from "@/hooks/use-perf"
 
-const SECTIONS = ["about", "experience", "skills", "projects", "hobbies", "contact"] as const
+// pages, then the sections that live on them; #contact is the footer on every page
+const SECTIONS = [
+  { key: "home", href: "/" },
+  { key: "about", href: "/about" },
+  { key: "experience", href: "/about#experience" },
+  { key: "skills", href: "/about#skills" },
+  { key: "projects", href: "/projects" },
+  { key: "writing", href: "/writing" },
+  { key: "beyond", href: "/beyond" },
+  { key: "hobbies", href: "/beyond#hobbies" },
+  { key: "contact", href: "#contact" },
+] as const
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false)
@@ -18,6 +31,8 @@ export function CommandPalette() {
   const { lang, setLang } = useLang()
   const { lite, setLite } = usePerf()
   const nav = c.ui.nav
+  const router = useRouter()
+  const goto = useGoto()
 
   useEffect(() => setMounted(true), [])
 
@@ -43,7 +58,6 @@ export function CommandPalette() {
     setOpen(false)
     fn()
   }
-  const goto = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
   const openUrl = (url: string) => window.open(url, "_blank", "noopener,noreferrer")
 
   if (!mounted || !open) return null
@@ -75,9 +89,9 @@ export function CommandPalette() {
             <Command.Item value="top home" className={itemCls} onSelect={() => run(() => window.scrollTo({ top: 0, behavior: "smooth" }))}>
               <ArrowUp className="h-4 w-4 text-orange-400" /> Top
             </Command.Item>
-            {SECTIONS.map((id) => (
-              <Command.Item key={id} value={`${id} ${nav[id]}`} className={itemCls} onSelect={() => run(() => goto(id))}>
-                <CornerDownLeft className="h-4 w-4 text-orange-400" /> {nav[id]}
+            {SECTIONS.map(({ key, href }) => (
+              <Command.Item key={key} value={`${key} ${nav[key]}`} className={itemCls} onSelect={() => run(() => goto(href))}>
+                <CornerDownLeft className="h-4 w-4 text-orange-400" /> {nav[key]}
               </Command.Item>
             ))}
           </Command.Group>
@@ -98,6 +112,9 @@ export function CommandPalette() {
           </Command.Group>
 
           <Command.Group heading="Actions" className={groupCls}>
+            <Command.Item value="desktop utkuos os masaüstü" className={itemCls} onSelect={() => run(() => router.push("/desktop"))}>
+              <Monitor className="h-4 w-4 text-orange-400" /> {c.ui.palette.openDesktop}
+            </Command.Item>
             <Command.Item value="copy email mail" className={itemCls} onSelect={() => run(() => navigator.clipboard?.writeText(profile.email))}>
               <Copy className="h-4 w-4 text-orange-400" /> Copy email
             </Command.Item>
