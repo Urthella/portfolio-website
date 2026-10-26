@@ -21,7 +21,8 @@ const Ctx = createContext<{ lite: boolean; setLite: (lite: boolean) => void }>({
  * should run. Order of authority: the user's explicit toggle, then OS
  * reduced-motion, then a one-time FPS measurement cached across visits.
  */
-export function PerfProvider({ children }: { children: ReactNode }) {
+/** `measure={false}`: honour stored choices but never run or cache the FPS sample (for routes without the heavy visuals). */
+export function PerfProvider({ children, measure = true }: { children: ReactNode; measure?: boolean }) {
   const [mode, setMode] = useState<PerfMode>("auto")
   const [autoLite, setAutoLite] = useState(false)
 
@@ -45,6 +46,7 @@ export function PerfProvider({ children }: { children: ReactNode }) {
       setAutoLite(verdict === "lite")
       return
     }
+    if (!measure) return
 
     // First visit: let the entrance animations settle, then count real frames
     // while everything heavy is running. A hidden tab throttles rAF and would
@@ -79,7 +81,7 @@ export function PerfProvider({ children }: { children: ReactNode }) {
       clearTimeout(timer)
       cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [measure])
 
   const setLite = (lite: boolean) => {
     const m: PerfMode = lite ? "lite" : "full"
