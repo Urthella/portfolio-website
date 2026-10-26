@@ -5,9 +5,18 @@ import { useState } from "react"
 
 import { Typewriter } from "@/components/ui/typewriter"
 import { Reveal } from "@/components/v2/reveal"
+import { VenomButton } from "@/components/venom-button"
 import { fromLeft, scaleIn } from "@/lib/motion"
 import { profile } from "@/data/content"
 import { useContent } from "@/data/i18n"
+import { usePerf } from "@/hooks/use-perf"
+
+// The symbiote has the hand: the whole page flips (globals.css), except the venom's own stage.
+// Mouse only: on a phone the goo still plays under your finger, but the page doesn't flip.
+const onGrab = (grabbed: boolean) => {
+  const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  document.documentElement.classList.toggle("venom-inverted", grabbed && fine)
+}
 
 const socials = [
   { href: profile.socials.linkedin, label: "LinkedIn", Icon: Linkedin },
@@ -24,6 +33,7 @@ const socials = [
  */
 export function ContactFooter() {
   const c = useContent()
+  const { lite } = usePerf()
   const t = c.ui.contact
   const f = c.ui.footer
   const subtitle = c.ui.headings.contact.subtitle
@@ -31,6 +41,13 @@ export function ContactFooter() {
   const [form, setForm] = useState({ name: "", email: "", message: "" })
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
   const [copied, setCopied] = useState(false)
+
+  // the Collaborate button lands you in the form
+  const focusForm = () => {
+    const name = document.getElementById("name")
+    name?.scrollIntoView({ behavior: "smooth", block: "center" })
+    name?.focus({ preventScroll: true })
+  }
 
   const copyEmail = () => {
     navigator.clipboard?.writeText(profile.email)
@@ -92,6 +109,22 @@ export function ContactFooter() {
               {f.titleA} {f.titleB}
             </h2>
             <p className="mt-4 max-w-md text-pretty leading-relaxed text-white/60">{subtitle}</p>
+
+            {lite ? (
+              // lite mode skips the WebGL goo: just the button
+              <button
+                type="button"
+                onClick={focusForm}
+                className="mt-7 inline-flex h-12 items-center rounded-full bg-white px-7 text-base font-bold tracking-tight text-[#07070a] outline-none transition-colors hover:bg-white/85 focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07070a]"
+              >
+                {t.collaborate}
+              </button>
+            ) : (
+              <div data-venom-stage className="mt-7">
+                {/* Nexus UI's Venom Button, scaled to a 260px stage (its defaults suit 420px) */}
+                <VenomButton label={t.collaborate} onClick={focusForm} onGrab={onGrab} height={260} sense={200} reach={100} release={150} />
+              </div>
+            )}
 
             <div data-colorize className="mt-8 space-y-3">
               <div className="flex items-center gap-2">

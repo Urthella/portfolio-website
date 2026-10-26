@@ -100,6 +100,7 @@ const uiEN = {
     error: "Something went wrong, email me directly instead.",
     findMe: "// find me online",
     backToTop: "Back to top",
+    collaborate: "let’s collaborate",
     built: "Built with Next.js & Framer Motion.",
   },
   footer: {

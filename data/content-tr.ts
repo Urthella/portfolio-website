@@ -496,6 +496,7 @@ export const tr = {
       error: "Bir şeyler ters gitti, doğrudan e-posta gönder.",
       findMe: "// çevrimiçi bul",
       backToTop: "Başa dön",
+      collaborate: "birlikte çalışalım",
       built: "Next.js & Framer Motion ile yapıldı.",
     },
     footer: {

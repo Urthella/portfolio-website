@@ -440,6 +440,24 @@ html {
   transition-property: color, background-color, border-color, box-shadow, translate;
   transition-duration: 0.3s;
 }
+/* Venom takeover: while the Venom Button (components/venom-button) holds the
+   hand, the whole page inverts (contact-footer.tsx toggles the class). The
+   filter sits on the root element, which (unlike any other element) does not
+   become the containing block for fixed descendants, so the nav and the fluid
+   canvas stay put. Photos and the venom's own stage are inverted back, so the
+   symbiote stays black while the page around it turns white. */
+html,
+[data-venom-stage] {
+  /* the stage's counter-inversion fades with the page's, or the symbiote would flash negative */
+  transition: filter 0.45s ease;
+}
+html.venom-inverted {
+  filter: invert(1) hue-rotate(180deg);
+}
+html.venom-inverted :is(img, video, [data-venom-stage]) {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* A gray primary button reads as disabled: in black and white it is white with
    black text, and turns back into the accent button on hover/focus. */
 .mono :is(a, button).bg-orange-600:not(:hover, :focus-visible, :disabled) {
