@@ -2,15 +2,18 @@ import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { ThemeProvider } from '@/components/theme-provider'
+import { SITE_URL } from '@/lib/page-meta'
 import './globals.css'
 
 const personLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Utku Demirtaş',
-  url: 'https://utkudemirtas.tech',
+  // full legal name and the ASCII spelling people type without Turkish letters
+  alternateName: ['Halil Utku Demirtaş', 'Utku Demirtas'],
+  url: SITE_URL,
   jobTitle: 'Software Engineer',
-  image: 'https://utkudemirtas.tech/PP.jpg',
+  image: `${SITE_URL}/PP.jpg`,
   sameAs: [
     'https://github.com/Urthella',
     'https://www.linkedin.com/in/utkudemirtas/',
@@ -21,18 +24,18 @@ const personLd = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://utkudemirtas.tech'),
+  metadataBase: new URL(SITE_URL),
   title: 'Utku Demirtaş | Software Engineer',
   description: 'Portfolio of Utku Demirtaş, a software engineer focused on backend, distributed systems and AI: real-time engines, event-driven services and RAG pipelines.',
   keywords: ['Utku Demirtaş', 'Software Engineer', 'Backend Engineer', 'Distributed Systems', 'AI', 'RAG', 'Node.js', 'NestJS', 'Spring Boot', 'TypeScript', 'Python', 'Portfolio'],
-  authors: [{ name: 'Utku Demirtaş', url: 'https://utkudemirtas.tech' }],
+  authors: [{ name: 'Utku Demirtaş', url: SITE_URL }],
   creator: 'Utku Demirtaş',
   publisher: 'Utku Demirtaş',
   generator: 'Next.js',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://utkudemirtas.tech',
+    url: SITE_URL,
     siteName: 'Utku Demirtaş Portfolio',
     title: 'Utku Demirtaş | Software Engineer',
     description: 'Portfolio of Utku Demirtaş, a software engineer focused on backend, distributed systems and AI: real-time engines, event-driven services and RAG pipelines.',
