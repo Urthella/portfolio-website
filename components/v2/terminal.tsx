@@ -66,7 +66,7 @@ export function Terminal() {
       { cmd: "whoami", out: [whoami] },
       { cmd: "cat stack.txt", out: ["Node.js · NestJS · Spring Boot · PostgreSQL · Redis · Docker · CI/CD"] },
       { cmd: "ls projects/", out: ["okut-gitsin  reveil  costsight  penpick  mips16  used-car-platform"] },
-      { cmd: "echo $CONTACT", out: [profile.email] },
+      { cmd: "echo $CONTACT", out: [profile.site] },
       { cmd: "./utkuOS", out: [boot], href: "/desktop" },
     ],
     [whoami, boot],

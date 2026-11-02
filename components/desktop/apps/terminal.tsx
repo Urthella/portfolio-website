@@ -147,7 +147,7 @@ export default function Terminal({ windowId, args }: AppProps) {
       kv(t.nf.de, [{ t: t.de }]),
       kv(t.nf.theme, [{ t: "■ ", color: accent }, { t: accent, cmd: "theme" }]),
       kv(t.nf.stack, [{ t: "Node · NestJS · Spring · Postgres · Redis · Docker" }]),
-      kv(t.nf.contact, linkify(profile.email)),
+      kv(t.nf.contact, linkify(`https://${profile.site}`)),
       [],
       ["bg-neutral-700", "bg-red-500", "bg-emerald-500", "bg-yellow-400", "bg-sky-500", "bg-fuchsia-500", "bg-cyan-400", "bg-orange-500", "bg-white/80"].map(
         (c) => ({ t: "   ", c }),
@@ -180,7 +180,7 @@ export default function Terminal({ windowId, args }: AppProps) {
       const date = new Date(c.date).toLocaleString(loc, { weekday: "short", year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })
       out.push(
         line({ t: `commit ${hash}`, c: "text-yellow-300" }, ...(c.ref ? refs : [])),
-        line(`${t.gitAuthor}: ${profile.name} <`, ...linkify(profile.email), ">"),
+        line(`${t.gitAuthor}: ${profile.name}`),
         line(`${t.gitDate}:   ${date}`),
         line(),
         line(`    ${msg}`),
@@ -199,7 +199,7 @@ export default function Terminal({ windowId, args }: AppProps) {
       SHELL: "/bin/bash",
       HOSTNAME: OS.hostname,
       LANG: lang === "tr" ? "tr_TR.UTF-8" : "en_US.UTF-8",
-      CONTACT: profile.email,
+      CONTACT: `https://${profile.site}`,
       EDITOR: "vim",
     }
     const words = tokenize(input, env)
@@ -361,8 +361,6 @@ export default function Terminal({ windowId, args }: AppProps) {
       case "contact": {
         const row = (k: string, v: Seg[]) => line({ t: k.padEnd(10), c: KEY }, ...v)
         return push(
-          row(t.contact.email, linkify(profile.email)),
-          row(t.contact.phone, [{ t: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` }]),
           row(t.contact.web, linkify(`https://${profile.site}`)),
           row(t.contact.location, [{ t: profile.location }]),
           line(),

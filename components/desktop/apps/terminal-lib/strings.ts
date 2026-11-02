@@ -115,7 +115,7 @@ const en = {
   whoamiNote: "(that's the user. The human is below.)",
   projectsHead: "~/projects  (★ featured · wip = in progress · collab = collaboration)",
   projectsHint: "Click a name to browse it, or try: cat ~/projects/okut-gitsin/README.md",
-  contact: { email: "Email", phone: "Phone", web: "Web", location: "Location" },
+  contact: { web: "Web", location: "Location" },
   contactHint: "Prefer a form? Try: ",
   nf: {
     os: "OS",
@@ -247,7 +247,7 @@ const tr: typeof en = {
   whoamiNote: "(bu kullanıcı. İnsanı aşağıda.)",
   projectsHead: "~/projects  (★ öne çıkan · wip = geliştiriliyor · collab = ortak çalışma)",
   projectsHint: "Göz atmak için bir isme tıkla ya da şunu dene: cat ~/projects/okut-gitsin/README.md",
-  contact: { email: "E-posta", phone: "Telefon", web: "Web", location: "Konum" },
+  contact: { web: "Web", location: "Konum" },
   contactHint: "Form mu tercih edersin? Şunu dene: ",
   nf: {
     os: "Sistem",
