@@ -25,7 +25,7 @@ export const profile = {
 
 export const about = {
   bio: [
-    "Computer engineering student with hands-on backend and DevOps experience. Most recently I built the backend and document-management infrastructure of an HR platform at Extramus, with RBAC, secure uploads, CI/CD and containerized services.",
+    "Computer engineering graduate with hands-on backend and DevOps experience. Most recently I built the backend and document-management infrastructure of an HR platform at Extramus, with RBAC, secure uploads, CI/CD and containerized services.",
     "I like systems that have to be correct under pressure: real-time bidding engines, secure REST APIs, message queues, and the CI/CD plus Docker plumbing that ships them. Comfortable across Node/TypeScript, Spring Boot/Java and Python.",
     "Outside the terminal I'm a long-time guitarist and a calisthenics athlete, and the discipline of both feeds back into how I build.",
   ],
@@ -71,7 +71,7 @@ export const aboutHero = {
     { value: "23+", label: "Projects", accent: "lime" },
     { value: "8", label: "Languages", accent: "pink" },
     { value: "5", label: "Experiences", accent: "cyan" },
-    { value: "2026", label: "Graduating", accent: "amber" },
+    { value: "2026", label: "Graduated", accent: "amber" },
   ],
 }
 

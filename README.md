@@ -1,6 +1,6 @@
 # 🚀 Utku Demirtaş - Portfolio Website
 
-Welcome to my personal portfolio website! This project showcases my journey as a Computer Engineering student, featuring my projects, skills, certifications, and hobbies.
+Welcome to my personal portfolio website! This project showcases my journey as a Computer Engineering graduate, featuring my projects, skills, certifications, and hobbies.
 
 ## 🌟 Features
 

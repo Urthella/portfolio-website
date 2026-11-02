@@ -1,0 +1,128 @@
+<!doctype html>
+<!-- Source of public/Utku Demirtas CV.pdf. Public file: keep email and phone out of it. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Utku Demirtaş CV</title>
+<style>
+  @page { size: A4; margin: 11mm 15mm 10mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 9.5pt/1.22 Carlito, Calibri, sans-serif; color: #000; }
+  a { color: inherit; text-decoration: none; }
+  header { text-align: center; }
+  h1 { font: 700 18pt/1.1 Cambria, Georgia, serif; }
+  .title { font-size: 11pt; color: #333; margin-top: 1pt; }
+  .links { margin-top: 2pt; }
+  .links b { color: #1a1a1a; }
+  .sep { color: #888; margin: 0 5pt; }
+  h2 { font-size: 10.5pt; color: #111; border-bottom: .6pt solid #111; margin-top: 5.5pt; padding-bottom: 1pt; margin-bottom: 2.5pt; }
+  .entry { margin-bottom: 2pt; break-inside: avoid; }
+  .head { font-size: 10pt; }
+  .head b { font-size: 10.5pt; }
+  .head i { color: #555; font-size: 9.5pt; margin-left: 4pt; }
+  ul { margin-left: 24pt; }
+  li { padding-left: 2pt; }
+  .stack { color: #777; }
+  .skills { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8pt; row-gap: 1.5pt; }
+  .skills b { margin-right: 2pt; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Utku Demirtaş</h1>
+  <p class="title">Software Engineer</p>
+  <p class="links"><a href="https://www.utkudemirtas.tech"><b>utkudemirtas.tech</b></a></p>
+  <p class="links">
+    <a href="https://github.com/Urthella">github.com/Urthella</a><span class="sep">|</span>
+    <a href="https://www.linkedin.com/in/utkudemirtas/">linkedin.com/in/utkudemirtas</a><span class="sep">|</span>
+    <a href="https://medium.com/@urthella1">medium.com/@urthella1</a>
+  </p>
+</header>
+
+<h2>SUMMARY</h2>
+<p>Backend-focused software engineer building real-time engines, event-driven services and RAG pipelines, plus the CI/CD and containers that ship them. Computer engineering graduate working across Node/TypeScript, Spring Boot/Java and Python.</p>
+
+<h2>EXPERIENCE</h2>
+<div class="entry">
+  <p class="head"><b>Founder &amp; Lead Developer</b> <i>Okut Gitsin — <a href="https://okutgitsin.com">okutgitsin.com</a> (launching soon)<span class="sep">|</span>Nov 2025 – Present</i></p>
+  <ul>
+    <li>Designed and built a live-stream vehicle auction platform end to end, from data model to deployment</li>
+    <li>Engineered an atomic bid engine on Redis and Lua for millisecond-level, race-free bidding</li>
+    <li>Built real-time bidding over WebSocket and live video auctions with LiveKit</li>
+    <li>Added an escrow payment flow (held, refunded, forfeited) with IBAN verification, Helmet CSP/HSTS, rate limiting and GitHub Actions CI/CD</li>
+  </ul>
+</div>
+<div class="entry">
+  <p class="head"><b>DevOps &amp; Backend Developer</b> <i>Extramus<span class="sep">|</span>Jul 2025 – Sep 2025</i></p>
+  <ul>
+    <li>Built HR-management backend components and document-management infrastructure</li>
+    <li>Implemented secure file-upload mechanisms with role-based access control (RBAC)</li>
+    <li>Automated testing and deployment with GitHub Actions CI/CD pipelines</li>
+    <li>Containerized backend services with Docker for consistent environments</li>
+  </ul>
+</div>
+<div class="entry">
+  <p class="head"><b>R&amp;D Engineering Intern</b> <i>Telenity (R&amp;D)<span class="sep">|</span>Jun 2024 – Aug 2024</i></p>
+  <ul>
+    <li>Developed backend modules with Spring Boot</li>
+    <li>Worked with Java, MongoDB, Kafka and SQL-based systems</li>
+    <li>Focused on bug fixing, performance optimization and system stability</li>
+  </ul>
+</div>
+
+<h2>VOLUNTEERING EXPERIENCE</h2>
+<div class="entry">
+  <p class="head"><b>Educator &amp; Co-leader</b> <i>Anticverse Tech<span class="sep">|</span>2022 – 2023</i></p>
+  <ul>
+    <li>Helped manage the cybersecurity team and delivered training on data and web security</li>
+  </ul>
+</div>
+<div class="entry">
+  <p class="head"><b>Team Leader &amp; Design Engineer</b> <i>Teknofest – Ouroboros Team<span class="sep">|</span>2021 – 2022</i></p>
+  <ul>
+    <li>Led the drone design and development process and managed technical coordination within the team</li>
+  </ul>
+</div>
+
+<h2>EDUCATION</h2>
+<p><b>B.Sc. Computer Engineering</b> <span style="color:#555">Konya Food and Agriculture University<span class="sep">|</span>2022 – 2026</span></p>
+
+<h2>PROJECTS</h2>
+<div class="entry">
+  <p class="head"><b>Reveil — AI-Assisted Self-Management Platform</b> <i>Ongoing</i></p>
+  <ul><li>Authentication, behavior tracking and AI-assisted features via prompt-based workflows over a NestJS and FastAPI backend. <span class="stack">— React Native, NestJS, FastAPI, PostgreSQL, OpenAI API</span></li></ul>
+</div>
+<div class="entry">
+  <p class="head"><b>Costsight — Cloud-Cost Anomaly Detection</b></p>
+  <ul><li>Anomaly detection on AWS CUR data using STL, Isolation Forest and Z-Score detectors, with severity-banded alerts and a Streamlit dashboard. <span class="stack">— Python, scikit-learn, Streamlit, AWS</span></li></ul>
+</div>
+<div class="entry">
+  <p class="head"><b>Distributed Rate Limiter</b></p>
+  <ul><li>API gateway with token bucket, sliding window and fixed window limiters, backed by atomic Redis Lua scripts so limits hold across replicas. <span class="stack">— TypeScript, Redis, Lua, Prometheus, Grafana</span></li></ul>
+</div>
+<div class="entry">
+  <p class="head"><b>Event-Driven Order System</b></p>
+  <ul><li>Five microservices coordinating an order saga, with compensating transactions, idempotent consumers and one OpenTelemetry trace per order. <span class="stack">— TypeScript, RabbitMQ, OpenTelemetry, Docker</span></li></ul>
+</div>
+<div class="entry">
+  <p class="head"><b>Codebase RAG Q&amp;A</b></p>
+  <ul><li>Repo answers with file:line citations: tree-sitter AST chunking, hybrid BM25 and vector retrieval, and an eval harness (94% hit@3). <span class="stack">— Python, FastAPI, tree-sitter, pgvector</span></li></ul>
+</div>
+<div class="entry">
+  <p class="head"><b>Open-Source Collaborations</b></p>
+  <ul><li>Contributed test suites and CI to Go, Rust, C++ and ML repositories, including k8s-resilience-harness, femheat, gochain and rust-url-shortener.</li></ul>
+</div>
+
+<h2>TECHNICAL SKILLS</h2>
+<div class="skills">
+  <p><b>Programming Languages:</b> Java • Python • JavaScript • TypeScript • SQL • Verilog</p>
+  <p><b>Databases:</b> PostgreSQL • MongoDB • Redis • Prisma</p>
+  <p><b>Frontend:</b> Next.js • React • Tailwind CSS</p>
+  <p><b>DevOps &amp; Tools:</b> Docker • GitHub Actions • Kafka • RabbitMQ • Prometheus • OpenTelemetry • Linux • Postman</p>
+  <p><b>Backend:</b> Node.js • Express.js • NestJS • Spring Boot • REST APIs</p>
+  <p><b>Cloud &amp; AI:</b> AWS • AWS ML Foundations • OpenAI API • FastAPI</p>
+  <p><b>Security &amp; Realtime:</b> OWASP • Wireshark • Burp Suite • WebSocket • LiveKit</p>
+  <p><b>Languages:</b> English – C1 • Spanish – A1 • Turkish – Native</p>
+</div>
+</body>
+</html>
