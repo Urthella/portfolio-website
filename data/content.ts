@@ -12,8 +12,6 @@ export const profile = {
   available: true,
   tagline:
     "I build real-time engines, event-driven services and RAG pipelines, plus the CI/CD and containers that ship them. Also a guitarist and calisthenics athlete.",
-  email: "utkudemirtas0@gmail.com",
-  phone: "+90 507 045 16 23",
   site: "utkudemirtas.tech",
   resume: "/Utku Demirtas CV.pdf",
   chips: ["DevOps & Cloud", "Cybersecurity", "Guitarist", "Calisthenics"],

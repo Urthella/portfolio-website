@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { BookOpen, Github, Instagram, Linkedin, Mail, MapPin, Phone, RefreshCw } from "lucide-react"
+import { BookOpen, Github, Instagram, Linkedin, MapPin, RefreshCw } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 
@@ -113,22 +113,6 @@ export function IdCard() {
                   </CardItem>
 
                   <CardItem translateZ={35} className={`mt-5 w-full space-y-3 ${faceItem}`}>
-                    <a
-                      href={`mailto:${profile.email}`}
-                      onClick={(e) => e.stopPropagation()}
-                      className="flex items-center gap-3 text-sm text-white/75 transition-colors hover:text-white"
-                    >
-                      <span className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/5 text-orange-400">
-                        <Mail className="h-4 w-4" />
-                      </span>
-                      <span className="truncate">{profile.email}</span>
-                    </a>
-                    <div className="flex items-center gap-3 text-sm text-white/75">
-                      <span className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/5 text-orange-400">
-                        <Phone className="h-4 w-4" />
-                      </span>
-                      {profile.phone}
-                    </div>
                     <div className="flex items-center gap-3 text-sm text-white/75">
                       <span className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/5 text-orange-400">
                         <MapPin className="h-4 w-4" />

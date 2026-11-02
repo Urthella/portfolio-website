@@ -1,6 +1,6 @@
 "use client"
 
-import { BookOpen, Check, Copy, Github, Instagram, Linkedin, Loader2, Mail as MailIcon, Phone, Send } from "lucide-react"
+import { BookOpen, Github, Instagram, Linkedin, Loader2, Send } from "lucide-react"
 import { useId, useRef, useState } from "react"
 
 import { useT } from "@/components/desktop/os"
@@ -20,9 +20,6 @@ const ring = "outline-none focus-visible:ring-2 focus-visible:ring-orange-500/70
 const strings = {
   en: {
     contact: "Contact",
-    copy: "Copy email address",
-    copied: "Email address copied",
-    call: "Call",
     elsewhere: "Elsewhere",
     newMessage: "New message",
     to: "To",
@@ -37,15 +34,12 @@ const strings = {
     send: "Send",
     sending: "Sending…",
     success: "Message sent. I'll get back to you soon, thanks!",
-    error: "Couldn't send it. Try again, or email me directly.",
+    error: "Couldn't send it. Try again, or reach me on LinkedIn.",
     invalid: "Please fill in your name, email and message.",
     newTab: "(opens in a new tab)",
   },
   tr: {
     contact: "İletişim",
-    copy: "E-posta adresini kopyala",
-    copied: "E-posta adresi kopyalandı",
-    call: "Ara",
     elsewhere: "Diğer hesaplar",
     newMessage: "Yeni ileti",
     to: "Kime",
@@ -60,7 +54,7 @@ const strings = {
     send: "Gönder",
     sending: "Gönderiliyor…",
     success: "Mesajın iletildi. En kısa sürede dönerim, teşekkürler!",
-    error: "Gönderilemedi. Tekrar dene ya da doğrudan e-posta at.",
+    error: "Gönderilemedi. Tekrar dene ya da LinkedIn'den ulaş.",
     invalid: "Lütfen adını, e-postanı ve mesajını yaz.",
     newTab: "(yeni sekmede açılır)",
   },
@@ -73,9 +67,7 @@ export default function Mail({ args }: AppProps) {
   const id = useId()
   const [form, setForm] = useState({ name: "", email: "", subject: args.subject ?? "", message: args.body ?? "" })
   const [status, setStatus] = useState<Status>("idle")
-  const [copied, setCopied] = useState(false)
   const statusTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
-  const copyTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
 
   // Mail is single-window: opening it again (e.g. from contact.vcf) hands us new args; prefill from them.
   // A new args object means a new launch, so the same prefill applies again after a sent (cleared) form.
@@ -90,17 +82,6 @@ export default function Mail({ args }: AppProps) {
     setStatus(s)
     clearTimeout(statusTimer.current)
     if (s !== "sending") statusTimer.current = setTimeout(() => setStatus("idle"), 6000)
-  }
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(profile.email)
-      setCopied(true)
-      clearTimeout(copyTimer.current)
-      copyTimer.current = setTimeout(() => setCopied(false), 1800)
-    } catch {
-      // clipboard blocked (permissions / insecure context): the address is still selectable on screen
-    }
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -153,36 +134,7 @@ export default function Mail({ args }: AppProps) {
         >
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-orange-400">{t.contact}</p>
 
-          <div className="mt-3 flex items-center gap-2">
-            <a
-              href={`mailto:${profile.email}`}
-              className={cn("flex min-w-0 flex-1 items-center gap-2.5 rounded-lg text-sm text-white/80 transition-colors hover:text-white", ring)}
-            >
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5 text-orange-400">
-                <MailIcon aria-hidden className="h-4 w-4" />
-              </span>
-              <span className="truncate">{profile.email}</span>
-            </a>
-            <button type="button" onClick={copyEmail} aria-label={t.copy} title={t.copy} className={iconBtn}>
-              {copied ? <Check aria-hidden className="h-4 w-4 text-green-400" /> : <Copy aria-hidden className="h-4 w-4" />}
-            </button>
-            <span role="status" className="sr-only">
-              {copied ? t.copied : ""}
-            </span>
-          </div>
-
-          <a
-            href={`tel:${profile.phone.replace(/\s+/g, "")}`}
-            aria-label={`${t.call} ${profile.phone}`}
-            className={cn("mt-2 flex items-center gap-2.5 rounded-lg text-sm text-white/80 transition-colors hover:text-white", ring)}
-          >
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5 text-orange-400">
-              <Phone aria-hidden className="h-4 w-4" />
-            </span>
-            {profile.phone}
-          </a>
-
-          <p className="mt-5 text-xs text-white/40">{t.elsewhere}</p>
+          <p className="mt-3 text-xs text-white/40">{t.elsewhere}</p>
           <ul className="mt-2 flex gap-2">
             {socials.map(({ href, label, Icon }) => (
               <li key={label}>
@@ -199,7 +151,7 @@ export default function Mail({ args }: AppProps) {
           <div className={row}>
             <span className={rowLabel}>{t.to}</span>
             <span className="min-w-0 flex-1 truncate py-2.5 text-sm">
-              <span className="rounded-md border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 text-white/85">{profile.email}</span>
+              <span className="rounded-md border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 text-white/85">{profile.name}</span>
             </span>
           </div>
           <div className={row}>

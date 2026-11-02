@@ -1,7 +1,7 @@
 "use client"
 
 import { useReducedMotion } from "framer-motion"
-import { ArrowUp, BookOpen, Check, Copy, FileDown, Github, Instagram, Linkedin, Mail, Phone } from "lucide-react"
+import { ArrowUp, BookOpen, FileDown, Github, Instagram, Linkedin } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react"
 
@@ -50,7 +50,6 @@ export function ContactFooter() {
   const f = c.ui.footer
   const subtitle = c.ui.headings.contact.subtitle
 
-  const [copied, setCopied] = useState(false)
   const [taken, setTaken] = useState(false)
   const [formOn, setFormOn] = useState(false)
   const [formTop, setFormTop] = useState(0)
@@ -112,13 +111,6 @@ export function ContactFooter() {
     return () => window.removeEventListener("scroll", aimInk)
   }, [inverted, aimInk])
 
-  const copyEmail = () => {
-    navigator.clipboard?.writeText(profile.email)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1800)
-  }
-
-  const tile = "grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500"
   const iconLink =
     "grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-white/60 transition-all hover:-translate-y-0.5 hover:border-orange-500/40 hover:text-white"
 
@@ -185,27 +177,6 @@ export function ContactFooter() {
 
           {/* contact details */}
           <div data-colorize className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-            <div className="flex items-center gap-2">
-              <a href={`mailto:${profile.email}`} className="flex min-w-0 items-center gap-3 text-white/75 transition-colors hover:text-white">
-                <span className={tile}>
-                  <Mail className="h-5 w-5" />
-                </span>
-                <span className="truncate">{profile.email}</span>
-              </a>
-              <button
-                onClick={copyEmail}
-                aria-label={t.copyEmail}
-                className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 text-white/50 transition-colors hover:border-orange-500/40 hover:text-white"
-              >
-                {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
-              </button>
-            </div>
-            <div className="flex items-center gap-3 text-white/75">
-              <span className={tile}>
-                <Phone className="h-5 w-5" />
-              </span>
-              {profile.phone}
-            </div>
             <div className="flex gap-2">
               {socials.map(({ href, label, Icon }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className={iconLink}>

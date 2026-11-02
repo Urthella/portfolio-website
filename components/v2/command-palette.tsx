@@ -1,7 +1,7 @@
 "use client"
 
 import { Command } from "cmdk"
-import { ArrowUp, BookOpen, Copy, CornerDownLeft, Download, Github, Instagram, Languages, Linkedin, Monitor, Zap, ZapOff } from "lucide-react"
+import { ArrowUp, BookOpen, CornerDownLeft, Download, Github, Instagram, Languages, Linkedin, Monitor, Zap, ZapOff } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
@@ -114,9 +114,6 @@ export function CommandPalette() {
           <Command.Group heading={<span lang="en">Actions</span>} className={groupCls}>
             <Command.Item value="desktop utkuos os masaüstü" className={itemCls} onSelect={() => run(() => router.push("/desktop"))}>
               <Monitor className="h-4 w-4 text-orange-400" /> {c.ui.palette.openDesktop}
-            </Command.Item>
-            <Command.Item value="copy email mail" className={itemCls} onSelect={() => run(() => navigator.clipboard?.writeText(profile.email))}>
-              <Copy className="h-4 w-4 text-orange-400" /> Copy email
             </Command.Item>
             <Command.Item value="download cv resume" className={itemCls} onSelect={() => run(() => openUrl(profile.resume))}>
               <Download className="h-4 w-4 text-orange-400" /> Download CV
