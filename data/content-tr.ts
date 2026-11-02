@@ -12,7 +12,7 @@ export const tr = {
 
   about: {
     bio: [
-      "Uygulamalı backend ve DevOps deneyimi olan bir bilgisayar mühendisliği öğrencisiyim. En son Extramus'ta bir İK platformunun backend ve doküman yönetim altyapısını kurdum: RBAC, güvenli yüklemeler, CI/CD ve konteynerize servisler.",
+      "Uygulamalı backend ve DevOps deneyimi olan bir bilgisayar mühendisliği mezunuyum. En son Extramus'ta bir İK platformunun backend ve doküman yönetim altyapısını kurdum: RBAC, güvenli yüklemeler, CI/CD ve konteynerize servisler.",
       "Baskı altında doğru çalışması gereken sistemleri severim: gerçek zamanlı teklif motorları, güvenli REST API'ler, mesaj kuyrukları ve bunları taşıyan CI/CD artı Docker altyapısı. Node/TypeScript, Spring Boot/Java ve Python arasında rahatım.",
       "Terminalin dışında uzun yıllardır gitaristim ve kalisteni sporcusuyum; her ikisinin disiplini de nasıl kod yazdığıma geri besleniyor.",
     ],
