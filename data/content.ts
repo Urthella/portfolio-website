@@ -99,6 +99,20 @@ export const experiences: Experience[] = [
     stack: ["NestJS", "Next.js", "PostgreSQL", "Prisma", "Redis", "Socket.IO", "LiveKit"],
   },
   {
+    role: "AI Trainer (Contract)",
+    org: "Mercor",
+    kind: "work",
+    date: "Aug 2026 - Nov 2026",
+    points: [
+      "Scored and compared a frontier LLM's responses against task-specific quality rubrics",
+      "Rewrote weak responses into reference-quality answers for text-optimization tasks",
+      "Wrote prompts designed to surface failures in reasoning, accuracy and instruction-following",
+      "Authored evaluation rubrics defining what a good response looks like for each task",
+      "Earned Mercor's Mastering Model Mechanics certification (token prediction, prompt and context engineering)",
+    ],
+    stack: ["LLM evaluation", "Prompt engineering", "Rubric design", "Context engineering"],
+  },
+  {
     role: "DevOps & Backend Developer",
     org: "Extramus",
     kind: "work",

@@ -76,6 +76,20 @@ export const tr = {
       stack: ["NestJS", "Next.js", "PostgreSQL", "Prisma", "Redis", "Socket.IO", "LiveKit"],
     },
     {
+      role: "Yapay Zeka Eğitmeni (Sözleşmeli)",
+      org: "Mercor",
+      kind: "work",
+      date: "Ağu 2026 - Kas 2026",
+      points: [
+        "Öncü bir LLM'in yanıtlarını göreve özel kalite kriterlerine göre puanlayıp karşılaştırdım",
+        "Metin optimizasyonu görevlerinde zayıf yanıtları referans kalitesinde cevaplara dönüştürdüm",
+        "Modelin akıl yürütme, doğruluk ve talimat takibindeki hatalarını ortaya çıkaran prompt'lar yazdım",
+        "Her görev için iyi bir yanıtın neye benzediğini tanımlayan değerlendirme kriterleri (rubric) yazdım",
+        "Mercor'un Mastering Model Mechanics sertifikasını aldım (token tahmini, prompt ve bağlam mühendisliği)",
+      ],
+      stack: ["LLM değerlendirme", "Prompt mühendisliği", "Rubric tasarımı", "Bağlam mühendisliği"],
+    },
+    {
       role: "DevOps ve Backend Geliştirici",
       org: "Extramus",
       kind: "work",
