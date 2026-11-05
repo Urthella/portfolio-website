@@ -1,93 +1,61 @@
-# 🚀 Utku Demirtaş - Portfolio Website
+# 🚀 Utku Demirtaş · Software Engineer
+Source of my personal portfolio: a Next.js site with WebGL effects, plus **utkuOS**, a tiny Linux desktop that runs in the browser.
 
-Welcome to my personal portfolio website! This project showcases my journey as a Computer Engineering graduate, featuring my projects, skills, certifications, and hobbies.
+> **Backend · Distributed Systems · AI.** Computer engineering graduate with hands-on backend and DevOps experience.
+
+- 🌐 **Live:** [www.utkudemirtas.tech](https://www.utkudemirtas.tech)
+- 🖥️ **utkuOS:** [www.utkudemirtas.tech/desktop](https://www.utkudemirtas.tech/desktop)
+- 💻 **GitHub:** [github.com/Urthella](https://github.com/Urthella)
+
+![screenshot](docs/screenshot.png)
 
 ## 🌟 Features
-
-- **3D Interactive Background**: Immersive 3D robot scene using Spline that tracks mouse movement across the entire page.
-- **Bilingual Support (TR/EN)**: Fully localized content in Turkish and English.
-- **Interactive UI**: Modern, responsive design with smooth animations, "firefly" effects, and spotlight interactions.
-- **Experience Timeline**: A visual timeline of my professional career with staggered animations.
-- **Contact Form**: Integrated with EmailJS for direct communication.
-- **Project Showcase**: Highlighted projects with descriptions and tech stacks.
-- **Dynamic Content**: Easy to update sections for Skills, Certifications, and more.
+- **Five pages, one shell:** Home, About, Projects, Writing and Beyond share a route-group layout, so the fluid background, nav and footer never remount between pages. Projects adds category filters and a live GitHub contribution heatmap.
+- **utkuOS desktop (`/desktop`):** a GNOME-flavoured desktop with a boot log, draggable and snappable windows, a dock, an activities overview, a phone layout and lazily loaded apps (Terminal, Files, Résumé, Mail, System Monitor, Settings and more). The terminal parses like bash and Tab-completes over a virtual filesystem built from the site content; type `help` to start, and there are a few hidden things to find.
+- **WebGL that earns its keep:** a fluid simulation follows the cursor, and the contact button is a signed-distance-field shader "venom" that bursts the contact form out of its pill. The form sends through EmailJS straight from the browser, so there is no backend.
+- **Performance guard:** heavy visuals switch to lite mode based on, in order: the user's toggle, `prefers-reduced-motion`, then a one-time FPS measurement cached in `localStorage`. Touch devices skip the fluid sim entirely.
+- **Bilingual and keyboard-friendly:** English and Turkish from one content model, plus a `Ctrl/⌘ + K` command palette for pages, language, lite mode and the desktop.
+- **Themeable and SEO-ready:** a custom accent color is applied before first paint (no orange flash), and every page gets its own metadata, a generated Open Graph image, a sitemap and JSON-LD.
 
 ## 🛠️ Tech Stack
-
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
-- **Library**: [React 19](https://react.dev/)
-- **3D Graphics**: [Spline](https://spline.design/) (@splinetool/react-spline)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Email Service**: [EmailJS](https://www.emailjs.com/)
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router) with [React 19](https://react.dev/) and TypeScript
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with the typography plugin and [tw-animate-css](https://github.com/Wombosvideo/tw-animate-css)
+- **Motion**: [Framer Motion](https://motion.dev/) for UI transitions, [GSAP](https://gsap.com/) for the card swap and projects cursor, hand-written WebGL shaders for the fluid and goo
+- **UI**: [cmdk](https://cmdk.paco.me/) command palette, [Lucide](https://lucide.dev/) and [React Icons](https://react-icons.github.io/react-icons/), [Geist](https://vercel.com/font) font
+- **Contact**: [EmailJS](https://www.emailjs.com/) browser SDK
+- **Data**: GitHub contributions from the public [github-contributions-api](https://github-contributions-api.jogruber.de/)
 
 ## 🚦 Getting Started
+**Requirements:** Node.js 18.18+ and npm.
 
-Follow these steps to run the project locally:
+```bash
+git clone https://github.com/Urthella/portfolio-website.git
+cd portfolio-website
+npm install     # .npmrc sets legacy-peer-deps, so this resolves cleanly
+npm run dev     # http://localhost:3000
+```
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/yourusername/portfolio-website.git
-    cd portfolio-website
-     ```
+Production build and lint:
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    # or
-    pnpm install
-    # or
-    yarn install
-    ```
+```bash
+npm run build && npm start
+npm run lint
+```
 
-3.  **Run the development server:**
-    ```bash
-    npm run dev
-    ```
-
-4.  **Open your browser:**
-    Navigate to [http://localhost:3000](http://localhost:3000) to see the site.
-
-## 📧 Configuration (Fixing Email Sending)
-
-This project uses **EmailJS** to send messages from the contact form. If you encounter an error when trying to send a message, it is likely because the environment variables are missing.
-
-### Step-by-Step Fix:
-
-1.  Create an account at [EmailJS](https://www.emailjs.com/).
-2.  Create a **Service** and a **Template**.
-3.  Get your **Service ID**, **Template ID**, and **Public Key**.
-4.  Create a new file named `.env.local` in the root directory of the project.
-5.  Add the following lines to `.env.local`, replacing the placeholders with your actual keys:
-
-    ```env
-    NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_actual_service_id
-    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_actual_template_id
-    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_actual_public_key
-    ```
-
-6.  Restart your development server:
-    ```bash
-    npm run dev
-    ```
-
-**Note:** The `.env.local` file is git-ignored and should not be committed to the repository to keep your API keys secure.
+## 📧 Configuration
+No environment variables are needed.
+`.env.example` is stale: no code reads its `NEXT_PUBLIC_EMAILJS_*` variables, so you can skip it.
 
 ## 📂 Project Structure
-
-- `app/`: Main application source code (Next.js App Router).
-- `components/`: Reusable UI components.
-- `public/`: Static assets (images, icons).
-- `styles/`: Global styles and Tailwind configuration.
-
-## 🤝 Contributing
-
-Feel free to fork this repository and submit pull requests. Any improvements are welcome!
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-*Last Verification: Environment variables configured for Vercel deployment.*
+- `app/(site)/`: the five site pages, wrapped in one shared layout
+- `app/desktop/`: the utkuOS route
+- `app/`: root layout, global CSS, Open Graph image, sitemap and robots
+- `components/v2/`: site sections (hero, nav, projects, command palette, contact footer, ...)
+- `components/desktop/`: utkuOS shell, window manager and virtual filesystem; `apps/` holds one file per app
+- `components/venom-button/`: the WebGL venom contact button
+- `components/ui/`: visual primitives (fluid cursor, 3D card, card swap, gradual blur, target cursor)
+- `data/`: `content.ts` is the single source of truth for site copy; the Turkish version and the i18n provider live next to it
+- `hooks/`: `use-perf`, the lite-mode detector
+- `lib/`: accent color, per-page metadata, shared motion variants, `cn()`
+- `public/`: profile photo, CV PDF, project images and cursor art
+- `resume/cv.html`: the HTML source the CV PDF is printed from
