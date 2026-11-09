@@ -11,7 +11,7 @@ export const profile = {
   location: "Konya, Türkiye",
   available: true,
   tagline:
-    "I build real-time engines, event-driven services and RAG pipelines, plus the CI/CD and containers that ship them. Also a guitarist and calisthenics athlete.",
+    "I build the part you don't see: engines that decide in milliseconds, services that talk to each other, and AI that answers back.",
   site: "utkudemirtas.tech",
   resume: "/Utku Demirtas CV.pdf",
   chips: ["DevOps & Cloud", "Cybersecurity", "Guitarist", "Calisthenics"],

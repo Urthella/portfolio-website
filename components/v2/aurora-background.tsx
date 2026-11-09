@@ -5,9 +5,9 @@ import { motion, useReducedMotion } from "framer-motion"
 import { usePerf } from "@/hooks/use-perf"
 
 /**
- * Fixed, fluid background: drifting colored blobs behind a faint grid, capped
- * with a radial vignette so foreground text stays legible. Drift pauses under
- * prefers-reduced-motion and in lite mode — the blobs stay as a static glow.
+ * Fixed paper background: a faint ink grid with a couple of warm washes
+ * drifting across it, like light moving over a desk. Drift pauses under
+ * prefers-reduced-motion and in lite mode — the washes stay put.
  */
 export function AuroraBackground() {
   const reduce = useReducedMotion()
@@ -15,39 +15,27 @@ export function AuroraBackground() {
   const still = reduce || lite
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#07070a]">
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-paper">
       {/* faint grid */}
       <div
-        className="absolute inset-0 opacity-[0.045]"
+        className="absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage:
-            "linear-gradient(to right,#ffffff 1px,transparent 1px),linear-gradient(to bottom,#ffffff 1px,transparent 1px)",
+            "linear-gradient(to right,#151413 1px,transparent 1px),linear-gradient(to bottom,#151413 1px,transparent 1px)",
           backgroundSize: "64px 64px",
-          maskImage: "radial-gradient(ellipse at center, black 40%, transparent 85%)",
+          maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
         }}
       />
 
       <motion.div
-        className="absolute -top-40 left-1/4 h-[42rem] w-[42rem] rounded-full bg-orange-600/12 blur-[150px]"
+        className="absolute -top-48 left-1/4 h-[40rem] w-[40rem] rounded-full bg-orange-500/[0.08] blur-[140px]"
         animate={still ? undefined : { x: [0, 60, -30, 0], y: [0, -40, 30, 0] }}
         transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute top-1/3 -right-40 h-[38rem] w-[38rem] rounded-full bg-rose-500/9 blur-[150px]"
+        className="absolute -bottom-48 -right-40 h-[36rem] w-[36rem] rounded-full bg-amber-500/[0.10] blur-[140px]"
         animate={still ? undefined : { x: [0, -50, 20, 0], y: [0, 40, -25, 0] }}
         transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -bottom-40 left-1/3 h-[34rem] w-[34rem] rounded-full bg-amber-500/7 blur-[150px]"
-        animate={still ? undefined : { x: [0, 40, -40, 0], y: [0, -20, 20, 0] }}
-        transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* top glow + vignette */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-orange-500/[0.05] to-transparent" />
-      <div
-        className="absolute inset-0"
-        style={{ background: "radial-gradient(ellipse at center, transparent 30%, #07070a 100%)" }}
       />
     </div>
   )

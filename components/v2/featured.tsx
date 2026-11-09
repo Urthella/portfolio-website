@@ -44,20 +44,20 @@ export function Featured() {
               return (
                 <Card
                   key={i}
-                  className="border border-white/12 bg-neutral-950/90 p-6 shadow-2xl shadow-black/50 backdrop-blur-xl"
+                  className="border border-ink/12 bg-paper/90 p-6 shadow-2xl shadow-ink/15 backdrop-blur-xl"
                 >
                   <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${grad}`} />
                   <div className="relative flex h-full flex-col">
                     <div className="flex items-center justify-between">
-                      <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/12 bg-white/[0.04] text-orange-300">
+                      <span className="grid h-10 w-10 place-items-center rounded-xl border border-ink/12 bg-ink/[0.04] text-orange-300">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-white/50">
+                      <span className="rounded-full border border-ink/10 bg-ink/[0.04] px-2.5 py-1 font-mono text-[11px] text-ink/50">
                         {card.tag}
                       </span>
                     </div>
-                    <h3 className="mt-5 text-xl font-semibold text-white">{card.title}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">{card.desc}</p>
+                    <h3 className="mt-5 text-xl font-semibold text-ink">{card.title}</h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/55">{card.desc}</p>
                     <div className="mt-4 h-px w-full bg-gradient-to-r from-orange-500/40 to-transparent" />
                   </div>
                 </Card>

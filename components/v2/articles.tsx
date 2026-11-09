@@ -31,17 +31,17 @@ export function Articles() {
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -4 }}
-            className="group flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-orange-500/30"
+            className="group flex items-start justify-between gap-4 rounded-2xl border border-ink/10 bg-ink/[0.02] p-6 transition-colors hover:border-orange-500/30"
           >
             <div>
-              <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-white/50">
+              <span className="rounded-full border border-ink/10 bg-ink/[0.04] px-2.5 py-1 font-mono text-[11px] text-ink/50">
                 {a.tag}
               </span>
-              <h3 className="mt-3 font-semibold text-white">{a.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/55">{a.blurb}</p>
+              <h3 className="mt-3 font-semibold text-ink">{a.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink/55">{a.blurb}</p>
               <span className="mt-3 inline-block font-mono text-xs text-orange-500">Read on Medium →</span>
             </div>
-            <ArrowUpRight className="h-5 w-5 shrink-0 text-white/30 transition-all group-hover:text-white" />
+            <ArrowUpRight className="h-5 w-5 shrink-0 text-ink/30 transition-all group-hover:text-ink" />
           </motion.a>
         ))}
       </motion.div>
@@ -51,7 +51,7 @@ export function Articles() {
           href={MEDIUM}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-sm text-white/50 transition-colors hover:text-white"
+          className="font-mono text-sm text-ink/50 transition-colors hover:text-ink"
         >
           @urthella1 on Medium →
         </a>

@@ -31,15 +31,14 @@ const isFine = () => window.matchMedia(FINE).matches
 
 /**
  * Contact and footer as one compact section: a line of intro, the Venom
- * Button, the contact details, then the legal bar and the wordmark — on a
- * space backdrop whose masked top lets the fixed fluid/aurora layers show
- * through.
+ * Button, the contact details, then the legal bar and the wordmark, on the
+ * same paper as the rest of the site (the black goo reads best on it).
  *
  * The takeover: once the venom has fully swallowed the glove (or on a click)
  * it bursts the contact form out of its pill as glossy slabs, and while it
  * holds the hand or the form is open an ink layer spreads out of the pill and
  * inverts the page behind it (globals.css .venom-ink); the venom's goo and the
- * form sit above the ink, so the symbiote stays black on the whitened page.
+ * form sit above the ink, so the symbiote stays black as the paper goes dark.
  */
 export function ContactFooter() {
   const c = useContent()
@@ -112,30 +111,18 @@ export function ContactFooter() {
   }, [inverted, aimInk])
 
   const iconLink =
-    "grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-white/60 transition-all hover:-translate-y-0.5 hover:border-orange-500/40 hover:text-white"
+    "grid h-10 w-10 place-items-center rounded-xl border border-ink/12 text-ink/60 transition-all hover:-translate-y-0.5 hover:border-orange-500/60 hover:text-orange-500"
 
   return (
     // clipped sideways only: the form panels may hang below the footer's end, growing the page
-    <footer ref={footerRef} id="contact" className="relative overflow-x-clip">
-      {/* space backdrop: masked top keeps the fixed fluid/aurora layers visible */}
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-cover bg-center grayscale"
-        style={{
-          backgroundImage: "url(/footer-bg.jpg)",
-          maskImage: "linear-gradient(to bottom, transparent, black 50%)",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent, black 50%)",
-        }}
-      />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-[#07070a]/45 to-[#07070a]/45" />
-
+    <footer ref={footerRef} id="contact" className="relative overflow-x-clip border-t border-ink/10">
       {/* the venom's ink: inverts everything under it, spreading out of the pill */}
       <div ref={inkRef} aria-hidden data-on={inverted} className="venom-ink" />
 
       <div className="relative">
         <div className="mx-auto max-w-6xl px-4 pb-12 pt-16 sm:px-6">
           <Reveal>
-            <p className="mx-auto max-w-xl text-center text-pretty leading-relaxed text-white/60">{subtitle}</p>
+            <p className="mx-auto max-w-xl text-center text-pretty leading-relaxed text-ink/60">{subtitle}</p>
           </Reveal>
 
           {lite ? (
@@ -147,7 +134,7 @@ export function ContactFooter() {
                 onClick={openForm}
                 aria-haspopup="dialog"
                 aria-expanded={formOpen}
-                className="inline-flex h-12 items-center rounded-full bg-white px-7 text-base font-bold tracking-tight text-[#07070a] outline-none transition-colors hover:bg-white/85 focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07070a]"
+                className="inline-flex h-12 items-center rounded-full bg-ink px-7 text-base font-bold tracking-tight text-paper outline-none transition-colors hover:bg-ink/85 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
               >
                 {t.collaborate}
               </button>
@@ -192,25 +179,25 @@ export function ContactFooter() {
         </div>
 
         {/* legal bar */}
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 border-t border-white/15 px-4 py-6 sm:px-6">
-          <span className="text-sm text-white/60">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 border-t border-ink/12 px-4 py-6 sm:px-6">
+          <span className="text-sm text-ink/60">
             © {new Date().getFullYear()} Utku Demirtaş. {f.rights}
           </span>
           <div className="flex items-center gap-6">
-            <span className="hidden min-w-[16rem] text-sm text-white/60 sm:inline">
+            <span className="hidden min-w-[16rem] text-sm text-ink/60 sm:inline">
               {f.builtWith}{" "}
               <Typewriter
                 text={f.builtItems}
                 speed={55}
                 deleteSpeed={28}
                 waitTime={1700}
-                className="font-medium text-orange-400 [text-shadow:0_0_14px_color-mix(in_srgb,var(--color-orange-400)_80%,transparent)]"
-                cursorClassName="text-orange-400"
+                className="font-medium text-orange-500"
+                cursorClassName="text-orange-500"
               />
             </span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="inline-flex items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1.5 text-sm text-ink/70 transition-colors hover:text-ink"
             >
               {t.backToTop} <ArrowUp className="h-3.5 w-3.5" />
             </button>
@@ -220,7 +207,7 @@ export function ContactFooter() {
         {/* giant wordmark (12 chars — sized to span the viewport like TURION's 6 at 26vw) */}
         <div className="overflow-hidden px-2 pb-2">
           <div
-            className="select-none whitespace-nowrap text-center font-bold leading-[0.8] text-white"
+            className="select-none whitespace-nowrap text-center font-black leading-[0.8] text-ink"
             style={{ fontSize: "clamp(2.4rem, 11.4vw, 11.4rem)", letterSpacing: "-0.05em" }}
             aria-hidden
           >

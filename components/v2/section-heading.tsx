@@ -16,8 +16,8 @@ export function SectionHeading({
       <p className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-orange-500">
         <span className="text-orange-500/40">{"// "}{index} /</span> {label}
       </p>
-      <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">{title}</h2>
-      {subtitle && <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-white/50">{subtitle}</p>}
+      <h2 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl">{title}</h2>
+      {subtitle && <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-ink/50">{subtitle}</p>}
     </Reveal>
   )
 }

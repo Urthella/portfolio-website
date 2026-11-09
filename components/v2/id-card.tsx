@@ -52,7 +52,7 @@ export function IdCard() {
             >
               {/* FRONT */}
               <div className={faceBase}>
-                <div className="relative flex h-full flex-col rounded-[calc(1.5rem-1.5px)] bg-neutral-950 [backface-visibility:hidden] [transform-style:preserve-3d]">
+                <div className="relative flex h-full flex-col rounded-[calc(1.5rem-1.5px)] bg-paper-2 [backface-visibility:hidden] [transform-style:preserve-3d]">
                   <CardItem
                     translateZ={20}
                     className={`flex w-full items-center justify-between rounded-t-[calc(1.5rem-1.5px)] bg-orange-500/90 px-4 py-2 font-mono text-[11px] font-semibold tracking-wider text-black ${faceItem}`}
@@ -65,7 +65,7 @@ export function IdCard() {
                       column can compress it and the footer never spills past the card */}
                   <CardItem
                     translateZ={45}
-                    className={`relative mx-4 mt-4 aspect-square w-auto min-h-0 shrink overflow-hidden rounded-xl border border-white/10 ${faceItem}`}
+                    className={`relative mx-4 mt-4 aspect-square w-auto min-h-0 shrink overflow-hidden rounded-xl border border-ink/10 ${faceItem}`}
                   >
                     <Image
                       src={PHOTO}
@@ -79,23 +79,23 @@ export function IdCard() {
                   </CardItem>
 
                   <CardItem translateZ={40} className={`w-full px-4 pt-4 ${faceItem}`}>
-                    <h3 className="text-xl font-bold leading-tight text-white">{profile.name}</h3>
-                    <span className="mt-2 inline-block rounded bg-rose-500 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wide text-white">
+                    <h3 className="text-xl font-bold leading-tight text-ink">{profile.name}</h3>
+                    <span className="mt-2 inline-block rounded bg-rose-500 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wide text-ink">
                       {role}
                     </span>
                   </CardItem>
 
                   <CardItem translateZ={25} className={`mt-auto w-full px-4 pb-4 ${faceItem}`}>
-                    <div className="mb-2 mt-3 border-t border-dashed border-white/15" />
+                    <div className="mb-2 mt-3 border-t border-dashed border-ink/15" />
                     <div className="flex items-end justify-between gap-3">
                       <div className="flex h-8 items-stretch gap-[2px]" aria-hidden>
                         {[2, 1, 3, 1, 2, 1, 1, 3, 2, 1, 2, 3, 1, 1, 2, 1, 3, 1, 2, 1, 1, 2].map((w, i) => (
-                          <span key={i} className="bg-white" style={{ width: w }} />
+                          <span key={i} className="bg-ink" style={{ width: w }} />
                         ))}
                       </div>
-                      <span className="font-mono text-[10px] text-white/45">ID 2026 CS 0042</span>
+                      <span className="font-mono text-[10px] text-ink/45">ID 2026 CS 0042</span>
                     </div>
-                    <p className="mt-2 font-mono text-[10px] text-white/35">{profile.site}</p>
+                    <p className="mt-2 font-mono text-[10px] text-ink/35">{profile.site}</p>
                   </CardItem>
 
                 </div>
@@ -103,7 +103,7 @@ export function IdCard() {
 
               {/* BACK */}
               <div className={faceBase} style={{ transform: "rotateY(180deg)" }}>
-                <div className="flex h-full flex-col rounded-[calc(1.5rem-1.5px)] bg-neutral-950 p-5 [backface-visibility:hidden] [transform-style:preserve-3d]">
+                <div className="flex h-full flex-col rounded-[calc(1.5rem-1.5px)] bg-paper-2 p-5 [backface-visibility:hidden] [transform-style:preserve-3d]">
                   <CardItem
                     as="p"
                     translateZ={25}
@@ -113,8 +113,8 @@ export function IdCard() {
                   </CardItem>
 
                   <CardItem translateZ={35} className={`mt-5 w-full space-y-3 ${faceItem}`}>
-                    <div className="flex items-center gap-3 text-sm text-white/75">
-                      <span className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/5 text-orange-400">
+                    <div className="flex items-center gap-3 text-sm text-ink/75">
+                      <span className="grid h-9 w-9 place-items-center rounded-lg border border-ink/10 bg-ink/5 text-orange-400">
                         <MapPin className="h-4 w-4" />
                       </span>
                       {profile.location}
@@ -122,7 +122,7 @@ export function IdCard() {
                   </CardItem>
 
                   <CardItem translateZ={45} className={`mt-6 w-full ${faceItem}`}>
-                    <p className="mb-2 font-mono text-[10px] text-white/35">{t.findOnline}</p>
+                    <p className="mb-2 font-mono text-[10px] text-ink/35">{t.findOnline}</p>
                     <div className="flex gap-2">
                       {socials.map(({ href, label, Icon }) => (
                         <a
@@ -132,7 +132,7 @@ export function IdCard() {
                           rel="noopener noreferrer"
                           aria-label={label}
                           onClick={(e) => e.stopPropagation()}
-                          className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-white/65 transition-all hover:-translate-y-0.5 hover:border-orange-500/50 hover:text-white"
+                          className="grid h-10 w-10 place-items-center rounded-lg border border-ink/10 text-ink/65 transition-all hover:-translate-y-0.5 hover:border-orange-500/50 hover:text-ink"
                         >
                           <Icon className="h-[18px] w-[18px]" />
                         </a>
@@ -143,7 +143,7 @@ export function IdCard() {
                   <CardItem
                     as="p"
                     translateZ={15}
-                    className={`mt-auto flex items-center gap-1.5 font-mono text-[10px] text-white/30 ${faceItem}`}
+                    className={`mt-auto flex items-center gap-1.5 font-mono text-[10px] text-ink/30 ${faceItem}`}
                   >
                     <RefreshCw className="h-3 w-3" /> {t.flipBack}
                   </CardItem>
@@ -153,7 +153,7 @@ export function IdCard() {
           </CardBody>
         </CardContainer>
 
-      <p className="mt-4 text-center font-mono text-[11px] text-white/35">{t.clickFlip}</p>
+      <p className="mt-4 text-center font-mono text-[11px] text-ink/35">{t.clickFlip}</p>
     </div>
   )
 }

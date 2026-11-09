@@ -53,7 +53,7 @@ export function About() {
       <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
         {/* left: intro + two sides + note */}
         <Reveal variants={fromLeft}>
-          <div className="space-y-4 text-lg leading-relaxed text-white/60">
+          <div className="space-y-4 text-lg leading-relaxed text-ink/60">
             {aboutHero.intro.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
@@ -64,18 +64,18 @@ export function About() {
               const a = accent(s.accent)
               const Icon = ICONS[s.icon] ?? Server
               return (
-                <div key={s.key} data-colorize className={`rounded-xl border-2 ${a.ring} bg-white/[0.02] p-5`}>
+                <div key={s.key} data-colorize className={`rounded-xl border-2 ${a.ring} bg-ink/[0.02] p-5`}>
                   <div className={`mb-3 flex items-center gap-2 ${a.text}`}>
                     <Icon className="h-5 w-5" />
                     <span className="font-mono text-sm font-bold tracking-wide">{s.title}</span>
                   </div>
-                  <p className="text-sm leading-relaxed text-white/55">{s.text}</p>
+                  <p className="text-sm leading-relaxed text-ink/55">{s.text}</p>
                 </div>
               )
             })}
           </div>
 
-          <div className="mt-4 rounded-xl border border-l-4 border-white/10 border-l-orange-400 bg-white/[0.02] px-4 py-3 font-mono text-xs leading-relaxed text-white/55">
+          <div className="mt-4 rounded-xl border border-l-4 border-ink/10 border-l-orange-400 bg-ink/[0.02] px-4 py-3 font-mono text-xs leading-relaxed text-ink/55">
             {aboutHero.note}
           </div>
         </Reveal>
