@@ -94,7 +94,7 @@ export function Projects() {
                 transition={{ duration: 0.3 }}
                 whileHover={{ y: -4 }}
                 data-colorize
-                className={`cursor-target group flex flex-col overflow-hidden rounded-2xl border-2 ${a.border} bg-paper/80 backdrop-blur-sm transition-colors hover:bg-paper`}
+                className={`cursor-target group flex flex-col overflow-hidden rounded-2xl border-2 ${a.border} bg-paper/95 transition-colors hover:bg-paper`}
               >
                 {/* top bar */}
                 {/* lang="en": English-only labels, so Turkish case mapping can't turn SECURITY into SECURİTY */}

@@ -14,11 +14,11 @@ type Glyph = { ch: string; x: number; l: number; r: number; asc: number; desc: n
 const spring = { type: "spring", stiffness: 260, damping: 26, mass: 0.7 } as const
 
 /**
- * The name in giant ink letters with an inspector frame over it: the frame
- * hops to the letter under the cursor (and walks the name on its own when
- * nobody points at it), reads out that glyph's rendered size in px, its Unicode
- * code point and its UTF-8 bytes, and the letter drops to a dashed outline as
- * if selected in an editor. Drawn as one SVG measured with the page's own font, so the
+ * The name in giant ink letters with a design-tool selection frame over it:
+ * the frame hops to the letter under the cursor (and walks the name on its own
+ * when nobody points at it), reads out that glyph's rendered size in px and its
+ * Unicode code point, and the letter drops to a dashed outline as if selected
+ * in an editor. Drawn as one SVG measured with the page's own font, so the
  * frame sits on each glyph's real ink box at any width; screen readers get the
  * plain name.
  */
@@ -86,7 +86,9 @@ export function MeasuredName({ text, className }: { text: string; className?: st
   useEffect(() => {
     if (!glyphs || reduce) return
     const id = window.setInterval(() => {
-      if (hovering.current) return
+      // nobody sees it scrolled away or in a background tab: skip the step (and its repaint)
+      const r = svgRef.current?.getBoundingClientRect()
+      if (hovering.current || document.hidden || !r || r.bottom < 0 || r.top > window.innerHeight) return
       setSel((s) => {
         let n = s
         do n = (n + 1) % glyphs.length
@@ -116,18 +118,14 @@ export function MeasuredName({ text, className }: { text: string; className?: st
   const hs = 7 / k // handle size: 7px whatever the scale
   const flip = !!(f && box && f.x - box.x0 > (box.x1 - box.x0) * 0.55)
   const cp = g ? `U+${g.ch.codePointAt(0)!.toString(16).toUpperCase().padStart(4, "0")}` : ""
-  // the letter as it travels on the wire: its UTF-8 bytes (ş is two of them)
-  const bytes = g ? Array.from(new TextEncoder().encode(g.ch), (b) => b.toString(16).toUpperCase().padStart(2, "0")).join(" ") : ""
   const t = reduce ? { duration: 0 } : spring
+  const viewBox = box ? `${box.x0} ${-box.top} ${box.x1 - box.x0} ${box.top + box.bottom}` : "0 -150 1300 200"
 
   return (
     <h1 className={className}>
       <span className="sr-only">{text}</span>
-      <svg
-        ref={svgRef}
-        aria-hidden="true"
-        viewBox={box ? `${box.x0} ${-box.top} ${box.x1 - box.x0} ${box.top + box.bottom}` : "0 -150 1300 200"}
-        className="block w-full overflow-visible font-sans transition-opacity duration-500"
+      <div
+        className="relative transition-opacity duration-500"
         style={{ opacity: glyphs ? 1 : 0 }}
         onPointerMove={(e) => {
           hovering.current = true
@@ -138,24 +136,29 @@ export function MeasuredName({ text, className }: { text: string; className?: st
         }}
         onPointerDown={(e) => pick(e.clientX)}
       >
-        {glyphs?.map((gl, i) => (
-          <text
-            key={i}
-            x={gl.x}
-            y={0}
-            fontSize={FS}
-            fontWeight={900}
-            className="transition-[fill,stroke] duration-300"
-            style={{ fill: i === sel ? "#e4e0d7" : "#151413", stroke: i === sel ? "#151413" : "transparent" }}
-            strokeWidth={1.5}
-            strokeDasharray="5 4"
-            vectorEffect="non-scaling-stroke"
-          >
-            {gl.ch}
-          </text>
-        ))}
+        {/* the letters: big, so they repaint only when the selection changes (no fades) */}
+        <svg ref={svgRef} aria-hidden="true" viewBox={viewBox} className="block w-full overflow-visible font-sans">
+          {glyphs?.map((gl, i) => (
+            <text
+              key={i}
+              x={gl.x}
+              y={0}
+              fontSize={FS}
+              fontWeight={900}
+              fill={i === sel ? "#e4e0d7" : "#151413"}
+              stroke={i === sel ? "#151413" : "none"}
+              strokeWidth={1.5}
+              strokeDasharray="5 4"
+              vectorEffect="non-scaling-stroke"
+            >
+              {gl.ch}
+            </text>
+          ))}
+        </svg>
 
+        {/* the frame on a layer of its own, so its glide never repaints the letters underneath */}
         {f && g && (
+          <svg aria-hidden="true" viewBox={viewBox} className="pointer-events-none absolute inset-0 h-full w-full overflow-visible will-change-transform">
           <g>
             {/* attrX/attrY move the svg attributes (plain x/y would be a css transform) */}
             <motion.rect
@@ -192,13 +195,11 @@ export function MeasuredName({ text, className }: { text: string; className?: st
                 {Math.round((g.l + g.r) * k)} × {Math.round((g.asc + g.desc) * k)}
               </tspan>
               <tspan fill="#151413" fillOpacity={0.45} dx={8 / k}>{cp}</tspan>
-              <tspan fill="#151413" fillOpacity={0.45} dx={8 / k}>
-                utf-8 {bytes}
-              </tspan>
             </motion.text>
           </g>
+          </svg>
         )}
-      </svg>
+      </div>
     </h1>
   )
 }

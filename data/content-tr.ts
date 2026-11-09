@@ -438,7 +438,6 @@ export const tr = {
       resume: "Özgeçmiş",
       scroll: "kaydır",
       moreAbout: "Hakkımda daha fazlası",
-      available: "işe açık",
     },
     idcard: {
       access: "// ERİŞİM",

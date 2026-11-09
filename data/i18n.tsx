@@ -26,7 +26,6 @@ const uiEN = {
     resume: "Résumé",
     scroll: "scroll",
     moreAbout: "More about me",
-    available: "open to work",
   },
   idcard: {
     access: "// ACCESS",

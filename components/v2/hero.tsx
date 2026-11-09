@@ -34,18 +34,16 @@ const konyaTime = () =>
   new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Istanbul" }).format(new Date())
 
 /**
- * The landing: a vector field that points at the cursor, the name set huge
- * with an inspector frame reading out the letter under the cursor, the pitch
- * and the way in tucked under its right end, and an editor-style status line
- * along the bottom (availability, place, Konya's clock).
+ * The landing: a field of dashes that turn toward the cursor, the name set
+ * huge with a selection frame measuring the letter under the cursor, a line
+ * of role and place on top, the pitch and the way in at the bottom.
  */
 export function Hero() {
   const c = useContent()
   const time = useSyncExternalStore(subscribeClock, konyaTime, () => "")
-  const seg = "flex items-center border-ink/10 px-3"
 
   return (
-    <section id="home" className="relative flex min-h-[100svh] flex-col overflow-hidden px-4 pb-5 pt-20 sm:px-8 sm:pb-6">
+    <section id="home" className="relative flex min-h-[100svh] flex-col overflow-hidden px-4 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28">
       <DashField className="pointer-events-none absolute inset-0 h-full w-full" />
 
       <motion.div
@@ -54,36 +52,31 @@ export function Hero() {
         animate="show"
         className="relative mx-auto flex w-full max-w-[96rem] flex-1 flex-col"
       >
-        <div className="flex flex-1 flex-col justify-center py-10">
-          <motion.p variants={fadeUp} className="mb-3 font-mono text-xs text-ink/55 sm:mb-5 sm:text-sm">
-            <span className="text-orange-500">▸</span> {c.profile.role} <span className="text-ink/30">/</span> {c.profile.focus}
-          </motion.p>
-          <motion.div variants={fadeUp}>
-            <MeasuredName text={profile.name} className="w-full" />
-          </motion.div>
-          <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-end justify-end gap-x-10 gap-y-5 sm:mt-12">
-            <p className="max-w-md text-pretty text-lg leading-snug text-ink/80 sm:text-xl">{c.profile.tagline}</p>
-            <Link href="/projects" data-tentacles className={`group shrink-0 ${lacquer}`}>
+        <motion.div variants={fadeUp} className="flex flex-wrap justify-between gap-x-6 gap-y-1 font-mono text-xs text-ink/55 sm:text-[13px]">
+          <p>
+            {c.profile.role} · {c.profile.focus}
+          </p>
+          <p>
+            {profile.location}
+            {time && <span className="text-ink/35"> · {time} GMT+3</span>}
+          </p>
+        </motion.div>
+
+        <motion.div variants={fadeUp} className="flex flex-1 items-center py-10 sm:py-14">
+          <MeasuredName text={profile.name} className="w-full" />
+        </motion.div>
+
+        <motion.div variants={fadeUp} className="flex flex-wrap items-end justify-between gap-6">
+          <p className="max-w-xl text-pretty text-lg leading-snug text-ink/80 sm:text-[1.4rem]">{c.profile.tagline}</p>
+          <div className="flex items-center gap-5">
+            <a href="#intro" className="font-mono text-xs text-ink/50 transition-colors hover:text-ink">
+              {c.ui.hero.scroll} ↓
+            </a>
+            <Link href="/projects" data-tentacles className={`group ${lacquer}`}>
               {c.ui.hero.viewProjects}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
-          </motion.div>
-        </div>
-
-        {/* a status line, like the bottom of an editor */}
-        <motion.div
-          variants={fadeUp}
-          className="flex items-stretch overflow-hidden rounded-md border border-ink/12 bg-paper/75 font-mono text-[11px] text-ink/60 backdrop-blur-sm"
-        >
-          <span className="flex items-center gap-1.5 bg-orange-500 px-3 py-1.5 font-semibold text-ink">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink" /> {c.ui.hero.available}
-          </span>
-          <span className={`${seg} border-r`}>{profile.location}</span>
-          {time && <span className={`${seg} hidden border-r sm:flex`}>{time} GMT+3</span>}
-          <span className={`${seg} ml-auto hidden md:flex`}>utf-8 · lf · tr/en</span>
-          <a href="#intro" className={`${seg} border-l transition-colors hover:text-ink max-md:ml-auto`}>
-            {c.ui.hero.scroll} ↓
-          </a>
+          </div>
         </motion.div>
       </motion.div>
     </section>
