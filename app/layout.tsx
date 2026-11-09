@@ -62,7 +62,7 @@ export function generateViewport() {
   return {
     width: 'device-width',
     initialScale: 1,
-    themeColor: '#000000',
+    themeColor: '#f3f1ec',
   }
 }
 
@@ -83,7 +83,7 @@ export default function RootLayout({
         `}</style>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#f3f1ec" />
         <meta name="format-detection" content="telephone=no" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
         {/* apply the saved accent color before first paint so a custom theme doesn't flash orange */}
@@ -94,7 +94,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body suppressHydrationWarning={true} className="bg-[#07070a] text-white antialiased">
+      <body suppressHydrationWarning={true} className="bg-paper text-ink antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

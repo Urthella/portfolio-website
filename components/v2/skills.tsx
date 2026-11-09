@@ -31,20 +31,20 @@ export function Skills() {
               key={i}
               variants={scaleIn}
               data-colorize
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-orange-500/30"
+              className="group relative overflow-hidden rounded-2xl border border-ink/10 bg-ink/[0.02] p-6 transition-colors hover:border-orange-500/30"
             >
               <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-orange-500/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
               <div className="mb-4 flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-orange-500 transition-colors group-hover:border-orange-500/30">
+                <span className="grid h-10 w-10 place-items-center rounded-xl border border-ink/10 bg-ink/5 text-orange-500 transition-colors group-hover:border-orange-500/30">
                   <Icon className="h-5 w-5" />
                 </span>
-                <h3 className="font-mono text-sm text-white/80">{group.label}</h3>
+                <h3 className="font-mono text-sm text-ink/80">{group.label}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((s) => (
                   <span
                     key={s}
-                    className="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-xs text-white/60 transition-colors hover:border-white/25 hover:text-white"
+                    className="rounded-lg border border-ink/10 bg-ink/[0.03] px-2.5 py-1 font-mono text-xs text-ink/60 transition-colors hover:border-ink/25 hover:text-ink"
                   >
                     {s}
                   </span>

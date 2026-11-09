@@ -12,7 +12,7 @@ interface Day {
 }
 
 // Warm intensity scale (level 0..4).
-const LEVELS = ["bg-white/[0.05]", "bg-orange-500/25", "bg-orange-500/45", "bg-orange-500/70", "bg-orange-400"]
+const LEVELS = ["bg-ink/[0.05]", "bg-orange-500/25", "bg-orange-500/45", "bg-orange-500/70", "bg-orange-400"]
 
 /**
  * GitHub contributions heatmap. Pulls the last year of contributions from the
@@ -61,8 +61,8 @@ export function GithubHeatmap() {
 
   return (
     <section data-colorize className="relative mx-auto max-w-5xl px-4 pb-12 sm:px-6">
-      <Reveal className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-        <h3 className="mb-5 font-mono text-sm text-white/70">
+      <Reveal className="rounded-2xl border border-ink/10 bg-ink/[0.02] p-6 sm:p-8">
+        <h3 className="mb-5 font-mono text-sm text-ink/70">
           <span className="text-orange-500">{"//"}</span> {total}&nbsp;{g.heatmap}
         </h3>
 
@@ -82,7 +82,7 @@ export function GithubHeatmap() {
           </div>
         </div>
 
-        <div className="mt-3 flex items-center justify-end gap-1.5 font-mono text-[11px] text-white/40">
+        <div className="mt-3 flex items-center justify-end gap-1.5 font-mono text-[11px] text-ink/40">
           <span>Less</span>
           {LEVELS.map((c, i) => (
             <span key={i} className={`h-[10px] w-[10px] rounded-[2px] ${c}`} />

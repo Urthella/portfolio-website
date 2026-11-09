@@ -27,7 +27,7 @@ const accentHex = () => {
     const v = localStorage.getItem("accent-base")
     if (v && /^#[0-9a-f]{6}$/i.test(v)) return v
   } catch {}
-  return "#f97316"
+  return "#ff5a1f"
 }
 
 export function Projects() {
@@ -57,7 +57,7 @@ export function Projects() {
           spinDuration={2}
           hideDefaultCursor
           parallaxOn
-          cursorColor="#ffffff"
+          cursorColor="#151413"
           cursorColorOnTarget={accentHex()}
           initialPosition={cursorPos}
         />
@@ -72,7 +72,7 @@ export function Projects() {
             className={`cursor-target rounded-full border px-3.5 py-1.5 font-mono text-xs transition-colors ${
               filter === c
                 ? "border-orange-500/50 bg-orange-500/15 text-orange-200"
-                : "border-white/10 text-white/50 hover:border-white/25 hover:text-white"
+                : "border-ink/10 text-ink/50 hover:border-ink/25 hover:text-ink"
             }`}
           >
             {c}
@@ -94,7 +94,7 @@ export function Projects() {
                 transition={{ duration: 0.3 }}
                 whileHover={{ y: -4 }}
                 data-colorize
-                className={`cursor-target group flex flex-col overflow-hidden rounded-2xl border-2 ${a.border} bg-neutral-950/70 backdrop-blur-sm transition-colors hover:bg-neutral-950`}
+                className={`cursor-target group flex flex-col overflow-hidden rounded-2xl border-2 ${a.border} bg-paper/80 backdrop-blur-sm transition-colors hover:bg-paper`}
               >
                 {/* top bar */}
                 {/* lang="en": English-only labels, so Turkish case mapping can't turn SECURITY into SECURİTY */}
@@ -118,21 +118,21 @@ export function Projects() {
                 </div>
 
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="flex items-center gap-2 text-lg font-bold text-white">
+                  <h3 className="flex items-center gap-2 text-lg font-bold text-ink">
                     {p.name}
                     {p.wip && (
                       <span className="rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase text-amber-300">WIP</span>
                     )}
                   </h3>
                   {p.collab && (
-                    <p className="mt-1 font-mono text-[11px] text-white/35">{h.collab} · thefcan</p>
+                    <p className="mt-1 font-mono text-[11px] text-ink/35">{h.collab} · thefcan</p>
                   )}
 
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">{p.blurb}</p>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/55">{p.blurb}</p>
 
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {p.stack.map((s) => (
-                      <span key={s} className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-white/50">
+                      <span key={s} className="rounded-md border border-ink/10 bg-ink/[0.03] px-2 py-0.5 font-mono text-[11px] text-ink/50">
                         {s}
                       </span>
                     ))}
@@ -150,7 +150,7 @@ export function Projects() {
                       </a>
                     )}
                     {p.privateRepo ? (
-                      <span className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-white/20 px-3 py-1.5 font-mono text-xs text-white/40">
+                      <span className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-ink/20 px-3 py-1.5 font-mono text-xs text-ink/40">
                         <Lock className="h-3.5 w-3.5" /> PRIVATE REPO
                       </span>
                     ) : (
@@ -158,7 +158,7 @@ export function Projects() {
                         href={p.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-1.5 font-mono text-xs text-white/75 transition-colors hover:border-white/35 hover:text-white"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-ink/15 px-3 py-1.5 font-mono text-xs text-ink/75 transition-colors hover:border-ink/35 hover:text-ink"
                       >
                         <Github className="h-3.5 w-3.5" /> CODE
                       </a>

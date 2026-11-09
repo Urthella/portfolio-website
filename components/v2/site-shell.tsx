@@ -8,7 +8,6 @@ import { ContactFooter } from "@/components/v2/contact-footer"
 import { Nav } from "@/components/v2/nav"
 import { SceneFluid } from "@/components/v2/scene-fluid"
 import { ScrollProgress } from "@/components/v2/scroll-progress"
-import GradualBlur from "@/components/ui/gradual-blur"
 import { LangProvider } from "@/data/i18n"
 import { PerfProvider } from "@/hooks/use-perf"
 
@@ -20,8 +19,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <LangProvider>
       <PerfProvider>
-        {/* .mono: the site is black and white; whatever you hover gets its color back (globals.css) */}
-        <div className="mono">
+        {/* .site: warm paper, ink and the red-orange accent, with the glove cursor (globals.css) */}
+        <div className="site text-ink">
         <AuroraBackground />
         <SceneFluid />
         <ScrollProgress />
@@ -32,19 +31,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
           {children}
           <ContactFooter />
         </main>
-        {/* content melts into a soft blur at the bottom edge of the viewport (desktop only) */}
-        <GradualBlur
-          target="page"
-          position="bottom"
-          height="6rem"
-          strength={2}
-          divCount={5}
-          curve="bezier"
-          exponential
-          opacity={1}
-          style={{ zIndex: 30 }}
-          className="hidden md:block"
-        />
         </div>
       </PerfProvider>
     </LangProvider>

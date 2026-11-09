@@ -25,9 +25,9 @@ export function GithubStats() {
   const g = useContent().ui.github
   return (
     <section data-colorize className="relative mx-auto max-w-5xl px-4 py-12 sm:px-6">
-      <Reveal className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+      <Reveal className="rounded-2xl border border-ink/10 bg-ink/[0.02] p-6 sm:p-8">
         <div className="mb-6 flex items-center justify-between">
-          <h3 className="flex items-center gap-2 font-mono text-sm text-white/70">
+          <h3 className="flex items-center gap-2 font-mono text-sm text-ink/70">
             <Github className="h-4 w-4 text-orange-500" /> {g.title}
           </h3>
           <a
@@ -55,13 +55,13 @@ export function GithubStats() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="rounded-xl border border-white/10 bg-white/[0.02] p-4 text-center"
+                className="rounded-xl border border-ink/10 bg-ink/[0.02] p-4 text-center"
               >
                 <Icon className="mx-auto mb-2 h-5 w-5 text-orange-500" />
-                <div className="bg-gradient-to-br from-white to-white/50 bg-clip-text text-2xl font-bold text-transparent">
+                <div className="bg-gradient-to-br from-ink to-ink/50 bg-clip-text text-2xl font-bold text-transparent">
                   {s.value}
                 </div>
-                <div className="mt-1 text-[11px] leading-tight text-white/45">{s.label}</div>
+                <div className="mt-1 text-[11px] leading-tight text-ink/45">{s.label}</div>
               </motion.div>
               )
             })}
@@ -76,10 +76,10 @@ export function GithubStats() {
             </div>
             <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-3">
               {LANGS.map((l) => (
-                <div key={l.name} className="flex items-center gap-2 text-xs text-white/60">
+                <div key={l.name} className="flex items-center gap-2 text-xs text-ink/60">
                   <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: l.color }} />
                   {l.name}
-                  <span className="ml-auto font-mono text-white/35">{l.pct}%</span>
+                  <span className="ml-auto font-mono text-ink/35">{l.pct}%</span>
                 </div>
               ))}
             </div>

@@ -6,7 +6,7 @@ export const tr = {
     role: "Yazılım Mühendisi",
     focus: "Backend · Dağıtık Sistemler · Yapay Zeka",
     tagline:
-      "Gerçek zamanlı motorlar, olay güdümlü servisler ve RAG hatları kuruyor, bunları CI/CD ve konteynerlerle yayına taşıyorum. Ayrıca gitarist ve kalisteni sporcusuyum.",
+      "Görünmeyen kısmı ben kuruyorum: milisaniyede karar veren motorlar, birbiriyle anlaşan servisler ve soruya cevap veren yapay zekâ.",
     chips: ["DevOps ve Bulut", "Siber Güvenlik", "Gitarist", "Kalisteni"],
   },
 
@@ -436,6 +436,9 @@ export const tr = {
       welcome: "OYUN ALANIMA HOŞ GELDİN",
       viewProjects: "Projeleri gör",
       resume: "Özgeçmiş",
+      scroll: "kaydır",
+      moreAbout: "Hakkımda daha fazlası",
+      available: "işe açık",
     },
     idcard: {
       access: "// ERİŞİM",

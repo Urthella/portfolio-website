@@ -7,12 +7,12 @@ import type { Lang } from "@/data/i18n"
  */
 
 export const ACCENT_KEY = "accent-base"
-export const DEFAULT_ACCENT = "#f97316" // orange-500, the stock palette
+export const DEFAULT_ACCENT = "#ff5a1f" // the site's red-orange (globals.css :root)
 /** Fired on window after every setAccent/resetAccent so open UIs can re-read. */
 export const ACCENT_EVENT = "accent-change"
 
 export const ACCENT_PRESETS: { hex: string; name: Record<Lang, string> }[] = [
-  { hex: "#f97316", name: { en: "Orange", tr: "Turuncu" } },
+  { hex: "#ff5a1f", name: { en: "Orange", tr: "Turuncu" } },
   { hex: "#f43f5e", name: { en: "Rose", tr: "Gül" } },
   { hex: "#ef4444", name: { en: "Red", tr: "Kırmızı" } },
   { hex: "#a855f7", name: { en: "Purple", tr: "Mor" } },

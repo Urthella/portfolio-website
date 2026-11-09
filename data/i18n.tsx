@@ -24,6 +24,9 @@ const uiEN = {
     welcome: "WELCOME TO MY PLAYGROUND",
     viewProjects: "View projects",
     resume: "Résumé",
+    scroll: "scroll",
+    moreAbout: "More about me",
+    available: "open to work",
   },
   idcard: {
     access: "// ACCESS",
