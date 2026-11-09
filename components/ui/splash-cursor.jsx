@@ -669,6 +669,10 @@ function SplashCursor({
     initFramebuffers()
     let lastUpdateTime = Date.now()
     let colorUpdateTimer = 0.0
+    // Sleep when nothing stirs it: with the site's dissipation the dye is gone about 2s after the
+    // last input, so after IDLE_MS the loop stops (no GPU work) until the next mouse or touch.
+    const IDLE_MS = 2500
+    let lastInput = Date.now()
 
     function updateFrame() {
       if (!isActive) return
@@ -678,7 +682,19 @@ function SplashCursor({
       applyInputs()
       step(dt)
       render(null)
+      if (Date.now() - lastInput > IDLE_MS) {
+        animationFrameId.current = null
+        return
+      }
       animationFrameId.current = requestAnimationFrame(updateFrame)
+    }
+
+    function wake() {
+      lastInput = Date.now()
+      if (isActive && !animationFrameId.current) {
+        lastUpdateTime = Date.now() // avoid a huge dt spike on resume
+        updateFrame()
+      }
     }
 
     function calcDeltaTime() {
@@ -998,6 +1014,7 @@ function SplashCursor({
     }
 
     function handleMouseDown(e) {
+      wake()
       let pointer = pointers[0]
       let posX = scaleByPixelRatio(e.clientX)
       let posY = scaleByPixelRatio(e.clientY)
@@ -1007,6 +1024,7 @@ function SplashCursor({
 
     let firstMouseMoveHandled = false
     function handleMouseMove(e) {
+      wake()
       let pointer = pointers[0]
       let posX = scaleByPixelRatio(e.clientX)
       let posY = scaleByPixelRatio(e.clientY)
@@ -1020,6 +1038,7 @@ function SplashCursor({
     }
 
     function handleTouchStart(e) {
+      wake()
       const touches = e.targetTouches
       let pointer = pointers[0]
       for (let i = 0; i < touches.length; i++) {
@@ -1030,6 +1049,7 @@ function SplashCursor({
     }
 
     function handleTouchMove(e) {
+      wake()
       const touches = e.targetTouches
       let pointer = pointers[0]
       for (let i = 0; i < touches.length; i++) {

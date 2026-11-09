@@ -44,7 +44,7 @@ export function Featured() {
               return (
                 <Card
                   key={i}
-                  className="border border-ink/12 bg-paper/90 p-6 shadow-2xl shadow-ink/15 backdrop-blur-xl"
+                  className="border border-ink/12 bg-paper p-6 shadow-2xl shadow-ink/15"
                 >
                   <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${grad}`} />
                   <div className="relative flex h-full flex-col">
