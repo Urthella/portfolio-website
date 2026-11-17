@@ -15,6 +15,7 @@ const ACCENT: Record<string, { bar: string; border: string; text: string }> = {
   "AI/ML": { bar: "bg-amber-400", border: "border-amber-400/45", text: "text-amber-300" },
   Systems: { bar: "bg-amber-500", border: "border-amber-500/45", text: "text-amber-400" },
   Security: { bar: "bg-red-500", border: "border-red-500/45", text: "text-red-400" },
+  Web3: { bar: "bg-rose-400", border: "border-rose-400/45", text: "text-rose-300" },
   Web: { bar: "bg-orange-400", border: "border-orange-400/45", text: "text-orange-300" },
 }
 const accent = (c: string) => ACCENT[c] ?? ACCENT.Web

@@ -43,13 +43,13 @@ const uiEN = {
     featured: {
       label: "Highlights",
       title: "Things I've shipped",
-      subtitle: "A rotating look at the work I'm proudest of, from marketplaces to the CI/CD that ships them.",
+      subtitle: "A rotating look at what I'm building now: AI-agent tooling, consensus and storage engines, web PKI and on-chain fee audits.",
       seeAll: "See all projects",
     },
     projects: {
       label: "Projects",
       title: "Selected work",
-      subtitle: "Auction engines, distributed systems, ML detectors, CPU simulators and security tooling. A spread across the stack, plus repos I collaborate on.",
+      subtitle: "Consensus and storage engines, tooling for AI agents, web PKI and post-quantum crypto, on-chain fee audits and the products I'm launching. Plus repos I collaborate on.",
       collab: "collaboration",
     },
     hobbies: {
@@ -76,10 +76,11 @@ const uiEN = {
   featured: {
     cards: [
       { title: "Okut Gitsin", tag: "Flagship SaaS", desc: "Live-stream vehicle auction platform: real-time bidding, secure payments, launching soon, waitlist open at okutgitsin.com." },
+      { title: "Tooling for AI agents", tag: "AI agents", desc: "MCP servers that keep agents safe around Postgres, an OpenAI-compatible LLM gateway, an OpenTelemetry viewer for agent runs, and traps that test agents against prompt injection." },
+      { title: "Consensus & storage", tag: "Distributed systems", desc: "A Raft key-value store checked Jepsen-style for linearizability, Raft running live in the browser, and an LSM-tree crashed at every filesystem operation." },
+      { title: "Web PKI & post-quantum", tag: "Security", desc: "Certificate Transparency inclusion proofs, ACME renewal windows (RFC 9773), the X-Wing hybrid KEM, and how your crates were really published." },
+      { title: "On-chain fee audits", tag: "Web3", desc: "Ethereum blob fees recomputed after Osaka's EIP-7918 and OP Stack L1 data fees from raw transaction bytes, each checked against what the chain says." },
       { title: "Distributed Systems Series", tag: "Backend", desc: "Five from-scratch builds: CRDT sync, Redis Lua rate limiting, saga orchestration, hybrid RAG and a race-safe job queue." },
-      { title: "Penpick", tag: "Launching soon", desc: "Marketplace for pen collectors, launching soon, waitlist open at penpick.com.tr." },
-      { title: "Extramus HR", tag: "Backend & Security", desc: "HR platform backend: RBAC, secure uploads, containerized services under load." },
-      { title: "CI/CD Plumbing", tag: "DevOps", desc: "Dockerized pipelines and green GitHub Actions across a dozen shipped repos." },
     ],
   },
   github: {
@@ -87,9 +88,9 @@ const uiEN = {
     viewProfile: "view profile →",
     heatmap: "contributions in the last year",
     stats: [
-      { value: "14+", label: "Public repos" },
-      { value: "8", label: "Merged PRs (2026)" },
-      { value: "6", label: "Languages shipped" },
+      { value: "50+", label: "Public repos" },
+      { value: "90+", label: "Merged PRs (2026)" },
+      { value: "8", label: "Languages shipped" },
     ],
   },
   contact: {

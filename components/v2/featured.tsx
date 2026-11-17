@@ -1,17 +1,20 @@
 "use client"
 
-import { ArrowUpRight, Boxes, GitBranch, Rocket, ShieldCheck, type LucideIcon } from "lucide-react"
+import { ArrowUpRight, Blocks, Bot, Boxes, Network, Rocket, ShieldCheck, type LucideIcon } from "lucide-react"
 
 import { Card, CardSwap } from "@/components/ui/card-swap"
 import { Reveal } from "@/components/v2/reveal"
 import { SectionHeading } from "@/components/v2/section-heading"
 import { useContent } from "@/data/i18n"
 
+// one per card, in the order of ui.featured.cards: flagship, agents, consensus, security, web3, series
 const META: { icon: LucideIcon; grad: string }[] = [
   { icon: Rocket, grad: "from-orange-500/25 via-orange-500/5 to-transparent" },
-  { icon: Boxes, grad: "from-rose-500/25 via-rose-500/5 to-transparent" },
-  { icon: ShieldCheck, grad: "from-amber-500/25 via-amber-500/5 to-transparent" },
-  { icon: GitBranch, grad: "from-orange-400/25 via-orange-400/5 to-transparent" },
+  { icon: Bot, grad: "from-amber-500/25 via-amber-500/5 to-transparent" },
+  { icon: Network, grad: "from-rose-500/25 via-rose-500/5 to-transparent" },
+  { icon: ShieldCheck, grad: "from-red-500/25 via-red-500/5 to-transparent" },
+  { icon: Blocks, grad: "from-rose-400/25 via-rose-400/5 to-transparent" },
+  { icon: Boxes, grad: "from-orange-400/25 via-orange-400/5 to-transparent" },
 ]
 
 export function Featured() {
