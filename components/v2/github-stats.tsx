@@ -1,24 +1,25 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { GitPullRequest, Github, Star, Users } from "lucide-react"
+import { Code2, FolderGit2, GitPullRequest, Github } from "lucide-react"
 
 import { Reveal } from "@/components/v2/reveal"
 import { container, fadeUp } from "@/lib/motion"
 import { profile } from "@/data/content"
 import { useContent } from "@/data/i18n"
 
-const STAT_ICONS = [Users, GitPullRequest, Star]
+// in the order of ui.github.stats: repos, merged PRs, languages
+const STAT_ICONS = [FolderGit2, GitPullRequest, Code2]
 
-// Rough share of the languages across the public repos.
+// Primary language of the 52 public, non-fork repos (Nov 2026), as a share of repos.
 // Palette vars so the bar follows the accent theme.
 const LANGS = [
-  { name: "TypeScript", pct: 46, color: "var(--color-orange-500)" },
-  { name: "Python", pct: 20, color: "var(--color-rose-400)" },
-  { name: "Java", pct: 14, color: "var(--color-amber-500)" },
-  { name: "Go", pct: 9, color: "var(--color-amber-400)" },
-  { name: "Rust", pct: 6, color: "var(--color-rose-300)" },
-  { name: "C++ / Shell", pct: 5, color: "var(--color-orange-300)" },
+  { name: "TypeScript", pct: 44, color: "var(--color-orange-500)" },
+  { name: "Rust", pct: 21, color: "var(--color-rose-400)" },
+  { name: "Go", pct: 13, color: "var(--color-amber-500)" },
+  { name: "Python", pct: 8, color: "var(--color-amber-400)" },
+  { name: "Nix", pct: 6, color: "var(--color-rose-300)" },
+  { name: "Shell · Solidity · JS", pct: 8, color: "var(--color-orange-300)" },
 ]
 
 export function GithubStats() {
@@ -58,9 +59,7 @@ export function GithubStats() {
                 className="rounded-xl border border-ink/10 bg-ink/[0.02] p-4 text-center"
               >
                 <Icon className="mx-auto mb-2 h-5 w-5 text-orange-500" />
-                <div className="bg-gradient-to-br from-ink to-ink/50 bg-clip-text text-2xl font-bold text-transparent">
-                  {s.value}
-                </div>
+                <div className="text-2xl font-bold tracking-tight text-ink">{s.value}</div>
                 <div className="mt-1 text-[11px] leading-tight text-ink/45">{s.label}</div>
               </motion.div>
               )

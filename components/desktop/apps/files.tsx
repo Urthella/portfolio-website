@@ -83,7 +83,7 @@ const en = {
     js: "JavaScript",
     file: "File",
   },
-  cats: { "Full-stack": "Full-stack", "AI/ML": "AI/ML", Systems: "Systems", Security: "Security", Web: "Web" } as Record<Category, string>,
+  cats: { "Full-stack": "Full-stack", "AI/ML": "AI/ML", Systems: "Systems", Security: "Security", Web3: "Web3", Web: "Web" } as Record<Category, string>,
 }
 
 const STR: Record<Lang, typeof en> = {
@@ -127,7 +127,7 @@ const STR: Record<Lang, typeof en> = {
       js: "JavaScript",
       file: "Dosya",
     },
-    cats: { "Full-stack": "Full-stack", "AI/ML": "Yapay zekâ / ML", Systems: "Sistemler", Security: "Güvenlik", Web: "Web" },
+    cats: { "Full-stack": "Full-stack", "AI/ML": "Yapay zekâ / ML", Systems: "Sistemler", Security: "Güvenlik", Web3: "Web3", Web: "Web" },
   },
 }
 
@@ -151,6 +151,7 @@ const CAT_DOT: Record<Category, string> = {
   "AI/ML": "bg-amber-400",
   Systems: "bg-amber-600",
   Security: "bg-rose-500",
+  Web3: "bg-rose-300",
   Web: "bg-orange-300",
 }
 

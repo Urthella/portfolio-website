@@ -183,7 +183,7 @@ export const marqueeTech = [
   "PostgreSQL", "Redis", "Prisma", "MongoDB", "Kafka", "Docker", "GitHub Actions", "Linux",
 ]
 
-export type Category = "Full-stack" | "AI/ML" | "Systems" | "Security" | "Web"
+export type Category = "Full-stack" | "AI/ML" | "Systems" | "Security" | "Web3" | "Web"
 
 export interface Project {
   name: string
@@ -200,132 +200,214 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  // Flagship and the newest, most topical work first
   {
     name: "Okut Gitsin",
-    blurb:
-      "Live-stream vehicle auction platform: token-based entry, a Redis and Lua atomic bid engine, WebSocket real-time bidding, LiveKit broadcasting and an escrow payment flow. Launching soon, the waitlist is open at okutgitsin.com.",
+    blurb: "Live-stream vehicle auction platform: token-based entry, a Redis and Lua atomic bid engine, WebSocket real-time bidding, LiveKit broadcasting and an escrow payment flow. Launching soon, the waitlist is open at okutgitsin.com.",
     stack: ["NestJS", "Next.js", "PostgreSQL", "Prisma", "Redis", "Socket.IO", "LiveKit"],
     category: "Full-stack",
     href: "https://okutgitsin.com",
     live: "https://okutgitsin.com",
-    waitlist: true,
     featured: true,
+    waitlist: true,
     privateRepo: true,
   },
   {
-    name: "Reveil",
-    blurb:
-      "AI-assisted self-management platform: authentication, behavior tracking and AI-assisted features via prompt-based workflows over a NestJS and FastAPI backend.",
-    stack: ["React Native", "NestJS", "FastAPI", "PostgreSQL", "OpenAI API"],
-    category: "AI/ML",
-    href: "https://github.com/Urthella/Reveil",
+    name: "tiny-kv-raft",
+    blurb: "A replicated key-value store on openraft, with a Jepsen-style linearizability checker that runs it under network partitions, lost messages and crashes.",
+    stack: ["Rust", "openraft", "Raft", "Linearizability"],
+    category: "Systems",
+    href: "https://github.com/Urthella/tiny-kv-raft",
     featured: true,
-    wip: true,
   },
   {
-    name: "Costsight",
-    blurb:
-      "Cloud-cost anomaly detection on AWS CUR data using STL, Isolation Forest and Z-Score detectors, with severity-banded alerts and a Streamlit dashboard.",
-    stack: ["Python", "scikit-learn", "Streamlit", "AWS"],
+    name: "agent-trace-viewer",
+    blurb: "A local viewer for AI agent traces in OpenTelemetry's GenAI conventions: runs, model and tool calls on one timeline, failures surfaced, and tokens counted once.",
+    stack: ["TypeScript", "OpenTelemetry", "GenAI", "AI agents"],
     category: "AI/ML",
-    href: "https://github.com/Urthella/costsight",
+    href: "https://github.com/Urthella/agent-trace-viewer",
     featured: true,
+  },
+  {
+    name: "blob-fee-audit",
+    blurb: "Recomputes Ethereum's blob fee block by block, EIP-4844 as Osaka changed it with EIP-7918, against the blob schedule the node reports, and checks the chain agrees.",
+    stack: ["TypeScript", "Ethereum", "EIP-4844", "EIP-7918"],
+    category: "Web3",
+    href: "https://github.com/Urthella/blob-fee-audit",
+    featured: true,
+  },
+  {
+    name: "sct-check",
+    blurb: "Is this certificate really in Certificate Transparency? Verifies every embedded SCT against Chrome's log list and proves inclusion, for static-ct-api (tiled) and RFC 6962 logs.",
+    stack: ["TypeScript", "TLS", "X.509", "Merkle trees"],
+    category: "Security",
+    href: "https://github.com/Urthella/sct-check",
+    featured: true,
+  },
+  {
+    name: "raft-visualizer",
+    blurb: "Raft in the browser: crash nodes, split the network and watch five safety properties checked live, including a replay of the paper's Figure 8 bug.",
+    stack: ["TypeScript", "Raft", "Consensus", "Simulation"],
+    category: "Systems",
+    href: "https://github.com/Urthella/raft-visualizer",
+  },
+  {
+    name: "baited",
+    blurb: "Would your coding agent hand over your .env? Harmless traps for the agent you actually run, to see whether a prompt injection can talk it into it.",
+    stack: ["TypeScript", "AI agents", "Prompt injection", "Sandbox"],
+    category: "Security",
+    href: "https://github.com/Urthella/baited",
+  },
+  {
+    name: "mcp-postgres-guard",
+    blurb: "An MCP server that lets AI agents query Postgres without being able to break it: read-only, time-limited and row-limited.",
+    stack: ["Go", "MCP", "PostgreSQL", "AI agents"],
+    category: "AI/ML",
+    href: "https://github.com/Urthella/mcp-postgres-guard",
+  },
+  {
+    name: "lsm-lite",
+    blurb: "A small LSM-tree key-value store in Rust, tested by crashing it at every filesystem operation on a simulated disk that loses whatever wasn't synced.",
+    stack: ["Rust", "LSM-tree", "WAL", "Crash testing"],
+    category: "Systems",
+    href: "https://github.com/Urthella/lsm-lite",
+  },
+  {
+    name: "llm-gateway-go",
+    blurb: "One OpenAI-compatible endpoint for every LLM provider: fallback, per-client keys and limits, streaming and metrics.",
+    stack: ["Go", "LLM", "OpenAI-compatible", "Metrics"],
+    category: "AI/ML",
+    href: "https://github.com/Urthella/llm-gateway-go",
+  },
+  {
+    name: "webhook-relay",
+    blurb: "Signed webhook delivery on Postgres: retries with backoff, dead letters and redrive, Standard Webhooks signatures, and SSRF protection that checks addresses at connect time.",
+    stack: ["Go", "PostgreSQL", "Standard Webhooks", "SSRF"],
+    category: "Systems",
+    href: "https://github.com/Urthella/webhook-relay",
+  },
+  {
+    name: "op-fee-audit",
+    blurb: "Recomputes OP Stack L1 data fees from each transaction's own bytes (FastLZ, Fjord) and checks the receipts agree, on Base, OP Mainnet and the Superchain.",
+    stack: ["TypeScript", "OP Stack", "Ethereum L2", "FastLZ"],
+    category: "Web3",
+    href: "https://github.com/Urthella/op-fee-audit",
+  },
+  {
+    name: "ari-check",
+    blurb: "Ask the CA when to renew: reads TLS certificates and fetches their ACME Renewal Information (RFC 9773) window.",
+    stack: ["TypeScript", "ACME", "TLS", "RFC 9773"],
+    category: "Security",
+    href: "https://github.com/Urthella/ari-check",
+  },
+  {
+    name: "pq-hybrid-kex",
+    blurb: "X-Wing, the ML-KEM-768 + X25519 hybrid post-quantum KEM, written out readably in Rust and checked against the draft's test vectors.",
+    stack: ["Rust", "Post-quantum", "ML-KEM", "X25519"],
+    category: "Security",
+    href: "https://github.com/Urthella/pq-hybrid-kex",
+  },
+  {
+    name: "outbox-relay",
+    blurb: "Publishes committed rows of a Postgres outbox table to NATS JetStream straight from a logical replication slot, with no polling.",
+    stack: ["Go", "PostgreSQL", "NATS JetStream", "Outbox"],
+    category: "Systems",
+    href: "https://github.com/Urthella/outbox-relay",
+  },
+  {
+    name: "agent-memory-sqlite",
+    blurb: "Persistent, searchable memory for coding agents: an MCP server on SQLite FTS5 with zero native dependencies.",
+    stack: ["TypeScript", "MCP", "SQLite FTS5", "AI agents"],
+    category: "AI/ML",
+    href: "https://github.com/Urthella/agent-memory-sqlite",
+  },
+  {
+    name: "cargo-trustpub",
+    blurb: "How was each dependency in Cargo.lock published, Trusted Publishing or a token? Flags crates that went back to a token and checks their release runs on GitHub.",
+    stack: ["Rust", "Cargo", "Supply chain", "GitHub Actions"],
+    category: "Security",
+    href: "https://github.com/Urthella/cargo-trustpub",
+  },
+  {
+    name: "rs-loadgen",
+    blurb: "An HTTP load generator in plain Rust that measures latency from when each request was due, so a stalled server can't hide its stall (coordinated omission).",
+    stack: ["Rust", "Load testing", "HTTP", "Latency"],
+    category: "Systems",
+    href: "https://github.com/Urthella/rs-loadgen",
   },
   {
     name: "Penpick",
-    blurb:
-      "A marketplace for pen collectors, built with Next.js 16 and Prisma on Neon Postgres. Launching soon, the waitlist is open at penpick.com.tr.",
+    blurb: "A marketplace for pen collectors, built with Next.js 16 and Prisma on Neon Postgres. Launching soon, the waitlist is open at penpick.com.tr.",
     stack: ["Next.js", "Prisma", "Neon Postgres", "Tailwind v4"],
     category: "Full-stack",
     href: "https://penpick.com.tr",
     live: "https://penpick.com.tr",
+    wip: true,
     waitlist: true,
     privateRepo: true,
-    wip: true,
   },
+  // The distributed-systems series
   {
     name: "Realtime Collab Editor",
-    blurb:
-      "Google-Docs-style collaborative editor: Yjs CRDTs synced over a custom WebSocket server, live cursors and presence, JWT sharing, and debounced snapshot persistence with version history.",
+    blurb: "Google-Docs-style collaborative editor: Yjs CRDTs synced over a custom WebSocket server, live cursors and presence, JWT sharing, and debounced snapshot persistence with version history.",
     stack: ["React", "Yjs", "WebSocket", "Node.js", "SQLite"],
     category: "Full-stack",
     href: "https://github.com/Urthella/realtime-collab-editor",
   },
   {
     name: "Distributed Rate Limiter",
-    blurb:
-      "API gateway with token bucket, sliding window and fixed window limiters, backed by atomic Redis Lua scripts so limits hold across replicas. Prometheus metrics and a Grafana dashboard.",
+    blurb: "API gateway with token bucket, sliding window and fixed window limiters, backed by atomic Redis Lua scripts so limits hold across replicas. Prometheus metrics and a Grafana dashboard.",
     stack: ["TypeScript", "Redis", "Lua", "Prometheus", "Grafana"],
     category: "Systems",
     href: "https://github.com/Urthella/distributed-rate-limiter",
   },
   {
     name: "Codebase RAG Q&A",
-    blurb:
-      "Ask questions about a repo and get answers with file:line citations: tree-sitter AST chunking, hybrid BM25 and vector retrieval, and an eval harness (94% hit@3).",
+    blurb: "Ask questions about a repo and get answers with file:line citations: tree-sitter AST chunking, hybrid BM25 and vector retrieval, and an eval harness (94% hit@3).",
     stack: ["Python", "FastAPI", "tree-sitter", "pgvector"],
     category: "AI/ML",
     href: "https://github.com/Urthella/rag-codebase-qa",
   },
   {
     name: "Event-Driven Order System",
-    blurb:
-      "Five microservices coordinating an order saga, with compensating transactions, idempotent consumers under at-least-once delivery, and one OpenTelemetry trace per order.",
+    blurb: "Five microservices coordinating an order saga, with compensating transactions, idempotent consumers under at-least-once delivery, and one OpenTelemetry trace per order.",
     stack: ["TypeScript", "RabbitMQ", "OpenTelemetry", "Docker"],
     category: "Systems",
     href: "https://github.com/Urthella/event-driven-order-system",
   },
   {
     name: "Job Queue Orchestrator",
-    blurb:
-      "A from-scratch mini Celery: race-safe job claiming, exponential backoff with a dead-letter queue, a crash-recovery reaper and a DAG workflow engine with a dashboard.",
+    blurb: "A from-scratch mini Celery: race-safe job claiming, exponential backoff with a dead-letter queue, a crash-recovery reaper and a DAG workflow engine with a dashboard.",
     stack: ["Python", "asyncio", "FastAPI", "SQLite", "PostgreSQL"],
     category: "Systems",
     href: "https://github.com/Urthella/job-queue-orchestrator",
   },
+  // Earlier work
   {
-    name: "Used Car Platform",
-    blurb:
-      "A used-car marketplace with JWT auth, role-based access (admin, seller, buyer), favorites, in-app messaging and Cypress E2E.",
-    stack: ["Next.js", "Express", "MongoDB", "Cypress"],
-    category: "Full-stack",
-    href: "https://github.com/Urthella/used-car-platform",
+    name: "Reveil",
+    blurb: "AI-assisted self-management platform: authentication, behavior tracking and AI-assisted features via prompt-based workflows over a NestJS and FastAPI backend.",
+    stack: ["React Native", "NestJS", "FastAPI", "PostgreSQL", "OpenAI API"],
+    category: "AI/ML",
+    href: "https://github.com/Urthella/Reveil",
+    wip: true,
+  },
+  {
+    name: "Costsight",
+    blurb: "Cloud-cost anomaly detection on AWS CUR data using STL, Isolation Forest and Z-Score detectors, with severity-banded alerts and a Streamlit dashboard.",
+    stack: ["Python", "scikit-learn", "Streamlit", "AWS"],
+    category: "AI/ML",
+    href: "https://github.com/Urthella/costsight",
   },
   {
     name: "MIPS16 Pipeline Simulator",
-    blurb:
-      "A 5-stage 16-bit MIPS pipeline simulator with hazard handling (forwarding, stalls, flushes). Java 17 backend, React/TS frontend and Verilog RTL.",
+    blurb: "A 5-stage 16-bit MIPS pipeline simulator with hazard handling (forwarding, stalls, flushes). Java 17 backend, React/TS frontend and Verilog RTL.",
     stack: ["Java 17", "React", "Verilog"],
     category: "Systems",
     href: "https://github.com/Urthella/MIPS16-pipeline-simulator",
   },
   {
-    name: "Algorithm Analyzer",
-    blurb:
-      "A sorting-algorithm benchmarking tool (Quick, Heap, Shell, Merge, Radix) with performance and memory visualization.",
-    stack: ["Spring Boot 3", "Java 17", "React", "Vite"],
-    category: "Systems",
-    href: "https://github.com/Urthella/algortihm-test-sim",
-  },
-  {
-    name: "URL Scanner",
-    blurb:
-      "A Python tool that fetches a URL, scans the HTML for keywords, parses forms with BeautifulSoup and probes them via POST.",
-    stack: ["Python", "requests", "BeautifulSoup"],
-    category: "Security",
-    href: "https://github.com/Urthella/url",
-  },
-  {
-    name: "Bash Port Scanner",
-    blurb: "A tiny TCP port scanner in pure Bash using /dev/tcp that sweeps ports 1 to 65535 on a target host.",
-    stack: ["Bash", "Networking"],
-    category: "Security",
-    href: "https://github.com/Urthella/Bash",
-  },
-  {
     name: "This Portfolio",
-    blurb:
-      "The site you're on, built with Next.js 15, React 19, Tailwind and Framer Motion, with a WebGL fluid background.",
+    blurb: "The site you're on, built with Next.js 15, React 19, Tailwind and Framer Motion, with a WebGL fluid background.",
     stack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "WebGL"],
     category: "Web",
     href: "https://github.com/Urthella/portfolio-website",
@@ -333,8 +415,7 @@ export const projects: Project[] = [
   // Collaborations: repos where I'm a collaborator and shipped green-CI test/CI work.
   {
     name: "ragdesk",
-    blurb:
-      "Multi-tenant, AI-powered knowledge SaaS where teams chat over their own documents. I contributed the web test suite (Vitest) and wired it into CI.",
+    blurb: "Multi-tenant, AI-powered knowledge SaaS where teams chat over their own documents. I contributed the web test suite (Vitest) and wired it into CI.",
     stack: ["Next.js", "Vitest", "RAG", "CI"],
     category: "AI/ML",
     href: "https://github.com/thefcan/ragdesk",
@@ -342,8 +423,7 @@ export const projects: Project[] = [
   },
   {
     name: "k8s-resilience-harness",
-    blurb:
-      "A Kubernetes resilience and chaos-testing harness in Go. I added build-info wiring and k8s-client tests to green the CI.",
+    blurb: "A Kubernetes resilience and chaos-testing harness in Go. I added build-info wiring and k8s-client tests to green the CI.",
     stack: ["Go", "Kubernetes", "Chaos", "CI"],
     category: "Systems",
     href: "https://github.com/thefcan/k8s-resilience-harness",
@@ -358,17 +438,8 @@ export const projects: Project[] = [
     collab: true,
   },
   {
-    name: "gocontainer",
-    blurb: "A minimal Linux container runtime in Go. I added config helpers, tests and a go-test CI step.",
-    stack: ["Go", "Linux", "Namespaces", "CI"],
-    category: "Systems",
-    href: "https://github.com/thefcan/gocontainer",
-    collab: true,
-  },
-  {
     name: "rust-url-shortener",
-    blurb:
-      "A production-style URL shortener in Rust with Axum and Tokio. I contributed the Store trait tests.",
+    blurb: "A production-style URL shortener in Rust with Axum and Tokio. I contributed the Store trait tests.",
     stack: ["Rust", "Axum", "Tokio", "Docker"],
     category: "Systems",
     href: "https://github.com/thefcan/rust-url-shortener",
@@ -376,33 +447,15 @@ export const projects: Project[] = [
   },
   {
     name: "femheat",
-    blurb:
-      "A from-scratch 2D finite-element heat-conduction solver in modern C++17. I added Point and Material GoogleTest coverage.",
+    blurb: "A from-scratch 2D finite-element heat-conduction solver in modern C++17. I added Point and Material GoogleTest coverage.",
     stack: ["C++17", "FEM", "GoogleTest"],
     category: "Systems",
     href: "https://github.com/thefcan/femheat",
     collab: true,
   },
-  {
-    name: "dolap-sale-prediction",
-    blurb:
-      "An end-to-end ML project predicting whether a Dolap listing sells within 7 days. I built the pytest suite and the first CI workflow.",
-    stack: ["Python", "scikit-learn", "pytest", "CI"],
-    category: "AI/ML",
-    href: "https://github.com/thefcan/dolap-sale-prediction",
-    collab: true,
-  },
-  {
-    name: "unity-match3",
-    blurb: "A Unity time-attack match-3 puzzle built around clean architecture. I added the game-ci test workflow.",
-    stack: ["Unity", "C#", "game-ci"],
-    category: "Systems",
-    href: "https://github.com/thefcan/unity-match3",
-    collab: true,
-  },
 ]
 
-export const categories: ("All" | Category)[] = ["All", "Full-stack", "AI/ML", "Systems", "Security", "Web"]
+export const categories: ("All" | Category)[] = ["All", "Full-stack", "AI/ML", "Systems", "Security", "Web3", "Web"]
 
 export const hobbies: { icon: string; title: string; text: string }[] = [
   {
