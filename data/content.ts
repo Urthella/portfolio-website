@@ -179,8 +179,8 @@ export const skillGroups: { label: string; items: string[] }[] = [
 ]
 
 // Same list as the CV (resume/cv.html). Names are proper nouns, so one copy serves both languages;
-// date is YYYY-MM and gets its month name from the active language.
-export const certifications: { issuer: string; names: string[]; date: string }[] = [
+// date is YYYY-MM (typed, so "Nov 2026" won't compile) and gets its month name from the active language.
+export const certifications: { issuer: string; names: string[]; date: `${number}-${number}` }[] = [
   {
     issuer: "Anthropic · Claude Academy",
     names: ["Model Context Protocol: Advanced Topics", "Claude with Amazon Bedrock", "Claude on Google Cloud", "AI Fluency: Framework and Foundations"],

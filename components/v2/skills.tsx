@@ -16,7 +16,7 @@ export function Skills() {
   const { lang } = useLang()
   const skillGroups = c.skillGroups
   const h = c.ui.headings.skills
-  const month = new Intl.DateTimeFormat(lang === "tr" ? "tr-TR" : "en-GB", { month: "short", year: "numeric", timeZone: "UTC" })
+  const monthYear = new Intl.DateTimeFormat(lang === "tr" ? "tr-TR" : "en-GB", { month: "short", year: "numeric", timeZone: "UTC" })
   return (
     <section id="skills" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <SectionHeading index="03" label={h.label} title={h.title} />
@@ -68,7 +68,7 @@ export function Skills() {
               <span className="font-semibold text-ink">{cert.issuer}</span>
               <span className="text-pretty text-ink/70">{cert.names.join(" · ")}</span>
               <time dateTime={cert.date} className="font-mono text-xs tabular-nums text-ink/50">
-                {month.format(new Date(`${cert.date}-01T00:00:00Z`))}
+                {monthYear.format(new Date(`${cert.date}-01T00:00:00Z`))}
               </time>
             </li>
           ))}
