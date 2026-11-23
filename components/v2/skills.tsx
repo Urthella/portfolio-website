@@ -3,16 +3,20 @@
 import { motion } from "framer-motion"
 import { Cloud, Code, Database, Layout, Server, Shield } from "lucide-react"
 
+import { Reveal } from "@/components/v2/reveal"
 import { SectionHeading } from "@/components/v2/section-heading"
 import { container, scaleIn } from "@/lib/motion"
-import { useContent } from "@/data/i18n"
+import { certifications } from "@/data/content"
+import { useContent, useLang } from "@/data/i18n"
 
 const icons = [Code, Layout, Server, Database, Cloud, Shield]
 
 export function Skills() {
   const c = useContent()
+  const { lang } = useLang()
   const skillGroups = c.skillGroups
   const h = c.ui.headings.skills
+  const month = new Intl.DateTimeFormat(lang === "tr" ? "tr-TR" : "en-GB", { month: "short", year: "numeric", timeZone: "UTC" })
   return (
     <section id="skills" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <SectionHeading index="03" label={h.label} title={h.title} />
@@ -54,6 +58,22 @@ export function Skills() {
           )
         })}
       </motion.div>
+
+      {/* certifications: a plain list, issuer · courses · date */}
+      <Reveal className="mt-16">
+        <h3 className="text-xl font-semibold tracking-tight text-ink">{h.certs}</h3>
+        <ul className="mt-4 divide-y divide-ink/10 border-y border-ink/10">
+          {certifications.map((cert) => (
+            <li key={cert.issuer} className="grid gap-x-8 gap-y-1 py-4 sm:grid-cols-[13rem_1fr_auto] sm:items-baseline">
+              <span className="font-semibold text-ink">{cert.issuer}</span>
+              <span className="text-pretty text-ink/70">{cert.names.join(" · ")}</span>
+              <time dateTime={cert.date} className="font-mono text-xs tabular-nums text-ink/50">
+                {month.format(new Date(`${cert.date}-01T00:00:00Z`))}
+              </time>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
     </section>
   )
 }

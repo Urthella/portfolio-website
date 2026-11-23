@@ -509,7 +509,7 @@ export const tr = {
     headings: {
       about: { label: "Hakkımda" },
       experience: { label: "Deneyim", title: "Nerelerde bulundum" },
-      skills: { label: "Yetenekler", title: "Kullandığım teknolojiler" },
+      skills: { label: "Yetenekler", title: "Kullandığım teknolojiler", certs: "Sertifikalar" },
       featured: {
         label: "Öne çıkanlar",
         title: "Ürettiklerim",

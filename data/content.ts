@@ -178,6 +178,19 @@ export const skillGroups: { label: string; items: string[] }[] = [
   { label: "Security & Realtime", items: ["OWASP", "Wireshark", "Burp Suite", "WebSocket", "LiveKit"] },
 ]
 
+// Same list as the CV (resume/cv.html). Names are proper nouns, so one copy serves both languages;
+// date is YYYY-MM and gets its month name from the active language.
+export const certifications: { issuer: string; names: string[]; date: string }[] = [
+  {
+    issuer: "Anthropic · Claude Academy",
+    names: ["Model Context Protocol: Advanced Topics", "Claude with Amazon Bedrock", "Claude on Google Cloud", "AI Fluency: Framework and Foundations"],
+    date: "2026-11",
+  },
+  { issuer: "Mercor", names: ["Mastering Model Mechanics"], date: "2026-11" },
+  { issuer: "AWS Academy", names: ["Machine Learning Foundations"], date: "2026-02" },
+  { issuer: "BTK Akademi", names: ["Social Engineering and Phishing"], date: "2023-01" },
+]
+
 export const marqueeTech = [
   "TypeScript", "Node.js", "NestJS", "Next.js", "React", "Spring Boot", "Java", "Python",
   "PostgreSQL", "Redis", "Prisma", "MongoDB", "Kafka", "Docker", "GitHub Actions", "Linux",
