@@ -39,7 +39,7 @@ const uiEN = {
   headings: {
     about: { label: "About" },
     experience: { label: "Experience", title: "Where I've been" },
-    skills: { label: "Skills", title: "Tech I build with" },
+    skills: { label: "Skills", title: "Tech I build with", certs: "Certifications" },
     featured: {
       label: "Highlights",
       title: "Things I've shipped",
