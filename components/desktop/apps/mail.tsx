@@ -36,6 +36,7 @@ const strings = {
     success: "Message sent. I'll get back to you soon, thanks!",
     error: "Couldn't send it. Try again, or reach me on LinkedIn.",
     invalid: "Please fill in your name, email and message.",
+    privacy: "Goes straight to my inbox through EmailJS. I only use it to reply.",
     newTab: "(opens in a new tab)",
   },
   tr: {
@@ -56,6 +57,7 @@ const strings = {
     success: "Mesajın iletildi. En kısa sürede dönerim, teşekkürler!",
     error: "Gönderilemedi. Tekrar dene ya da LinkedIn'den ulaş.",
     invalid: "Lütfen adını, e-postanı ve mesajını yaz.",
+    privacy: "EmailJS üzerinden doğrudan e-postama gelir; yalnızca sana dönmek için kullanırım.",
     newTab: "(yeni sekmede açılır)",
   },
 }
@@ -233,6 +235,7 @@ export default function Mail({ args }: AppProps) {
               {status === "error" && <span className="text-[#f87171]">{t.error}</span>}
               {status === "invalid" && <span className="text-[#f87171]">{t.invalid}</span>}
             </p>
+            <p className="basis-full text-xs text-white/50">{t.privacy}</p>
           </div>
         </form>
       </div>
