@@ -109,6 +109,7 @@ const uiEN = {
     namePlaceholder: "Jane Doe",
     emailPlaceholder: "jane@example.com",
     messagePlaceholder: "Let's build something…",
+    privacy: "Goes straight to my inbox through EmailJS. I only use it to reply.",
     built: "Built with Next.js & Framer Motion.",
   },
   footer: {

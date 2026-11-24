@@ -166,6 +166,7 @@ export function ContactWindows({ open, onClose, top, goo }: { open: boolean; onC
             {panel(2, <>
               {label("cw-message", t.message)}
               <textarea id="cw-message" name="message" value={form.message} onChange={onChange} required rows={4} className={cn(field, "resize-none")} placeholder={t.messagePlaceholder} />
+              <p className="mt-1 text-xs text-white/50">{t.privacy}</p>
               <p aria-live="polite" className="text-xs">
                 {status === "success" && <span className="text-green-400">{t.success}</span>}
                 {/* literal red: error feedback must stay red under every theme */}

@@ -579,6 +579,7 @@ export const tr = {
       namePlaceholder: "Ayşe Yılmaz",
       emailPlaceholder: "ayse@ornek.com",
       messagePlaceholder: "Bir şeyler inşa edelim…",
+      privacy: "EmailJS üzerinden doğrudan e-postama gelir; yalnızca sana dönmek için kullanırım.",
       built: "Next.js & Framer Motion ile yapıldı.",
     },
     footer: {
