@@ -6,6 +6,7 @@ import { useId, useRef, useState } from "react"
 import { useT } from "@/components/desktop/os"
 import type { AppProps } from "@/components/desktop/types"
 import { profile } from "@/data/content"
+import { useContent } from "@/data/i18n"
 import { cn } from "@/lib/utils"
 
 const socials = [
@@ -36,7 +37,6 @@ const strings = {
     success: "Message sent. I'll get back to you soon, thanks!",
     error: "Couldn't send it. Try again, or reach me on LinkedIn.",
     invalid: "Please fill in your name, email and message.",
-    privacy: "Goes straight to my inbox through EmailJS. I only use it to reply.",
     newTab: "(opens in a new tab)",
   },
   tr: {
@@ -57,7 +57,6 @@ const strings = {
     success: "Mesajın iletildi. En kısa sürede dönerim, teşekkürler!",
     error: "Gönderilemedi. Tekrar dene ya da LinkedIn'den ulaş.",
     invalid: "Lütfen adını, e-postanı ve mesajını yaz.",
-    privacy: "EmailJS üzerinden doğrudan e-postama gelir; yalnızca sana dönmek için kullanırım.",
     newTab: "(yeni sekmede açılır)",
   },
 }
@@ -66,6 +65,8 @@ type Status = "idle" | "sending" | "success" | "error" | "invalid"
 
 export default function Mail({ args }: AppProps) {
   const t = useT(strings)
+  // the site form's notice, so the privacy wording has one source
+  const privacy = useContent().ui.contact.privacy
   const id = useId()
   const [form, setForm] = useState({ name: "", email: "", subject: args.subject ?? "", message: args.body ?? "" })
   const [status, setStatus] = useState<Status>("idle")
@@ -235,7 +236,7 @@ export default function Mail({ args }: AppProps) {
               {status === "error" && <span className="text-[#f87171]">{t.error}</span>}
               {status === "invalid" && <span className="text-[#f87171]">{t.invalid}</span>}
             </p>
-            <p className="basis-full text-xs text-white/50">{t.privacy}</p>
+            <p className="basis-full text-xs text-white/50">{privacy}</p>
           </div>
         </form>
       </div>
