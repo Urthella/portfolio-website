@@ -93,29 +93,33 @@
 
 <h2>PROJECTS</h2>
 <div class="entry">
-  <p class="head"><b>Codebase RAG Q&amp;A</b> <i>Python • FastAPI • tree-sitter • pgvector</i></p>
-  <ul><li>Repo Q&amp;A with file:line citations via AST chunking, hybrid BM25 and vector retrieval, and an eval harness (94% hit@3)</li></ul>
+  <p class="head"><b>tiny-kv-raft</b> <i>Rust • openraft • Raft • Linearizability</i></p>
+  <ul><li>Replicated key-value store with a Jepsen-style linearizability checker that runs it under partitions, lost messages and crashes</li></ul>
 </div>
 <div class="entry">
-  <p class="head"><b>Realtime Collab Editor</b> <i>React • Yjs • WebSocket • Node.js</i></p>
-  <ul><li>Google-Docs-style editor: Yjs CRDTs over a custom WebSocket server, live cursors, JWT sharing and version history</li></ul>
+  <p class="head"><b>webhook-relay</b> <i>Go • PostgreSQL • Standard Webhooks • SSRF</i></p>
+  <ul><li>Signed webhook delivery on Postgres: retries with backoff, dead letters and redrive, idempotency keys and SSRF checks</li></ul>
 </div>
 <div class="entry">
-  <p class="head"><b>Distributed Rate Limiter</b> <i>TypeScript • Redis • Lua • Prometheus</i></p>
-  <ul><li>Token bucket, sliding and fixed window limiters on atomic Redis Lua scripts, so limits hold across replicas</li></ul>
+  <p class="head"><b>agent-trace-viewer</b> <i>TypeScript • OpenTelemetry • GenAI • AI agents</i></p>
+  <ul><li>Local viewer for AI agent traces: runs, model and tool calls on one timeline, with failures and token usage surfaced</li></ul>
 </div>
 <div class="entry">
-  <p class="head"><b>Event-Driven Order System</b> <i>TypeScript • RabbitMQ • OpenTelemetry • Docker</i></p>
-  <ul><li>Five microservices running an order saga with compensating transactions, idempotent consumers and per-order tracing</li></ul>
+  <p class="head"><b>mcp-postgres-guard</b> <i>Go • MCP • PostgreSQL • AI agents</i></p>
+  <ul><li>MCP server that lets AI agents query Postgres without being able to break it: read-only, time-limited and row-limited</li></ul>
 </div>
 <div class="entry">
-  <p class="head"><b>Costsight — Cloud-Cost Anomaly Detection</b> <i>Python • scikit-learn • Streamlit • AWS</i></p>
-  <ul><li>Anomaly detection on AWS cost data with STL, Isolation Forest and Z-Score detectors, severity alerts and a dashboard</li></ul>
+  <p class="head"><b>sct-check</b> <i>TypeScript • TLS • X.509 • Merkle trees</i></p>
+  <ul><li>Verifies a TLS certificate is really in Certificate Transparency: checks its SCTs against Chrome's log list and proves inclusion</li></ul>
+</div>
+<div class="entry">
+  <p class="head"><b>blob-fee-audit</b> <i>TypeScript • Ethereum • EIP-4844 • EIP-7918</i></p>
+  <ul><li>Recomputes Ethereum's blob fee block by block, including the Osaka upgrade's EIP-7918 change, and checks the chain agrees</li></ul>
 </div>
 
 <h2>TECHNICAL SKILLS</h2>
 <div class="skills">
-  <p><b>Programming Languages:</b> Java • Python • JavaScript • TypeScript • SQL • Verilog</p>
+  <p><b>Programming Languages:</b> Java • Python • JavaScript • TypeScript • Go • Rust • SQL • Verilog</p>
   <p><b>Databases:</b> PostgreSQL • MongoDB • Redis • Prisma</p>
   <p><b>Frontend:</b> Next.js • React • Tailwind CSS</p>
   <p><b>DevOps &amp; Tools:</b> Docker • GitHub Actions • Kafka • RabbitMQ • Prometheus • OpenTelemetry • Linux • Postman</p>
